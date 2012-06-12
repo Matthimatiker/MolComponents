@@ -1,0 +1,23 @@
+{
+    "name": "Matthimatiker/MolComponents",
+    "description": "Custom library that contains utility classes and extends the functionality of Zend Framework 1.",
+    "keywords": ["PHP", "Library"],
+    "homepage": "https://github.com/Matthimatiker/MolComponents",
+    "type": "library",
+    "license": "BSD-3",
+    "authors": [
+        {
+            "name": "Matthias Molitor",
+            "email": "matthias@matthimatiker.de",
+            "homepage": "http://www.matthimatiker.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0"
+    },
+    "autoload": {
+        "psr-0": { 
+            "Mol": "src/"
+        }
+    }
+}
