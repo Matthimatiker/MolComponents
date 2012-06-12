@@ -5,7 +5,7 @@
  *
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Tests
- * @copyright Matthias Molitor 2011
+ * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 485 $
  * @since 02.07.2011
  */

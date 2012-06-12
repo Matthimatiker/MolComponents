@@ -5,7 +5,7 @@
  *
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Filter
- * @copyright Matthias Molitor 2010
+ * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 378 $
  * @since 17.12.2010
  */
@@ -22,7 +22,7 @@
  *
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Filter
- * @copyright Matthias Molitor 2010
+ * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 378 $
  * @since 17.12.2010
  */
