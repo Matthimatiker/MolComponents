@@ -34,7 +34,7 @@ class TestHelper {
      */
     public static function createView() {
         $view = new Mol_Test_View_Mock();
-        $view->addHelperPath(PROJECT_ROOT . '/library/View/Helper', 'Mol_View_Helper');
+        $view->addHelperPath(dirname(__FILE__) . '/../src/Mol/View/Helper', 'Mol_View_Helper');
         $urlHelper = new Mol_Test_View_Helper_Url();
         $view->setHelper('Url', $urlHelper);
         return $view;
