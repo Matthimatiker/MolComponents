@@ -61,12 +61,15 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase {
     }
     
     /**
-     * Creates a pre-configured view mock object.
+     * Creates a pre-configured view object.
      *
-     * @return Mol_Test_View_Mock
+     * @return Zend_View
      */
     protected function createView() {
-        return TestHelper::createView();
+        $view = new Zend_View();
+        $urlHelper = new Mol_Test_View_Helper_Url();
+        $view->registerHelper($urlHelper, 'url');
+        return $view;
     }
     
     /**
