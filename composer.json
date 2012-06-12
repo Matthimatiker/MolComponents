@@ -13,7 +13,8 @@
         }
     ],
     "require": {
-        "php": ">=5.2.0"
+        "php": ">=5.2.0",
+        "breerly/zf1": "1.11.*"
     },
     "autoload": {
         "psr-0": { 
