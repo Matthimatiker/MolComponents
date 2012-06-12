@@ -65,8 +65,8 @@
  * @version $Rev: 418 $
  * @since 05.03.2011
  */
-class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
-    
+class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
+{
     /**
      * Contains the configured responses grouped by url pattern.
      *
@@ -76,7 +76,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
      * @var array(string=>array(string))
      */
     protected $responsesByPattern = array();
-    
+
     /**
      * Contains the number of requests per url pattern.
      *
@@ -88,14 +88,14 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
      * @var array(string=>integer)
      */
     protected $numberOfRequestsByPattern = array();
-    
+
     /**
      * The last requested uri.
      *
      * @var Zend_Uri_Http|null
      */
     protected $requestedUri = null;
-    
+
     /**
      * See {@link Zend_Http_Client_Adapter_Interface::write()} for details.
      *
@@ -106,19 +106,21 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
      * @param string $body
      * @return string
      */
-    public function write( $method, $uri, $httpVersion = '1.1', $headers = array(), $body = '' ) {
+    public function write( $method, $uri, $httpVersion = '1.1', $headers = array(), $body = '' )
+    {
         $request = parent::write($method, $uri, $httpVersion, $headers, $body);
         $this->requestedUri = $this->normalizeUri($uri);
         return $request;
     }
-    
+
     /**
      * Normalizes the uri for internal usage.
      *
      * @param Zend_Uri_Http $uri
      * @return Zend_Uri_Http
      */
-    protected function normalizeUri(Zend_Uri_Http $uri) {
+    protected function normalizeUri(Zend_Uri_Http $uri)
+    {
         $defaultPorts = array(
             // Scheme => Port
             'http'  => 80,
@@ -134,14 +136,15 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
         }
         return $uri;
     }
-    
+
     /**
      * See {@link Zend_Http_Client_Adapter_Interface::read()} for details.
      *
      * @return string
      * @throws RuntimeException If no response is available.
      */
-    public function read() {
+    public function read()
+    {
         foreach( $this->getPatterns() as $pattern ) {
             /* @var $pattern string */
             if( !$this->matches($pattern) ) {
@@ -158,42 +161,45 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
         }
         return parent::read();
     }
-    
+
     /**
      * Checks if the given pattern matches the last requested uri.
      *
      * @param string $pattern
      * @return boolean
      */
-    protected function matches( $pattern ) {
+    protected function matches( $pattern )
+    {
         if( empty($pattern) )  {
             return false;
         }
         $uri = $this->requestedUri->getUri();
         return preg_match($this->toRegExp($pattern), $uri) > 0;
     }
-    
+
     /**
      * Converts the url pattern string to a regular expression.
      *
      * @param string $pattern
      * @return string
      */
-    private function toRegExp( $pattern ) {
+    private function toRegExp( $pattern )
+    {
         $regExp = '/^' . preg_quote($pattern, '/') . '$/';
         // Replace escaped "*" by a pattern, that matches zero to
         // unlimited arbitrary characters.
         $regExp = str_replace('\*', '.*', $regExp);
         return $regExp;
     }
-    
+
     /**
      * Zend_Http_Client_Adapter_Test::addResponse()
      *
      * @param string|Zend_Http_Response $response
      * @param string|null $urlPattern
      */
-    public function addResponse( $response, $urlPattern = null ) {
+    public function addResponse( $response, $urlPattern = null )
+    {
         if( $urlPattern === null ) {
             parent::addResponse($response);
         }
@@ -205,19 +211,20 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
         }
         $this->responsesByPattern[$urlPattern][] = $response;
     }
-    
+
     /**
      * Returns the next response for the given pattern.
      *
      * @param string $pattern
      * @return string
      */
-    protected function next( $pattern ) {
+    protected function next( $pattern )
+    {
         $response = array_shift($this->responsesByPattern[$pattern]);
         array_push($this->responsesByPattern[$pattern], $response);
         return $response;
     }
-    
+
     /**
      * Returns the number of requests that matched the provided pattern.
      *
@@ -225,7 +232,8 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
      * @return integer
      * @throws RuntimeException If the pattern is unknown.
      */
-    public function getNumberOfRequestsFor( $pattern ) {
+    public function getNumberOfRequestsFor( $pattern )
+    {
         if( !in_array($pattern, $this->getPatterns()) ) {
             throw new RuntimeException('Unknown pattern "' . $pattern . '".');
         }
@@ -234,38 +242,40 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test {
         }
         return $this->numberOfRequestsByPattern[$pattern];
     }
-    
+
     /**
      * Returns the number of all requests.
      *
      * @return integer
      */
-    public function getNumberOfRequests() {
+    public function getNumberOfRequests()
+    {
         return array_sum($this->numberOfRequestsByPattern);
     }
-    
+
     /**
      * Increments the request counter for the given pattern.
      *
      * @param string $pattern
      */
-    protected function countRequest( $pattern ) {
+    protected function countRequest( $pattern )
+    {
         if( !isset($this->numberOfRequestsByPattern[$pattern]) ) {
             $this->numberOfRequestsByPattern[$pattern] = 0;
         }
         $this->numberOfRequestsByPattern[$pattern]++;
     }
-    
+
     /**
      * Returns an array that contains all patterns with
      * registered responses.
      *
      * @return array(string)
      */
-    private function getPatterns() {
+    private function getPatterns()
+    {
         return array_keys($this->responsesByPattern);
     }
-    
+
 }
 
-?>

@@ -42,22 +42,23 @@
  * @version $Rev: 497 $
  * @since 05.07.2011
  */
-class Mol_Util_MemoryStream {
-    
+class Mol_Util_MemoryStream
+{
     /**
      * The identifier for this stream object.
      *
      * @var string
      */
     protected $id = null;
-    
+
     /**
      * Creates a new stream.
      *
      * @param string $content The initial stream content.
      * @throws RuntimeException If an invalid argument is passed.
      */
-    public function __construct( $content = '' ) {
+    public function __construct( $content = '' )
+    {
         if( !is_string($content) ) {
             $message = 'String expected, but' . gettype($content) . ' received.';
             throw new RuntimeException($message);
@@ -66,16 +67,17 @@ class Mol_Util_MemoryStream {
         Mol_Util_MemoryStreamWrapper::register();
         Mol_Util_MemoryStreamWrapper::registerBucket($this->id, $content);
     }
-    
+
     /**
      * Returns the current content of the stream.
      *
      * @return string
      */
-    public function getContent() {
+    public function getContent()
+    {
         return Mol_Util_MemoryStreamWrapper::readBucket($this->id);
     }
-    
+
     /**
      * Returns the identifier for this stream.
      *
@@ -84,17 +86,18 @@ class Mol_Util_MemoryStream {
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return Mol_Util_MemoryStreamWrapper::SCHEME . '://' . $this->id;
     }
-    
+
     /**
      * Cleans up the environment.
      */
-    public function __destruct() {
+    public function __destruct()
+    {
         Mol_Util_MemoryStreamWrapper::unRegisterBucket($this->id);
     }
-    
+
 }
 
-?>

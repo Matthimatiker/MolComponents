@@ -30,18 +30,18 @@
  * @version $Rev: 381 $
  * @since 17.12.2010
  */
-class Mol_Filter_Null implements Zend_Filter_Interface {
-    
+class Mol_Filter_Null implements Zend_Filter_Interface
+{
     /**
      * Zend_Filter_Interface::filter()
      *
      * @param mixed $value
      * @return mixed
      */
-    public function filter( $value ) {
+    public function filter( $value )
+    {
         return $value;
     }
-    
+
 }
 
-?>

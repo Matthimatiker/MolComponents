@@ -31,23 +31,23 @@ require_once(dirname(__FILE__) . '/TestData/MockController.php');
  * @version $Rev: 416 $
  * @since 16.12.2010
  */
-class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
-
+class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
+{
     /**
      * Index for the first argument.
      */
     const FIRST_ARGUMENT = 0;
-    
+
     /**
      * Index for the second argument.
      */
     const SECOND_ARGUMENT = 1;
-    
+
     /**
      * Index for the third argument.
      */
     const THIRD_ARGUMENT = 2;
-    
+
     /**
      * System under test.
      *
@@ -72,7 +72,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
      */
-    protected function setUp() {
+    protected function setUp()
+    {
         parent::setUp();
         Zend_Controller_Action_HelperBroker::resetHelpers();
         $this->request    = new Zend_Controller_Request_Http();
@@ -83,14 +84,15 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
      */
-    protected function tearDown() {
+    protected function tearDown()
+    {
         $this->controller = null;
         $this->request    = null;
         $this->response   = null;
         Zend_Controller_Action_HelperBroker::resetHelpers();
         parent::tearDown();
     }
-    
+
     /**
      * Injects the parameter $name with the value $value into the request object.
      *
@@ -100,10 +102,11 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * @param string $name
      * @param mixed $value
      */
-    protected function simulateParam( $name, $value ) {
+    protected function simulateParam( $name, $value )
+    {
         $this->request->setParam($name, $this->convertToString($value));
     }
-    
+
     /**
      * Converts $value to string to simulate the parameter transfer via
      * GET or POST.
@@ -111,7 +114,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * @param mixed $param
      * @return string|array(string)
      */
-    private function convertToString( $param ) {
+    private function convertToString( $param )
+    {
         if( is_array($param) ) {
             // Convert all elements to string.
             foreach ( $param as $key => $value ) {
@@ -127,7 +131,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      *
      * @param string $action
      */
-    protected function dispatch( $action ) {
+    protected function dispatch( $action )
+    {
         $this->request->setDispatched(true);
         $actionMethod = $this->actionNameToMethod($action);
         $this->controller->dispatch($actionMethod);
@@ -136,7 +141,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * Ensures that action without parameters are dispatched like before (backward compability).
      */
-    public function testDispatchIsBackwardCompatible() {
+    public function testDispatchIsBackwardCompatible()
+    {
         $this->dispatch('foo');
         $this->assertActionCall('foo');
     }
@@ -144,7 +150,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * Ensures that an exception is thrown if a required parameter is missing.
      */
-    public function testDispatchThrowsExceptionIfRequiredParameterIsMissing() {
+    public function testDispatchThrowsExceptionIfRequiredParameterIsMissing()
+    {
         $this->setExpectedException('Mol_Controller_Exception_ParameterMissing');
         // The required parameter "count" was not provided.
         $this->dispatch('required-parameter');
@@ -154,7 +161,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an action is executed if the required parameter is
      * provided.
      */
-    public function testDispatchCallsActionIfRequiredParameterIsAvailable() {
+    public function testDispatchCallsActionIfRequiredParameterIsAvailable()
+    {
         $this->simulateParam('count', '42');
         $this->dispatch('required-parameter');
         $this->assertActionCall('required-parameter');
@@ -164,7 +172,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an exception is thrown if the provided parameter does
      * not match the documented type.
      */
-    public function testDispatchThrowsExceptionIfParameterIsNotValid() {
+    public function testDispatchThrowsExceptionIfParameterIsNotValid()
+    {
         $this->setExpectedException('Mol_Controller_Exception_ParameterNotValid');
         $this->simulateParam('count', 'zweiundvierzig');
         $this->dispatch('required-parameter');
@@ -174,7 +183,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that the parameter is casted to the type that is doumented
      * in the DocBlock.
      */
-    public function testParameterIsConvertedToDocumentedType() {
+    public function testParameterIsConvertedToDocumentedType()
+    {
         $this->simulateParam('count', '42');
         $this->dispatch('required-parameter');
         $this->assertActionArgumentHasType('required-parameter', self::FIRST_ARGUMENT, 'integer');
@@ -183,7 +193,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * Ensures that the argument passed to the action has the correct value.
      */
-    public function testParameterHasProvidedValue() {
+    public function testParameterHasProvidedValue()
+    {
         $this->simulateParam('count', '42');
         $this->dispatch('required-parameter');
         $this->assertActionArgumentEquals('required-parameter', self::FIRST_ARGUMENT, 42);
@@ -193,7 +204,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an action with optional parameter is callable if the parameter
      * is not provided.
      */
-    public function testActionWithOptionalParameterIsCalledEvenIfParameterIsNotAvailable() {
+    public function testActionWithOptionalParameterIsCalledEvenIfParameterIsNotAvailable()
+    {
         $this->dispatch('optional-parameter');
         $this->assertActionCall('optional-parameter');
     }
@@ -202,7 +214,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that the documented default value is passed to the action if
      * the parameter was not provided.
      */
-    public function testDefaultValueIsProvidedIfOptionalParameterIsMissing() {
+    public function testDefaultValueIsProvidedIfOptionalParameterIsMissing()
+    {
         $this->dispatch('optional-parameter');
         $this->assertActionArgumentEquals('optional-parameter', self::FIRST_ARGUMENT, 'Hello World!');
     }
@@ -211,7 +224,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an action with optional parameter is callable if the parameter
      * is provided.
      */
-    public function testActionWithOptionalParameterIsCalledWhenParameterIsAvailable() {
+    public function testActionWithOptionalParameterIsCalledWhenParameterIsAvailable()
+    {
         $this->simulateParam('text', 'Test first!');
         $this->dispatch('optional-parameter');
         $this->assertActionCall('optional-parameter');
@@ -221,7 +235,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an exception is thrown if no validator is available for
      * the documented type.
      */
-    public function testControllerThrowsExceptionIfDocumentedTypeIsUnknown() {
+    public function testControllerThrowsExceptionIfDocumentedTypeIsUnknown()
+    {
         $this->setExpectedException('Mol_Controller_Exception_ParameterNotValid');
         $this->simulateParam('unknown', 'Darf ich mich vorstellen?');
         $this->dispatch('unknown-type');
@@ -230,7 +245,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * Ensures that calls to undefined actions are handled by __call().
      */
-    public function testUndefinedActionsAreHandledByCall() {
+    public function testUndefinedActionsAreHandledByCall()
+    {
         $this->dispatch('not-existing');
         $this->assertActionCall('not-existing');
     }
@@ -238,45 +254,48 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * Tests if the most important primitive types are supported.
      */
-    public function testDispatchSupportsSimpleTypes() {
+    public function testDispatchSupportsSimpleTypes()
+    {
         $this->simulateParam('flag', 'true');
         $this->simulateParam('number', '5.23');
         $this->simulateParam('mixed', 'Hallo!');
-        
+
         $this->dispatch('mixed-types');
-        
+
         $this->assertActionCall('mixed-types');
         $this->assertActionArgumentEquals('mixed-types', self::FIRST_ARGUMENT,  true);
         $this->assertActionArgumentEquals('mixed-types', self::SECOND_ARGUMENT, 5.23);
         $this->assertActionArgumentEquals('mixed-types', self::THIRD_ARGUMENT, 'Hallo!');
     }
-    
+
     /**
      * Ensures that parameter assignment works even if the parameter names
      * in the DocBlock are aligned.
      */
-    public function testDispatchSupportsIndentedParameterNames() {
+    public function testDispatchSupportsIndentedParameterNames()
+    {
         $this->simulateParam('one', 'Hallo!');
         $this->simulateParam('two', 'true');
-        
+
         $this->dispatch('indented-names');
-        
+
         $this->assertActionCall('indented-names');
         $this->assertActionArgumentEquals('indented-names', self::FIRST_ARGUMENT,  'Hallo!');
         $this->assertActionArgumentEquals('indented-names', self::SECOND_ARGUMENT, true);
     }
-    
+
     /**
      * Ensures that parameter assignment works even if addtional parameter
      * comments are present in the DocBlock.
      */
-    public function testDispatchSupportsAdditionalParameterComments() {
+    public function testDispatchSupportsAdditionalParameterComments()
+    {
         $this->simulateParam('one', 'Hallo!');
         $this->simulateParam('two', 'true');
-        
+
         $action = 'additional-parameter-documentation';
         $this->dispatch($action);
-        
+
         $this->assertActionCall($action);
         $this->assertActionArgumentEquals($action, self::FIRST_ARGUMENT,  'Hallo!');
         $this->assertActionArgumentEquals($action, self::SECOND_ARGUMENT, true);
@@ -286,7 +305,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an exception is thrown if the complete action
      * DocBlock is missing.
      */
-    public function testDispatchThrowsExceptionIfDocBlockIsMissing() {
+    public function testDispatchThrowsExceptionIfDocBlockIsMissing()
+    {
         $this->setExpectedException('Mol_Controller_Exception_DocBlockMissing');
         $this->simulateParam('flag', '0');
         $this->dispatch('undocumented');
@@ -296,7 +316,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an exception is thrown if a declared action parameter is
      * not documented.
      */
-    public function testDispatchThrowsExceptionIfParameterIsNotDocumented() {
+    public function testDispatchThrowsExceptionIfParameterIsNotDocumented()
+    {
         $this->setExpectedException('Mol_Controller_Exception_ParameterTagMissing');
         $this->simulateParam('flag', '0');
         $this->dispatch('no-parameter-tag');
@@ -305,7 +326,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * Tests if arrays are supported as parameters.
      */
-    public function testDispatchSupportsArrayParameters() {
+    public function testDispatchSupportsArrayParameters()
+    {
         $list = array( '1', '2', '3' );
         $this->simulateParam('list', $list);
         $this->dispatch('array-parameter');
@@ -316,7 +338,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
     /**
      * Ensures that an exception is thrown if a required array parameter is missing.
      */
-    public function testDispatchThrowsExceptionIfArrayParameterIsMissing() {
+    public function testDispatchThrowsExceptionIfArrayParameterIsMissing()
+    {
         $this->setExpectedException('Mol_Controller_Exception_ParameterMissing');
         $this->dispatch('array-parameter');
     }
@@ -325,7 +348,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that am exception is thrown a parameter is declared as array
      * but another type is provided.
      */
-    public function testDispatchThrowsExceptionIfArrayParameterHasInvalidType() {
+    public function testDispatchThrowsExceptionIfArrayParameterHasInvalidType()
+    {
         $this->setExpectedException('Mol_Controller_Exception_ParameterNotValid');
         $this->simulateParam('list', '1,2,3');
         $this->dispatch('array-parameter');
@@ -335,34 +359,38 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * Ensures that an exception is thrown if a parameter is documented
      * without its name in the param tag.
      */
-    public function testDispatchThrowsExceptionIfParamNameIsNotDocumented() {
+    public function testDispatchThrowsExceptionIfParamNameIsNotDocumented()
+    {
         $this->setExpectedException('Mol_Controller_Exception_ParameterTagMissing');
         $this->simulateParam('flag', '1');
         $this->dispatch('doc-block-without-parameter-name');
     }
-    
+
     /**
      * Tests if registerValidator() provides a fluent interface.
      */
-    public function testRegisterValidatorProvidesFluentInterface() {
+    public function testRegisterValidatorProvidesFluentInterface()
+    {
         $validator = new Mol_Validate_True();
         $this->assertSame($this->controller, $this->controller->registerValidator($validator, 'x'));
     }
-    
+
     /**
      * Tests if registerFilter() provides a fluent interface.
      */
-    public function testRegisterFilterProvidesFluentInterface() {
+    public function testRegisterFilterProvidesFluentInterface()
+    {
          $filter = new Mol_Filter_Null();
         $this->assertSame($this->controller, $this->controller->registerFilter($filter, 'x'));
     }
-    
+
     /**
      * Asserts that the action named $action was called.
      *
      * @param string $action
      */
-    protected function assertActionCall( $action ) {
+    protected function assertActionCall( $action )
+    {
         $message = 'Action "' . $action . '" was not called.';
         $method  = $this->actionNameToMethod($action);
         $this->assertTrue($this->controller->wasCalled($method), $message);
@@ -377,7 +405,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * @param integer $argumentIndex The index of the argument, starting at 0.
      * @param string $expectedType
      */
-    protected function assertActionArgumentHasType( $action, $argumentIndex, $expectedType ) {
+    protected function assertActionArgumentHasType( $action, $argumentIndex, $expectedType )
+    {
         $argument = $this->getArgument($action, $argumentIndex);
         $this->assertType($expectedType, $argument, 'Invalid argument type.');
     }
@@ -391,18 +420,20 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * @param integer $argumentIndex The index of the argument, starting at 0.
      * @param mixed $expectedValue The expected argument value.
      */
-    protected function assertActionArgumentEquals( $action, $argumentIndex, $expectedValue ) {
+    protected function assertActionArgumentEquals( $action, $argumentIndex, $expectedValue )
+    {
         $argument = $this->getArgument($action, $argumentIndex);
         $this->assertEquals($expectedValue, $argument);
     }
-    
+
     /**
      * Converts an action name to the name of the corrresponding method.
      *
      * @param string $action The name of the action.
      * @return string The name of the corresponding action method.
      */
-    private function actionNameToMethod( $action ) {
+    private function actionNameToMethod( $action )
+    {
         $parts         = explode('-', $action);
         $numberOfParts = count($parts);
         for( $i = 1; $i < $numberOfParts; $i++ ) {
@@ -421,7 +452,8 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
      * @param integer $argumentIndex The index of the argument, starting at 0.
      * @return mixed
      */
-    private function getArgument( $action, $argumentIndex ) {
+    private function getArgument( $action, $argumentIndex )
+    {
         $method    = $this->actionNameToMethod($action);
         $arguments = $this->controller->getLastArgumentsFrom($method);
         if( !isset($arguments[$argumentIndex]) ) {
@@ -432,4 +464,3 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase {
 
 }
 
-?>

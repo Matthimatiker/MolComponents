@@ -37,8 +37,8 @@
  * @version $Rev: 418 $
  * @since 23.12.2010
  */
-class Mol_DataType_Map extends ArrayObject {
-    
+class Mol_DataType_Map extends ArrayObject
+{
     /**
      * The default value that is returned if no more specific
      * value is available.
@@ -46,7 +46,7 @@ class Mol_DataType_Map extends ArrayObject {
      * @var mixed
      */
     protected $defaultValue = null;
-    
+
     /**
      * Creates a key/value map that is initially filled with the values
      * provided in $initialValues.
@@ -57,25 +57,27 @@ class Mol_DataType_Map extends ArrayObject {
      * @param array(mixed) $initialValues
      * @param mixed $defaultValue
      */
-    public function __construct( array $initialValues = array(), $defaultValue = null ) {
+    public function __construct( array $initialValues = array(), $defaultValue = null )
+    {
         $this->defaultValue = $defaultValue;
         parent::__construct($initialValues);
         $this->setFlags(self::ARRAY_AS_PROPS);
     }
-    
+
     /**
      * See {@link ArrayObject::offsetGet()} for details.
      *
      * @param mixed $index
      * @return mixed
      */
-    public function offsetGet( $index ) {
+    public function offsetGet( $index )
+    {
         if( !isset($this[$index]) ) {
             return $this->defaultValue;
         }
         return parent::offsetGet($index);
     }
-    
+
     /**
      * Registers $value for one or many keys.
      *
@@ -92,7 +94,8 @@ class Mol_DataType_Map extends ArrayObject {
      * @param mixed $value
      * @param array(mixed)|mixed $keys
      */
-    public function register($value, $keys) {
+    public function register($value, $keys)
+    {
         if( !is_array($keys) ) {
             // Single key provided.
             $keys = array($keys);
@@ -101,7 +104,6 @@ class Mol_DataType_Map extends ArrayObject {
             $this[$key] = $value;
         }
     }
-    
+
 }
 
-?>

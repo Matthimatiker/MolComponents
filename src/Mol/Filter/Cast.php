@@ -26,15 +26,15 @@
  * @version $Rev: 378 $
  * @since 17.12.2010
  */
-class Mol_Filter_Cast implements Zend_Filter_Interface {
-    
+class Mol_Filter_Cast implements Zend_Filter_Interface
+{
     /**
      * The type this filter converts the values to.
      *
      * @var string
      */
     protected $type = null;
-    
+
     /**
      * Creates the filter.
      *
@@ -52,21 +52,22 @@ class Mol_Filter_Cast implements Zend_Filter_Interface {
      *
      * @param string $type
      */
-    public function __construct( $type ) {
+    public function __construct( $type )
+    {
         $this->type = $type;
     }
-    
+
     /**
      * Zend_Filter_Interface::filter()
      *
      * @param mixed $value
      * @return mixed Der konvertierte Wert.
      */
-    public function filter( $value ) {
+    public function filter( $value )
+    {
         settype($value, $this->type);
         return $value;
     }
-    
+
 }
 
-?>

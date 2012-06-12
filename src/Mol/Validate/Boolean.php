@@ -19,12 +19,13 @@
  * @version $Rev: 378 $
  * @since 17.12.2010
  */
-class Mol_Validate_Boolean extends Zend_Validate_InArray {
-    
+class Mol_Validate_Boolean extends Zend_Validate_InArray
+{
     /**
      * Creates the validator.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $options = array(
             'haystack' => array(
                 // Boolean types
@@ -47,7 +48,6 @@ class Mol_Validate_Boolean extends Zend_Validate_InArray {
         );
         parent::__construct($options);
     }
-    
+
 }
 
-?>

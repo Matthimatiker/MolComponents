@@ -19,13 +19,13 @@
  * @version $Rev: 505 $
  * @since 05.07.2011
  */
-class Mol_Util_MemoryStreamWrapper {
-    
+class Mol_Util_MemoryStreamWrapper
+{
     /**
      * The scheme for streams that are handled by this wrapper.
      */
     const SCHEME = 'volatile';
-    
+
     /**
      * Contains all registered buckets.
      *
@@ -34,39 +34,40 @@ class Mol_Util_MemoryStreamWrapper {
      * @var array(string=>string)
      */
     protected static $buckets = array();
-    
+
     /**
      * The context.
      *
      * @var resource|null
      */
     public $context = null;
-    
+
     /**
      * The id of the bucket that is handled by this object.
      *
      * @var string
      */
     protected $bucketId = null;
-    
+
     /**
      * The current position in the bucket.
      *
      * @var integer
      */
     protected $position = 0;
-    
+
     /**
      * Registers the stream wrapper.
      */
-    public static function register() {
+    public static function register()
+    {
         if( in_array(self::SCHEME, stream_get_wrappers())) {
             // Wrapper is already registered.
             return;
         }
         stream_wrapper_register(self::SCHEME, __CLASS__);
     }
-    
+
     /**
      * Registers a new stream bucket with the given id.
      *
@@ -75,39 +76,43 @@ class Mol_Util_MemoryStreamWrapper {
      * @param string $id
      * @param string $initalContent
      */
-    public static function registerBucket( $id, $initalContent ) {
+    public static function registerBucket( $id, $initalContent )
+    {
         self::$buckets[$id] = $initalContent;
     }
-    
+
     /**
      * Returns the whole content of the bucket with the given id.
      *
      * @param string $id
      * @return string
      */
-    public static function readBucket( $id ) {
+    public static function readBucket( $id )
+    {
         return self::$buckets[$id];
     }
-    
+
     /**
      * Removes the bucket with the given id.
      *
      * @param string $id
      */
-    public static function unRegisterBucket( $id ) {
+    public static function unRegisterBucket( $id )
+    {
         unset(self::$buckets[$id]);
     }
-    
+
     /**
      * Checks if the bucket with the provided id exists.
      *
      * @param string $id
      * @return boolean True if the bucket exists, false otherwise.
      */
-    public static function hasBucket( $id ) {
+    public static function hasBucket( $id )
+    {
         return isset(self::$buckets[$id]);
     }
-    
+
     /**
      * Extracts the bucket id from the given url.
      *
@@ -117,10 +122,11 @@ class Mol_Util_MemoryStreamWrapper {
      * @param string $url
      * @return string
      */
-    protected static function extractBucketId( $url ) {
+    protected static function extractBucketId( $url )
+    {
         return parse_url($url, PHP_URL_HOST);
     }
-    
+
     /**
      * Returns the size of the bucket with the given id.
      *
@@ -129,22 +135,24 @@ class Mol_Util_MemoryStreamWrapper {
      * @param string $id
      * @return integer The size in bytes.
      */
-    protected function getBucketSize( $id ) {
+    protected function getBucketSize( $id )
+    {
         if( !self::hasBucket($id) ) {
             return 0;
         }
         return strlen(self::$buckets[$id]);
     }
-    
+
     /**
      * Returns the current bucket size in bytes.
      *
      * @return integer
      */
-    protected function getSize() {
+    protected function getSize()
+    {
         return self::getBucketSize($this->bucketId);
     }
-    
+
     // @codingStandardsIgnoreStart Unused parameters exist for interface compability.
     /**
      * Opens a stream.
@@ -158,12 +166,13 @@ class Mol_Util_MemoryStreamWrapper {
      * @param string $openedPath
      * @throws RuntimeException If the requested bucket does not exist.
      */
-    public function stream_open($path, $mode, $options, $openedPath) {
+    public function stream_open($path, $mode, $options, $openedPath)
+    {
         $this->bucketId = parse_url($path, PHP_URL_HOST);
         if( !self::hasBucket($this->bucketId) ) {
             throw new RuntimeException('Bucket "' . $this->bucketId . '" does not exist.');
         }
-        
+
         $mode = str_replace('b', '', strtolower($mode));
         switch( $mode ) {
             case 'r':
@@ -180,10 +189,10 @@ class Mol_Util_MemoryStreamWrapper {
                 $this->position = $this->getSize();
                 break;
         }
-        
+
         return true;
     }
-    
+
     /**
      * Returns information about a stream.
      *
@@ -191,7 +200,8 @@ class Mol_Util_MemoryStreamWrapper {
      * @param integer $flags
      * @return array(mixed=>mixed)|false
      */
-    public function url_stat( $path, $flags ) {
+    public function url_stat( $path, $flags )
+    {
         $id = self::extractBucketId($path);
         if( !self::hasBucket($id) ) {
             return false;
@@ -209,37 +219,40 @@ class Mol_Util_MemoryStreamWrapper {
      *
      * @return array(mixed=>mixed)
      */
-    public function stream_stat() {
+    public function stream_stat()
+    {
         $info = array(
             'size' => $this->getSize()
         );
         return $info;
     }
-    
+
     /**
      * Returns $count bytes from the bucket.
      *
      * @param integer $count
      * @return string
      */
-    public function stream_read( $count ) {
+    public function stream_read( $count )
+    {
         $result          = substr(self::$buckets[$this->bucketId], $this->position, $count);
         $this->position += strlen($result);
         return $result;
     }
-    
+
     /**
      * Writes $data to the bucket.
      *
      * @param string $data
      * @return integer The number of written bytes.
      */
-    public function stream_write( $data ) {
+    public function stream_write( $data )
+    {
         $this->insert($data, $this->position);
         $this->position += strlen($data);
         return strlen($data);
     }
-    
+
     /**
      * Inserts the given data block at the provided position.
      *
@@ -249,7 +262,8 @@ class Mol_Util_MemoryStreamWrapper {
      * @param string $data
      * @param integer $position
      */
-    protected function insert( $data, $position ) {
+    protected function insert( $data, $position )
+    {
         if( $position === 0 ) {
             $start = '';
         } else {
@@ -262,34 +276,37 @@ class Mol_Util_MemoryStreamWrapper {
         }
         self::$buckets[$this->bucketId] = $start . $data . $end;
     }
-    
+
     /**
      * Writes cached data.
      *
      * @return boolean
      */
-    public function stream_flush() {
+    public function stream_flush()
+    {
         return true;
     }
-    
+
     /**
      * Returns the current position in the bucket.
      *
      * @return integer
      */
-    public function stream_tell() {
+    public function stream_tell()
+    {
         return $this->position;
     }
-    
+
     /**
      * Checks if the current position is at the end of the stream.
      *
      * @return boolean
      */
-    public function stream_eof() {
+    public function stream_eof()
+    {
         return $this->position >= $this->getSize();
     }
-    
+
     /**
      * Sets the position in the stream.
      *
@@ -297,7 +314,8 @@ class Mol_Util_MemoryStreamWrapper {
      * @param integer $whence
      * @return boolean
      */
-    public function stream_seek( $offset, $whence = SEEK_SET ) {
+    public function stream_seek( $offset, $whence = SEEK_SET )
+    {
         switch( $whence ) {
             case SEEK_CUR:
                 $newPosition = $this->position + $offset;
@@ -315,13 +333,13 @@ class Mol_Util_MemoryStreamWrapper {
         $this->position = min($newPosition, $this->getSize());
         return true;
     }
-    
+
     /**
      * Closes the stream.
      */
-    public function stream_close() {
+    public function stream_close()
+    {
     }
 
 }
 
-?>

@@ -49,8 +49,8 @@
  * @version $Rev: 414 $
  * @since 17.10.2010
  */
-class Mol_View_Helper_To extends Zend_View_Helper_Abstract {
-    
+class Mol_View_Helper_To extends Zend_View_Helper_Abstract
+{
     /**
      * Returns a url object that may be parametrized further and that
      * is automatically converted to a url string when it is printed.
@@ -60,14 +60,14 @@ class Mol_View_Helper_To extends Zend_View_Helper_Abstract {
      * @param string $module
      * @return Mol_View_Helper_Value_Url
      */
-    public function to( $action, $controller, $module = 'default' ) {
+    public function to( $action, $controller, $module = 'default' )
+    {
         $url = new Mol_View_Helper_Value_Url($this->view);
         $url->withParam('action',     $action);
         $url->withParam('controller', $controller);
         $url->withParam('module',     $module);
         return $url;
     }
-    
+
 }
 
-?>

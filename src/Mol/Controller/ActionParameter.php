@@ -86,8 +86,8 @@
  * @version $Rev: 411 $
  * @since 15.12.2010
  */
-abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
-
+abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
+{
     /**
      * Contains validators for the different parameter types.
      *
@@ -117,7 +117,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @var array(string=>array(string=>string))
      */
     private $paramTypesByMethod = array();
-    
+
     /**
      * Executes the given action if it is available and the required
      * parameters are provided.
@@ -125,7 +125,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @param string $action The name of the action method.
      * @throws Mol_Controller_Exception_ActionParameter If the action cannot be executed.
      */
-    public function dispatch( $action ) {
+    public function dispatch( $action )
+    {
         $this->notifyPreDispatch();
         $this->preDispatch();
         if( $this->getRequest()->isDispatched() ) {
@@ -139,14 +140,16 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
     /**
      * Notifies the helpers about the preDispatch event.
      */
-    private function notifyPreDispatch() {
+    private function notifyPreDispatch()
+    {
         $this->_helper->notifyPreDispatch();
     }
 
     /**
      *  Notifies the helpers about the postDispatch event.
      */
-    private function notifyPostDispatch() {
+    private function notifyPostDispatch()
+    {
         $this->_helper->notifyPostDispatch();
     }
 
@@ -155,7 +158,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      *
      * @param string $actionMethod
      */
-    private function processAction( $actionMethod ) {
+    private function processAction( $actionMethod )
+    {
         if( $this->hasAction($actionMethod) ) {
             $this->executeAction($actionMethod);
         } else {
@@ -169,16 +173,18 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @param string $actionMethod
      * @return boolean True if the requested action is available, false otherwise.
      */
-    private function hasAction( $actionMethod ) {
+    private function hasAction( $actionMethod )
+    {
         return in_array($actionMethod, $this->getClassMethods());
     }
-    
+
     /**
      * Returns a list of all controller methods.
      *
      * @return array(string)
      */
-    private function getClassMethods() {
+    private function getClassMethods()
+    {
         if( $this->_classMethods === null ) {
             $this->_classMethods = get_class_methods($this);
         }
@@ -190,7 +196,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      *
      * @param string $actionMethod
      */
-    private function executeAction( $actionMethod ) {
+    private function executeAction( $actionMethod )
+    {
         $params = $this->getActionParameters($actionMethod);
         call_user_func_array(array( $this, $actionMethod ), $params);
     }
@@ -205,7 +212,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @return array(mixed)
      * @throws Mol_Controller_Exception_ActionParameter If the parameters cannot be determined correctly.
      */
-    private function getActionParameters( $actionMethod ) {
+    private function getActionParameters( $actionMethod )
+    {
         $info        = new ReflectionMethod(get_class($this), $actionMethod);
         $params      = $info->getParameters();
         $paramValues = array();
@@ -223,7 +231,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @return mixed
      * @throws Mol_Controller_Exception_ParameterMissing If no parameter value is available.
      */
-    private function getValueFor( ReflectionParameter $parameter ) {
+    private function getValueFor( ReflectionParameter $parameter )
+    {
         $name  = $parameter->getName();
         $value = $this->_request->getParam($name, false);
         if( $value !== false ) {
@@ -247,7 +256,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @return mixed The filtered value.
      * @throws Mol_Controller_Exception_ParameterNotValid If the validation was not successful.
      */
-    private function validateAndCast( $value, $type ) {
+    private function validateAndCast( $value, $type )
+    {
         if( strpos($type, 'array') === 0 ) {
             // TODO: Handle key/value documentation: key=>value
             $typeInArray = substr($type, 6, -1);
@@ -259,13 +269,13 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
             }
             return $value;
         }
-        
+
         /* @var $validator Zend_Validate_Interface */
         $validator = $this->getValidatorFor($type);
         if( !$validator->isValid($value) ) {
             throw new Mol_Controller_Exception_ParameterNotValid($validator);
         }
-        
+
         /* @var $filter Zend_Filter_Interface */
         $filter = $this->getFilterFor($type);
         return $filter->filter($value);
@@ -278,7 +288,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @return string The documented paramter type.
      * @throws Mol_Controller_Exception_ParameterTagMissing If the parameter was not documented correctly.
      */
-    private function getTypeFor( ReflectionParameter $param ) {
+    private function getTypeFor( ReflectionParameter $param )
+    {
         /* @var $method ReflectionFunction */
         $method = $param->getDeclaringFunction();
         $types  = $this->getDocumentedParamsFor($method);
@@ -297,7 +308,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @return array(string=>string)
      * @throws Mol_Controller_Exception_DocBlockMissing If the action is not documented.
      */
-    private function getDocumentedParamsFor( ReflectionMethod $action ) {
+    private function getDocumentedParamsFor( ReflectionMethod $action )
+    {
         $methodName = $action->getName();
         if( isset($this->paramTypesByMethod[$methodName]) ) {
             return $this->paramTypesByMethod[$methodName];
@@ -335,7 +347,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @param string|array(string) $typeOrTypeList
      * @return Mol_Controller_ActionParameter Provides a Fluent Interface.
      */
-    public function registerValidator( Zend_Validate_Interface $validator, $typeOrTypeList ) {
+    public function registerValidator( Zend_Validate_Interface $validator, $typeOrTypeList )
+    {
         $this->validators()->register($validator, $typeOrTypeList);
         return $this;
     }
@@ -346,16 +359,18 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @param string $type
      * @return Zend_Validate_Interface
      */
-    private function getValidatorFor( $type ) {
+    private function getValidatorFor( $type )
+    {
         return $this->validators()->{$type};
     }
-    
+
     /**
      * Returns a map that contains all registered validators.
      *
      * @return Mol_DataType_Map
      */
-    private function validators() {
+    private function validators()
+    {
         if( $this->validators === null) {
             $message          = 'No validator for the documented type available.';
             $default          = new Mol_Validate_False($message, 'missingTypeValidator');
@@ -364,13 +379,14 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
         }
         return $this->validators;
     }
-    
+
     /**
      * Registers the default validators.
      *
      * @param Mol_DataType_Map $validators
      */
-    private function registerDefaultValidators( Mol_DataType_Map $validators ) {
+    private function registerDefaultValidators( Mol_DataType_Map $validators )
+    {
         $validators->register(new Zend_Validate_Int(),       array('int', 'integer'));
         $validators->register(new Zend_Validate_Float('en'), array('float', 'double'));
         $validators->register(new Mol_Validate_Boolean(),    array('bool', 'boolean'));
@@ -396,7 +412,8 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @param string|array(string) $typeOrTypeList
      * @return Mol_Controller_ActionParameter Bietet ein Fluent Interface.
      */
-    public function registerFilter( Zend_Filter_Interface $filter, $typeOrTypeList ) {
+    public function registerFilter( Zend_Filter_Interface $filter, $typeOrTypeList )
+    {
         $this->filters()->register($filter, $typeOrTypeList);
         return $this;
     }
@@ -407,29 +424,32 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
      * @param string $type
      * @return Zend_Filter_Interface
      */
-    private function getFilterFor( $type ) {
+    private function getFilterFor( $type )
+    {
         return $this->filters()->{$type};
     }
-    
+
     /**
      * Returns a map that contains all registered filters.
      *
      * @return Mol_DataType_Map
      */
-    private function filters() {
+    private function filters()
+    {
         if( $this->filters === null) {
             $this->filters = new Mol_DataType_Map(array(), new Mol_Filter_Null());
             $this->registerDefaultFilters($this->filters);
         }
         return $this->filters;
     }
-    
+
     /**
      * Registers the default filters.
      *
      * @param Mol_DataType_Map $filters
      */
-    private function registerDefaultFilters( Mol_DataType_Map $filters ) {
+    private function registerDefaultFilters( Mol_DataType_Map $filters )
+    {
         $filters->register(new Mol_Filter_Cast('integer'), array('int', 'integer'));
         $filters->register(new Mol_Filter_Cast('double'),  array('float', 'double'));
         $options = array(
@@ -442,4 +462,3 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action {
 
 }
 
-?>

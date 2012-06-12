@@ -23,7 +23,7 @@
  *
  * If the url is omitted the icon that was provided before will be used:
  * <code>
- * <? $this->favicon('/favicon.ico'); ?>
+ * <?php $this->favicon('/favicon.ico'); ?>
  * <!-- Generates the markup for the icon "/favicon.ico" -->
  * <?= $this->favicon(); ?>
  * </code>
@@ -31,8 +31,8 @@
  * If a icon url was provided multiple times the one that was given
  * last will be used:
  * <code>
- * <? $this->favicon('/favicon.ico'); ?>
- * <? $this->favicon('/another_favicon.ico'); ?>
+ * <?php $this->favicon('/favicon.ico'); ?>
+ * <?php $this->favicon('/another_favicon.ico'); ?>
  * <!-- Generates the markup for the icon "/another_favicon.ico" -->
  * <?= $this->favicon(); ?>
  * </code>
@@ -49,15 +49,15 @@
  * @version $Rev: 435 $
  * @since 26.04.2011
  */
-class Mol_View_Helper_Favicon extends Zend_View_Helper_Abstract {
-    
+class Mol_View_Helper_Favicon extends Zend_View_Helper_Abstract
+{
     /**
      * The url of the favicon.
      *
      * @var string
      */
     protected $iconUrl = null;
-    
+
     /**
      * Accepts a icon url. If the url is omitted the icon that
      * was set previously will be used.
@@ -67,26 +67,27 @@ class Mol_View_Helper_Favicon extends Zend_View_Helper_Abstract {
      * @param string $iconUrl
      * @return Mol_View_Helper_Favicon Provides a fluent interface.
      */
-    public function favicon( $iconUrl = null ) {
+    public function favicon( $iconUrl = null )
+    {
         if( $iconUrl !== null ) {
             $this->iconUrl = $iconUrl;
         }
         return $this;
     }
-    
+
     /**
      * Generates the markup.
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         if( $this->iconUrl === null) {
             return '';
         }
         $template = '<link href="%s" rel="shortcut icon" type="image/x-icon" />';
         return sprintf($template, $this->iconUrl);
     }
-    
+
 }
 
-?>

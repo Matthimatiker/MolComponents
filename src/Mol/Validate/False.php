@@ -30,46 +30,48 @@
  * @version $Rev: 418 $
  * @since 17.12.2010
  */
-class Mol_Validate_False implements Zend_Validate_Interface {
-
+class Mol_Validate_False implements Zend_Validate_Interface
+{
     /**
      * Contains error messages for the last isValid() call.
      *
      * @var array(string=>string)
      */
     protected $messages = array();
-    
+
     /**
      * The key that is used to store the error message.
      *
      * @var string
      */
     protected $failureMessageKey = null;
-    
+
     /**
      * The error message.
      *
      * @var string
      */
     protected $failureMessage = null;
-    
+
     /**
      * Creates the validator.
      *
      * @param string $message The error message.
      * @param string $messageKey
      */
-    public function __construct($message, $messageKey = __CLASS__) {
+    public function __construct($message, $messageKey = __CLASS__)
+    {
         $this->failureMessage    = $message;
         $this->failureMessageKey = $messageKey;
     }
-    
+
     /**
      * See {@link Zend_Validate_Interface::getMessages()} for details.
      *
      * @return array(string=>string)
      */
-    public function getMessages() {
+    public function getMessages()
+    {
         return $this->messages;
     }
 
@@ -80,12 +82,12 @@ class Mol_Validate_False implements Zend_Validate_Interface {
      * @param  mixed $value
      * @return boolean
      */
-    public function isValid( $value ) {
+    public function isValid( $value )
+    {
         $this->messages[$this->failureMessageKey] = $this->failureMessage;
         return false;
     }
     // @codingStandardsIgnoreEnd
-    
+
 }
 
-?>

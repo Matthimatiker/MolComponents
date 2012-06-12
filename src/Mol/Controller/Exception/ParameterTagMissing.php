@@ -20,8 +20,8 @@
  * @version $Rev: 441 $
  * @since 16.12.2010
  */
-class Mol_Controller_Exception_ParameterTagMissing extends Mol_Controller_Exception_ActionParameter {
-    
+class Mol_Controller_Exception_ParameterTagMissing extends Mol_Controller_Exception_ActionParameter
+{
     /**
      * Creates the exception.
      *
@@ -31,14 +31,14 @@ class Mol_Controller_Exception_ParameterTagMissing extends Mol_Controller_Except
      * @param integer|null $code
      * @param Exception|null $previous
      */
-    public function __construct($paramName = null, $code = null, Exception $previous = null) {
+    public function __construct($paramName = null, $code = null, Exception $previous = null)
+    {
         $message = null;
         if( $paramName !== null ) {
             $message = 'Missing DocTag for parameter "' . $paramName . '".';
         }
         parent::__construct($message, $code, $previous);
     }
-    
+
 }
 
-?>

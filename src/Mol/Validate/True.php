@@ -21,14 +21,15 @@
  * @version $Rev: 418 $
  * @since 17.12.2010
  */
-class Mol_Validate_True implements Zend_Validate_Interface {
-
+class Mol_Validate_True implements Zend_Validate_Interface
+{
     /**
      * See {@link Zend_Validate_Interface::getMessages()} for details.
      *
      * @return array(string=>string)
      */
-    public function getMessages() {
+    public function getMessages()
+    {
         return array();
     }
 
@@ -39,11 +40,11 @@ class Mol_Validate_True implements Zend_Validate_Interface {
      * @param  mixed $value
      * @return boolean
      */
-    public function isValid( $value ) {
+    public function isValid( $value )
+    {
         return true;
     }
     // @codingStandardsIgnoreEnd
-    
+
 }
 
-?>

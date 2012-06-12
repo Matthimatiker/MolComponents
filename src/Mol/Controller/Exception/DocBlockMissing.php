@@ -19,8 +19,7 @@
  * @version $Rev: 371 $
  * @since 16.12.2010
  */
-class Mol_Controller_Exception_DocBlockMissing extends Mol_Controller_Exception_ActionParameter {
-    
+class Mol_Controller_Exception_DocBlockMissing extends Mol_Controller_Exception_ActionParameter
+{
 }
 
-?>
