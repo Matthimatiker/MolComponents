@@ -3,8 +3,8 @@
 /**
  * Mol_Util_MemoryStreamWrapper
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Util
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 505 $
  * @since 05.07.2011
@@ -13,8 +13,8 @@
 /**
  * Low level class that allows to access MemoryStream objects via stream functions.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Util
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 505 $
  * @since 05.07.2011

@@ -3,8 +3,8 @@
 /**
  * Mol_DataType_Map
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_DataType
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 23.12.2010
@@ -31,8 +31,8 @@
  * $map->register(42, array('a', 'b', 'c'));
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_DataType
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 23.12.2010

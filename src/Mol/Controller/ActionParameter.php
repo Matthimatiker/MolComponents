@@ -3,8 +3,8 @@
 /**
  * Mol_Controller_ActionParameter
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Controller
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 411 $
  * @since 15.12.2010
@@ -80,8 +80,8 @@
  * the controller class (for example in its init() or preDispatch() method)
  * or from the outside (for example by an action helper).
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Controller
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 411 $
  * @since 15.12.2010

@@ -3,8 +3,8 @@
 /**
  * Mol_Test_Assertions_HttpResponse
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 491 $
  * @since 02.07.2011
@@ -20,8 +20,8 @@
  * $this->assertResponse()->contains('Hello!');
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 491 $
  * @since 02.07.2011

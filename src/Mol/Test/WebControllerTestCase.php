@@ -3,8 +3,8 @@
 /**
  * Mol_Test_WebControllerTestCase
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 495 $
  * @since 21.06.2011
@@ -124,8 +124,8 @@
  * }
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 495 $
  * @since 21.06.2011

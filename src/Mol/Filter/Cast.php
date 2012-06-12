@@ -3,8 +3,8 @@
 /**
  * Mol_Filter_Cast
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Filter
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 378 $
  * @since 17.12.2010
@@ -20,8 +20,8 @@
  * $filter->filter('42');
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Filter
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 378 $
  * @since 17.12.2010

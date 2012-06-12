@@ -3,8 +3,8 @@
 /**
  * Mol_Test_View_Helper_Url
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 412 $
  * @since 21.10.2010
@@ -16,8 +16,8 @@
  * Avoids dependencies to the front controller und caches call parameters
  * for later analysis.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 412 $
  * @since 21.10.2010

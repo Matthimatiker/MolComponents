@@ -3,8 +3,8 @@
 /**
  * Mol_View_Helper_To
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 414 $
  * @since 17.10.2010
@@ -43,8 +43,8 @@
  * <?= $this->to('my-action', 'my-controller')->keepParams(); ?>
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 414 $
  * @since 17.10.2010

@@ -3,8 +3,8 @@
 /**
  * Mol_Validate_True
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 17.12.2010
@@ -15,8 +15,8 @@
  *
  * May be used as null or special case object.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 17.12.2010

@@ -3,8 +3,8 @@
 /**
  * Mol_Test_Http_Client_Adapter
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 05.03.2011
@@ -59,8 +59,8 @@
  * Requesting "http://www.matthimatiker.de/demo.html" will return $myResponse
  * in this case.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 05.03.2011

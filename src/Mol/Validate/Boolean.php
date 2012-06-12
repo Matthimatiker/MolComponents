@@ -3,8 +3,8 @@
 /**
  * Mol_Validate_Boolean
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 378 $
  * @since 17.12.2010
@@ -13,8 +13,8 @@
 /**
  * A validator that checks if a value may be interpreted as boolean.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 378 $
  * @since 17.12.2010

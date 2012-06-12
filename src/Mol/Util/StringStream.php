@@ -3,8 +3,8 @@
 /**
  * Mol_Util_StringStream
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Util
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 485 $
  * @since 02.07.2011
@@ -23,8 +23,8 @@
  * $content = file_get_contents(new Mol_Util_StringStream($data));
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Util
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 485 $
  * @since 02.07.2011

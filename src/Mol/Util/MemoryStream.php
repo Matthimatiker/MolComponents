@@ -3,8 +3,8 @@
 /**
  * Mol_Util_MemoryStream
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Util
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 497 $
  * @since 05.07.2011
@@ -36,8 +36,8 @@
  * $stream = new Mol_Util_MemoryStream('Hello World!');
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Util
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 497 $
  * @since 05.07.2011

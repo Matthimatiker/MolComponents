@@ -3,8 +3,8 @@
 /**
  * Mol_Test_Bootstrap_Mock
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 01.01.2011
@@ -17,8 +17,8 @@
  * the most important methods that are used by controllers to load resources
  * and options.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 418 $
  * @since 01.01.2011

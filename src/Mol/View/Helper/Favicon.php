@@ -3,8 +3,8 @@
 /**
  * Mol_View_Helper_Favicon
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 435 $
  * @since 26.04.2011
@@ -43,8 +43,8 @@
  * <?= $this->favicon(); ?>
  * </code>
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 435 $
  * @since 26.04.2011
