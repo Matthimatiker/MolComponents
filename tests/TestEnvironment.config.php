@@ -15,6 +15,3 @@
 
 /** Initialize autoloader. */
 require_once(dirname(__FILE__) . '/../vendor/autoload.php');
-
-/** Load the TestHelper class. */
-require_once(dirname(__FILE__) . '/TestHelper.php');
