@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="MolComponents">
+	<description>The MolComponents coding standard.</description>
+
+    <!-- Ensure that class and interface names are used only once. -->
+	<rule ref="Generic.Classes.DuplicateClassName" />
+
+    <!-- Avoid empty statements like "if ($a === $b) {}". -->
+	<rule ref="Generic.CodeAnalysis.EmptyStatement" />
+	<!-- Avoid complex for loops, for example "for (;true;) true;". -->
+	<rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop" />
+	<!-- Avoid function calls in for loops for performance reasons. -->
+	<rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall" />
+	<!-- Avoid constant condition in if statements like "if (true) {/*...*/}". -->
+	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement" />
+	<!-- Avoid final methods in final classes. -->
+	<rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier" />
+	<!-- Avoid overridden methods that delegate to its parent. -->
+	<rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+	<!-- Avoid the usage of the same incrementer in outer and inner loops. -->
+	<rule ref="Generic.CodeAnalysis.JumbledIncrementer" />
+
+    <!-- Generate a warning if TODOs are encountered. -->
+	<rule ref="Generic.Commenting.Todo" />
+
+    <!-- Avoid inline control structures like "if ($a === $b) return true;". -->
+	<rule ref="Generic.ControlStructures.InlineControlStructure" />
+
+    <!-- Ensure that only \n line endings are used. -->
+    <rule ref="Generic.Files.LineEndings" />
+    <!-- Avoid lines that are too long. -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="120" />
+			<property name="absoluteLineLimit" value="150" />
+		</properties>
+	</rule>
+
+    <!-- Only one statement is permitted per line. -->
+	<rule ref="Generic.Formatting.DisallowMultipleStatements" />
+	<!-- Align assignments. -->
+	<rule ref="Generic.Formatting.MultipleStatementAlignment">
+		<properties>
+			<property name="maxPadding" value="3" />
+			<property name="ignoreMultiLine" value="true" />
+		</properties>
+	</rule>
+	<!-- Avoid spaces after casting, for example "(int) $number". -->
+	<rule ref="Generic.Formatting.NoSpaceAfterCast" />
+
+    <!-- Do not pass variables by reference. -->
+	<rule ref="Generic.Functions.CallTimePassByReference" />
+	<!-- Braces that opens a method body is expected in the line after the signature. -->
+	<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman" />
+	<!-- Check spacing of arguments for all method calls. -->
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing" />
+
+    <!-- Warn if the nesting level is too high. -->
+	<rule ref="Generic.Metrics.NestingLevel" />
+	<!-- Avoid complex methods. -->
+	<rule ref="Generic.Metrics.CyclomaticComplexity" />
+
+    <!-- Only "__construct" is allowed as constructor name. -->
+	<rule ref="Generic.NamingConventions.ConstructorName" />
+	<!-- Ensures that constant names are uppercase. -->
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName" />
+	<!-- Check class names. -->
+    <rule ref="PEAR.NamingConventions.ValidClassName" />
+
+    <!-- Do not use deprecated functions. -->
+    <rule ref="Generic.PHP.DeprecatedFunctions" />
+    <!-- Do not use alias functions, for example "sizeof". -->
+	<rule ref="Generic.PHP.ForbiddenFunctions" />
+	<!-- Ensure that constants like true, false or null are lowercase. -->
+	<rule ref="Generic.PHP.LowerCaseConstant" />
+	<!-- Class files must not contain short open tags. -->
+    <rule ref="Generic.PHP.DisallowShortOpenTag" />
+
+    <!-- Enforce indention per spaces. -->
+	<rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+	<!-- Check for correct indention of structures. -->
+	<rule ref="Generic.WhiteSpace.ScopeIndent" />
+	<!-- Disallow whitespace in front of semicolons. -->
+	<rule ref="Squiz.WhiteSpace.SemicolonSpacing" />
+	<!-- Ensure that there is no whitespace in front of PHP open tags. -->
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace" />
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine">
+        <!-- Do not complain about empty lines that start with whitespace. -->
+        <severity>0</severity>
+    </rule>
+
+    <!-- Avoid spaces around array brackets, for example "$a [1] = 'x';". -->
+	<rule ref="Squiz.Arrays.ArrayBracketSpacing" />
+
+    <!-- Ensures that logical operators like "and" or "or" are not used. Use "&&" or "||" instead. -->
+	<rule ref="Squiz.Operators.ValidLogicalOperators" />
+
+    <!-- Do not use the "global" keyword. -->
+	<rule ref="Squiz.PHP.GlobalKeyword" />
+	<!-- Do not use Heredoc strings (started by <<<IDENTIFIER).  -->
+	<rule ref="Squiz.PHP.Heredoc" />
+	<!-- Avoid code that is not executable, for example after a return statement. -->
+	<rule ref="Squiz.PHP.NonExecutableCode" />
+
+    <!-- Ensure that braces start on line after the class/interface declaration. -->
+    <rule ref="PEAR.Classes.ClassDeclaration" />
+    <!-- Check spacing of method calls. -->
+    <rule ref="PEAR.Functions.FunctionCallSignature" />
+    <!-- Ensure that default values are only used at the end of a parameter list. -->
+    <rule ref="PEAR.Functions.ValidDefaultValue" />
+    
+    <!-- Enforce correct block indention. -->
+    <rule ref="PEAR.WhiteSpace.ScopeClosingBrace" /> 
+
+    <!-- Ensures that control structures are valid. Required format: "if ($a === $b) {}" -->
+    <rule ref="PEAR.ControlStructures.ControlSignature" />
+    
+    <!-- Enforce documentation of exceptions. -->
+	<rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
+	<!-- Check for valid method comments. -->
+	<rule ref="PEAR.Commenting.FunctionComment" />
+	<rule ref="PEAR.Commenting.FunctionComment.MissingReturn">
+		<!-- "return void" is not mandatory. -->
+		<severity>0</severity>
+	</rule>
+	<rule ref="PEAR.Commenting.FunctionComment.MissingParamComment">
+		<!-- An own comment for each parameter is not mandatory. -->
+		<severity>0</severity>
+	</rule>
+	<rule ref="PEAR.Commenting.FunctionComment.SpacingAfterParams">
+		<!-- Blank line after parameters is not required. -->
+		<severity>0</severity>
+	</rule>
+	<rule ref="PEAR.Commenting.FunctionComment.ParameterNamesNotAligned">
+		<!-- Aligning parameters is not required. -->
+		<severity>0</severity>
+	</rule>
+	<rule ref="PEAR.Commenting.FunctionComment.ParameterCommentsNotAligned">
+		<!-- Aligning parameter comments is not required. -->
+		<severity>0</severity>
+	</rule>
+	<!-- Check for variable comments. -->
+	<rule ref="Squiz.Commenting.VariableComment" />
+	<rule ref="Squiz.Commenting.VariableComment.IncorrectVarType">
+		<!-- Squiz variable style is not required. -->
+		<severity>0</severity>
+	</rule>
+	<rule ref="Squiz.Commenting.VariableComment.ShortSingleLine">
+		<!-- Short description may span multiple lines. -->
+		<severity>0</severity>
+	</rule>
+	<!-- Ensure that valid class doc blocks are present. -->
+	<rule ref="PEAR.Commenting.ClassComment" />
+	<rule ref="PEAR.Commenting.ClassComment.TagIndent">
+        <!-- Do not enforce tag indention. -->
+        <severity>0</severity>
+    </rule>
+	<!-- Ensure that valid file doc blocks are present. -->
+	<rule ref="PEAR.Commenting.FileComment" />
+	<rule ref="PEAR.Commenting.FileComment.TagIndent">
+        <!-- Do not enforce tag indention. -->
+        <severity>0</severity>
+    </rule>
+    <rule ref="PEAR.Commenting.FileComment.MissingVersion">
+        <!-- Do not enforce the presence of the required PHP version. -->
+        <severity>0</severity>
+    </rule>
+
+    <!-- Ensure that PHP files do not contain closing tags ("?>"). -->
+    <rule ref="Zend.Files.ClosingTag" />
+
+</ruleset>
