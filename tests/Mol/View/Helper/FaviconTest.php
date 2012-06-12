@@ -41,7 +41,7 @@ class Mol_View_Helper_FaviconTest extends PHPUnit_Framework_TestCase {
     protected function setUp() {
         parent::setUp();
         $this->helper = new Mol_View_Helper_Favicon();
-        $this->helper->setView(new Mol_Test_View_Mock());
+        $this->helper->setView(new Zend_View());
     }
     
     /**
