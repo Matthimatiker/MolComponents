@@ -3,9 +3,9 @@
 /**
  * Mol_DataType_MapTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_DataType
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 416 $
  * @since 27.12.2010
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the Mol_DataType_Map class.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_DataType
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 416 $
  * @since 27.12.2010

@@ -3,9 +3,9 @@
 /**
  * Mol_Validate_BooleanTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 371 $
  * @since 17.12.2010
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the Boolean validator.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 371 $
  * @since 17.12.2010

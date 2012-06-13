@@ -3,9 +3,9 @@
 /**
  * Mol_Test_Http_Client_AdapterTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 416 $
  * @since 12.03.2011
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the functionality of the HTTP test adapter.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 416 $
  * @since 12.03.2011

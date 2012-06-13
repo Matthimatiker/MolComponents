@@ -3,8 +3,8 @@
 /**
  * Initializes the test environment.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 438 $
  * @since 29.04.2011

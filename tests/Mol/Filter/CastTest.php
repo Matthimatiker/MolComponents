@@ -3,9 +3,9 @@
 /**
  * Mol_Filter_CastTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Filter
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 371 $
  * @since 17.12.2010
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the Cast filter.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Filter
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 371 $
  * @since 17.12.2010

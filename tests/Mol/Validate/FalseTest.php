@@ -3,9 +3,9 @@
 /**
  * Mol_Validate_FalseTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 416 $
  * @since 17.12.2010
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the False validator.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Validate
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 416 $
  * @since 17.12.2010

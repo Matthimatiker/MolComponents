@@ -3,9 +3,9 @@
 /**
  * Mol_View_Helper_ToTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 466 $
  * @since 21.10.2010
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the To view helper.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 466 $
  * @since 21.10.2010

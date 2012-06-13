@@ -3,9 +3,9 @@
 /**
  * Mol_Test_View_Helper_UrlTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 440 $
  * @since 29.04.2011
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the url helper mock object.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Test
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 440 $
  * @since 29.04.2011

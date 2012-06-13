@@ -3,9 +3,9 @@
 /**
  * Mol_View_Helper_FaviconTest
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 437 $
  * @since 29.04.2011
@@ -19,9 +19,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the Favicon view helper.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_View
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2011-2012 Matthias Molitor
  * @version $Rev: 437 $
  * @since 29.04.2011

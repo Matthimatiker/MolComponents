@@ -3,9 +3,9 @@
 /**
  * Mol_Controller_ActionParameterTest_MockController
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Controller
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 371 $
  * @since 16.12.2010
@@ -14,9 +14,9 @@
 /**
  * Controller that is used to test the Mol_Controller_ActionParameter class.
  *
- * @author Matthias Molitor <matthias@matthimatiker.de>
  * @package Mol_Controller
  * @subpackage Tests
+ * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright  2010-2012 Matthias Molitor
  * @version $Rev: 371 $
  * @since 16.12.2010
