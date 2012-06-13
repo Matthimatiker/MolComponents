@@ -6,7 +6,7 @@
  * @package Mol_View
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2011-2012 Matthias Molitor
+ * @copyright 2011-2012 Matthias Molitor
  * @version $Rev: 437 $
  * @since 29.04.2011
  */
@@ -22,7 +22,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @package Mol_View
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2011-2012 Matthias Molitor
+ * @copyright 2011-2012 Matthias Molitor
  * @version $Rev: 437 $
  * @since 29.04.2011
  */

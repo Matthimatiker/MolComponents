@@ -5,7 +5,7 @@
  *
  * @package Mol_Controller
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2010-2012 Matthias Molitor
+ * @copyright 2010-2012 Matthias Molitor
  * @version $Rev: 441 $
  * @since 16.12.2010
  */
@@ -16,7 +16,7 @@
  *
  * @package Mol_Controller
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2010-2012 Matthias Molitor
+ * @copyright 2010-2012 Matthias Molitor
  * @version $Rev: 441 $
  * @since 16.12.2010
  */

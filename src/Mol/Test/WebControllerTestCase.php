@@ -5,7 +5,7 @@
  *
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2011-2012 Matthias Molitor
+ * @copyright 2011-2012 Matthias Molitor
  * @version $Rev: 495 $
  * @since 21.06.2011
  */
@@ -126,7 +126,7 @@
  *
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2011-2012 Matthias Molitor
+ * @copyright 2011-2012 Matthias Molitor
  * @version $Rev: 495 $
  * @since 21.06.2011
  */

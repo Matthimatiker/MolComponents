@@ -5,7 +5,7 @@
  *
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2010-2012 Matthias Molitor
+ * @copyright 2010-2012 Matthias Molitor
  * @version $Rev: 417 $
  * @since 17.10.2010
  */
@@ -15,7 +15,7 @@
  *
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
- * @copyright  2010-2012 Matthias Molitor
+ * @copyright 2010-2012 Matthias Molitor
  * @version $Rev: 417 $
  * @since 17.10.2010
  */
