@@ -32,6 +32,10 @@ Install MolComponents via
     
 ## Features ##
 
+Here are some examples of the functionality that is provided by the library.
+
+Please refer to the documentation of the classes for more details.
+
 ### Parameter support in controller actions ###
 
 By extending *Mol_Controller_ActionParameter* you are able to declare 
@@ -50,8 +54,6 @@ required parameters as action method arguments:
 The component uses the parameter documentation to determine the expected
 data type. Validation is performed automatically. On success the value is 
 casted to the expected type and passed to the action as argument.
-
-Please refer to the class documentation for details.
 
 ### Simplified url generation ###
 
