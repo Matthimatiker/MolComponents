@@ -15,7 +15,7 @@
 /**
  * Stream helper class that allows writing into memory.
  *
- * May be used with function that usually write to files only.
+ * May be used with functions that usually write to files only.
  *
  * Example:
  * <code>
