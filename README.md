@@ -52,3 +52,16 @@ data type. Validation is performed automatically. On success the value is
 casted to the expected type and passed to the action as argument.
 
 Please refer to the class documentation for details.
+
+### Simplified url generation ###
+
+The view helper *Mol_View_Helper_To* may be used as an alternative to 
+*Zend_View_Helper_Url* to generate urls in view scripts:
+
+    <?= $this->to('my-action', 'my-controller', 'my-module')->withParam('confirm', 1); ?>
+    
+It avoids passing the required information as array and provides a fluent 
+interface to make url generation more readable.
+
+Per default all url parameters must be provided explicitly, the parameters of 
+the incoming request are *not* automatically included.
