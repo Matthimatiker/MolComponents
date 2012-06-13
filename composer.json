@@ -1,7 +1,7 @@
 {
     "name": "Matthimatiker/MolComponents",
     "description": "Library that contains utility classes and extends the functionality of Zend Framework 1.",
-    "keywords": ["PHP", "Library"],
+    "keywords": ["PHP", "Library", "Zend Framework", "ZF"],
     "homepage": "https://github.com/Matthimatiker/MolComponents",
     "type": "library",
     "license": "BSD-3",
