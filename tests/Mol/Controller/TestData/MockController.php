@@ -8,7 +8,8 @@
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 371 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 16.12.2010
  */
 
@@ -20,7 +21,8 @@
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 371 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 16.12.2010
  */
 class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_ActionParameter

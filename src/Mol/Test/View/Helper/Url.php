@@ -7,7 +7,8 @@
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 412 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.10.2010
  */
 
@@ -21,7 +22,8 @@
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 412 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.10.2010
  */
 class Mol_Test_View_Helper_Url extends Zend_View_Helper_Abstract

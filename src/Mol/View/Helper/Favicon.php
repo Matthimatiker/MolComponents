@@ -7,7 +7,8 @@
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 435 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 26.04.2011
  */
 
@@ -48,7 +49,8 @@
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 435 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 26.04.2011
  */
 class Mol_View_Helper_Favicon extends Zend_View_Helper_Abstract

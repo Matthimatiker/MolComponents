@@ -7,7 +7,8 @@
  * @package Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 440 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 29.04.2011
  */
 

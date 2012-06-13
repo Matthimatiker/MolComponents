@@ -7,7 +7,8 @@
  * @package Mol_Filter
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 381 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 17.12.2010
  */
 
@@ -29,7 +30,8 @@
  * @package Mol_Filter
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 381 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 17.12.2010
  */
 class Mol_Filter_Null implements Zend_Filter_Interface

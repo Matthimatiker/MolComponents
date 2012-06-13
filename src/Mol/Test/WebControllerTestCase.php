@@ -7,7 +7,8 @@
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 495 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.06.2011
  */
 
@@ -129,7 +130,8 @@
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 495 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.06.2011
  */
 abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase

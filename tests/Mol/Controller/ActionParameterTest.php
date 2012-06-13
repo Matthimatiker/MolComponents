@@ -8,7 +8,8 @@
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 416 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 16.12.2010
  */
 
@@ -30,7 +31,8 @@ require_once(dirname(__FILE__) . '/TestData/MockController.php');
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
- * @version $Rev: 416 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 16.12.2010
  */
 class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase

@@ -7,7 +7,8 @@
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 505 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 05.07.2011
  */
 
@@ -18,7 +19,8 @@
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 505 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 05.07.2011
  */
 class Mol_Util_MemoryStreamWrapper

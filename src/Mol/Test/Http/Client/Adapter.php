@@ -7,7 +7,8 @@
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 418 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 05.03.2011
  */
 
@@ -64,7 +65,8 @@
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 418 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 05.03.2011
  */
 class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test

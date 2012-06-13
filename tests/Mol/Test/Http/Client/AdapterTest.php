@@ -8,7 +8,8 @@
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 416 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 12.03.2011
  */
 
@@ -25,7 +26,8 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 416 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 12.03.2011
  */
 class Mol_Test_Http_Client_AdapterTest extends PHPUnit_Framework_TestCase

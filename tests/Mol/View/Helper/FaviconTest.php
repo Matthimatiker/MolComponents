@@ -8,7 +8,8 @@
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 437 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 29.04.2011
  */
 
@@ -25,7 +26,8 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
- * @version $Rev: 437 $
+ * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 29.04.2011
  */
 class Mol_View_Helper_FaviconTest extends PHPUnit_Framework_TestCase
