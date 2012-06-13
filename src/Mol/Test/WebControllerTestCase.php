@@ -3,6 +3,7 @@
 /**
  * Mol_Test_WebControllerTestCase
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
@@ -124,6 +125,7 @@
  * }
  * </code>
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor

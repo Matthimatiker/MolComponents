@@ -3,6 +3,7 @@
 /**
  * Mol_View_Helper_To
  *
+ * @category PHP
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -43,6 +44,7 @@
  * <?= $this->to('my-action', 'my-controller')->keepParams(); ?>
  * </code>
  *
+ * @category PHP
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

@@ -3,6 +3,7 @@
 /**
  * Mol_Validate_FalseTest
  *
+ * @category PHP
  * @package Mol_Validate
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the False validator.
  *
+ * @category PHP
  * @package Mol_Validate
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

@@ -3,6 +3,7 @@
 /**
  * Mol_Util_MemoryStreamWrapper
  *
+ * @category PHP
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
@@ -13,6 +14,7 @@
 /**
  * Low level class that allows to access MemoryStream objects via stream functions.
  *
+ * @category PHP
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor

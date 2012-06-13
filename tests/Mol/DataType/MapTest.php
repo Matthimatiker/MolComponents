@@ -3,6 +3,7 @@
 /**
  * Mol_DataType_MapTest
  *
+ * @category PHP
  * @package Mol_DataType
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the Mol_DataType_Map class.
  *
+ * @category PHP
  * @package Mol_DataType
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

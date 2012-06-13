@@ -3,6 +3,7 @@
 /**
  * Mol_Validate_Boolean
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -13,6 +14,7 @@
 /**
  * A validator that checks if a value may be interpreted as boolean.
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

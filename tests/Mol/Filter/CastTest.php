@@ -3,6 +3,7 @@
 /**
  * Mol_Filter_CastTest
  *
+ * @category PHP
  * @package Mol_Filter
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the Cast filter.
  *
+ * @category PHP
  * @package Mol_Filter
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

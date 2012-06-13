@@ -3,6 +3,7 @@
 /**
  * Mol_View_Helper_Favicon
  *
+ * @category PHP
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
@@ -43,6 +44,7 @@
  * <?= $this->favicon(); ?>
  * </code>
  *
+ * @category PHP
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor

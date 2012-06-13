@@ -3,6 +3,7 @@
 /**
  * Mol_Controller_Exception_ParameterNotValidTest
  *
+ * @category PHP
  * @package Mol_Controller
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the additional functionality of the Mol_Controller_Exception_ParameterNotValid exception.
  *
+ * @category PHP
  * @package Mol_Controller
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

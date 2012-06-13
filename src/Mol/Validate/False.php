@@ -3,6 +3,7 @@
 /**
  * Mol_Validate_False
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -24,6 +25,7 @@
  * $validator->getMessages();
  * </code>
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

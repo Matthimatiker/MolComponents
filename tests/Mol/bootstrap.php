@@ -3,6 +3,7 @@
 /**
  * Initializes the test environment.
  *
+ * @category PHP
  * @package Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

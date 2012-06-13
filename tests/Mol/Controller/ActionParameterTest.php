@@ -3,6 +3,7 @@
 /**
  * Mol_Controller_ActionParameterTest
  *
+ * @category PHP
  * @package Mol_Controller
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -24,6 +25,7 @@ require_once(dirname(__FILE__) . '/TestData/MockController.php');
 /**
  * Tests the Mol_Controller_ActionParameter controller.
  *
+ * @category PHP
  * @package Mol_Controller
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

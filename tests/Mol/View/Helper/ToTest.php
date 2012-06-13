@@ -3,6 +3,7 @@
 /**
  * Mol_View_Helper_ToTest
  *
+ * @category PHP
  * @package Mol_View
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the To view helper.
  *
+ * @category PHP
  * @package Mol_View
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

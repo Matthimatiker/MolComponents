@@ -3,6 +3,7 @@
 /**
  * Mol_Controller_Exception_ParameterTagMissing
  *
+ * @category PHP
  * @package Mol_Controller
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -14,6 +15,7 @@
  * Exception that is used if an action methods DocBlock is defined, but does
  * not contain enough information for a declared parameter.
  *
+ * @category PHP
  * @package Mol_Controller
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

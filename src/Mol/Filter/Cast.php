@@ -3,6 +3,7 @@
 /**
  * Mol_Filter_Cast
  *
+ * @category PHP
  * @package Mol_Filter
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -20,6 +21,7 @@
  * $filter->filter('42');
  * </code>
  *
+ * @category PHP
  * @package Mol_Filter
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

@@ -3,6 +3,7 @@
 /**
  * Mol_Controller_Exception_ParameterNotValid
  *
+ * @category PHP
  * @package Mol_Controller
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -13,6 +14,7 @@
 /**
  * Exception that is used if provided parameter is not of the expected type.
  *
+ * @category PHP
  * @package Mol_Controller
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

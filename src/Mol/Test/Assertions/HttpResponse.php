@@ -3,6 +3,7 @@
 /**
  * Mol_Test_Assertions_HttpResponse
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
@@ -20,6 +21,7 @@
  * $this->assertResponse()->contains('Hello!');
  * </code>
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor

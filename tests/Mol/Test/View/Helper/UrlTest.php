@@ -3,6 +3,7 @@
 /**
  * Mol_Test_View_Helper_UrlTest
  *
+ * @category PHP
  * @package Mol_Test
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the url helper mock object.
  *
+ * @category PHP
  * @package Mol_Test
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

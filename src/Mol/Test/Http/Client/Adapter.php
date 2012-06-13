@@ -3,6 +3,7 @@
 /**
  * Mol_Test_Http_Client_Adapter
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
@@ -59,6 +60,7 @@
  * Requesting "http://www.matthimatiker.de/demo.html" will return $myResponse
  * in this case.
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor

@@ -3,6 +3,7 @@
 /**
  * Mol_Controller_ActionParameterTest_MockController
  *
+ * @category PHP
  * @package Mol_Controller
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -14,6 +15,7 @@
 /**
  * Controller that is used to test the Mol_Controller_ActionParameter class.
  *
+ * @category PHP
  * @package Mol_Controller
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

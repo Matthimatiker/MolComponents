@@ -3,6 +3,7 @@
 /**
  * Mol_Validate_True
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -15,6 +16,7 @@
  *
  * May be used as null or special case object.
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

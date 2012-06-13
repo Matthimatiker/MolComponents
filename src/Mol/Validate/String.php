@@ -3,6 +3,7 @@
 /**
  * Mol_Validate_String
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -22,6 +23,7 @@
  * $validator->isValid('42');
  * </code>
  *
+ * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

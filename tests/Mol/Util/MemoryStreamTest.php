@@ -3,6 +3,7 @@
 /**
  * Mol_Util_MemoryStreamTest
  *
+ * @category PHP
  * @package Mol_Util
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the memory stream.
  *
+ * @category PHP
  * @package Mol_Util
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

@@ -3,6 +3,7 @@
 /**
  * Mol_Test_Bootstrap_Mock
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
@@ -17,6 +18,7 @@
  * the most important methods that are used by controllers to load resources
  * and options.
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor

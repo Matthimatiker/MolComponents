@@ -3,6 +3,7 @@
 /**
  * Mol_Util_StringStream
  *
+ * @category PHP
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor
@@ -23,6 +24,7 @@
  * $content = file_get_contents(new Mol_Util_StringStream($data));
  * </code>
  *
+ * @category PHP
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2011-2012 Matthias Molitor

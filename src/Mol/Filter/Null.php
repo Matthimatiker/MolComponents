@@ -3,6 +3,7 @@
 /**
  * Mol_Filter_Null
  *
+ * @category PHP
  * @package Mol_Filter
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -24,6 +25,7 @@
  * $filter->filter('Hello!');
  * </code>
  *
+ * @category PHP
  * @package Mol_Filter
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

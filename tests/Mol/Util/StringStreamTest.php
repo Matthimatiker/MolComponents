@@ -3,6 +3,7 @@
 /**
  * Mol_Util_StringStreamTest
  *
+ * @category PHP
  * @package Mol_Util
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -19,6 +20,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 /**
  * Tests the StringStream helper class.
  *
+ * @category PHP
  * @package Mol_Util
  * @subpackage Tests
  * @author Matthias Molitor <matthias@matthimatiker.de>

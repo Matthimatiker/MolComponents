@@ -3,6 +3,7 @@
 /**
  * Mol_Test_View_Helper_Url
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -16,6 +17,7 @@
  * Avoids dependencies to the front controller und caches call parameters
  * for later analysis.
  *
+ * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor

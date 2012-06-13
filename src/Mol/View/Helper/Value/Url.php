@@ -3,6 +3,7 @@
 /**
  * View_Helper_Value_Url
  *
+ * @category PHP
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
@@ -13,6 +14,7 @@
 /**
  * Contains url data and generates the url if it is casted to a string.
  *
+ * @category PHP
  * @package Mol_View
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2010-2012 Matthias Molitor
