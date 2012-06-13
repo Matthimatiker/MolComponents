@@ -116,7 +116,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      */
     private function convertToString( $param )
     {
-        if( is_array($param) ) {
+        if (is_array($param)) {
             // Convert all elements to string.
             foreach ( $param as $key => $value ) {
                 $param[$key] = $this->convertToString($value);
@@ -263,7 +263,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
         $this->dispatch('mixed-types');
 
         $this->assertActionCall('mixed-types');
-        $this->assertActionArgumentEquals('mixed-types', self::FIRST_ARGUMENT,  true);
+        $this->assertActionArgumentEquals('mixed-types', self::FIRST_ARGUMENT, true);
         $this->assertActionArgumentEquals('mixed-types', self::SECOND_ARGUMENT, 5.23);
         $this->assertActionArgumentEquals('mixed-types', self::THIRD_ARGUMENT, 'Hallo!');
     }
@@ -280,7 +280,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
         $this->dispatch('indented-names');
 
         $this->assertActionCall('indented-names');
-        $this->assertActionArgumentEquals('indented-names', self::FIRST_ARGUMENT,  'Hallo!');
+        $this->assertActionArgumentEquals('indented-names', self::FIRST_ARGUMENT, 'Hallo!');
         $this->assertActionArgumentEquals('indented-names', self::SECOND_ARGUMENT, true);
     }
 
@@ -297,7 +297,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
         $this->dispatch($action);
 
         $this->assertActionCall($action);
-        $this->assertActionArgumentEquals($action, self::FIRST_ARGUMENT,  'Hallo!');
+        $this->assertActionArgumentEquals($action, self::FIRST_ARGUMENT, 'Hallo!');
         $this->assertActionArgumentEquals($action, self::SECOND_ARGUMENT, true);
     }
 
@@ -436,7 +436,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
     {
         $parts         = explode('-', $action);
         $numberOfParts = count($parts);
-        for( $i = 1; $i < $numberOfParts; $i++ ) {
+        for ($i = 1; $i < $numberOfParts; $i++) {
             $parts[$i] = ucfirst($parts[$i]);
         }
         return implode('', $parts) . 'Action';
@@ -456,7 +456,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
     {
         $method    = $this->actionNameToMethod($action);
         $arguments = $this->controller->getLastArgumentsFrom($method);
-        if( !isset($arguments[$argumentIndex]) ) {
+        if (!isset($arguments[$argumentIndex])) {
             $this->fail('Missing argument ' . $argumentIndex . ' of action "' . $action . '".');
         }
         return $arguments[$argumentIndex];

@@ -129,7 +129,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
     {
         $this->notifyPreDispatch();
         $this->preDispatch();
-        if( $this->getRequest()->isDispatched() ) {
+        if ($this->getRequest()->isDispatched()) {
             // preDispatch() didn't change the action, so we can continue
             $this->processAction($action);
             $this->postDispatch();
@@ -160,7 +160,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      */
     private function processAction( $actionMethod )
     {
-        if( $this->hasAction($actionMethod) ) {
+        if ($this->hasAction($actionMethod)) {
             $this->executeAction($actionMethod);
         } else {
             $this->__call($actionMethod, array());
@@ -185,7 +185,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      */
     private function getClassMethods()
     {
-        if( $this->_classMethods === null ) {
+        if ($this->_classMethods === null) {
             $this->_classMethods = get_class_methods($this);
         }
         return $this->_classMethods;
@@ -217,7 +217,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
         $info        = new ReflectionMethod(get_class($this), $actionMethod);
         $params      = $info->getParameters();
         $paramValues = array();
-        foreach( $params as $param ) {
+        foreach ($params as $param) {
             /* @var $param ReflectionParameter */
             $paramValues[] = $this->getValueFor($param);
         }
@@ -235,11 +235,11 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
     {
         $name  = $parameter->getName();
         $value = $this->_request->getParam($name, false);
-        if( $value !== false ) {
+        if ($value !== false) {
             return $this->validateAndCast($value, $this->getTypeFor($parameter));
         }
         // The parameter is not available in the request object.
-        if( !$parameter->isDefaultValueAvailable() ) {
+        if (!$parameter->isDefaultValueAvailable()) {
             // No default value declared, cannot determine parameter value.
             $message = 'No default value defined for parameter "' . $name . '".';
             throw new Mol_Controller_Exception_ParameterMissing($message);
@@ -258,13 +258,13 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      */
     private function validateAndCast( $value, $type )
     {
-        if( strpos($type, 'array') === 0 ) {
-            // TODO: Handle key/value documentation: key=>value
+        if (strpos($type, 'array') === 0) {
+            // TODO: Handle key/value array documentation: key=>value
             $typeInArray = substr($type, 6, -1);
-            if( !is_array($value) ) {
+            if (!is_array($value)) {
                 throw new Mol_Controller_Exception_ParameterNotValid('Array expected.');
             }
-            foreach( $value as $key => $element ) {
+            foreach ($value as $key => $element) {
                 $value[$key] = $this->validateAndCast($element, $typeInArray);
             }
             return $value;
@@ -272,7 +272,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
 
         /* @var $validator Zend_Validate_Interface */
         $validator = $this->getValidatorFor($type);
-        if( !$validator->isValid($value) ) {
+        if (!$validator->isValid($value)) {
             throw new Mol_Controller_Exception_ParameterNotValid($validator);
         }
 
@@ -293,7 +293,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
         /* @var $method ReflectionFunction */
         $method = $param->getDeclaringFunction();
         $types  = $this->getDocumentedParamsFor($method);
-        if( !isset($types[$param->getName()]) ) {
+        if (!isset($types[$param->getName()])) {
             throw new Mol_Controller_Exception_ParameterTagMissing($param->getName());
         }
         return $types[$param->getName()];
@@ -311,11 +311,11 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
     private function getDocumentedParamsFor( ReflectionMethod $action )
     {
         $methodName = $action->getName();
-        if( isset($this->paramTypesByMethod[$methodName]) ) {
+        if (isset($this->paramTypesByMethod[$methodName])) {
             return $this->paramTypesByMethod[$methodName];
         }
         $comment = $action->getDocComment();
-        if( $comment === false ) {
+        if ($comment === false) {
             $message = 'Missing DocBlock for method "' . $methodName . '".';
             throw new Mol_Controller_Exception_DocBlockMissing($message);
         }
@@ -323,7 +323,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
         $matches = array();
         preg_match_all($regExp, $comment, $matches, PREG_SET_ORDER);
         $params = array();
-        foreach( $matches as $match ) {
+        foreach ($matches as $match) {
             $params[$match['name']] = $match['type'];
         }
         $this->paramTypesByMethod[$methodName] = $params;
@@ -371,7 +371,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      */
     private function validators()
     {
-        if( $this->validators === null) {
+        if ($this->validators === null) {
             $message          = 'No validator for the documented type available.';
             $default          = new Mol_Validate_False($message, 'missingTypeValidator');
             $this->validators = new Mol_DataType_Map(array(), $default);
@@ -387,12 +387,12 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      */
     private function registerDefaultValidators( Mol_DataType_Map $validators )
     {
-        $validators->register(new Zend_Validate_Int(),       array('int', 'integer'));
+        $validators->register(new Zend_Validate_Int(), array('int', 'integer'));
         $validators->register(new Zend_Validate_Float('en'), array('float', 'double'));
-        $validators->register(new Mol_Validate_Boolean(),    array('bool', 'boolean'));
-        $validators->register(new Mol_Validate_String(),     array('string'));
+        $validators->register(new Mol_Validate_Boolean(), array('bool', 'boolean'));
+        $validators->register(new Mol_Validate_String(), array('string'));
         // Mixed must be validated by the action that receives them.
-        $validators->register(new Mol_Validate_True(),       array('mixed'));
+        $validators->register(new Mol_Validate_True(), array('mixed'));
     }
 
     /**
@@ -436,7 +436,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      */
     private function filters()
     {
-        if( $this->filters === null) {
+        if ($this->filters === null) {
             $this->filters = new Mol_DataType_Map(array(), new Mol_Filter_Null());
             $this->registerDefaultFilters($this->filters);
         }
@@ -451,7 +451,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
     private function registerDefaultFilters( Mol_DataType_Map $filters )
     {
         $filters->register(new Mol_Filter_Cast('integer'), array('int', 'integer'));
-        $filters->register(new Mol_Filter_Cast('double'),  array('float', 'double'));
+        $filters->register(new Mol_Filter_Cast('double'), array('float', 'double'));
         $options = array(
             'type'   => Zend_Filter_Boolean::ALL,
             'locale' => 'en'

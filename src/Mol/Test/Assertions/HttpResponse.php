@@ -112,9 +112,9 @@ class Mol_Test_Assertions_HttpResponse
     protected function getHeaders( $name )
     {
         $headers = array();
-        foreach( $this->response->getHeaders() as $headerData ) {
+        foreach ($this->response->getHeaders() as $headerData) {
             /* @var $headerData array */
-            if( $headerData['name'] === $name ) {
+            if ($headerData['name'] === $name) {
                 $headers[] = $headerData['value'];
             }
         }

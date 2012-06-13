@@ -69,7 +69,7 @@ class Mol_View_Helper_Favicon extends Zend_View_Helper_Abstract
      */
     public function favicon( $iconUrl = null )
     {
-        if( $iconUrl !== null ) {
+        if ($iconUrl !== null) {
             $this->iconUrl = $iconUrl;
         }
         return $this;
@@ -82,7 +82,7 @@ class Mol_View_Helper_Favicon extends Zend_View_Helper_Abstract
      */
     public function __toString()
     {
-        if( $this->iconUrl === null) {
+        if ($this->iconUrl === null) {
             return '';
         }
         $template = '<link href="%s" rel="shortcut icon" type="image/x-icon" />';

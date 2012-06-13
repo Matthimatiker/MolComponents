@@ -59,7 +59,7 @@ class Mol_Util_MemoryStream
      */
     public function __construct( $content = '' )
     {
-        if( !is_string($content) ) {
+        if (!is_string($content)) {
             $message = 'String expected, but' . gettype($content) . ' received.';
             throw new RuntimeException($message);
         }

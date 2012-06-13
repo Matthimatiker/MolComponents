@@ -163,7 +163,7 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
         $this->url->withParam('name', 'foo');
         $this->url->withParam('name', 'bar');
         $url = (string)$this->url;
-        $this->assertContains('bar',    $url);
+        $this->assertContains('bar', $url);
         $this->assertNotContains('foo', $url);
     }
 
@@ -177,10 +177,10 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
         $url = (string)$this->url;
         // Ensure that the url contains the parameter values.
         $this->assertContains('Matthias', $url);
-        $this->assertContains('Molitor',  $url);
+        $this->assertContains('Molitor', $url);
         // Ensure that the url contains the parameter names.
         $this->assertContains('firstName', $url);
-        $this->assertContains('lastName',  $url);
+        $this->assertContains('lastName', $url);
     }
 
     /**
@@ -236,7 +236,7 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
     {
         $calls  = $this->getNumberOfHelperCalls();
         $params = $this->getHelper()->getParamsOfCall($calls - 1);
-        if( $params === null ) {
+        if ($params === null) {
             throw new RuntimeException('No params for helper call #' . ($calls - 1) . ' available.');
         }
         return $params;

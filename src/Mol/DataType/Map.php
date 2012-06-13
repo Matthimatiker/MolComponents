@@ -72,7 +72,7 @@ class Mol_DataType_Map extends ArrayObject
      */
     public function offsetGet( $index )
     {
-        if( !isset($this[$index]) ) {
+        if (!isset($this[$index])) {
             return $this->defaultValue;
         }
         return parent::offsetGet($index);
@@ -96,11 +96,11 @@ class Mol_DataType_Map extends ArrayObject
      */
     public function register($value, $keys)
     {
-        if( !is_array($keys) ) {
+        if (!is_array($keys)) {
             // Single key provided.
             $keys = array($keys);
         }
-        foreach( $keys as $key ) {
+        foreach ($keys as $key) {
             $this[$key] = $value;
         }
     }

@@ -126,8 +126,8 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
             'http'  => 80,
             'https' => 443
         );
-        foreach( $defaultPorts as $scheme => $port) {
-            if( $uri->getScheme() === $scheme && $uri->getPort() == $port) {
+        foreach ($defaultPorts as $scheme => $port) {
+            if ($uri->getScheme() === $scheme && $uri->getPort() == $port) {
                 // Remove default port. Do not modify original object.
                 $uri = clone $uri;
                 $uri->setPort('');
@@ -145,16 +145,16 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      */
     public function read()
     {
-        foreach( $this->getPatterns() as $pattern ) {
+        foreach ($this->getPatterns() as $pattern) {
             /* @var $pattern string */
-            if( !$this->matches($pattern) ) {
+            if (!$this->matches($pattern)) {
                 continue;
             }
             $this->countRequest($pattern);
             return $this->next($pattern);
         }
         $this->countRequest('default');
-        if( count($this->responses) === 0 ) {
+        if (count($this->responses) === 0) {
             $message = 'Cannot handle request for "' . $this->requestedUri . '".' . PHP_EOL
                      . 'No response available, please provide at least one default response.';
             throw new RuntimeException($message);
@@ -170,7 +170,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      */
     protected function matches( $pattern )
     {
-        if( empty($pattern) )  {
+        if (empty($pattern)) {
             return false;
         }
         $uri = $this->requestedUri->getUri();
@@ -200,13 +200,13 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      */
     public function addResponse( $response, $urlPattern = null )
     {
-        if( $urlPattern === null ) {
+        if ($urlPattern === null) {
             parent::addResponse($response);
         }
-        if( !isset($this->responsesByPattern[$urlPattern]) ) {
+        if (!isset($this->responsesByPattern[$urlPattern])) {
             $this->responsesByPattern[$urlPattern] = array();
         }
-        if( $response instanceof Zend_Http_Response ) {
+        if ($response instanceof Zend_Http_Response) {
             $response = $response->asString("\r\n");
         }
         $this->responsesByPattern[$urlPattern][] = $response;
@@ -234,10 +234,10 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      */
     public function getNumberOfRequestsFor( $pattern )
     {
-        if( !in_array($pattern, $this->getPatterns()) ) {
+        if (!in_array($pattern, $this->getPatterns())) {
             throw new RuntimeException('Unknown pattern "' . $pattern . '".');
         }
-        if( !isset($this->numberOfRequestsByPattern[$pattern]) ) {
+        if (!isset($this->numberOfRequestsByPattern[$pattern])) {
             return 0;
         }
         return $this->numberOfRequestsByPattern[$pattern];
@@ -260,7 +260,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      */
     protected function countRequest( $pattern )
     {
-        if( !isset($this->numberOfRequestsByPattern[$pattern]) ) {
+        if (!isset($this->numberOfRequestsByPattern[$pattern])) {
             $this->numberOfRequestsByPattern[$pattern] = 0;
         }
         $this->numberOfRequestsByPattern[$pattern]++;

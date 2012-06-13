@@ -61,7 +61,7 @@ class Mol_Util_MemoryStreamWrapper
      */
     public static function register()
     {
-        if( in_array(self::SCHEME, stream_get_wrappers())) {
+        if (in_array(self::SCHEME, stream_get_wrappers())) {
             // Wrapper is already registered.
             return;
         }
@@ -137,7 +137,7 @@ class Mol_Util_MemoryStreamWrapper
      */
     protected function getBucketSize( $id )
     {
-        if( !self::hasBucket($id) ) {
+        if (!self::hasBucket($id)) {
             return 0;
         }
         return strlen(self::$buckets[$id]);
@@ -264,12 +264,12 @@ class Mol_Util_MemoryStreamWrapper
      */
     protected function insert( $data, $position )
     {
-        if( $position === 0 ) {
+        if ($position === 0) {
             $start = '';
         } else {
             $start = substr(self::$buckets[$this->bucketId], 0, $position);
         }
-        if( $position + strlen($data) >= $this->getSize() ) {
+        if ($position + strlen($data) >= $this->getSize()) {
             $end = '';
         } else {
             $end = substr(self::$buckets[$this->bucketId], $position + strlen($data));
@@ -327,7 +327,7 @@ class Mol_Util_MemoryStreamWrapper
             default:
                 $newPosition = $offset;
         }
-        if( $newPosition < 0 ) {
+        if ($newPosition < 0) {
             return false;
         }
         $this->position = min($newPosition, $this->getSize());

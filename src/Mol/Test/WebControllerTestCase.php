@@ -268,7 +268,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     private function tearDownHelpers()
     {
         Zend_Controller_Action_HelperBroker::resetHelpers();
-        foreach( $this->previousActionHelpers as $helper ) {
+        foreach ($this->previousActionHelpers as $helper) {
             /* @var $helper Zend_Controller_Action_Helper_Abstract */
             Zend_Controller_Action_HelperBroker::addHelper($helper);
         }
@@ -293,7 +293,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function setPost( $arrayOrForm )
     {
-        if( $arrayOrForm instanceof Zend_Form) {
+        if ($arrayOrForm instanceof Zend_Form) {
             /* @var $form Zend_Form */
             $form        = $arrayOrForm;
             $arrayOrForm = $form->getValues();
@@ -487,7 +487,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function createController()
     {
         $class = $this->getControllerClass();
-        if( !class_exists($class, true) ) {
+        if (!class_exists($class, true)) {
             $this->loadController();
         }
         $invokeArgs = array('bootstrap' => $this->createBootstrapper());
@@ -520,13 +520,13 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     {
         $class       = $this->getControllerClass();
         $pathToClass = $this->getControllerPath();
-        if( !is_file($pathToClass) ) {
+        if (!is_file($pathToClass)) {
             $template = 'Expected controller "%s" in "%s", but the file does not exist.';
             $message  = sprintf($template, $class, $pathToClass);
             throw new RuntimeException($message);
         }
         require_once($pathToClass);
-        if( !class_exists($class, false) ) {
+        if (!class_exists($class, false)) {
             $template = 'Controller class "%s" not found in "%s".';
             $message  = sprintf($template, $class, $pathToClass);
             throw new RuntimeException();
@@ -574,7 +574,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     private function getModuleName()
     {
         $parts = explode('_', $this->getControllerClass(), 2);
-        if( count($parts) === 1 ) {
+        if (count($parts) === 1) {
             // No module prefix found.
             return 'default';
         }

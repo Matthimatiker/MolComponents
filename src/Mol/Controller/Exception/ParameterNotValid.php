@@ -30,7 +30,7 @@ class Mol_Controller_Exception_ParameterNotValid extends Mol_Controller_Exceptio
      */
     public function __construct($messageOrValidator = null, $code = null, Exception $previous = null)
     {
-        if( $messageOrValidator instanceof Zend_Validate_Interface ) {
+        if ($messageOrValidator instanceof Zend_Validate_Interface) {
             $messageOrValidator = $this->toMessage($messageOrValidator);
         }
         parent::__construct($messageOrValidator, $code, $previous);

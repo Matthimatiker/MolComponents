@@ -55,7 +55,7 @@ class Mol_Test_View_Helper_Url extends Zend_View_Helper_Abstract
         // Generate a mock url that contains all given options.
         $optionNames = array_keys($urlOptions);
         $url         = '';
-        foreach( $optionNames as $optionName ) {
+        foreach ($optionNames as $optionName) {
             $url .= $optionName . ':' . $urlOptions[$optionName] . '/';
         }
         return rtrim($url, '/');
@@ -82,7 +82,7 @@ class Mol_Test_View_Helper_Url extends Zend_View_Helper_Abstract
      */
     public function getParamsOfCall( $callNumber )
     {
-        if( !isset($this->callParams[$callNumber]) ) {
+        if (!isset($this->callParams[$callNumber])) {
             return null;
         }
         return $this->callParams[$callNumber];

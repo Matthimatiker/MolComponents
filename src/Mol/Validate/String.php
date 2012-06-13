@@ -55,7 +55,7 @@ class Mol_Validate_String implements Zend_Validate_Interface
      */
     public function isValid( $value )
     {
-        if( !is_string($value) ) {
+        if (!is_string($value)) {
             $this->messages = array(
                 'notOfTypeString' => 'Value is not of type string. Type is "' . gettype($value) . '".'
             );

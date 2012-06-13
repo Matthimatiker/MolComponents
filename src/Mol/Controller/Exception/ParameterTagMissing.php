@@ -34,7 +34,7 @@ class Mol_Controller_Exception_ParameterTagMissing extends Mol_Controller_Except
     public function __construct($paramName = null, $code = null, Exception $previous = null)
     {
         $message = null;
-        if( $paramName !== null ) {
+        if ($paramName !== null) {
             $message = 'Missing DocTag for parameter "' . $paramName . '".';
         }
         parent::__construct($message, $code, $previous);

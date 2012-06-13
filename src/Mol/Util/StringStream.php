@@ -47,7 +47,7 @@ class Mol_Util_StringStream
      */
     public function __construct( $string )
     {
-        if( !is_string($string) ) {
+        if (!is_string($string)) {
             $message = 'String expected, but ' . gettype($string) . ' passed.';
             throw new RuntimeException($message);
         }
