@@ -27,10 +27,12 @@ class Mol_DataType_String implements Countable
 {
     
     /**
-     * Creates a string object from the given string.
+     * Creates a string object from the given raw string.
      *
-     * @param string $string
-     * @param string $charset
+     * It is assumed that the string uses the mentioned charset.
+     *
+     * @param string $string The raw string.
+     * @param string $charset The charset of the string.
      * @return Mol_DataType_String
      */
     public static function createFrom($string, $charset)
@@ -38,6 +40,12 @@ class Mol_DataType_String implements Countable
         
     }
     
+    /**
+     * Creates a string object
+     *
+     * @param string $string The raw string.
+     * @param string $charset The charset of the string.
+     */
     public function __construct($string, $charset)
     {
         
