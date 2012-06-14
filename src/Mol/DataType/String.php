@@ -123,12 +123,12 @@ class Mol_DataType_String implements Countable
     
     }
     
-    public function removeFromStart($string)
+    public function removePrefix($prefix)
     {
     
     }
     
-    public function removeFromEnd($string)
+    public function removeSuffix($suffix)
     {
     
     }
