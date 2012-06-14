@@ -149,12 +149,28 @@ class Mol_DataType_String implements Countable
     
     }
     
+    /**
+     * Replaces all occurrences of $search by $replace.
+     *
+     * @param string $search
+     * @param string $replace
+     * @return Mol_DataType_String The string with applied replacements.
+     */
     public function replace($search, $replace)
     {
     
     }
     
-    public function substring($start, $length)
+    /**
+     * Extracts the requested substring.
+     *
+     * Starts at $startIndex and extracts $length characters.
+     *
+     * @param integer $startIndex The start index.
+     * @param integer $length The length in characters.
+     * @return Mol_DataType_String The substring.
+     */
+    public function substring($startIndex, $length)
     {
     
     }
