@@ -68,7 +68,7 @@ class Mol_DataType_String implements Countable
      * that uses the requested charset is created.
      *
      * @param string $charset
-     * @return Mol_DataType_String
+     * @return Mol_DataType_String The string in the requested charset.
      */
     public function convertTo($charset)
     {
@@ -131,11 +131,21 @@ class Mol_DataType_String implements Countable
     
     }
     
+    /**
+     * Converts all characters in the string to upper case.
+     *
+     * @return Mol_DataType_String The string with upper case characters.
+     */
     public function toUpperCase()
     {
         
     }
     
+    /**
+     * Converts all characters in the string to lower case.
+     *
+     * @return Mol_DataType_String The string with lower case characters.
+     */
     public function toLowerCase()
     {
         
@@ -161,6 +171,12 @@ class Mol_DataType_String implements Countable
     
     }
     
+    /**
+     * Checks if the strings are equal.
+     *
+     * @param string $string
+     * @return boolean True if the strings are equal, false otherwise.
+     */
     public function equals($string)
     {
         
