@@ -75,6 +75,17 @@ class Mol_DataType_String implements Countable
     
     }
     
+    /**
+     * Returns the index of the first occurrence of $needle.
+     *
+     * If $needle was not found then -1 will be returned.
+     * If provided as second argument then the search will
+     * begin at the given index.
+     *
+     * @param string $needle
+     * @param integer $fromIndex
+     * @return integer Index or -1 if $needle was not found.
+     */
     public function indexOf($needle, $fromIndex = 0)
     {
         
