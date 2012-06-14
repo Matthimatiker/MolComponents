@@ -23,7 +23,7 @@
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 14.06.2012
  */
-class Mol_DataType_String
+class Mol_DataType_String implements Countable
 {
     
     public static function createFrom($string, $charset)
@@ -132,6 +132,11 @@ class Mol_DataType_String
     }
     
     public function removeFromEnd($string)
+    {
+        
+    }
+    
+    public function count()
     {
         
     }
