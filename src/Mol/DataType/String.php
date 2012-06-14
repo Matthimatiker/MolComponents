@@ -166,16 +166,39 @@ class Mol_DataType_String implements Countable
         
     }
     
+    /**
+     * Returns the length of the string in characters.
+     *
+     * @return integer
+     */
     public function length()
     {
     
     }
     
+    /**
+     * Returns the length of the string in bytes.
+     *
+     * Some charsets require more than 1 byte to store a character,
+     * therefore length() and lengthInBytes() do not have to be equal.
+     *
+     * @return integer
+     */
     public function lengthInBytes()
     {
     
     }
     
+    /**
+     * Alias of length().
+     *
+     * Allows to obtain the string length by using count():
+     * <code>
+     * $length = count($myStringObject);
+     * </code>
+     *
+     * @return integer
+     */
     public function count()
     {
         
