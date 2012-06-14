@@ -101,12 +101,24 @@ class Mol_DataType_String implements Countable
         
     }
     
-    public function startsWith($string)
+    /**
+     * Checks if the string starts with the provided prefix.
+     *
+     * @param string $prefix
+     * @return boolean True if the string starts with the prefix, false otherwise.
+     */
+    public function startsWith($prefix)
     {
     
     }
     
-    public function endsWith($string)
+    /**
+     * Checks if the string ends with the provided suffix.
+     *
+     * @param string $suffix
+     * @return boolean True if the string ends with the suffix, false otherwise.
+     */
+    public function endsWith($suffix)
     {
     
     }
