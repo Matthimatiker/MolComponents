@@ -54,7 +54,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param string $method
      * @return boolean True if the method was called, false otherwise.
      */
-    public function wasCalled( $method )
+    public function wasCalled($method )
     {
         return count($this->filterCallsByName($method)) > 0;
     }
@@ -65,11 +65,11 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param string $method
      * @return array(mixed)
      */
-    public function getLastArgumentsFrom( $method )
+    public function getLastArgumentsFrom($method )
     {
         $calls           = $this->filterCallsByName($method);
         $numberOfMatches = count($calls);
-        if( $numberOfMatches === 0 ) {
+        if($numberOfMatches === 0 ) {
             // Method was not called.
             return array();
         }
@@ -82,12 +82,12 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param string $method
      * @return array(stdClass)
      */
-    protected function filterCallsByName( $method )
+    protected function filterCallsByName($method )
     {
         $matches = array();
-        foreach( $this->methodCalls as $call ) {
+        foreach($this->methodCalls as $call ) {
             /* @var $call stdClass */
-            if( $call->name !== $method ) {
+            if($call->name !== $method ) {
                 continue;
             }
             $matches[] = $call;
@@ -109,7 +109,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      *
      * @param integer $count
      */
-    public function requiredParameterAction( $count )
+    public function requiredParameterAction($count )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -120,7 +120,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      *
      * @param string $text
      */
-    public function optionalParameterAction( $text = 'Hello World!' )
+    public function optionalParameterAction($text = 'Hello World!' )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -131,7 +131,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      *
      * @param Unknown $unknown
      */
-    public function unknownTypeAction( $unknown )
+    public function unknownTypeAction($unknown )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -144,7 +144,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param double $number
      * @param mixed $mixed
      */
-    public function mixedTypesAction( $flag, $number, $mixed )
+    public function mixedTypesAction($flag, $number, $mixed )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -156,7 +156,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param string  $one
      * @param boolean $two
      */
-    public function indentedNamesAction( $one, $two )
+    public function indentedNamesAction($one, $two )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -170,13 +170,13 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param string $one  This is the first parameter.
      * @param boolean $two This is the second parameter.
      */
-    public function additionalParameterDocumentationAction( $one, $two )
+    public function additionalParameterDocumentationAction($one, $two )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
     }
 
-    public function undocumentedAction( $flag )
+    public function undocumentedAction($flag )
     {
         // An Acrion without DocBlock.
         $arguments = func_get_args();
@@ -186,7 +186,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
     /**
      * A DocBlock with missing parameter documentation.
      */
-    public function noParameterTagAction( $flag )
+    public function noParameterTagAction($flag )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -197,7 +197,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      *
      * @param array(integer) $list
      */
-    public function arrayParameterAction( array $list )
+    public function arrayParameterAction(array $list )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -208,7 +208,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      *
      * @param boolean
      */
-    public function docBlockWithoutParameterNameAction( $flag )
+    public function docBlockWithoutParameterNameAction($flag )
     {
         $arguments = func_get_args();
         $this->notifyMethodCall(__FUNCTION__, $arguments);
@@ -220,7 +220,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param string $name
      * @param array $arguments
      */
-    public function __call( $name, $arguments )
+    public function __call($name, $arguments )
     {
         $this->notifyMethodCall($name, $arguments);
     }
@@ -231,7 +231,7 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
      * @param string $method
      * @param array(mixed) $arguments
      */
-    protected function notifyMethodCall( $method, array $arguments )
+    protected function notifyMethodCall($method, array $arguments )
     {
         $call                = new stdClass();
         $call->name          = $method;

@@ -110,7 +110,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      * @param string $body
      * @return string
      */
-    public function write( $method, $uri, $httpVersion = '1.1', $headers = array(), $body = '' )
+    public function write($method, $uri, $httpVersion = '1.1', $headers = array(), $body = '' )
     {
         $request = parent::write($method, $uri, $httpVersion, $headers, $body);
         $this->requestedUri = $this->normalizeUri($uri);
@@ -172,7 +172,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      * @param string $pattern
      * @return boolean
      */
-    protected function matches( $pattern )
+    protected function matches($pattern )
     {
         if (empty($pattern)) {
             return false;
@@ -187,7 +187,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      * @param string $pattern
      * @return string
      */
-    private function toRegExp( $pattern )
+    private function toRegExp($pattern )
     {
         $regExp = '/^' . preg_quote($pattern, '/') . '$/';
         // Replace escaped "*" by a pattern, that matches zero to
@@ -202,7 +202,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      * @param string|Zend_Http_Response $response
      * @param string|null $urlPattern
      */
-    public function addResponse( $response, $urlPattern = null )
+    public function addResponse($response, $urlPattern = null )
     {
         if ($urlPattern === null) {
             parent::addResponse($response);
@@ -222,7 +222,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      * @param string $pattern
      * @return string
      */
-    protected function next( $pattern )
+    protected function next($pattern )
     {
         $response = array_shift($this->responsesByPattern[$pattern]);
         array_push($this->responsesByPattern[$pattern], $response);
@@ -236,7 +236,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      * @return integer
      * @throws RuntimeException If the pattern is unknown.
      */
-    public function getNumberOfRequestsFor( $pattern )
+    public function getNumberOfRequestsFor($pattern )
     {
         if (!in_array($pattern, $this->getPatterns())) {
             throw new RuntimeException('Unknown pattern "' . $pattern . '".');
@@ -262,7 +262,7 @@ class Mol_Test_Http_Client_Adapter extends Zend_Http_Client_Adapter_Test
      *
      * @param string $pattern
      */
-    protected function countRequest( $pattern )
+    protected function countRequest($pattern )
     {
         if (!isset($this->numberOfRequestsByPattern[$pattern])) {
             $this->numberOfRequestsByPattern[$pattern] = 0;

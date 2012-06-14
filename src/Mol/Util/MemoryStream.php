@@ -61,7 +61,7 @@ class Mol_Util_MemoryStream
      * @param string $content The initial stream content.
      * @throws RuntimeException If an invalid argument is passed.
      */
-    public function __construct( $content = '' )
+    public function __construct($content = '' )
     {
         if (!is_string($content)) {
             $message = 'String expected, but' . gettype($content) . ' received.';

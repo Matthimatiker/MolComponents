@@ -71,7 +71,7 @@ class Mol_View_Helper_Favicon extends Zend_View_Helper_Abstract
      * @param string $iconUrl
      * @return Mol_View_Helper_Favicon Provides a fluent interface.
      */
-    public function favicon( $iconUrl = null )
+    public function favicon($iconUrl = null )
     {
         if ($iconUrl !== null) {
             $this->iconUrl = $iconUrl;

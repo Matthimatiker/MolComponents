@@ -110,7 +110,7 @@ class Mol_Filter_NullTest extends PHPUnit_Framework_TestCase
      *
      * @param mixed $value
      */
-    protected function assertNotModified( $value )
+    protected function assertNotModified($value )
     {
         $this->assertSame($value, $this->filter->filter($value));
     }

@@ -48,7 +48,7 @@ class Mol_Test_View_Helper_Url extends Zend_View_Helper_Abstract
      * @param boolean $encode
      * @return string
      */
-    public function url( array $urlOptions = array(), $name = null, $reset = false, $encode = true )
+    public function url(array $urlOptions = array(), $name = null, $reset = false, $encode = true )
     {
         $this->callParams[] = array(
             'urlOptions' => $urlOptions,
@@ -84,7 +84,7 @@ class Mol_Test_View_Helper_Url extends Zend_View_Helper_Abstract
      * @param integer $callNumber
      * @return array(string=>mixed)|null
      */
-    public function getParamsOfCall( $callNumber )
+    public function getParamsOfCall($callNumber )
     {
         if (!isset($this->callParams[$callNumber])) {
             return null;

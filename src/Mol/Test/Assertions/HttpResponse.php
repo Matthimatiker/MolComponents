@@ -55,7 +55,7 @@ class Mol_Test_Assertions_HttpResponse
      *
      * @param integer $expected The HTTP code.
      */
-    public function hasCode( $expected )
+    public function hasCode($expected )
     {
         $message = 'Unexpected response code.';
         PHPUnit_Framework_Assert::assertEquals($expected, $this->response->getHttpResponseCode(), $message);
@@ -68,7 +68,7 @@ class Mol_Test_Assertions_HttpResponse
      *
      * @param string $name The header name.
      */
-    public function hasHeader( $name )
+    public function hasHeader($name )
     {
         $message = 'Header "' . $name . '" not found.';
         PHPUnit_Framework_Assert::assertGreaterThan(0, count($this->getHeaders($name)), $message);
@@ -79,7 +79,7 @@ class Mol_Test_Assertions_HttpResponse
      *
      * @param string $name The header name.
      */
-    public function notHasHeader( $name )
+    public function notHasHeader($name )
     {
         $message = 'Header "' . $name . '" found.';
         PHPUnit_Framework_Assert::assertEquals(0, count($this->getHeaders($name)), $message);
@@ -93,7 +93,7 @@ class Mol_Test_Assertions_HttpResponse
      * @param string $name
      * @param string $expected
      */
-    public function headerEquals( $name, $expected )
+    public function headerEquals($name, $expected )
     {
         $headers         = $this->getHeaders($name);
         $numberOfHeaders = count($headers);
@@ -113,7 +113,7 @@ class Mol_Test_Assertions_HttpResponse
      * @param string $name
      * @return array(string) All matching header values.
      */
-    protected function getHeaders( $name )
+    protected function getHeaders($name )
     {
         $headers = array();
         foreach ($this->response->getHeaders() as $headerData) {
@@ -130,7 +130,7 @@ class Mol_Test_Assertions_HttpResponse
      *
      * @param string $needle The text.
      */
-    public function contains( $needle )
+    public function contains($needle )
     {
         $message = 'Response does not contain the expected content.';
         PHPUnit_Framework_Assert::assertContains($needle, $this->response->getBody(), $message);
@@ -141,7 +141,7 @@ class Mol_Test_Assertions_HttpResponse
      *
      * @param string $needle The text.
      */
-    public function notContains( $needle )
+    public function notContains($needle )
     {
         $message = 'Response contains unexpected content.';
         PHPUnit_Framework_Assert::assertNotContains($needle, $this->response->getBody(), $message);
@@ -173,7 +173,7 @@ class Mol_Test_Assertions_HttpResponse
         $content = $this->response->getBody();
         try {
             Zend_Json::decode($content);
-        } catch( Zend_Json_Exception $e ) {
+        } catch(Zend_Json_Exception $e ) {
             PHPUnit_Framework_Assert::fail('Invalid JSON data found: ' . $e->getMessage());
         }
         $this->headerEquals('Content-Type', 'application/json');

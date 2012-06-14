@@ -49,7 +49,7 @@ class Mol_Util_StringStream
      * @param string $string
      * @throws RuntimeException If no string was provided.
      */
-    public function __construct( $string )
+    public function __construct($string )
     {
         if (!is_string($string)) {
             $message = 'String expected, but ' . gettype($string) . ' passed.';

@@ -86,7 +86,7 @@ class Mol_Validate_False implements Zend_Validate_Interface
      * @param  mixed $value
      * @return boolean
      */
-    public function isValid( $value )
+    public function isValid($value )
     {
         $this->messages[$this->failureMessageKey] = $this->failureMessage;
         return false;

@@ -51,7 +51,7 @@ class Mol_Test_Bootstrap_Mock
      * @param array(string=>mixed) $resources
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $resources = array(), array $options = array() )
+    public function __construct(array $resources = array(), array $options = array() )
     {
         $this->resources = new Mol_Option_List(array_change_key_case($resources, CASE_LOWER));
         $this->options   = new Mol_Option_List(array_change_key_case($options, CASE_LOWER));
@@ -63,7 +63,7 @@ class Mol_Test_Bootstrap_Mock
      * @param string $name
      * @return boolean
      */
-    public function hasResource( $name )
+    public function hasResource($name )
     {
         return $this->resources->has($this->normalize($name));
     }
@@ -74,7 +74,7 @@ class Mol_Test_Bootstrap_Mock
      * @param string $name
      * @return mixed|null
      */
-    public function getResource( $name )
+    public function getResource($name )
     {
         return $this->resources->get($this->normalize($name));
     }
@@ -85,7 +85,7 @@ class Mol_Test_Bootstrap_Mock
      * @param string $name
      * @return boolean
      */
-    public function hasOption( $name )
+    public function hasOption($name )
     {
         return $this->options->has($this->normalize($name));
     }
@@ -96,7 +96,7 @@ class Mol_Test_Bootstrap_Mock
      * @param string $name
      * @return mixed|null
      */
-    public function getOption( $name )
+    public function getOption($name )
     {
         return $this->options->get($this->normalize($name));
     }
@@ -108,7 +108,7 @@ class Mol_Test_Bootstrap_Mock
      * @param string $name
      * @return string
      */
-    protected function normalize( $name )
+    protected function normalize($name )
     {
         return strtolower($name);
     }

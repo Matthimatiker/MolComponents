@@ -64,7 +64,7 @@ class Mol_View_Helper_To extends Zend_View_Helper_Abstract
      * @param string $module
      * @return Mol_View_Helper_Value_Url
      */
-    public function to( $action, $controller, $module = 'default' )
+    public function to($action, $controller, $module = 'default' )
     {
         $url = new Mol_View_Helper_Value_Url($this->view);
         $url->withParam('action', $action);

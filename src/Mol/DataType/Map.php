@@ -61,7 +61,7 @@ class Mol_DataType_Map extends ArrayObject
      * @param array(mixed) $initialValues
      * @param mixed $defaultValue
      */
-    public function __construct( array $initialValues = array(), $defaultValue = null )
+    public function __construct(array $initialValues = array(), $defaultValue = null )
     {
         $this->defaultValue = $defaultValue;
         parent::__construct($initialValues);
@@ -74,7 +74,7 @@ class Mol_DataType_Map extends ArrayObject
      * @param mixed $index
      * @return mixed
      */
-    public function offsetGet( $index )
+    public function offsetGet($index )
     {
         if (!isset($this[$index])) {
             return $this->defaultValue;
