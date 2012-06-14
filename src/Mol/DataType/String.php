@@ -76,12 +76,12 @@ class Mol_DataType_String
         
     }
     
-    public function indexOf($needle, $offset = 0)
+    public function indexOf($needle, $fromIndex = 0)
     {
         
     }
     
-    public function lastIndexOf($needle)
+    public function lastIndexOf($needle, $fromIndex = null)
     {
         
     }
