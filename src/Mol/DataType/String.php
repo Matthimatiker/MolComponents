@@ -123,11 +123,27 @@ class Mol_DataType_String implements Countable
     
     }
     
+    /**
+     * Removes the given prefix from the string.
+     *
+     * This method has no effect if the string does not start with $prefix.
+     *
+     * @param string $prefix
+     * @return Mol_DataType_String String without prefix.
+     */
     public function removePrefix($prefix)
     {
     
     }
     
+    /**
+     * Removes the given suffix from the string.
+     *
+     * This method has no effect if the string does not end with $suffix.
+     *
+     * @param string $suffix
+     * @return Mol_DataType_String String without suffix.
+     */
     public function removeSuffix($suffix)
     {
     
