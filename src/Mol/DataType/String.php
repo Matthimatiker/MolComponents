@@ -195,21 +195,26 @@ class Mol_DataType_String implements Countable
         
     }
     
-    public function trim($chars)
+    public function trim($characters)
     {
         
     }
     
-    public function trimLeft($chars)
+    public function trimLeft($characters)
     {
         
     }
     
-    public function trimRight($chars)
+    public function trimRight($characters)
     {
         
     }
     
+    /**
+     * Converts the string into an array of characters.
+     *
+     * @return array(string) The characters in order of occurrence in the string.
+     */
     public function toCharacters()
     {
     
