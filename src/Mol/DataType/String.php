@@ -26,6 +26,13 @@
 class Mol_DataType_String implements Countable
 {
     
+    /**
+     * Creates a string object from the given string.
+     *
+     * @param string $string
+     * @param string $charset
+     * @return Mol_DataType_String
+     */
     public static function createFrom($string, $charset)
     {
         
@@ -116,7 +123,7 @@ class Mol_DataType_String implements Countable
         
     }
     
-    public function getCharacters()
+    public function toCharacters()
     {
     
     }
