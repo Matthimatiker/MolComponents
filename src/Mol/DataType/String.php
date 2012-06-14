@@ -209,11 +209,26 @@ class Mol_DataType_String implements Countable
     
     }
     
+    /**
+     * Returns the raw string (no string object).
+     *
+     * @return string
+     */
     public function toString()
     {
     
     }
     
+    /**
+     * Alias of toString().
+     *
+     * Allows for outputting string objects directly:
+     * <code>
+     * echo $myStringObject;
+     * </code>
+     *
+     * @return string
+     */
     public function __toString()
     {
         
