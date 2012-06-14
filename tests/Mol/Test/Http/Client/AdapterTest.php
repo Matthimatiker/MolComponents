@@ -63,7 +63,7 @@ class Mol_Test_Http_Client_AdapterTest extends PHPUnit_Framework_TestCase
     public function testAdapterReturnsInitialConfiguredResponse()
     {
         $response = $this->request('http://www.matthimatiker.de');
-        $this->assertType('Zend_Http_Response', $response);
+        $this->assertInstanceOf('Zend_Http_Response', $response);
     }
 
     /**
@@ -253,7 +253,7 @@ class Mol_Test_Http_Client_AdapterTest extends PHPUnit_Framework_TestCase
     protected function assertRequestedResponseContains($expected, $url)
     {
         $response = $this->request($url);
-        $this->assertType('Zend_Http_Response', $response);
+        $this->assertInstanceOf('Zend_Http_Response', $response);
         $this->assertContains($expected, $response->getBody());
     }
 

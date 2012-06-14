@@ -116,7 +116,7 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testToStringReturnsString()
     {
-        $this->assertType('string', (string)$this->url);
+        $this->assertInternalType('string', (string)$this->url);
     }
 
     /**

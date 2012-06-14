@@ -62,7 +62,7 @@ class Mol_Validate_TrueTest extends PHPUnit_Framework_TestCase
      */
     public function testGetMessagesReturnsArray()
     {
-        $this->assertType('array', $this->validator->getMessages());
+        $this->assertInternalType('array', $this->validator->getMessages());
     }
 
     /**
@@ -73,7 +73,7 @@ class Mol_Validate_TrueTest extends PHPUnit_Framework_TestCase
         // Call isValid(), otherwise the message array is empty anyway.
         $this->validator->isValid(false);
         $messages = $this->validator->getMessages();
-        $this->assertType('array', $messages);
+        $this->assertInternalType('array', $messages);
         $this->assertEquals(0, count($messages));
     }
 
@@ -82,7 +82,7 @@ class Mol_Validate_TrueTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidReturnsBoolean()
     {
-        $this->assertType('boolean', $this->validator->isValid(false));
+        $this->assertInternalType('boolean', $this->validator->isValid(false));
     }
 
     /**

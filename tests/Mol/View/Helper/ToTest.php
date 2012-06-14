@@ -76,7 +76,7 @@ class Mol_View_Helper_ToTest extends PHPUnit_Framework_TestCase
      */
     public function testHelperReturnsUrlObject()
     {
-        $this->assertType('Mol_View_Helper_Value_Url', $this->helper->to('index', 'index', 'default'));
+        $this->assertInstanceOf('Mol_View_Helper_Value_Url', $this->helper->to('index', 'index', 'default'));
     }
 
     /**

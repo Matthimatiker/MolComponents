@@ -38,7 +38,7 @@ class Mol_Validate_BooleanTest extends PHPUnit_Framework_TestCase
     public function testValidatorReturnsBoolean()
     {
         $validator = new Mol_Validate_Boolean();
-        $this->assertType('boolean', $validator->isValid('test'));
+        $this->assertInternalType('boolean', $validator->isValid('test'));
     }
 
     /**

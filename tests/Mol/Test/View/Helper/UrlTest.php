@@ -86,8 +86,8 @@ class Mol_Test_View_Helper_UrlTest extends PHPUnit_Framework_TestCase
         $url = $this->helper->url(array('a' => 'b', 'c' => 'd'));
         $firstOptionPosition  = strpos($url, 'b');
         $secondOptionPosition = strpos($url, 'd');
-        $this->assertType('integer', $firstOptionPosition, 'First option not found.');
-        $this->assertType('integer', $secondOptionPosition, 'Second option not found.');
+        $this->assertInternalType('integer', $firstOptionPosition, 'First option not found.');
+        $this->assertInternalType('integer', $secondOptionPosition, 'Second option not found.');
         $message = 'Url contains options in incorrect order.';
         $this->assertGreaterThan($firstOptionPosition, $secondOptionPosition, $message);
     }
@@ -118,7 +118,7 @@ class Mol_Test_View_Helper_UrlTest extends PHPUnit_Framework_TestCase
     public function testGetParamsOfCallReturnsArray()
     {
         $this->helper->url();
-        $this->assertType('array', $this->helper->getParamsOfCall(0));
+        $this->assertInternalType('array', $this->helper->getParamsOfCall(0));
     }
 
     /**
@@ -172,7 +172,7 @@ class Mol_Test_View_Helper_UrlTest extends PHPUnit_Framework_TestCase
     protected function assertHelperParamEquals($key, $expected)
     {
         $params = $this->helper->getParamsOfCall(0);
-        $this->assertType('array', $params);
+        $this->assertInternalType('array', $params);
         $this->assertArrayHasKey($key, $params);
         $this->assertEquals($expected, $params[$key]);
     }

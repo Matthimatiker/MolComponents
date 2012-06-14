@@ -330,7 +330,7 @@ class Mol_Util_MemoryStreamTest extends PHPUnit_Framework_TestCase
         $handle = fopen($this->stream, 'rb+');
         $info   = fstat($handle);
         fclose($handle);
-        $this->assertType('array', $info);
+        $this->assertInternalType('array', $info);
         $expectedSize = strlen(self::INITIAL_CONTENT);
         $this->assertArrayHasKey(7, $info, 'Missing numerical key.');
         $this->assertArrayHasKey('size', $info, 'Missing associative key.');

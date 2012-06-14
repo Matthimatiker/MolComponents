@@ -412,7 +412,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
     protected function assertActionArgumentHasType($action, $argumentIndex, $expectedType)
     {
         $argument = $this->getArgument($action, $argumentIndex);
-        $this->assertType($expectedType, $argument, 'Invalid argument type.');
+        $this->assertInternalType($expectedType, $argument, 'Invalid argument type.');
     }
 
     /**

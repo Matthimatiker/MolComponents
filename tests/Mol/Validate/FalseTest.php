@@ -62,7 +62,7 @@ class Mol_Validate_FalseTest extends PHPUnit_Framework_TestCase
      */
     public function testGetMessagesReturnsArray()
     {
-        $this->assertType('array', $this->validator->getMessages());
+        $this->assertInternalType('array', $this->validator->getMessages());
     }
 
     /**
@@ -72,7 +72,7 @@ class Mol_Validate_FalseTest extends PHPUnit_Framework_TestCase
     public function testGetMessagesReturnsEmptyArrayIfIsValidWasNotCalled()
     {
         $messages = $this->validator->getMessages();
-        $this->assertType('array', $messages);
+        $this->assertInternalType('array', $messages);
         $this->assertEquals(0, count($messages));
     }
 
@@ -84,7 +84,7 @@ class Mol_Validate_FalseTest extends PHPUnit_Framework_TestCase
         // Call isValid() to ensure that a message is available.
         $this->validator->isValid(false);
         $messages = $this->validator->getMessages();
-        $this->assertType('array', $messages);
+        $this->assertInternalType('array', $messages);
         $this->assertContains('Hello World!', $messages);
     }
 
@@ -96,7 +96,7 @@ class Mol_Validate_FalseTest extends PHPUnit_Framework_TestCase
         // Call isValid() to ensure that a message is available.
         $this->validator->isValid(false);
         $messages = $this->validator->getMessages();
-        $this->assertType('array', $messages);
+        $this->assertInternalType('array', $messages);
         $this->assertArrayHasKey('message', $messages);
     }
 
@@ -108,7 +108,7 @@ class Mol_Validate_FalseTest extends PHPUnit_Framework_TestCase
         // Call isValid() to ensure that a message is available.
         $this->validator->isValid(false);
         $messages = $this->validator->getMessages();
-        $this->assertType('array', $messages);
+        $this->assertInternalType('array', $messages);
         $this->assertEquals(1, count($messages));
     }
 
@@ -117,7 +117,7 @@ class Mol_Validate_FalseTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidReturnsBoolean()
     {
-        $this->assertType('boolean', $this->validator->isValid(false));
+        $this->assertInternalType('boolean', $this->validator->isValid(false));
     }
 
     /**
