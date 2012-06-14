@@ -36,49 +36,14 @@ class Mol_DataType_String implements Countable
         
     }
     
-    public function startsWith($string)
+    public function getCharset()
     {
-        
-    }
     
-    public function endsWith($string)
-    {
-        
-    }
-    
-    public function getCharacters()
-    {
-        
-    }
-    
-    public function length()
-    {
-        
-    }
-    
-    public function lengthInBytes()
-    {
-        
-    }
-    
-    public function toString()
-    {
-        
-    }
-    
-    public function replace($search, $replace)
-    {
-        
     }
     
     public function convertTo($charset)
     {
-        
-    }
     
-    public function getCharset()
-    {
-        
     }
     
     public function indexOf($needle, $fromIndex = 0)
@@ -96,6 +61,36 @@ class Mol_DataType_String implements Countable
         
     }
     
+    public function startsWith($string)
+    {
+    
+    }
+    
+    public function endsWith($string)
+    {
+    
+    }
+    
+    public function removeFromStart($string)
+    {
+    
+    }
+    
+    public function removeFromEnd($string)
+    {
+    
+    }
+    
+    public function replace($search, $replace)
+    {
+    
+    }
+    
+    public function substring($start, $length)
+    {
+    
+    }
+    
     public function trim($chars)
     {
         
@@ -111,34 +106,39 @@ class Mol_DataType_String implements Countable
         
     }
     
+    public function getCharacters()
+    {
+    
+    }
+    
     public function equals($string)
     {
         
     }
     
-    public function substring($start, $length)
+    public function length()
+    {
+    
+    }
+    
+    public function lengthInBytes()
+    {
+    
+    }
+    
+    public function count()
     {
         
     }
     
     public function isEmpty()
     {
-        
+    
     }
     
-    public function removeFromStart($string)
+    public function toString()
     {
-        
-    }
     
-    public function removeFromEnd($string)
-    {
-        
-    }
-    
-    public function count()
-    {
-        
     }
     
     public function __toString()
