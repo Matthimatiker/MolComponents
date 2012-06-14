@@ -46,7 +46,7 @@ class Mol_DataType_String implements Countable
      * @param string $string The raw string.
      * @param string $charset The charset of the string.
      */
-    public function __construct($string, $charset)
+    protected function __construct($string, $charset)
     {
         
     }
