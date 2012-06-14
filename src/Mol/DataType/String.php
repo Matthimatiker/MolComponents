@@ -204,6 +204,13 @@ class Mol_DataType_String implements Countable
         
     }
     
+    /**
+     * Checks if the string is empty.
+     *
+     * A string is empty if its length is 0 or it contains only whitespace.
+     *
+     * @return boolean True if the string is empty, false otherwise.
+     */
     public function isEmpty()
     {
     
