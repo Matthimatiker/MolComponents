@@ -91,6 +91,16 @@ class Mol_DataType_String implements Countable
     
     }
     
+    public function toUpperCase()
+    {
+        
+    }
+    
+    public function toLowerCase()
+    {
+        
+    }
+    
     public function trim($chars)
     {
         
