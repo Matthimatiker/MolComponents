@@ -195,17 +195,35 @@ class Mol_DataType_String implements Countable
         
     }
     
-    public function trim($characters)
+    /**
+     * Removes the provided characters from start and end of the string.
+     *
+     * @param string $characters
+     * @return Mol_DataType_String The string without leading and trailing characters.
+     */
+    public function trim($characters = null)
     {
         
     }
     
-    public function trimLeft($characters)
+    /**
+     * Removes the provided characters from the start of the string.
+     *
+     * @param string $characters
+     * @return Mol_DataType_String The string without leading characters.
+     */
+    public function trimLeft($characters = null)
     {
         
     }
     
-    public function trimRight($characters)
+    /**
+     * Removes the provided characters from the end of the string.
+     *
+     * @param string $characters
+     * @return Mol_DataType_String The string without trailing characters.
+     */
+    public function trimRight($characters = null)
     {
         
     }
