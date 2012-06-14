@@ -96,6 +96,12 @@ class Mol_DataType_String implements Countable
         
     }
     
+    /**
+     * Returns the indexes of all occurrences of $needle.
+     *
+     * @param string $needle
+     * @return array(integer)
+     */
     public function indexesOf($needle)
     {
         
