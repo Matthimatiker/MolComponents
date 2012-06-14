@@ -26,6 +26,11 @@
 class Mol_DataType_String
 {
     
+    public static function createFrom($string, $charset)
+    {
+        
+    }
+    
     public function __construct($string, $charset)
     {
         
@@ -112,6 +117,21 @@ class Mol_DataType_String
     }
     
     public function substring($start, $length)
+    {
+        
+    }
+    
+    public function isEmpty()
+    {
+        
+    }
+    
+    public function removeFromStart($string)
+    {
+        
+    }
+    
+    public function removeFromEnd($string)
     {
         
     }
