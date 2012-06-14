@@ -141,4 +141,9 @@ class Mol_DataType_String implements Countable
         
     }
     
+    public function __toString()
+    {
+        
+    }
+    
 }
