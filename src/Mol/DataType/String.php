@@ -26,4 +26,94 @@
 class Mol_DataType_String
 {
     
+    public function __construct($string, $charset)
+    {
+        
+    }
+    
+    public function startsWith($string)
+    {
+        
+    }
+    
+    public function endsWith($string)
+    {
+        
+    }
+    
+    public function getCharacters()
+    {
+        
+    }
+    
+    public function length()
+    {
+        
+    }
+    
+    public function lengthInBytes()
+    {
+        
+    }
+    
+    public function toString()
+    {
+        
+    }
+    
+    public function replace($search, $replace)
+    {
+        
+    }
+    
+    public function convertTo($charset)
+    {
+        
+    }
+    
+    public function getCharset()
+    {
+        
+    }
+    
+    public function indexOf($needle, $offset = 0)
+    {
+        
+    }
+    
+    public function lastIndexOf($needle)
+    {
+        
+    }
+    
+    public function indexesOf($needle)
+    {
+        
+    }
+    
+    public function trim($chars)
+    {
+        
+    }
+    
+    public function trimLeft($chars)
+    {
+        
+    }
+    
+    public function trimRight($chars)
+    {
+        
+    }
+    
+    public function equals($string)
+    {
+        
+    }
+    
+    public function substring($start, $length)
+    {
+        
+    }
+    
 }
