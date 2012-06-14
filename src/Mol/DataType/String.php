@@ -51,11 +51,25 @@ class Mol_DataType_String implements Countable
         
     }
     
+    /**
+     * Returns the current charset of the string.
+     *
+     * @return string
+     */
     public function getCharset()
     {
     
     }
     
+    /**
+     * Converts the string into the requested charset.
+     *
+     * The current string object is not modified, but a new one
+     * that uses the requested charset is created.
+     *
+     * @param string $charset
+     * @return Mol_DataType_String
+     */
     public function convertTo($charset)
     {
     
