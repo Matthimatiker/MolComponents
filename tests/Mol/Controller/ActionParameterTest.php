@@ -106,7 +106,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      * @param string $name
      * @param mixed $value
      */
-    protected function simulateParam($name, $value )
+    protected function simulateParam($name, $value)
     {
         $this->request->setParam($name, $this->convertToString($value));
     }
@@ -118,7 +118,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      * @param mixed $param
      * @return string|array(string)
      */
-    private function convertToString($param )
+    private function convertToString($param)
     {
         if (is_array($param)) {
             // Convert all elements to string.
@@ -135,7 +135,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      *
      * @param string $action
      */
-    protected function dispatch($action )
+    protected function dispatch($action)
     {
         $this->request->setDispatched(true);
         $actionMethod = $this->actionNameToMethod($action);
@@ -393,7 +393,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      *
      * @param string $action
      */
-    protected function assertActionCall($action )
+    protected function assertActionCall($action)
     {
         $message = 'Action "' . $action . '" was not called.';
         $method  = $this->actionNameToMethod($action);
@@ -409,7 +409,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      * @param integer $argumentIndex The index of the argument, starting at 0.
      * @param string $expectedType
      */
-    protected function assertActionArgumentHasType($action, $argumentIndex, $expectedType )
+    protected function assertActionArgumentHasType($action, $argumentIndex, $expectedType)
     {
         $argument = $this->getArgument($action, $argumentIndex);
         $this->assertType($expectedType, $argument, 'Invalid argument type.');
@@ -424,7 +424,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      * @param integer $argumentIndex The index of the argument, starting at 0.
      * @param mixed $expectedValue The expected argument value.
      */
-    protected function assertActionArgumentEquals($action, $argumentIndex, $expectedValue )
+    protected function assertActionArgumentEquals($action, $argumentIndex, $expectedValue)
     {
         $argument = $this->getArgument($action, $argumentIndex);
         $this->assertEquals($expectedValue, $argument);
@@ -436,7 +436,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      * @param string $action The name of the action.
      * @return string The name of the corresponding action method.
      */
-    private function actionNameToMethod($action )
+    private function actionNameToMethod($action)
     {
         $parts         = explode('-', $action);
         $numberOfParts = count($parts);
@@ -456,7 +456,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      * @param integer $argumentIndex The index of the argument, starting at 0.
      * @return mixed
      */
-    private function getArgument($action, $argumentIndex )
+    private function getArgument($action, $argumentIndex)
     {
         $method    = $this->actionNameToMethod($action);
         $arguments = $this->controller->getLastArgumentsFrom($method);

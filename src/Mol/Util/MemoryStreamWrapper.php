@@ -80,7 +80,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $id
      * @param string $initalContent
      */
-    public static function registerBucket($id, $initalContent )
+    public static function registerBucket($id, $initalContent)
     {
         self::$buckets[$id] = $initalContent;
     }
@@ -91,7 +91,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $id
      * @return string
      */
-    public static function readBucket($id )
+    public static function readBucket($id)
     {
         return self::$buckets[$id];
     }
@@ -101,7 +101,7 @@ class Mol_Util_MemoryStreamWrapper
      *
      * @param string $id
      */
-    public static function unRegisterBucket($id )
+    public static function unRegisterBucket($id)
     {
         unset(self::$buckets[$id]);
     }
@@ -112,7 +112,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $id
      * @return boolean True if the bucket exists, false otherwise.
      */
-    public static function hasBucket($id )
+    public static function hasBucket($id)
     {
         return isset(self::$buckets[$id]);
     }
@@ -126,7 +126,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $url
      * @return string
      */
-    protected static function extractBucketId($url )
+    protected static function extractBucketId($url)
     {
         return parse_url($url, PHP_URL_HOST);
     }
@@ -139,7 +139,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $id
      * @return integer The size in bytes.
      */
-    protected function getBucketSize($id )
+    protected function getBucketSize($id)
     {
         if (!self::hasBucket($id)) {
             return 0;
@@ -204,7 +204,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param integer $flags
      * @return array(mixed=>mixed)|false
      */
-    public function url_stat($path, $flags )
+    public function url_stat($path, $flags)
     {
         $id = self::extractBucketId($path);
         if(!self::hasBucket($id) ) {
@@ -237,7 +237,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param integer $count
      * @return string
      */
-    public function stream_read($count )
+    public function stream_read($count)
     {
         $result          = substr(self::$buckets[$this->bucketId], $this->position, $count);
         $this->position += strlen($result);
@@ -250,7 +250,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $data
      * @return integer The number of written bytes.
      */
-    public function stream_write($data )
+    public function stream_write($data)
     {
         $this->insert($data, $this->position);
         $this->position += strlen($data);
@@ -266,7 +266,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $data
      * @param integer $position
      */
-    protected function insert($data, $position )
+    protected function insert($data, $position)
     {
         if ($position === 0) {
             $start = '';
@@ -318,7 +318,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param integer $whence
      * @return boolean
      */
-    public function stream_seek($offset, $whence = SEEK_SET )
+    public function stream_seek($offset, $whence = SEEK_SET)
     {
         switch($whence ) {
             case SEEK_CUR:

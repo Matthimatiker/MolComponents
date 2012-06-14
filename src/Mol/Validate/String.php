@@ -57,7 +57,7 @@ class Mol_Validate_String implements Zend_Validate_Interface
      * @param mixed $value
      * @return boolean
      */
-    public function isValid($value )
+    public function isValid($value)
     {
         if (!is_string($value)) {
             $this->messages = array(

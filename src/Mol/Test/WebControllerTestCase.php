@@ -295,7 +295,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @param array(string=>string)|Zend_Form $arrayOrForm
      */
-    protected function setPost($arrayOrForm )
+    protected function setPost($arrayOrForm)
     {
         if ($arrayOrForm instanceof Zend_Form) {
             /* @var $form Zend_Form */
@@ -316,7 +316,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @param array(string=>string) $parameters
      */
-    protected function setGet(array $parameters )
+    protected function setGet(array $parameters)
     {
         $this->request->setQuery($parameters);
     }
@@ -333,7 +333,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @param array(string=>string) $parameters
      */
-    protected function setUserParams(array $parameters )
+    protected function setUserParams(array $parameters)
     {
         $this->request->setParams($parameters);
     }
@@ -344,7 +344,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @param array(string=>mixed) $arguments
      */
-    protected function setInvokeArgs(array $arguments )
+    protected function setInvokeArgs(array $arguments)
     {
         $this->invokeArgs = array_merge($this->invokeArgs, $arguments);
     }
@@ -360,7 +360,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * @param string $name
      * @param mixed $resource
      */
-    protected function simulateResource($name, $resource )
+    protected function simulateResource($name, $resource)
     {
         $this->resources[$name] = $resource;
     }
@@ -376,7 +376,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * @param string $name
      * @param mixed $value
      */
-    protected function simulateOption($name, $value )
+    protected function simulateOption($name, $value)
     {
         $this->options[$name] = $value;
     }
@@ -403,7 +403,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @param integer $expectedNumber
      */
-    protected function assertNumberOfLogEntries($expectedNumber )
+    protected function assertNumberOfLogEntries($expectedNumber)
     {
         $message = 'Unexpected number of log entries.';
         $this->assertEquals($expectedNumber, count($this->logger->events), $message);
@@ -419,7 +419,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @param string $action
      */
-    protected function dispatch($action )
+    protected function dispatch($action)
     {
         $this->request->setDispatched(true);
         $this->request->setActionName($action);
@@ -443,7 +443,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * @param string $name
      * @return string
      */
-    private function actionNameToMethod($name )
+    private function actionNameToMethod($name)
     {
         $method = str_replace('-', ' ', $name);
         $method = ucwords($method);

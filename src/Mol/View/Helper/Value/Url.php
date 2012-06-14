@@ -71,7 +71,7 @@ class Mol_View_Helper_Value_Url
      *
      * @param Zend_View_Interface $view
      */
-    public function __construct(Zend_View_Interface $view )
+    public function __construct(Zend_View_Interface $view)
     {
         $this->view = $view;
     }
@@ -83,7 +83,7 @@ class Mol_View_Helper_Value_Url
      * @param string $value
      * @return Mol_View_Helper_Value_Url Provides a fluent interface.
      */
-    public function withParam($name, $value )
+    public function withParam($name, $value)
     {
         $this->params[$name] = (string)$value;
         return $this;
@@ -95,7 +95,7 @@ class Mol_View_Helper_Value_Url
      * @param string $name
      * @return Mol_View_Helper_Value_Url Provides a fluent interface.
      */
-    public function withRoute($name )
+    public function withRoute($name)
     {
         $this->route = $name;
         return $this;
@@ -107,7 +107,7 @@ class Mol_View_Helper_Value_Url
      * @param string $name
      * @return Mol_View_Helper_Value_Url Provides a fluent interface.
      */
-    public function withAnchor($name )
+    public function withAnchor($name)
     {
         $this->anchor = $name;
         return $this;

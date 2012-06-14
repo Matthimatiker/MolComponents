@@ -250,7 +250,7 @@ class Mol_Test_Http_Client_AdapterTest extends PHPUnit_Framework_TestCase
      * @param string $expected
      * @param string $url
      */
-    protected function assertRequestedResponseContains($expected, $url )
+    protected function assertRequestedResponseContains($expected, $url)
     {
         $response = $this->request($url);
         $this->assertType('Zend_Http_Response', $response);
@@ -269,7 +269,7 @@ class Mol_Test_Http_Client_AdapterTest extends PHPUnit_Framework_TestCase
      * @param string $url
      * @return Zend_Http_Response
      */
-    protected function request($url )
+    protected function request($url)
     {
         $this->adapter->connect('');
         $this->adapter->write('GET', Zend_Uri_Http::fromString($url));
@@ -285,7 +285,7 @@ class Mol_Test_Http_Client_AdapterTest extends PHPUnit_Framework_TestCase
      * @param integer $code
      * @return Zend_Http_Response
      */
-    protected function createResponse($body, $code = 200 )
+    protected function createResponse($body, $code = 200)
     {
         return new Zend_Http_Response($code, array(), $body);
     }

@@ -56,7 +56,7 @@ class Mol_Filter_Cast implements Zend_Filter_Interface
      *
      * @param string $type
      */
-    public function __construct($type )
+    public function __construct($type)
     {
         $this->type = $type;
     }
@@ -67,7 +67,7 @@ class Mol_Filter_Cast implements Zend_Filter_Interface
      * @param mixed $value
      * @return mixed Der konvertierte Wert.
      */
-    public function filter($value )
+    public function filter($value)
     {
         settype($value, $this->type);
         return $value;

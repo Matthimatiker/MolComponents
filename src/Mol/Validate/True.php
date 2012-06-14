@@ -44,7 +44,7 @@ class Mol_Validate_True implements Zend_Validate_Interface
      * @param  mixed $value
      * @return boolean
      */
-    public function isValid($value )
+    public function isValid($value)
     {
         return true;
     }

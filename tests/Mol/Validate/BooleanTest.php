@@ -166,7 +166,7 @@ class Mol_Validate_BooleanTest extends PHPUnit_Framework_TestCase
      *
      * @param mixed $value
      */
-    protected function assertAccepts($value )
+    protected function assertAccepts($value)
     {
         $this->assertValidation(true, $value);
     }
@@ -176,7 +176,7 @@ class Mol_Validate_BooleanTest extends PHPUnit_Framework_TestCase
      *
      * @param mixed $value
      */
-    protected function assertRejects($value )
+    protected function assertRejects($value)
     {
         $this->assertValidation(false, $value);
     }
@@ -187,7 +187,7 @@ class Mol_Validate_BooleanTest extends PHPUnit_Framework_TestCase
      * @param boolean $expectedResult
      * @param mixed $value
      */
-    private function assertValidation($expectedResult, $value )
+    private function assertValidation($expectedResult, $value)
     {
         $validator = new Mol_Validate_Boolean();
         $this->assertSame($expectedResult, $validator->isValid($value));
