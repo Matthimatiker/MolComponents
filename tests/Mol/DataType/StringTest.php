@@ -48,6 +48,11 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testCreateThrowsExceptionIfInvalidCharsetIsProvided()
+    {
+        
+    }
+    
     public function testConvertToReturnsStringWithProvidedCharset()
     {
         
@@ -99,6 +104,21 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     public function testIndexesOfReturnsSortedIndexes()
+    {
+        
+    }
+    
+    public function testStartsWithReturnsTrueIfTheStringStartsWithTheProvidedPrefix()
+    {
+        
+    }
+    
+    public function testStartsWithReturnsFalseIfTheStringOnlyContainsThePrefix()
+    {
+        
+    }
+    
+    public function testStartsWithReturnsFalseIfTheStringDoesNotContainThePrefix()
     {
         
     }
