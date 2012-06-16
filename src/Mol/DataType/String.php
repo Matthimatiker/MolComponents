@@ -35,7 +35,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * @param string $charset The charset of the string.
      * @return Mol_DataType_String
      */
-    public static function create($string, $charset)
+    public static function create($string, $charset = 'UTF-8')
     {
         
     }
