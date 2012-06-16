@@ -33,4 +33,74 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testCreateReturnsStringObject()
+    {
+        
+    }
+    
+    public function testCreateReturnsStringWithProvidedCharset()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfStringDoesNotUseTheProvidedCharset()
+    {
+        
+    }
+    
+    public function testConvertToReturnsStringWithProvidedCharset()
+    {
+        
+    }
+    
+    public function testConvertChangesCharsetOfOriginalString()
+    {
+        
+    }
+    
+    public function testIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
+    {
+        
+    }
+    
+    public function testIndexOfReturnsCorrectIndex()
+    {
+        
+    }
+    
+    public function testIndexOfDoesNotSearchBeforeProvidedOffset()
+    {
+        
+    }
+    
+    public function testLastIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
+    {
+        
+    }
+    
+    public function testLastIndexOfReturnsCorrectIndex()
+    {
+        
+    }
+    
+    public function testLastIndexOfDoesNotSearchAfterProvidedOffset()
+    {
+        
+    }
+    
+    public function testIndexesOfReturnsArray()
+    {
+        
+    }
+    
+    public function testIndexesOfReturnsCorrectIndexes()
+    {
+        
+    }
+    
+    public function testIndexesOfReturnsSortedIndexes()
+    {
+        
+    }
+    
 }
