@@ -214,12 +214,14 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * Extracts the requested substring.
      *
      * Starts at $startIndex and extracts $length characters.
+     * If $length is not provided then the substring will
+     * extend to the end of the string.
      *
      * @param integer $startIndex The start index.
-     * @param integer $length The length in characters.
+     * @param integer|null $length The length in characters.
      * @return Mol_DataType_String The substring.
      */
-    public function subString($startIndex, $length)
+    public function subString($startIndex, $length = null)
     {
     
     }
