@@ -63,6 +63,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testConvertToReturnsSelfIfCurrentCharsetIsRequested()
+    {
+        
+    }
+    
+    public function testConvertToThrowsExceptionIfInvalidCharsetIsRequested()
+    {
+        
+    }
+    
     public function testIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
     {
         
@@ -119,6 +129,11 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     public function testStartsWithReturnsFalseIfTheStringDoesNotContainThePrefix()
+    {
+        
+    }
+    
+    public function testStartsWithReturnsFalseIfStringEqualsFirstPartOfPrefix()
     {
         
     }
