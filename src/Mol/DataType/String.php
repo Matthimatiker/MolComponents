@@ -219,7 +219,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * @param integer $length The length in characters.
      * @return Mol_DataType_String The substring.
      */
-    public function substring($startIndex, $length)
+    public function subString($startIndex, $length)
     {
     
     }
