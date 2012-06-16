@@ -123,4 +123,19 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testEndsWithReturnsTrueIfTheStringEndsWithTheProvidedSuffix()
+    {
+    
+    }
+    
+    public function testEndsWithReturnsFalseIfTheStringOnlyContainsTheSuffix()
+    {
+    
+    }
+    
+    public function testEndsWithReturnsFalseIfTheStringDoesNotContainTheSuffix()
+    {
+    
+    }
+    
 }
