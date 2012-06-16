@@ -169,11 +169,43 @@ class Mol_DataType_String implements Countable
     /**
      * Replaces all occurrences of $search by $replace.
      *
-     * @param string $search
+     * This method provides 3 signatures:
+     *
+     * replace(string, string):
+     * <code>
+     * $result = $myString->replace('search', 'replace');
+     * </code>
+     * Replaces all occurrences of "search" by "replace".
+     *
+     * replace(array(string), string):
+     * <code>
+     * $needles = array(
+     *     'first',
+     *     'seconds'
+     * );
+     * $result = $myString->replace($needles, 'replace');
+     * </code>
+     * Replaces all string that are contained in the $needles array by "replace".
+     *
+     * replace(array(string=>string)):
+     * <code>
+     * $mapping = array(
+     *     'first' => 'last',
+     *     'hello' => 'world'
+     * );
+     * $result = $myString->replace($mapping);
+     * </code>
+     * Expects an associative array that represents a mapping of strings
+     * as argument.
+     * The keys are replaced by the assigned values.
+     * In this example occurences of "first" are replaced by "last" and
+     * "hello" is replaced by "world".
+     *
+     * @param string|array(string)|array(string|string) $searchOrMapping
      * @param string $replace
      * @return Mol_DataType_String The string with applied replacements.
      */
-    public function replace($search, $replace)
+    public function replace($searchOrMapping, $replace = null)
     {
     
     }
