@@ -91,6 +91,17 @@ class Mol_DataType_String implements Countable
         
     }
     
+    /**
+     * Returns the index of the last occurrence of $needle.
+     *
+     * If $needle was not found then -1 will be returned.
+     * The search is performed from right to left.
+     * If $fromIndex is provided then the search will begin at that index.
+     *
+     * @param string $needle
+     * @param integer|null $fromIndex
+     * @return integer Index or -1 if $needle was not found.
+     */
     public function lastIndexOf($needle, $fromIndex = null)
     {
         
