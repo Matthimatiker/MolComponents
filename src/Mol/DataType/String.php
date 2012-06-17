@@ -323,7 +323,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function trim($characters = null)
     {
-        $trimmed = trim($this->value, $characters);
+        $trimmed = $this->applyTrim('trim', $characters);
         return self::create($trimmed, $this->charset);
     }
     
@@ -335,7 +335,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function trimLeft($characters = null)
     {
-        $trimmed = ltrim($this->value, $characters);
+        $trimmed = $this->applyTrim('ltrim', $characters);
         return self::create($trimmed, $this->charset);
     }
     
@@ -347,7 +347,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function trimRight($characters = null)
     {
-        $trimmed = rtrim($this->value, $characters);
+        $trimmed = $this->applyTrim('rtrim', $characters);
         return self::create($trimmed, $this->charset);
     }
     
@@ -460,6 +460,29 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function __toString()
     {
         return $this->toString();
+    }
+    
+    /**
+     * Applies a trim function (trim(), rtrim() or ltrim()) to the raw
+     * string value and returns the result.
+     *
+     * Example:
+     * <code>
+     * $trimFunction = $this->applyTrim('rtrim', 'a');
+     * </code>
+     *
+     * If $characters is null then whitespace will be trimmed.
+     *
+     * @param string $trimFunction The name of the trim function.
+     * @param string|null $characters The characters that will be trimmed.
+     */
+    protected function applyTrim($trimFunction, $characters)
+    {
+        $arguments = array($this->value);
+        if ($characters !== null) {
+            $arguments[] = $characters;
+        }
+        return call_user_func_array($trimFunction, $arguments);
     }
     
 }
