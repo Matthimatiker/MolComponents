@@ -687,4 +687,28 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Creates a string object.
+     *
+     * @param string $string
+     * @param string $charset
+     * @return Mol_DataType_String
+     */
+    protected function create($string, $charset = Mol_DataType_String::CHARSET_UTF8)
+    {
+        $object = Mol_DataType_String::create($string, $charset);
+        $this->assertStringObject($object);
+        return $object;
+    }
+    
+    /**
+     * Asserts that the provided value is an instance of Mol_DataType_String.
+     *
+     * @param mixed $value
+     */
+    protected function assertStringObject($value)
+    {
+        $this->assertInstanceOf('Mol_DataType_String', $value);
+    }
+    
 }
