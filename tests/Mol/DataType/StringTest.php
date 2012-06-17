@@ -174,6 +174,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that indexOf() returns -1 if the provided start index exceeds
+     * the length of the string.
+     */
+    public function testIndexOfReturnsMinusOneIfOffsetExceedsStringLength()
+    {
+        $index = $this->create('abc')->indexOf('c', 3);
+        $this->assertEquals(-1, $index);
+    }
+    
+    /**
      * Checks if indexOf() returns the correct index.
      */
     public function testIndexOfReturnsCorrectIndex()
