@@ -566,7 +566,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             // Charset is valid.
             return;
         }
-        $format  = '"%s" is no valid charset. The following charsets are supported: %s';
+        $format  = '"%s" is not a valid charset. The following charsets are supported: %s';
         $message = sprintf($format, $charset, implode(', ', $charsets));
         throw new InvalidArgumentException($message);
     }
