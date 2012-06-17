@@ -153,4 +153,89 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     
     }
     
+    public function testRemovePrefixRemovesProvidedPrefix()
+    {
+        
+    }
+    
+    public function testRemovePrefixDoesNotModifyStringIfItOnlyContainsPrefix()
+    {
+        
+    }
+    
+    public function testRemovePrefixRemovesPrefixOnlyOnce()
+    {
+        
+    }
+    
+    public function testRemoveSuffixRemovesProvidedSuffix()
+    {
+    
+    }
+    
+    public function testRemoveSuffixDoesNotModifyStringIfItOnlyContainsSuffix()
+    {
+    
+    }
+    
+    public function testRemoveSuffixRemovesSuffixOnlyOnce()
+    {
+    
+    }
+    
+    public function testReplaceDoesNotModifyStringIfItDoesNotContainSearchString()
+    {
+        
+    }
+    
+    public function testReplaceReplacesSingleSearchStringByReplaceValue()
+    {
+        
+    }
+    
+    public function testReplaceReplacesListOfSearchStringsByReplaceValue()
+    {
+        
+    }
+    
+    public function testReplaceAppliesMappingIfAssociativeArrayIsProvided()
+    {
+        
+    }
+    
+    public function testSubStringExtractRequestedPartOfString()
+    {
+        
+    }
+    
+    public function testSubStringExtendsSubStringToEndOfOriginalStringIfLengthIsNotProvided()
+    {
+        
+    }
+    
+    public function testSubStringExtendsSubStringToEndOfOriginalStringIfLengthExceedsOriginalString()
+    {
+        
+    }
+    
+    public function testToUpperCaseReturnsCorrectValue()
+    {
+        
+    }
+    
+    public function testToUpperCaseWorksWithUmlauts()
+    {
+        
+    }
+    
+    public function testToLowerCaseReturnsCorrectValue()
+    {
+        
+    }
+    
+    public function testToLowerCaseWorksWithUmlauts()
+    {
+        
+    }
+    
 }
