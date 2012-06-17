@@ -48,11 +48,13 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     protected static $charsets = null;
     
     /**
-     * Cached list of accepted charset names.
+     * Cached mapping of accepted charset names to charsets.
      *
-     * @var array(string)|null
+     * The names are used as key, the charsets as value.
+     *
+     * @var array(string=>string)|null
      */
-    protected static $charsetNames = null;
+    protected static $namesToCharsets = null;
     
     /**
      * The raw string value.
@@ -96,22 +98,24 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
-     * Returns all accepted charset names including aliases.
+     * Returns a mapping of accepted charset names to charsets.
      *
      * For example "UTF-8" and "utf8" are both valid charset names.
      *
-     * @return array(string)
+     * @return array(string=>string)
      */
-    protected static function getCharsetNames()
+    protected static function getCharsetNameMapping()
     {
-        if (self::$charsetNames === null) {
-            $names = self::getCharsets();
+        if (self::$namesToCharsets === null) {
+            self::$namesToCharsets = array();
             foreach (self::getCharsets() as $charset) {
-                $names = array_merge($names, mb_encoding_aliases($charset));
+                self::$namesToCharsets[$charset] = $charset;
+                foreach (mb_encoding_aliases($charset) as $alias) {
+                    self::$namesToCharsets[$alias] = $charset;
+                }
             }
-            self::$charsetNames = $names;
         }
-        return self::$charsetNames;
+        return self::$namesToCharsets;
     }
     
     /**
@@ -597,7 +601,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     protected function assertCharset($charset)
     {
-        if (in_array($charset, self::getCharsetNames())) {
+        $namesToCharsets = self::getCharsetNameMapping();
+        if (isset($namesToCharsets[$charset])) {
             // Charset is valid.
             return;
         }
