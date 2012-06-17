@@ -443,6 +443,27 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
+     * Returns the reversed string.
+     *
+     * @return Mol_DataType_String
+     */
+    public function reverse()
+    {
+    
+    }
+    
+    /**
+     * Splits the string by using the provided delimiter.
+     *
+     * @param string $delimiter
+     * @return array(string)
+     */
+    public function splitAt($delimiter)
+    {
+        
+    }
+    
+    /**
      * Converts the string into an array of characters.
      *
      * @return array(string) The characters in order of occurrence in the string.
@@ -455,16 +476,6 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             $characters[] = $this->rawSubString($i, 1);
         }
         return $characters;
-    }
-    
-    /**
-     * Returns the reversed string.
-     *
-     * @return Mol_DataType_String
-     */
-    public function reverse()
-    {
-        
     }
     
     /**
