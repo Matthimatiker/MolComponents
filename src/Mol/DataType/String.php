@@ -233,7 +233,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             // Nothing to remove.
             return $this;
         }
-        $withoutSuffix = substr($this->value, $this->lengthInBytes() - strlen($suffix));
+        $withoutSuffix = substr($this->value, 0, $this->lengthInBytes() - strlen($suffix));
         return self::create($withoutSuffix, $this->charset);
     }
     
