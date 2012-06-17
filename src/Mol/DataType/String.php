@@ -41,6 +41,20 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     const CHARSET_LATIN1 = 'ISO-8859-1';
     
     /**
+     * Cached list of supported charsets.
+     *
+     * @var array(string)|null
+     */
+    protected static $charsets = null;
+    
+    /**
+     * Cached list of accepted charset names.
+     *
+     * @var array(string)|null
+     */
+    protected static $charsetNames = null;
+    
+    /**
      * The raw string value.
      *
      * @var string
@@ -75,7 +89,10 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     protected static function getCharsets()
     {
-        return mb_list_encodings();
+        if (self::$charsets === null) {
+            self::$charsets = mb_list_encodings();
+        }
+        return self::$charsets;
     }
     
     /**
@@ -87,12 +104,14 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     protected static function getCharsetNames()
     {
-        $charsets = self::getCharsets();
-        $names    = $charsets;
-        foreach ($charsets as $charset) {
-            $names = array_merge($names, mb_encoding_aliases($charset));
+        if (self::$charsetNames === null) {
+            $names = self::getCharsets();
+            foreach (self::getCharsets() as $charset) {
+                $names = array_merge($names, mb_encoding_aliases($charset));
+            }
+            self::$charsetNames = $names;
         }
-        return $names;
+        return self::$charsetNames;
     }
     
     /**
