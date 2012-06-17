@@ -67,6 +67,22 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if toString() returns a string.
+     */
+    public function testToStringReturnsString()
+    {
+    
+    }
+    
+    /**
+     * Checks if toString() returns the correct string.
+     */
+    public function testToStringReturnsCorrectValue()
+    {
+    
+    }
+    
+    /**
      * Checks if convertTo() returns a string with the requested charset.
      */
     public function testConvertToReturnsStringWithProvidedCharset()
@@ -659,22 +675,6 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      * characters.
      */
     public function testIsEmptyReturnsFalseIfStringContainsNonWhitespaceCharacters()
-    {
-        
-    }
-    
-    /**
-     * Checks if toString() returns a string.
-     */
-    public function testToStringReturnsString()
-    {
-        
-    }
-    
-    /**
-     * Checks if toString() returns the correct string.
-     */
-    public function testToStringReturnsCorrectValue()
     {
         
     }
