@@ -323,12 +323,72 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testStringIsTraversable()
+    {
+        
+    }
+    
     public function testGetIteratorReturnsTraversable()
     {
         
     }
     
     public function testIterationLoopsThroughCharacters()
+    {
+        
+    }
+    
+    public function testEqualsReturnsTrueIfStringsAreEqual()
+    {
+        
+    }
+    
+    public function testEqualsReturnsFalseIfStringLengthIsNotEqual()
+    {
+        
+    }
+    
+    public function testEqualsReturnsFalseIfStringContentDiffers()
+    {
+        
+    }
+    
+    public function testLengthReturnsInteger()
+    {
+        
+    }
+    
+    public function testLengthReturnsCorrectValue()
+    {
+        
+    }
+    
+    public function testLengthReturnsCorrectValueIfStringContainsUmlauts()
+    {
+        
+    }
+    
+    public function testLengthInBytesReturnsInteger()
+    {
+        
+    }
+    
+    public function testLengthInBytesReturnsCorrectValue()
+    {
+        
+    }
+    
+    public function testLengthInBytesReturnsCorrectValueIfStringContainsUmlauts()
+    {
+        
+    }
+    
+    public function testStringIsCountable()
+    {
+        
+    }
+    
+    public function testCountReturnsSameValueAsLength()
     {
         
     }
