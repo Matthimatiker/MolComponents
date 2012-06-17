@@ -159,7 +159,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         if ($fromIndex !== null) {
             // Per default mb_strrpos() searches from left to right and starts at the given offset.
             // We cut of the end of the string starting at ($fromIndex + 1) to simulate searching backwards.
-            $search = $this->subString(0, $fromIndex + 1)->toString();
+            $search = $this->rawSubString(0, $fromIndex + 1);
         }
         $position = mb_strrpos($search, $needle, null, $this->charset);
         if ($position === false) {
@@ -401,7 +401,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         $characters = array();
         $length     = $this->length();
         for ($i = 0; $i < $length; $i++) {
-            $characters[] = $this->subString($i, 1)->toString();
+            $characters[] = $this->rawSubString($i, 1);
         }
         return $characters;
     }
