@@ -267,7 +267,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testStartsWithReturnsTrueIfTheStringStartsWithTheProvidedPrefix()
     {
-        
+        $result = $this->create('this is a test string')->startsWith('this');
+        $this->assertTrue($result);
     }
     
     /**
@@ -276,7 +277,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testStartsWithReturnsFalseIfTheStringOnlyContainsThePrefix()
     {
-        
+        $result = $this->create('this is a test string')->startsWith('test');
+        $this->assertFalse($result);
     }
     
     /**
@@ -284,7 +286,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testStartsWithReturnsFalseIfTheStringDoesNotContainThePrefix()
     {
-        
+        $result = $this->create('this is a test string')->startsWith('demo');
+        $this->assertFalse($result);
     }
     
     /**
@@ -293,7 +296,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testStartsWithReturnsFalseIfStringEqualsFirstPartOfPrefix()
     {
-        
+        $result = $this->create('test')->startsWith('testprefix');
+        $this->assertFalse($result);
     }
     
     /**
@@ -301,7 +305,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testEndsWithReturnsTrueIfTheStringEndsWithTheProvidedSuffix()
     {
-    
+        $result = $this->create('this is a test string')->endsWith('string');
+        $this->assertTrue($result);
     }
     
     /**
@@ -310,7 +315,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testEndsWithReturnsFalseIfTheStringOnlyContainsTheSuffix()
     {
-    
+        $result = $this->create('this is a test string')->endsWith('test');
+        $this->assertFalse($result);
     }
     
     /**
@@ -319,7 +325,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testEndsWithReturnsFalseIfTheStringDoesNotContainTheSuffix()
     {
-    
+        $result = $this->create('this is a test string')->endsWith('demo');
+        $this->assertFalse($result);
     }
     
     /**
@@ -327,7 +334,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testRemovePrefixRemovesProvidedPrefix()
     {
-        
+        $object = $this->create('this is a test string')->removePrefix('this ');
+        $this->assertStringObject($object);
+        $this->assertEquals('is a test string', $object->toString());
     }
     
     /**
@@ -335,7 +344,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testRemovePrefixRemovesPrefixOnlyOnce()
     {
-    
+        $object = $this->create('testtestdemo')->removePrefix('test');
+        $this->assertStringObject($object);
+        $this->assertEquals('testdemo', $object->toString());
     }
     
     /**
@@ -344,7 +355,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testRemovePrefixDoesNotModifyStringIfItOnlyContainsPrefix()
     {
-        
+        $object = $this->create('this is a test string')->removePrefix('test');
+        $this->assertStringObject($object);
+        $this->assertEquals('this is a test string', $object->toString());
     }
     
     /**
@@ -352,7 +365,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testRemoveSuffixRemovesProvidedSuffix()
     {
-    
+        $object = $this->create('this is a test string')->removeSuffix(' string');
+        $this->assertStringObject($object);
+        $this->assertEquals('this is a test', $object->toString());
     }
     
     /**
@@ -360,7 +375,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testRemoveSuffixRemovesSuffixOnlyOnce()
     {
-    
+        $object = $this->create('demotesttest')->removeSuffix('test');
+        $this->assertStringObject($object);
+        $this->assertEquals('demotest', $object->toString());
     }
     
     /**
@@ -369,7 +386,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testRemoveSuffixDoesNotModifyStringIfItOnlyContainsSuffix()
     {
-    
+        $object = $this->create('this is a test string')->removeSuffix('test');
+        $this->assertStringObject($object);
+        $this->assertEquals('this is a test string', $object->toString());
     }
     
     /**
@@ -378,7 +397,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReplaceDoesNotModifyStringIfItDoesNotContainSearchString()
     {
-        
+        $object = $this->create('hello world')->replace('foo', 'bar');
+        $this->assertStringObject($object);
+        $this->assertEquals('hello world', $object->toString());
     }
     
     /**
@@ -387,7 +408,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReplaceReplacesSingleSearchStringByReplaceValue()
     {
-        
+        $object = $this->create('hello world')->replace('hello', 'bye');
+        $this->assertStringObject($object);
+        $this->assertEquals('bye world', $object->toString());
     }
     
     /**
@@ -396,7 +419,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReplaceReplacesListOfSearchStringsByReplaceValue()
     {
-        
+        $object = $this->create('hello world')->replace(array('hello', 'world'), 'dummy');
+        $this->assertStringObject($object);
+        $this->assertEquals('dummy dummy', $object->toString());
     }
     
     /**
@@ -405,7 +430,13 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReplaceAppliesMappingIfAssociativeArrayIsProvided()
     {
-        
+        $mapping = array(
+            'hello' => 'welcome',
+            'world' => 'home'
+        );
+        $object  = $this->create('hello world')->replace($mapping);
+        $this->assertStringObject($object);
+        $this->assertEquals('welcome home', $object->toString());
     }
     
     /**
