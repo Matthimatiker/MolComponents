@@ -208,6 +208,18 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that indexesOf() returns the correct indexes even if the string contains
+     * multibyte characters.
+     */
+    public function testIndexesOfReturnsCorrectIndexesIfStringContainsMultibyteCharacters()
+    {
+        $indexes = $this->create('äbcäbc')->indexesOf('b');
+        $this->assertInternalType('array', $indexes);
+        $this->assertContains(1, $indexes);
+        $this->assertContains(4, $indexes);
+    }
+    
+    /**
      * Checks if indexesOf() returns the expected number of indexes.
      */
     public function testIndexesOfReturnsCorrectNumberOfIndexes()
