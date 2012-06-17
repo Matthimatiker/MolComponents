@@ -38,7 +38,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateReturnsStringObject()
     {
-        
+        $object = Mol_DataType_String::create('test');
+        $this->assertStringObject($object);
     }
     
     /**
@@ -46,7 +47,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateReturnsStringWithProvidedCharset()
     {
-        
+        $object = Mol_DataType_String::create('test', Mol_DataType_String::CHARSET_LATIN1);
+        $this->assertStringObject($object);
+        $this->assertEquals(Mol_DataType_String::CHARSET_LATIN1, $object->getCharset());
     }
     
     /**
@@ -55,7 +58,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfStringDoesNotUseTheProvidedCharset()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        Mol_DataType_String::create('täääst', Mol_DataType_String::CHARSET_LATIN1);
     }
     
     /**
@@ -63,7 +67,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfInvalidCharsetIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        Mol_DataType_String::create('test', 'an-invalid-charset');
     }
     
     /**
@@ -71,7 +76,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToStringReturnsString()
     {
-    
+        $object = $this->create('test');
+        $this->assertInternalType('string', $object->toString());
     }
     
     /**
@@ -79,7 +85,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToStringReturnsCorrectValue()
     {
-    
+        $object = $this->create('test');
+        $this->assertInternalType('string', $object->toString());
+        $this->assertEquals('test', $object->toString());
     }
     
     /**
@@ -87,7 +95,10 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConvertToReturnsStringWithProvidedCharset()
     {
-        
+        $object    = $this->create('test');
+        $converted = $object->convertTo(Mol_DataType_String::CHARSET_LATIN1);
+        $this->assertStringObject($converted);
+        $this->assertEquals(Mol_DataType_String::CHARSET_LATIN1, $converted->getCharset());
     }
     
     /**
@@ -95,7 +106,10 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConvertChangesCharsetOfOriginalString()
     {
-        
+        $object    = $this->create('tääst');
+        $converted = $object->convertTo(Mol_DataType_String::CHARSET_LATIN1);
+        $this->assertStringObject($converted);
+        $this->assertNotEquals('tääst', $converted->toString());
     }
     
     /**
@@ -104,7 +118,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConvertToReturnsSelfIfCurrentCharsetIsRequested()
     {
-        
+        $object    = $this->create('tääst');
+        $converted = $object->convertTo(Mol_DataType_String::CHARSET_UTF8);
+        $this->assertSame($object, $converted);
     }
     
     /**
@@ -112,7 +128,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConvertToThrowsExceptionIfInvalidCharsetIsRequested()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->create('test')->convertTo('an-invalid-charset');
     }
     
     /**
@@ -121,7 +138,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
     {
-        
+        $index = $this->create('abcabc')->indexOf('d');
+        $this->assertEquals(-1, $index);
     }
     
     /**
@@ -129,7 +147,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexOfReturnsCorrectIndex()
     {
-        
+        $index = $this->create('abcabc')->indexOf('c');
+        $this->assertEquals(2, $index);
     }
     
     /**
@@ -137,7 +156,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexOfDoesNotSearchBeforeProvidedOffset()
     {
-        
+        $index = $this->create('abcabc')->indexOf('a', 1);
+        $this->assertEquals(3, $index);
     }
     
     /**
@@ -145,7 +165,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLastIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
     {
-        
+        $index = $this->create('abcabc')->lastIndexOf('d');
+        $this->assertEquals(-1, $index);
     }
     
     /**
@@ -153,7 +174,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLastIndexOfReturnsCorrectIndex()
     {
-        
+        $index = $this->create('abcabc')->lastIndexOf('b');
+        $this->assertEquals(4, $index);
     }
     
     /**
@@ -161,7 +183,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLastIndexOfDoesNotSearchAfterProvidedOffset()
     {
-        
+        $index = $this->create('abcabc')->lastIndexOf('b', 3);
+        $this->assertEquals(1, $index);
     }
     
     /**
@@ -169,7 +192,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexesOfReturnsArray()
     {
-        
+        $indexes = $this->create('abcabc')->indexesOf('a');
+        $this->assertInternalType('array', $indexes);
     }
     
     /**
@@ -177,7 +201,20 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexesOfReturnsCorrectIndexes()
     {
-        
+        $indexes = $this->create('abcabc')->indexesOf('a');
+        $this->assertInternalType('array', $indexes);
+        $this->assertContains(0, $indexes);
+        $this->assertContains(3, $indexes);
+    }
+    
+    /**
+     * Checks if indexesOf() returns the expected number of indexes.
+     */
+    public function testIndexesOfReturnsCorrectNumberOfIndexes()
+    {
+        $indexes = $this->create('abcabc')->indexesOf('a');
+        $this->assertInternalType('array', $indexes);
+        $this->assertEquals(2, count($indexes));
     }
     
     /**
@@ -185,7 +222,11 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexesOfReturnsSortedIndexes()
     {
-        
+        $indexes = $this->create('abcabc')->indexesOf('a');
+        $this->assertInternalType('array', $indexes);
+        $sorted = $indexes;
+        sort($sorted);
+        $this->assertEquals($sorted, $indexes);
     }
     
     /**
@@ -704,11 +745,11 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Asserts that the provided value is an instance of Mol_DataType_String.
      *
-     * @param mixed $value
+     * @param mixed $object
      */
-    protected function assertStringObject($value)
+    protected function assertStringObject($object)
     {
-        $this->assertInstanceOf('Mol_DataType_String', $value);
+        $this->assertInstanceOf('Mol_DataType_String', $object);
     }
     
 }
