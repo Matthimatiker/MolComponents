@@ -205,7 +205,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function endsWith($suffix)
     {
-        $expectedPosition = $this->lengthInBytes() - strlen($suffix);
+        $expectedPosition = $this->lengthInBytes() - $this->getLengthInBytes($suffix);
         return strrpos($this->value, $suffix) === $expectedPosition;
     }
     
@@ -223,7 +223,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             // Nothing to remove.
             return $this;
         }
-        $withoutPrefix = substr($this->value, strlen($prefix));
+        $withoutPrefix = substr($this->value, $this->getLengthInBytes($prefix));
         return self::create($withoutPrefix, $this->charset);
     }
     
@@ -241,7 +241,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             // Nothing to remove.
             return $this;
         }
-        $withoutSuffix = substr($this->value, 0, $this->lengthInBytes() - strlen($suffix));
+        $withoutSuffix = substr($this->value, 0, $this->lengthInBytes() - $this->getLengthInBytes($suffix));
         return self::create($withoutSuffix, $this->charset);
     }
     
@@ -447,7 +447,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function lengthInBytes()
     {
-        return strlen($this->value);
+        return $this->getLengthInBytes($this->value);
     }
     
     /**
@@ -500,6 +500,17 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function __toString()
     {
         return $this->toString();
+    }
+    
+    /**
+     * Returns the length in bytes of the provided string.
+     *
+     * @param string $string
+     * @return integer The length in bytes.
+     */
+    protected function getLengthInBytes($string)
+    {
+        return strlen($string);
     }
     
     /**
