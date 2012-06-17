@@ -129,7 +129,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         $this->assertCharset($charset);
         $this->assertUsesCharset($string, $charset);
         $this->value   = $string;
-        $this->charset = $charset;
+        $this->charset = $this->unifyCharset($charset);
     }
     
     /**
@@ -609,6 +609,20 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         $format  = '"%s" is not a valid charset. The following charsets are supported: %s';
         $message = sprintf($format, $charset, implode(', ', self::getCharsets()));
         throw new InvalidArgumentException($message);
+    }
+    
+    /**
+     * Maps charset aliases to charset names.
+     *
+     * The provided charset name must be valid.
+     *
+     * @param string $charset
+     * @return string
+     */
+    protected function unifyCharset($charset)
+    {
+        $namesToCharsets = self::getCharsetNameMapping();
+        return $namesToCharsets[$charset];
     }
     
     /**
