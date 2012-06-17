@@ -146,6 +146,21 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if convertTo() uses character transliteration (using similar
+     * characters if the characters cannot be converted to the requested
+     * charset).
+     */
+    public function testConvertToUsesCharacterTransliteration()
+    {
+        $object = $this->create('one test for 10€');
+        // The € sign is not available in Latin1.
+        $converted = $object->convertTo(Mol_DataType_String::CHARSET_LATIN1);
+        $this->assertStringObject($converted);
+        // The string must not end with "10", otherwise the € sign was silently discarded.
+        $this->assertStringEndsNotWith('10', $converted->toString());
+    }
+    
+    /**
      * Ensures that convertTo() throws an exception if an invalid charset is passed.
      */
     public function testConvertToThrowsExceptionIfInvalidCharsetIsRequested()
