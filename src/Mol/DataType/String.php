@@ -69,6 +69,16 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
+     * Returns all available charsets.
+     *
+     * @return array(string)
+     */
+    protected static function getCharsets()
+    {
+        return mb_list_encodings();
+    }
+    
+    /**
      * Creates a string object
      *
      * @param string $string The raw string.
@@ -76,6 +86,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     protected function __construct($string, $charset)
     {
+        $this->assertCharset($charset);
         $this->value   = $string;
         $this->charset = $charset;
     }
@@ -105,6 +116,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             // No conversion required.
             return $this;
         }
+        $this->assertCharset($charset);
         $converted = iconv($this->charset, $charset, $this->value);
         return self::create($converted, $charset);
     }
@@ -483,6 +495,24 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             $arguments[] = $characters;
         }
         return call_user_func_array($trimFunction, $arguments);
+    }
+    
+    /**
+     * Asserts that $charset is an available charset.
+     *
+     * @param string $charset
+     * @throws InvalidArgumentException If an invalid charset is provided.
+     */
+    protected function assertCharset($charset)
+    {
+        $charsets = self::getCharsets();
+        if (in_array($charset, $charsets)) {
+            // Charset is valid.
+            return;
+        }
+        $format  = '"%s" is no valid charset. The following charsets are supported: %s';
+        $message = sprintf($format, $charset, implode(', ', $charsets));
+        throw new InvalidArgumentException($message);
     }
     
 }
