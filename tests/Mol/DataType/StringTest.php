@@ -546,7 +546,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRemovesProvidedCharactersFromStart()
     {
-        $object = $this->create('abc ')->trim('ba');
+        $object = $this->create('abc')->trim('ba');
         $this->assertStringObject($object);
         $this->assertEquals('c', $object->toString());
     }
@@ -556,7 +556,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRemovesProvidedCharactersFromEnd()
     {
-        $object = $this->create('abc ')->trim('cb');
+        $object = $this->create('abc')->trim('cb');
         $this->assertStringObject($object);
         $this->assertEquals('a', $object->toString());
     }
@@ -586,7 +586,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimLeftRemovesProvidedCharactersFromStart()
     {
-        $object = $this->create('abc ')->trimLeft('ba');
+        $object = $this->create('abc')->trimLeft('ba');
         $this->assertStringObject($object);
         $this->assertEquals('c', $object->toString());
     }
@@ -596,7 +596,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimLeftDoesNotTouchProvidedCharactersAtTheEndOfTheString()
     {
-        $object = $this->create('abc ')->trimLeft('c');
+        $object = $this->create('abc')->trimLeft('c');
         $this->assertStringObject($object);
         $this->assertEquals('abc', $object->toString());
     }
@@ -626,7 +626,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRightRemovesProvidedCharactersFromEnd()
     {
-        $object = $this->create('abc ')->trimRight('cb');
+        $object = $this->create('abc')->trimRight('cb');
         $this->assertStringObject($object);
         $this->assertEquals('a', $object->toString());
     }
@@ -636,7 +636,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRightDoesNotTouchProvidedCharactersAtTheStartOfTheString()
     {
-        $object = $this->create('abc ')->trimRight('a');
+        $object = $this->create('abc')->trimRight('a');
         $this->assertStringObject($object);
         $this->assertEquals('abc', $object->toString());
     }
