@@ -73,6 +73,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if create() accepts alias names of charsets.
+     */
+    public function testCreateSupportsCharsetAliases()
+    {
+        $this->setExpectedException(null);
+        Mol_DataType_String::create('test', 'latin1');
+    }
+    
+    /**
      * Checks if toString() returns a string.
      */
     public function testToStringReturnsString()
