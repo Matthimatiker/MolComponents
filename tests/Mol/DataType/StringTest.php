@@ -208,6 +208,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that searching via lastIndexOf() includes the character
+     * at the provided $fromIndex position.
+     */
+    public function testLastIndexOfIncludesCharacterAtFromIndex()
+    {
+        $index = $this->create('abcabc')->lastIndexOf('a', 3);
+        $this->assertEquals(3, $index);
+    }
+    
+    /**
      * Checks if indexesOf() returns an array.
      */
     public function testIndexesOfReturnsArray()
