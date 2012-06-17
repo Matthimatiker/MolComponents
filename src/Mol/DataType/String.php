@@ -158,7 +158,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             return $this;
         }
         $this->assertCharset($charset);
-        $converted = iconv($this->charset, $charset, $this->value);
+        $converted = iconv($this->charset, $charset . '//TRANSLIT', $this->value);
         return $this->createString($converted, $charset);
     }
     
