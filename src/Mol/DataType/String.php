@@ -119,7 +119,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         }
         $this->assertCharset($charset);
         $converted = iconv($this->charset, $charset, $this->value);
-        return self::create($converted, $charset);
+        return $this->createString($converted, $charset);
     }
     
     /**
@@ -224,7 +224,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             return $this;
         }
         $withoutPrefix = substr($this->value, $this->getLengthInBytes($prefix));
-        return self::create($withoutPrefix, $this->charset);
+        return $this->createString($withoutPrefix);
     }
     
     /**
@@ -242,7 +242,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             return $this;
         }
         $withoutSuffix = substr($this->value, 0, $this->lengthInBytes() - $this->getLengthInBytes($suffix));
-        return self::create($withoutSuffix, $this->charset);
+        return $this->createString($withoutSuffix);
     }
     
     /**
@@ -293,7 +293,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             $replace = array_values($searchOrMapping);
         }
         $replaced = str_replace($search, $replace, $this->value);
-        return self::create($replaced, $this->charset);
+        return $this->createString($replaced);
     }
     
     /**
@@ -310,7 +310,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function subString($startIndex, $length = null)
     {
         $subString = $this->rawSubString($startIndex, $length);
-        return self::create($subString, $this->charset);
+        return $this->createString($subString);
     }
     
     /**
@@ -341,7 +341,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function toUpperCase()
     {
         $upper = mb_strtoupper($this->value, $this->charset);
-        return self::create($upper, $this->charset);
+        return $this->createString($upper);
     }
     
     /**
@@ -352,7 +352,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function toLowerCase()
     {
         $lower = mb_strtolower($this->value, $this->charset);
-        return self::create($lower, $this->charset);
+        return $this->createString($lower);
     }
     
     /**
@@ -364,7 +364,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function trim($characters = null)
     {
         $trimmed = $this->applyTrim('trim', $characters);
-        return self::create($trimmed, $this->charset);
+        return $this->createString($trimmed);
     }
     
     /**
@@ -376,7 +376,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function trimLeft($characters = null)
     {
         $trimmed = $this->applyTrim('ltrim', $characters);
-        return self::create($trimmed, $this->charset);
+        return $this->createString($trimmed);
     }
     
     /**
@@ -388,7 +388,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function trimRight($characters = null)
     {
         $trimmed = $this->applyTrim('rtrim', $characters);
-        return self::create($trimmed, $this->charset);
+        return $this->createString($trimmed);
     }
     
     /**
@@ -500,6 +500,23 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function __toString()
     {
         return $this->toString();
+    }
+    
+    /**
+     * Creates a new string object with the provided charset.
+     *
+     * If the charset is omitted then the current charset will be used.
+     *
+     * @param string $string
+     * @param string|null $charset
+     * @return Mol_DataType_String
+     */
+    protected function createString($string, $charset = null)
+    {
+        if ($charset === null) {
+            $charset = $this->charset;
+        }
+        return self::create($string, $charset);
     }
     
     /**
