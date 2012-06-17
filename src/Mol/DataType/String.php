@@ -27,6 +27,20 @@ class Mol_DataType_String implements IteratorAggregate, Countable
 {
     
     /**
+     * Constant for the name of the UTF-8 charset.
+     *
+     * @var string
+     */
+    const CHARSET_UTF8 = 'UTF-8';
+    
+    /**
+     * Constant for the name of the ISO-8859-1 charset.
+     *
+     * @var string
+     */
+    const CHARSET_LATIN1 = 'ISO-8859-1';
+    
+    /**
      * Creates a string object from the given raw string.
      *
      * It is assumed that the string uses the mentioned charset.
