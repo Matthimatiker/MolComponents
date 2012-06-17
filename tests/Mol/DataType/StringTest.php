@@ -152,6 +152,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that indexOf() returns the correct index even if the string contains
+     * multi-byte chracters.
+     */
+    public function testIndexOfReturnsCorrectIndexIfStringContainsMultiByteCharacters()
+    {
+        $index = $this->create('äbcäbc')->indexOf('c');
+        $this->assertEquals(2, $index);
+    }
+    
+    /**
      * Ensures that indexOf() starts to search at the provided offset.
      */
     public function testIndexOfDoesNotSearchBeforeProvidedOffset()
@@ -175,6 +185,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     public function testLastIndexOfReturnsCorrectIndex()
     {
         $index = $this->create('abcabc')->lastIndexOf('b');
+        $this->assertEquals(4, $index);
+    }
+    
+    /**
+     * Ensures that lastIndexOf() returns the correct index even if the string contains
+     * multi-byte chracters.
+     */
+    public function testLastIndexOfReturnsCorrectIndexIfStringContainsMultibyteCharacters()
+    {
+        $index = $this->create('äbcäbc')->lastIndexOf('b');
         $this->assertEquals(4, $index);
     }
     
