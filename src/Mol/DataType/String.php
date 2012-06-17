@@ -308,6 +308,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function subString($startIndex, $length = null)
     {
+        if ($length === null) {
+            // Use a length that cannot be reached by the substring to
+            // ensure that it is extended to the end of the original
+            // string.
+            $length = $this->lengthInBytes();
+        }
         $subString = mb_substr($this->value, $startIndex, $length, $this->charset);
         return self::create($subString, $this->charset);
     }
