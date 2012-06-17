@@ -33,106 +33,175 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Checks if create() returns a string object.
+     */
     public function testCreateReturnsStringObject()
     {
         
     }
     
+    /**
+     * Ensures that create() returns a string with the provided charset.
+     */
     public function testCreateReturnsStringWithProvidedCharset()
     {
         
     }
     
+    /**
+     * Ensures that create() throws an exception if the provided string does not
+     * use the given charset.
+     */
     public function testCreateThrowsExceptionIfStringDoesNotUseTheProvidedCharset()
     {
         
     }
     
+    /**
+     * Ensures that create() throws an exception if the provided charset is  not valid.
+     */
     public function testCreateThrowsExceptionIfInvalidCharsetIsProvided()
     {
         
     }
     
+    /**
+     * Checks if convertTo() returns a string with the requested charset.
+     */
     public function testConvertToReturnsStringWithProvidedCharset()
     {
         
     }
     
+    /**
+     * Checks if convertTo() converts the string into the requested charset.
+     */
     public function testConvertChangesCharsetOfOriginalString()
     {
         
     }
     
+    /**
+     * Ensures that convertTo() returns the original string object if the
+     * current charset is requested.
+     */
     public function testConvertToReturnsSelfIfCurrentCharsetIsRequested()
     {
         
     }
     
+    /**
+     * Ensures that convertTo() throws an exception if an invalid charset is passed.
+     */
     public function testConvertToThrowsExceptionIfInvalidCharsetIsRequested()
     {
         
     }
     
+    /**
+     * Ensures that inexOf() returns -1 if the string does not contain
+     * the needle.
+     */
     public function testIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
     {
         
     }
     
+    /**
+     * Checks if indexOf() returns the correct index.
+     */
     public function testIndexOfReturnsCorrectIndex()
     {
         
     }
     
+    /**
+     * Ensures that indexOf() starts to search at the provided offset.
+     */
     public function testIndexOfDoesNotSearchBeforeProvidedOffset()
     {
         
     }
     
+    /**
+     * Ensures that lastIndexOf() returns -1 of the string does not contain the needle.
+     */
     public function testLastIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
     {
         
     }
     
+    /**
+     * Checks if lastIndexOf() returns the correct index.
+     */
     public function testLastIndexOfReturnsCorrectIndex()
     {
         
     }
     
+    /**
+     * Ensures that lastIndexOf() does not search after the provided offset.
+     */
     public function testLastIndexOfDoesNotSearchAfterProvidedOffset()
     {
         
     }
     
+    /**
+     * Checks if indexesOf() returns an array.
+     */
     public function testIndexesOfReturnsArray()
     {
         
     }
     
+    /**
+     * Ensures that indexesOf() returns an array that contains the correct indexes.
+     */
     public function testIndexesOfReturnsCorrectIndexes()
     {
         
     }
     
+    /**
+     * Checks if the result of indexesOf() is a sorted integer array.
+     */
     public function testIndexesOfReturnsSortedIndexes()
     {
         
     }
     
+    /**
+     * Ensures that startsWith() returns true if the string starts with the given
+     * prefix.
+     */
     public function testStartsWithReturnsTrueIfTheStringStartsWithTheProvidedPrefix()
     {
         
     }
     
+    /**
+     * Ensures that startsWith() returns false if the string does not start with
+     * the prefix but contains it.
+     */
     public function testStartsWithReturnsFalseIfTheStringOnlyContainsThePrefix()
     {
         
     }
     
+    /**
+     * Ensures that startsWith() returns false if the string does not even contain the prefix.
+     */
     public function testStartsWithReturnsFalseIfTheStringDoesNotContainThePrefix()
     {
         
     }
     
+    /**
+     * Ensures that startsWith() returns false if the string is shorter than the
+     * prefix and equals the first part of the prefix.
+     */
     public function testStartsWithReturnsFalseIfStringEqualsFirstPartOfPrefix()
     {
         
