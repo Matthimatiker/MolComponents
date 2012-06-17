@@ -532,6 +532,10 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     /**
      * Asserts that the string uses the given charset.
      *
+     * Please note:
+     * It is only checked if the provided string is a valid byte sequence
+     * in the provided encoding.
+     *
      * @param string $string
      * @param string $charset
      * @throws InvalidArgumentException If the string cannot be represented in the provided charset.
