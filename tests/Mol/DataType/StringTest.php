@@ -207,66 +207,113 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that endsWith() returns true if the string ends with the given suffix.
+     */
     public function testEndsWithReturnsTrueIfTheStringEndsWithTheProvidedSuffix()
     {
     
     }
     
+    /**
+     * Ensures that endsWith() returns false if the string does not end with the
+     * given suffix but contains it.
+     */
     public function testEndsWithReturnsFalseIfTheStringOnlyContainsTheSuffix()
     {
     
     }
     
+    /**
+     * Ensures that endsWith() returns false if the string does not even contain
+     * the given suffix.
+     */
     public function testEndsWithReturnsFalseIfTheStringDoesNotContainTheSuffix()
     {
     
     }
     
+    /**
+     * Checks if removePrefix() removes the given prefix from the string.
+     */
     public function testRemovePrefixRemovesProvidedPrefix()
     {
         
     }
     
+    /**
+     * Ensures that removePrefix() removes the prefix only once.
+     */
+    public function testRemovePrefixRemovesPrefixOnlyOnce()
+    {
+    
+    }
+    
+    /**
+     * Ensures that removePrefix() does not modify the string if it does not
+     * start with the prefix but contains it.
+     */
     public function testRemovePrefixDoesNotModifyStringIfItOnlyContainsPrefix()
     {
         
     }
     
-    public function testRemovePrefixRemovesPrefixOnlyOnce()
-    {
-        
-    }
-    
+    /**
+     * Checks if removeSuffix() removes the provided suffix from the string.
+     */
     public function testRemoveSuffixRemovesProvidedSuffix()
     {
     
     }
     
-    public function testRemoveSuffixDoesNotModifyStringIfItOnlyContainsSuffix()
-    {
-    
-    }
-    
+    /**
+     * Ensures that removeSuffix() removes the suffix only once.
+     */
     public function testRemoveSuffixRemovesSuffixOnlyOnce()
     {
     
     }
     
+    /**
+     * Ensures that removeSuffix() does not modify the string if it does not
+     * end with the suffix but contains it.
+     */
+    public function testRemoveSuffixDoesNotModifyStringIfItOnlyContainsSuffix()
+    {
+    
+    }
+    
+    /**
+     * Ensures that replace() does not modify the string if it does not contain
+     * the search value.
+     */
     public function testReplaceDoesNotModifyStringIfItDoesNotContainSearchString()
     {
         
     }
     
+    /**
+     * Tests signature replace(string, string):
+     * Checks if replace() replaces the search string by the provided values.
+     */
     public function testReplaceReplacesSingleSearchStringByReplaceValue()
     {
         
     }
     
+    /**
+     * Tests signature replace(array(string), string):
+     * Checks if replace() replaces all search strings by the provided value.
+     */
     public function testReplaceReplacesListOfSearchStringsByReplaceValue()
     {
         
     }
     
+    /**
+     * Tests signature replace(array(string=>string)):
+     * Checks if replace() applies the mapping of search/replace pairs to the string.
+     */
     public function testReplaceAppliesMappingIfAssociativeArrayIsProvided()
     {
         
