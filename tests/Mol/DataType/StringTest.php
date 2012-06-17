@@ -444,7 +444,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubStringExtractRequestedPartOfString()
     {
-        
+        $subString = $this->create('the brown dog digs')->subString($startIndex, 4, 5);
+        $this->assertStringObject($subString);
+        $this->assertEquals('brown', $subString->toString());
     }
     
     /**
@@ -453,7 +455,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubStringExtendsSubStringToEndOfOriginalStringIfLengthIsNotProvided()
     {
-        
+        $subString = $this->create('the brown dog digs')->subString($startIndex, 10);
+        $this->assertStringObject($subString);
+        $this->assertEquals('dog digs', $subString->toString());
     }
     
     /**
@@ -462,7 +466,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubStringExtendsSubStringToEndOfOriginalStringIfLengthExceedsOriginalString()
     {
-        
+        $subString = $this->create('the brown dog digs')->subString($startIndex, 10, 20);
+        $this->assertStringObject($subString);
+        $this->assertEquals('dog digs', $subString->toString());
     }
     
     /**
@@ -470,7 +476,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubStringWorksWithUmlauts()
     {
-        
+        $subString = $this->create('täst täst')->subString($startIndex, 5);
+        $this->assertStringObject($subString);
+        $this->assertEquals('täst', $subString->toString());
     }
     
     /**
@@ -478,7 +486,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToUpperCaseReturnsCorrectValue()
     {
-        
+        $object = $this->create('aBc')->toUpperCase();
+        $this->assertStringObject($object);
+        $this->assertEquals('ABC', $object->toString());
     }
     
     /**
@@ -486,7 +496,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToUpperCaseWorksWithUmlauts()
     {
-        
+        $object = $this->create('äÖü')->toUpperCase();
+        $this->assertStringObject($object);
+        $this->assertEquals('ÄÖÜ', $object->toString());
     }
     
     /**
@@ -494,7 +506,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToLowerCaseReturnsCorrectValue()
     {
-        
+        $object = $this->create('AbC')->toLowerCase();
+        $this->assertStringObject($object);
+        $this->assertEquals('abc', $object->toString());
     }
     
     /**
@@ -502,7 +516,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToLowerCaseWorksWithUmlauts()
     {
-        
+        $object = $this->create('ÄöÜ')->toLowerCase();
+        $this->assertStringObject($object);
+        $this->assertEquals('äöü', $object->toString());
     }
     
     /**
@@ -510,7 +526,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRemovesWhitespaceFromStart()
     {
-        
+        $object = $this->create(' abc')->trim();
+        $this->assertStringObject($object);
+        $this->assertEquals('abc', $object->toString());
     }
     
     /**
@@ -518,7 +536,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRemovesWhitespaceFromEnd()
     {
-        
+        $object = $this->create('abc ')->trim();
+        $this->assertStringObject($object);
+        $this->assertEquals('abc', $object->toString());
     }
     
     /**
@@ -526,7 +546,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRemovesProvidedCharactersFromStart()
     {
-        
+        $this->markTestIncomplete();
     }
     
     /**
@@ -534,7 +554,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRemovesProvidedCharactersFromEnd()
     {
-        
+        $this->markTestIncomplete();
     }
     
     /**
@@ -542,7 +562,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimLeftRemovesWhitespaceFromStart()
     {
-        
+        $object = $this->create(' abc')->trimLeft();
+        $this->assertStringObject($object);
+        $this->assertEquals('abc', $object->toString());
     }
     
     /**
@@ -550,7 +572,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimLeftDoesNotTouchWhitespaceAtTheEndOfTheString()
     {
-        
+        $object = $this->create('abc ')->trimLeft();
+        $this->assertStringObject($object);
+        $this->assertEquals('abc ', $object->toString());
     }
     
     /**
@@ -558,7 +582,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimLeftRemovesProvidedCharactersFromStart()
     {
-    
+        $this->markTestIncomplete();
     }
     
     /**
@@ -566,7 +590,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimLeftDoesNotTouchProvidedCharactersAtTheEndOfTheString()
     {
-    
+        $this->markTestIncomplete();
     }
     
     /**
@@ -574,7 +598,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRightRemovesWhitespaceFromEnd()
     {
-    
+        $object = $this->create('abc ')->trimRight();
+        $this->assertStringObject($object);
+        $this->assertEquals('abc', $object->toString());
     }
     
     /**
@@ -582,7 +608,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRightDoesNotTouchWhitespaceAtTheStartOfTheString()
     {
-    
+        $object = $this->create(' abc')->trimRight();
+        $this->assertStringObject($object);
+        $this->assertEquals(' abc', $object->toString());
     }
     
     /**
@@ -590,7 +618,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRightRemovesProvidedCharactersFromEnd()
     {
-    
+        $this->markTestIncomplete();
     }
     
     /**
@@ -598,7 +626,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTrimRightDoesNotTouchProvidedCharactersAtTheStartOfTheString()
     {
-    
+        $this->markTestIncomplete();
     }
     
     /**
@@ -606,7 +634,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToCharactersReturnsArray()
     {
-        
+        $characters = $this->create('abcde');
+        $this->assertInternalType('array', $characters);
     }
     
     /**
