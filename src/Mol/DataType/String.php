@@ -41,6 +41,20 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     const CHARSET_LATIN1 = 'ISO-8859-1';
     
     /**
+     * The raw string value.
+     *
+     * @var string
+     */
+    protected $value = null;
+    
+    /**
+     * The charset of the string.
+     *
+     * @var string
+     */
+    protected $charset = null;
+    
+    /**
      * Creates a string object from the given raw string.
      *
      * It is assumed that the string uses the mentioned charset.
@@ -51,7 +65,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public static function create($string, $charset = self::CHARSET_UTF8)
     {
-        
+        return new self($string, $charset);
     }
     
     /**
@@ -62,7 +76,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     protected function __construct($string, $charset)
     {
-        
+        $this->value   = $string;
+        $this->charset = $charset;
     }
     
     /**
@@ -72,7 +87,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function getCharset()
     {
-    
+        return $this->charset;
     }
     
     /**
@@ -86,7 +101,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function convertTo($charset)
     {
-    
+        if ($this->charset === $charset) {
+            // No conversion required.
+            return $this;
+        }
+        $converted = iconv($this->charset, $charset, $this->value);
+        return self::create($converted, $charset);
     }
     
     /**
@@ -102,7 +122,11 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function indexOf($needle, $fromIndex = 0)
     {
-        
+        $position = mb_strpos($this->value, $needle, $fromIndex, $this->charset);
+        if ($position === false) {
+            return -1;
+        }
+        return $position;
     }
     
     /**
@@ -118,7 +142,11 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function lastIndexOf($needle, $fromIndex = null)
     {
-        
+        $position = mb_strrpos($this->value, $needle, $fromIndex, $this->charset);
+        if ($position === false) {
+            return -1;
+        }
+        return $position;
     }
     
     /**
@@ -129,7 +157,13 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function indexesOf($needle)
     {
-        
+        $offset  = 0;
+        $indexes = array();
+        while (($position = $this->indexOf($needle, $offset)) !== -1) {
+            $indexes[] = $position;
+            $offset   += 1;
+        }
+        return $indexes;
     }
     
     /**
@@ -140,7 +174,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function startsWith($prefix)
     {
-    
+        return strpos($this->value, $prefix) === 0;
     }
     
     /**
@@ -151,7 +185,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function endsWith($suffix)
     {
-    
+        $expectedPosition = $this->lengthInBytes() - strlen($suffix);
+        return strrpos($this->value, $suffix) === $expectedPosition;
     }
     
     /**
@@ -164,7 +199,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function removePrefix($prefix)
     {
-    
+        if (!$this->startsWith($prefix)) {
+            // Nothing to remove.
+            return $this;
+        }
+        $withoutPrefix = substr($this->value, strlen($prefix));
+        return self::create($withoutPrefix, $this->charset);
     }
     
     /**
@@ -177,7 +217,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function removeSuffix($suffix)
     {
-    
+        if (!$this->endsWith($suffix)) {
+            // Nothing to remove.
+            return $this;
+        }
+        $withoutSuffix = substr($this->value, $this->lengthInBytes() - strlen($suffix));
+        return self::create($withoutSuffix, $this->charset);
     }
     
     /**
@@ -221,7 +266,14 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function replace($searchOrMapping, $replace = null)
     {
-    
+        $search = $searchOrMapping;
+        if ($replace === null && is_array($searchOrMapping)) {
+            // Mapping provided.
+            $search  = array_keys($searchOrMapping);
+            $replace = array_values($searchOrMapping);
+        }
+        $replaced = str_replace($search, $replace, $this->value);
+        return self::create($replaced, $this->charset);
     }
     
     /**
@@ -237,7 +289,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function subString($startIndex, $length = null)
     {
-    
+        $subString = mb_substr($this->value, $startIndex, $length, $this->charset);
+        return self::create($subString, $this->charset);
     }
     
     /**
@@ -247,7 +300,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function toUpperCase()
     {
-        
+        $upper = mb_strtoupper($this->value, $this->charset);
+        return self::create($upper, $this->charset);
     }
     
     /**
@@ -257,7 +311,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function toLowerCase()
     {
-        
+        $lower = mb_strtolower($this->value, $this->charset);
+        return self::create($lower, $this->charset);
     }
     
     /**
@@ -268,7 +323,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function trim($characters = null)
     {
-        
+        $trimmed = trim($this->value, $characters);
+        return self::create($trimmed, $this->charset);
     }
     
     /**
@@ -279,7 +335,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function trimLeft($characters = null)
     {
-        
+        $trimmed = ltrim($this->value, $characters);
+        return self::create($trimmed, $this->charset);
     }
     
     /**
@@ -290,7 +347,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function trimRight($characters = null)
     {
-        
+        $trimmed = rtrim($this->value, $characters);
+        return self::create($trimmed, $this->charset);
     }
     
     /**
@@ -300,7 +358,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function toCharacters()
     {
-    
+        $characters = array();
+        $length     = $this->length();
+        for ($i = 0; $i < $length; $i++) {
+            $characters[] = $this->subString($i, 1)->toString();
+        }
+        return $characters;
     }
     
     /**
@@ -310,7 +373,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function getIterator()
     {
-        
+        return new ArrayIterator($this->toCharacters());
     }
     
     /**
@@ -321,7 +384,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function equals($string)
     {
-        
+        return $this->value === $string;
     }
     
     /**
@@ -331,7 +394,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function length()
     {
-    
+        return mb_strlen($this->value, $this->charset);
     }
     
     /**
@@ -344,7 +407,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function lengthInBytes()
     {
-    
+        return strlen($this->value);
     }
     
     /**
@@ -359,7 +422,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function count()
     {
-        
+        return $this->length();
     }
     
     /**
@@ -371,7 +434,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function isEmpty()
     {
-    
+        return trim($this->value) === '';
     }
     
     /**
@@ -381,7 +444,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function toString()
     {
-    
+        return $this->value;
     }
     
     /**
@@ -396,7 +459,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function __toString()
     {
-        
+        return $this->toString();
     }
     
 }
