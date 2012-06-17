@@ -79,6 +79,23 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
+     * Returns all accepted charset names including aliases.
+     *
+     * For example "UTF-8" and "utf8" are both valid charset names.
+     *
+     * @return array(string)
+     */
+    protected static function getCharsetNames()
+    {
+        $charsets = self::getCharsets();
+        $names    = $charsets;
+        foreach ($charsets as $charset) {
+            $names = array_merge($names, mb_encoding_aliases($charset));
+        }
+        return $names;
+    }
+    
+    /**
      * Creates a string object
      *
      * @param string $string The raw string.
@@ -561,13 +578,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     protected function assertCharset($charset)
     {
-        $charsets = self::getCharsets();
-        if (in_array($charset, $charsets)) {
+        if (in_array($charset, self::getCharsetNames())) {
             // Charset is valid.
             return;
         }
         $format  = '"%s" is not a valid charset. The following charsets are supported: %s';
-        $message = sprintf($format, $charset, implode(', ', $charsets));
+        $message = sprintf($format, $charset, implode(', ', self::getCharsets()));
         throw new InvalidArgumentException($message);
     }
     
