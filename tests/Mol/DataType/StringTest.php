@@ -238,4 +238,99 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testTrimRemovesWhitespaceFromStart()
+    {
+        
+    }
+    
+    public function testTrimRemovesWhitespaceFromEnd()
+    {
+        
+    }
+    
+    public function testTrimRemovesProvidedCharactersFromStart()
+    {
+        
+    }
+    
+    public function testTrimRemovesProvidedCharactersFromEnd()
+    {
+        
+    }
+    
+    public function testTrimLeftRemovesWhitespaceFromStart()
+    {
+        
+    }
+    
+    public function testTrimLeftDoesNotTouchWhitespaceAtTheEndOfTheString()
+    {
+        
+    }
+    
+    public function testTrimLeftRemovesProvidedCharactersFromStart()
+    {
+    
+    }
+    
+    public function testTrimLeftDoesNotTouchProvidedCharactersAtTheEndOfTheString()
+    {
+    
+    }
+    
+    public function testTrimRightRemovesWhitespaceFromEnd()
+    {
+    
+    }
+    
+    public function testTrimRightDoesNotTouchWhitespaceAtTheStartOfTheString()
+    {
+    
+    }
+    
+    public function testTrimRightRemovesProvidedCharactersFromEnd()
+    {
+    
+    }
+    
+    public function testTrimRightDoesNotTouchProvidedCharactersAtTheStartOfTheString()
+    {
+    
+    }
+    
+    public function testToCharactersReturnsArray()
+    {
+        
+    }
+    
+    public function testToCharactersReturnsExpectedNumberOfCharacters()
+    {
+        
+    }
+    
+    public function testToCharactersReturnsCorrectCharacters()
+    {
+        
+    }
+    
+    public function testToCharactersReturnsCharactersInCorrectOrder()
+    {
+        
+    }
+    
+    public function testToCharactersWorksWithUmlauts()
+    {
+        
+    }
+    
+    public function testGetIteratorReturnsTraversable()
+    {
+        
+    }
+    
+    public function testIterationLoopsThroughCharacters()
+    {
+        
+    }
+    
 }
