@@ -59,7 +59,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     public function testCreateThrowsExceptionIfStringDoesNotUseTheProvidedCharset()
     {
         $this->setExpectedException('InvalidArgumentException');
-        Mol_DataType_String::create('täääst', Mol_DataType_String::CHARSET_LATIN1);
+        $latin1String = iconv(Mol_DataType_String::CHARSET_UTF8, Mol_DataType_String::CHARSET_LATIN1, 'täääst');
+        Mol_DataType_String::create($latin1String, Mol_DataType_String::CHARSET_UTF8);
     }
     
     /**
