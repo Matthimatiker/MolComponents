@@ -250,6 +250,17 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
+     * Checks if the string contains the provided substring.
+     *
+     * @param string $subString
+     * @return boolean True if the string contains the substring, false otherwise.
+     */
+    public function contains($subString)
+    {
+        
+    }
+    
+    /**
      * Removes the given prefix from the string.
      *
      * This method has no effect if the string does not start with $prefix.
