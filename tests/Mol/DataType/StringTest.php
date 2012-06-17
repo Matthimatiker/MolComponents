@@ -165,6 +165,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that indexOf() returns -1 if the haystack string is empty.
+     */
+    public function testIndexOfReturnsMinusOneIfStringIsEmpty()
+    {
+        $index = $this->create('')->indexOf('d');
+        $this->assertEquals(-1, $index);
+    }
+    
+    /**
      * Checks if indexOf() returns the correct index.
      */
     public function testIndexOfReturnsCorrectIndex()
