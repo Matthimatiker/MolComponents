@@ -82,6 +82,18 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() unifies charset names.
+     *
+     * If an alias is used to construct the string then the real charset names
+     * should be used by the string object afterwards.
+     */
+    public function testCreateUnifiesCharset()
+    {
+        $object = $this->create('test', 'latin1');
+        $this->assertEquals(Mol_DataType_String::CHARSET_LATIN1, $object->getCharset());
+    }
+    
+    /**
      * Checks if toString() returns a string.
      */
     public function testToStringReturnsString()
