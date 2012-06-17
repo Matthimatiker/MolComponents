@@ -179,7 +179,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         $indexes = array();
         while (($position = $this->indexOf($needle, $offset)) !== -1) {
             $indexes[] = $position;
-            $offset   += 1;
+            // Search after current match in next iteration.
+            $offset = $position + 1;
         }
         return $indexes;
     }
