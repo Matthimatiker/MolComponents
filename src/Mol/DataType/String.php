@@ -447,6 +447,16 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
+     * Returns the reversed string.
+     *
+     * @return Mol_DataType_String
+     */
+    public function reverse()
+    {
+        
+    }
+    
+    /**
      * Allows iterating through the characters of the string.
      *
      * @return Traversable
@@ -515,6 +525,17 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function isEmpty()
     {
         return trim($this->value) === '';
+    }
+    
+    /**
+     * Compares this string with $other.
+     *
+     * @param string $other
+     * @return integer
+     */
+    public function compareTo($other)
+    {
+        
     }
     
     /**
