@@ -393,4 +393,34 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testIsEmptyReturnsTrueIfStringLengthIsZero()
+    {
+        
+    }
+    
+    public function testIsEmptyReturnsTrueIfStringContainsOnlyWhitespace()
+    {
+        
+    }
+    
+    public function testIsEmptyReturnsFalseIfStringContainsNonWhitespaceCharacters()
+    {
+        
+    }
+    
+    public function testToStringReturnsString()
+    {
+        
+    }
+    
+    public function testToStringReturnsCorrectValue()
+    {
+        
+    }
+    
+    public function testCastingObjectToStringReturnsCorrectValue()
+    {
+        
+    }
+    
 }
