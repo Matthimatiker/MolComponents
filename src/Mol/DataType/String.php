@@ -87,6 +87,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     protected function __construct($string, $charset)
     {
         $this->assertCharset($charset);
+        $this->assertUsesCharset($string, $charset);
         $this->value   = $string;
         $this->charset = $charset;
     }
@@ -526,6 +527,21 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         $format  = '"%s" is no valid charset. The following charsets are supported: %s';
         $message = sprintf($format, $charset, implode(', ', $charsets));
         throw new InvalidArgumentException($message);
+    }
+    
+    /**
+     * Asserts that the string uses the given charset.
+     *
+     * @param string $string
+     * @param string $charset
+     * @throws InvalidArgumentException If the string cannot be represented in the provided charset.
+     */
+    protected function assertUsesCharset($string, $charset)
+    {
+        if (mb_detect_encoding($string, $charset, true) === false) {
+            $message = 'String is not encoded as "' . $charset . '".';
+            throw new InvalidArgumentException($message);
+        }
     }
     
 }
