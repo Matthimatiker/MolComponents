@@ -634,7 +634,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToCharactersReturnsArray()
     {
-        $characters = $this->create('abcde');
+        $characters = $this->create('abcde')->toCharacters();
         $this->assertInternalType('array', $characters);
     }
     
@@ -643,7 +643,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToCharactersReturnsExpectedNumberOfCharacters()
     {
-        
+        $characters = $this->create('abcde')->toCharacters();
+        $this->assertInternalType('array', $characters);
+        $this->assertEquals(5, count($characters));
     }
     
     /**
@@ -651,7 +653,13 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToCharactersReturnsCorrectCharacters()
     {
-        
+        $characters = $this->create('abcde')->toCharacters();
+        $this->assertInternalType('array', $characters);
+        $this->assertContains('a', $characters);
+        $this->assertContains('b', $characters);
+        $this->assertContains('c', $characters);
+        $this->assertContains('d', $characters);
+        $this->assertContains('e', $characters);
     }
     
     /**
@@ -659,7 +667,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToCharactersReturnsCharactersInCorrectOrder()
     {
-        
+        $characters = $this->create('edcba')->toCharacters();
+        $this->assertInternalType('array', $characters);
+        $expected = array(
+            'e',
+            'd',
+            'c',
+            'b',
+            'a'
+        );
+        $this->assertEquals($expected, $characters);
     }
     
     /**
@@ -668,7 +685,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testToCharactersWorksWithUmlauts()
     {
-        
+        $characters = $this->create('äbcü')->toCharacters();
+        $this->assertInternalType('array', $characters);
+        $expected = array(
+            'ä',
+            'b',
+            'c',
+            'ü'
+        );
+        $this->assertEquals($expected, $characters);
     }
     
     /**
@@ -676,7 +701,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testStringIsTraversable()
     {
-        
+        $object = $this->create('test');
+        $this->assertInstanceOf('Traversable', $object);
     }
     
     /**
@@ -684,7 +710,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testGetIteratorReturnsTraversable()
     {
-        
+        $iterator = $this->create('test')->getIterator();
+        $this->assertInstanceOf('Traversable', $iterator);
     }
     
     /**
@@ -692,7 +719,14 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIterationLoopsThroughCharacters()
     {
-        
+        $object     = $this->create('abc');
+        $characters = array();
+        foreach ($object as $character) {
+            /* @var $character string */
+            $this->assertInternalType('string', $character);
+            $characters[] = $character;
+        }
+        $this->assertEquals('abc', implode('', $characters));
     }
     
     /**
@@ -700,7 +734,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testEqualsReturnsTrueIfStringsAreEqual()
     {
-        
+        $equal = $this->create('abc')->equals('abc');
+        $this->assertTrue($equal);
     }
     
     /**
@@ -709,7 +744,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testEqualsReturnsFalseIfStringLengthIsNotEqual()
     {
-        
+        $equal = $this->create('abcde')->equals('abc');
+        $this->assertFalse($equal);
     }
     
     /**
@@ -718,7 +754,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testEqualsReturnsFalseIfStringContentDiffers()
     {
-        
+        $equal = $this->create('abc')->equals('cba');
+        $this->assertFalse($equal);
     }
     
     /**
@@ -726,7 +763,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLengthReturnsInteger()
     {
-        
+        $length = $this->create('abcde')->length();
+        $this->assertInternalType('integer', $length);
     }
     
     /**
@@ -734,7 +772,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLengthReturnsCorrectValue()
     {
-        
+        $length = $this->create('abcde')->length();
+        $this->assertEquals(5, $length);
     }
     
     /**
@@ -743,7 +782,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLengthReturnsCorrectValueIfStringContainsUmlauts()
     {
-        
+        $length = $this->create('äbcöü')->length();
+        $this->assertEquals(5, $length);
     }
     
     /**
@@ -751,7 +791,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLengthInBytesReturnsInteger()
     {
-        
+        $bytes = $this->create('abc')->lengthInBytes();
+        $this->assertInternalType('integer', $bytes);
     }
     
     /**
@@ -759,7 +800,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLengthInBytesReturnsCorrectValue()
     {
-        
+        $bytes = $this->create('abc')->lengthInBytes();
+        $this->assertEquals(3, $bytes);
     }
     
     /**
@@ -768,7 +810,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLengthInBytesReturnsCorrectValueIfStringContainsUmlauts()
     {
-        
+        $bytes = $this->create('äbc')->lengthInBytes();
+        $this->assertEquals(4, $bytes);
     }
     
     /**
@@ -776,7 +819,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testStringIsCountable()
     {
-        
+        $object = $this->create('abc');
+        $this->assertInstanceOf('Countable', $object);
     }
     
     /**
@@ -784,7 +828,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCountReturnsSameValueAsLength()
     {
-        
+        $object = $this->create('äbc');
+        $this->assertEquals($object->length(), $object->count());
     }
     
     /**
@@ -792,7 +837,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIsEmptyReturnsTrueIfStringLengthIsZero()
     {
-        
+        $empty = $this->create('')->isEmpty();
+        $this->assertTrue($empty);
     }
     
     /**
@@ -800,7 +846,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIsEmptyReturnsTrueIfStringContainsOnlyWhitespace()
     {
-        
+        $empty = $this->create('   ')->isEmpty();
+        $this->assertTrue($empty);
     }
     
     /**
@@ -809,7 +856,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testIsEmptyReturnsFalseIfStringContainsNonWhitespaceCharacters()
     {
-        
+        $empty = $this->create('abc ')->isEmpty();
+        $this->assertFalse($empty);
     }
     
     /**
@@ -817,7 +865,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCastingObjectToStringReturnsCorrectValue()
     {
-        
+        $object = $this->create('abc');
+        $this->assertEquals($object->toString(), (string)$object);
     }
     
     /**
