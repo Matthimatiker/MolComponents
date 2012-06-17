@@ -456,9 +456,10 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * Splits the string by using the provided delimiter.
      *
      * @param string $delimiter
+     * @param integer|null $limit Maximal number of parts.
      * @return array(string)
      */
-    public function splitAt($delimiter)
+    public function splitAt($delimiter, $limit = null)
     {
         
     }
