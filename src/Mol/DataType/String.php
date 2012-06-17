@@ -154,7 +154,13 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function lastIndexOf($needle, $fromIndex = null)
     {
-        $position = mb_strrpos($this->value, $needle, $fromIndex, $this->charset);
+        $search = $this->value;
+        if ($fromIndex !== null) {
+            // Per default mb_strrpos() searches from left to right and starts at the given offset.
+            // We cut of the end of the string starting at ($fromIndex + 1) to simulate searching backwards.
+            $search = $this->subString(0, $fromIndex + 1)->toString();
+        }
+        $position = mb_strrpos($search, $needle, null, $this->charset);
         if ($position === false) {
             return -1;
         }
