@@ -442,9 +442,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if subString() extracts the correct part of the string.
      */
-    public function testSubStringExtractRequestedPartOfString()
+    public function testSubStringExtractsRequestedPartOfString()
     {
-        $subString = $this->create('the brown dog digs')->subString($startIndex, 4, 5);
+        $subString = $this->create('the brown dog digs')->subString(4, 5);
         $this->assertStringObject($subString);
         $this->assertEquals('brown', $subString->toString());
     }
@@ -455,7 +455,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubStringExtendsSubStringToEndOfOriginalStringIfLengthIsNotProvided()
     {
-        $subString = $this->create('the brown dog digs')->subString($startIndex, 10);
+        $subString = $this->create('the brown dog digs')->subString(10);
         $this->assertStringObject($subString);
         $this->assertEquals('dog digs', $subString->toString());
     }
@@ -466,7 +466,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubStringExtendsSubStringToEndOfOriginalStringIfLengthExceedsOriginalString()
     {
-        $subString = $this->create('the brown dog digs')->subString($startIndex, 10, 20);
+        $subString = $this->create('the brown dog digs')->subString(10, 20);
         $this->assertStringObject($subString);
         $this->assertEquals('dog digs', $subString->toString());
     }
@@ -476,7 +476,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubStringWorksWithUmlauts()
     {
-        $subString = $this->create('täst täst')->subString($startIndex, 5);
+        $subString = $this->create('täst täst')->subString(5);
         $this->assertStringObject($subString);
         $this->assertEquals('täst', $subString->toString());
     }
