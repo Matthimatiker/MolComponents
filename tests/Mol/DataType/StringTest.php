@@ -953,7 +953,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsReturnsFalseIfStringDoesNotContainNeedle()
     {
-        
+        $result = $this->create('abc')->contains('d');
+        $this->assertFalse($result);
     }
     
     /**
@@ -961,7 +962,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsReturnsTrueIfStringContainsNeedle()
     {
-        
+        $result = $this->create('abc')->contains('b');
+        $this->assertTrue($result);
     }
     
     /**
@@ -969,7 +971,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsReturnsTrueIfStringEqualsNeedle()
     {
-        
+        $result = $this->create('abc')->contains('abc');
+        $this->assertTrue($result);
     }
     
     /**
@@ -978,7 +981,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsReturnsTrueIfStringContainsAtLeastOneOfTheNeedles()
     {
-        
+        $result = $this->create('abc')->contains(array('d', 'a'));
+        $this->assertTrue($result);
     }
     
     /**
@@ -987,7 +991,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsReturnsFalseIfStringContainsNoneOfTheNeedles()
     {
-        
+        $result = $this->create('abc')->contains(array('d', 'f'));
+        $this->assertFalse($result);
     }
     
     /**
@@ -995,7 +1000,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReverseInvertsCharacterOrder()
     {
-        
+        $inverted = $this->create('abc')->reverse();
+        $this->assertStringObject($inverted);
+        $this->assertEquals('cba', $inverted->toString());
     }
     
     /**
@@ -1003,7 +1010,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReverseSupportsMultiByteCharacters()
     {
-        
+        $inverted = $this->create('äöü')->reverse();
+        $this->assertStringObject($inverted);
+        $this->assertEquals('üöä', $inverted->toString());
     }
     
     /**
@@ -1011,7 +1020,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSplitAtReturnsArray()
     {
-        
+        $parts = $this->create('hello splitted world')->splitAt(' ');
+        $this->assertInternalType('array', $parts);
     }
     
     /**
@@ -1019,7 +1029,21 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSplitAtReturnsCorrectPartsOfString()
     {
-        
+        $parts = $this->create('hello splitted world')->splitAt(' ');
+        $this->assertInternalType('array', $parts);
+        $this->assertContains('hello', $parts);
+        $this->assertContains('splitted', $parts);
+        $this->assertContains('world', $parts);
+    }
+    
+    /**
+     * Checks if splitAt() returns the expected number of string parts.
+     */
+    public function testSplitAtReturnsExpectedNumberOfParts()
+    {
+        $parts = $this->create('hello splitted world')->splitAt(' ');
+        $this->assertInternalType('array', $parts);
+        $this->assertEquals(3, count($parts));
     }
     
     /**
@@ -1027,7 +1051,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSplitAtRespectsLimit()
     {
-        
+        $parts = $this->create('hello splitted world')->splitAt(' ', 2);
+        $this->assertInternalType('array', $parts);
+        $this->assertEquals(2, count($parts));
     }
     
     /**
@@ -1037,7 +1063,10 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSplitAtReturnsRestOfStringAsLastPartIfLimitIsProvided()
     {
-        
+        $parts = $this->create('hello splitted world')->splitAt(' ', 2);
+        $this->assertInternalType('array', $parts);
+        $last = array_pop($parts);
+        $this->assertEquals('splitted world', $last);
     }
     
     /**
@@ -1045,7 +1074,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCompareToReturnsMinusOneIfStringIsLessThanComparedString()
     {
-        
+        $result = $this->create('a')->compareTo('c');
+        $this->assertEquals(-1, $result);
     }
     
     /**
@@ -1053,7 +1083,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCompareToReturnsZeroIfStringsAreEqual()
     {
-        
+        $result = $this->create('a')->compareTo('a');
+        $this->assertEquals(0, $result);
     }
     
     /**
@@ -1061,7 +1092,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCompareToReturnsOneIfStringIsGreaterThanComparedString()
     {
-        
+        $result = $this->create('c')->compareTo('a');
+        $this->assertEquals(1, $result);
     }
     
     /**
