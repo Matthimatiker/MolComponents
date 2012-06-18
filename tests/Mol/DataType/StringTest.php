@@ -947,71 +947,118 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($object->toString(), (string)$object);
     }
     
+    /**
+     * Ensures that contains() returns false if the string does not contain
+     * the needle.
+     */
     public function testContainsReturnsFalseIfStringDoesNotContainNeedle()
     {
         
     }
     
+    /**
+     * Ensures that contains() returns true if the string contains the needle.
+     */
     public function testContainsReturnsTrueIfStringContainsNeedle()
     {
         
     }
     
+    /**
+     * Ensures that contains() returns true if string and needle are equal.
+     */
     public function testContainsReturnsTrueIfStringEqualsNeedle()
     {
         
     }
     
-    public function testContainsReturnsTrueIfContainsReturnsAtLeastOneOfTheNeedles()
+    /**
+     * Ensures that contains() returns true if a list of needles is provided and
+     * the string contains at least one needle in the list.
+     */
+    public function testContainsReturnsTrueIfStringContainsAtLeastOneOfTheNeedles()
     {
         
     }
     
+    /**
+     * Ensures that contains() returns false if a list of needles is provided
+     * and the string does not contain any of the needles.
+     */
     public function testContainsReturnsFalseIfStringContainsNoneOfTheNeedles()
     {
         
     }
     
+    /**
+     * Checks if reverse() inverts the order of characters.
+     */
     public function testReverseInvertsCharacterOrder()
     {
         
     }
     
+    /**
+     * Checks if reverse() can handle multi-byte characters.
+     */
     public function testReverseSupportsMultiByteCharacters()
     {
         
     }
     
+    /**
+     * Checks if splitAt() returns an array.
+     */
     public function testSplitAtReturnsArray()
     {
         
     }
     
+    /**
+     * Ensures that splitAt() returns the correct parts of the string.
+     */
     public function testSplitAtReturnsCorrectPartsOfString()
     {
         
     }
     
+    /**
+     * Checks if splitAt() respected the provided limit.
+     */
     public function testSplitAtRespectsLimit()
     {
         
     }
     
+    /**
+     * Ensures that the last part in the list that is returned by splitAt()
+     * contains the rest of the string if a limit was provided as second
+     * argument.
+     */
     public function testSplitAtReturnsRestOfStringAsLastPartIfLimitIsProvided()
     {
         
     }
     
+    /**
+     * Ensures that compareTo() returns -1 if the string is less than the provided string.
+     */
     public function testCompareToReturnsMinusOneIfStringIsLessThanComparedString()
     {
         
     }
     
+    /**
+     * Ensures that compareTo() returns 0 if the compared strings are equal.
+     */
     public function testCompareToReturnsZeroIfStringsAreEqual()
     {
         
     }
     
+    /**
+     * Ensures that compareTo() returns 1 if the string is greater than the provided string.
+     */
     public function testCompareToReturnsOneIfStringIsGreaterThanComparedString()
     {
         
