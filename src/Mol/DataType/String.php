@@ -260,7 +260,15 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function contains($needle)
     {
-        
+        $needles = is_array($needle) ? $needle : array($needle);
+        foreach ($needles as $needle) {
+            /* @var $needle string */
+            if (strpos($this->value, $needle) !== false) {
+                // String contains needle.
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
