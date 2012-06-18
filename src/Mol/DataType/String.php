@@ -467,6 +467,17 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
+     * Adds the provided string to the end of this string.
+     *
+     * @param string $string
+     * @return Mol_DataType_String The concatenated string.
+     */
+    public function concat($string)
+    {
+        
+    }
+    
+    /**
      * Splits the string by using the provided delimiter.
      *
      * @param string $delimiter
