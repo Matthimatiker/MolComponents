@@ -460,7 +460,10 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function reverse()
     {
-    
+        $characters = $this->toCharacters();
+        $characters = array_reverse($characters);
+        $inverted   = implode('', $characters);
+        return $this->create($inverted);
     }
     
     /**
@@ -472,7 +475,11 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function splitAt($delimiter, $limit = null)
     {
-        
+        if ($limit === null) {
+            // Use a limit that cannot be reached by splitting the string.
+            $limit = $this->lengthInBytes();
+        }
+        return explode($delimiter, $this->value, $limit);
     }
     
     /**
@@ -574,7 +581,14 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function compareTo($other)
     {
-        
+        $result = strcmp($this->value, $other);
+        if ($result < 0) {
+            return -1;
+        }
+        if ($result > 0) {
+            return 1;
+        }
+        return 0;
     }
     
     /**
