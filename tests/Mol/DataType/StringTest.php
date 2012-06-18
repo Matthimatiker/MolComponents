@@ -1002,6 +1002,21 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testCompareToReturnsMinusOneIfStringIsLessThanComparedString()
+    {
+        
+    }
+    
+    public function testCompareToReturnsZeroIfStringsAreEqual()
+    {
+        
+    }
+    
+    public function testCompareToReturnsOneIfStringIsGreaterThanComparedString()
+    {
+        
+    }
+    
     /**
      * Creates a string object.
      *
