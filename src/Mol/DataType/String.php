@@ -556,8 +556,13 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     /**
      * Compares this string with $other.
      *
+     * Returns:
+     * # -1 if string is less than $other
+     * #  0 if string equals $other
+     * #  1 if string is greater than $other
+     *
      * @param string $other
-     * @return integer
+     * @return integer -1 if string < $other, 0 if string == $other, 1 if string > $other.
      */
     public function compareTo($other)
     {
