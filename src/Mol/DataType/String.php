@@ -250,12 +250,15 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
-     * Checks if the string contains the provided substring.
+     * Checks if the string contains the provided needle.
      *
-     * @param string $subString
-     * @return boolean True if the string contains the substring, false otherwise.
+     * If an array of strings is provided then contains() will check
+     * if the string contains at least one of the needles.
+     *
+     * @param string|array(string) $needle A single or multiple needles.
+     * @return boolean True if the string contains the needle, false otherwise.
      */
-    public function contains($subString)
+    public function contains($needle)
     {
         
     }
