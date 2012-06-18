@@ -947,6 +947,31 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($object->toString(), (string)$object);
     }
     
+    public function testContainsReturnsFalseIfStringDoesNotContainNeedle()
+    {
+        
+    }
+    
+    public function testContainsReturnsTrueIfStringContainsNeedle()
+    {
+        
+    }
+    
+    public function testContainsReturnsTrueIfStringEqualsNeedle()
+    {
+        
+    }
+    
+    public function testContainsReturnsTrueIfContainsReturnsAtLeastOneOfTheNeedles()
+    {
+        
+    }
+    
+    public function testContainsReturnsFalseIfStringContainsNoneOfTheNeedles()
+    {
+        
+    }
+    
     /**
      * Creates a string object.
      *
