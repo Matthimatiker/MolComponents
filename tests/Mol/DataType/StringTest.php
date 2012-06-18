@@ -972,6 +972,36 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testReverseInvertsCharacterOrder()
+    {
+        
+    }
+    
+    public function testReverseSupportsMultiByteCharacters()
+    {
+        
+    }
+    
+    public function testSplitAtReturnsArray()
+    {
+        
+    }
+    
+    public function testSplitAtReturnsCorrectPartsOfString()
+    {
+        
+    }
+    
+    public function testSplitAtRespectsLimit()
+    {
+        
+    }
+    
+    public function testSplitAtReturnsRestOfStringAsLastPartIfLimitIsProvided()
+    {
+        
+    }
+    
     /**
      * Creates a string object.
      *
