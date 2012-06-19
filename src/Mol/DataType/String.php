@@ -474,6 +474,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function concat($string)
     {
+        $string = $this->toValue($string);
         if ($this->getLengthInBytes($string) === 0) {
             return $this;
         }
@@ -645,6 +646,29 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             $charset = $this->charset;
         }
         return self::create($string, $charset);
+    }
+    
+    /**
+     * Converts the provided data to a string value.
+     *
+     * If a string object is provided then the charset will
+     * be automatically converted if necessary.
+     *
+     * @param string|Mol_DataType_String|mixed $data
+     * @return string The simple string value.
+     * @throws InvalidArgumentException If the method cannot convert the data into a string.
+     */
+    protected function toValue($data)
+    {
+        if (is_string($data)) {
+            return $data;
+        }
+        if ($data instanceof self) {
+            return $data->convertTo($this->charset)->toString();
+        }
+        $type    = is_object($data) ? get_class($data) : gettype($data);
+        $message = 'Expected string or instance of ' . __CLASS__ . ', but ' . $type . ' provided.';
+        throw new InvalidArgumentException($message);
     }
     
     /**
