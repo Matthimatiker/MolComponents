@@ -1096,16 +1096,26 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $result);
     }
     
+    /**
+     * Checks if concat() returns a string object.
+     */
     public function testConcatReturnsStringObject()
     {
         
     }
     
+    /**
+     * Ensures that concat() returns the string itself if provided string value
+     * has length 0.
+     */
     public function testConcatReturnsCurrentStringIfProvidedStringHasLengthZero()
     {
         
     }
     
+    /**
+     * Checks if concat() appends the provided string.
+     */
     public function testConcatAppendsProvidedString()
     {
         
