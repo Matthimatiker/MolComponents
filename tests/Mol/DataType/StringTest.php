@@ -1125,16 +1125,26 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('abcxyz', $result->toString());
     }
     
+    /**
+     * Checks if concat() accepts a string object.
+     */
     public function testConcatAcceptsStringObject()
     {
         
     }
     
+    /**
+     * Checks if concat() appends the content of a provided string object.
+     */
     public function testConcatAppendsStringObject()
     {
         
     }
     
+    /**
+     * Ensures that concat() converts the charset of the provided string object
+     * automatically if necessary.
+     */
     public function testConcatPerformsCharsetConversionIfNecessary()
     {
         
