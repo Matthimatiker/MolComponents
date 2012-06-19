@@ -1096,6 +1096,21 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $result);
     }
     
+    public function testConcatReturnsStringObject()
+    {
+        
+    }
+    
+    public function testConcatReturnsCurrentStringIfProvidedStringHasLengthZero()
+    {
+        
+    }
+    
+    public function testConcatAppendsProvidedString()
+    {
+        
+    }
+    
     /**
      * Creates a string object.
      *
