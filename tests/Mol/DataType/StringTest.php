@@ -1160,6 +1160,20 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the string object that is returned by concat() uses the same
+     * charset as the current string.
+     */
+    public function testConcatReturnsStringWithSameCharsetAsCurrentString()
+    {
+        $latin1 = $this->create('xyz', Mol_DataType_String::CHARSET_LATIN1);
+        $utf8   = $this->create('abc');
+        // The string do not share the same charset, therefor the method must decide which one to use.
+        $result = $latin1->concat($utf8);
+        $this->assertStringObject($result);
+        $this->assertEquals(Mol_DataType_String::CHARSET_LATIN1, $result->getCharset());
+    }
+    
+    /**
      * Ensures that concat() throws an exception if an invalid argument is passed.
      */
     public function testConcatThrowsExceptionIfInvalidArgumentIsProvided()
