@@ -1130,7 +1130,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatAcceptsStringObject()
     {
-        
+        $this->setExpectedException(null);
+        $this->create('abc')->concat($this->create('xyz'));
     }
     
     /**
@@ -1138,7 +1139,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatAppendsStringObject()
     {
-        
+        $result = $this->create('abc')->concat($this->create('xyz'));
+        $this->assertStringObject($result);
+        $this->assertEquals('abcxyz', $result->toString());
     }
     
     /**
@@ -1147,7 +1150,13 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatPerformsCharsetConversionIfNecessary()
     {
-        
+        $latin1Content = iconv(Mol_DataType_String::CHARSET_UTF8, Mol_DataType_String::CHARSET_LATIN1, 'äüö');
+        $latin1        = $this->create($latin1Content, Mol_DataType_String::CHARSET_LATIN1);
+        $utf8          = $this->create('äüö');
+        $result        = $utf8->concat($latin1);
+        $this->assertStringObject($result);
+        // One part of the string will be broken if no conversion was performed.
+        $this->assertEquals('äüöäüö', $result->toString());
     }
     
     /**
@@ -1155,7 +1164,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatThrowsExceptionIfInvalidArgumentIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->create('test')->concat(new stdClass());
     }
     
     /**
