@@ -1151,6 +1151,14 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that concat() throws an exception if an invalid argument is passed.
+     */
+    public function testConcatThrowsExceptionIfInvalidArgumentIsProvided()
+    {
+        
+    }
+    
+    /**
      * Creates a string object.
      *
      * @param string $string
