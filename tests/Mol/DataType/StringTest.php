@@ -1101,7 +1101,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatReturnsStringObject()
     {
-        
+        $result = $this->create('abc')->concat('xyz');
+        $this->assertStringObject($result);
     }
     
     /**
@@ -1110,7 +1111,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatReturnsCurrentStringIfProvidedStringHasLengthZero()
     {
-        
+        $current = $this->create('abc');
+        $this->assertSame($current, $current->concat(''));
     }
     
     /**
@@ -1118,7 +1120,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatAppendsProvidedString()
     {
-        
+        $result = $this->create('abc')->concat('xyz');
+        $this->assertStringObject($result);
+        $this->assertEquals('abcxyz', $result->toString());
     }
     
     /**
