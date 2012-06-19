@@ -474,7 +474,10 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function concat($string)
     {
-        
+        if ($this->getLengthInBytes($string) === 0) {
+            return $this;
+        }
+        return $this->createString($this->value . $string);
     }
     
     /**
