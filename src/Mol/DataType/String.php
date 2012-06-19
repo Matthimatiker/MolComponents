@@ -27,6 +27,33 @@ class Mol_DataType_String implements IteratorAggregate, Countable
 {
     
     /**
+     * Returns value used by compareTo().
+     *
+     * Indicates that this string is less than the compared one.
+     *
+     * @var integer
+     */
+    const COMPARE_LESS_THAN_OTHER = -1;
+    
+    /**
+     * Returns value used by compareTo().
+     *
+     * Indicates that this string equals the compared one.
+     *
+     * @var integer
+     */
+    const COMPARE_EQUALS_OTHER = 0;
+    
+    /**
+     * Returns value used by compareTo().
+     *
+     * Indicates that this string is greater than the compared one.
+     *
+     * @var integer
+     */
+    const COMPARE_GREATER_THAN_OTHER = 1;
+    
+    /**
      * Constant for the name of the UTF-8 charset.
      *
      * @var string
@@ -591,6 +618,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * #  0 if string equals $other
      * #  1 if string is greater than $other
      *
+     * The COMPARE_* constants may be used to check the result.
+     *
      * @param string $other
      * @return integer -1 if string < $other, 0 if string == $other, 1 if string > $other.
      */
@@ -598,12 +627,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     {
         $result = strcmp($this->value, $other);
         if ($result < 0) {
-            return -1;
+            return self::COMPARE_LESS_THAN_OTHER;
         }
         if ($result > 0) {
-            return 1;
+            return self::COMPARE_GREATER_THAN_OTHER;
         }
-        return 0;
+        return self::COMPARE_EQUALS_OTHER;
     }
     
     /**
