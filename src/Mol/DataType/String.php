@@ -376,8 +376,8 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * In this example occurences of "first" are replaced by "last" and
      * "hello" is replaced by "world".
      *
-     * @param string|array(string)|array(string|string) $searchOrMapping
-     * @param string $replace
+     * @param string|Mol_DataType_String|array(integer|string=>string|Mol_DataType_String) $searchOrMapping
+     * @param string|Mol_DataType_String $replace
      * @return Mol_DataType_String The string with applied replacements.
      */
     public function replace($searchOrMapping, $replace = null)
