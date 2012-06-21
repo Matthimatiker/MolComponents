@@ -1431,7 +1431,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetExistsReturnsFalseIfNegativeIndexIsProvided()
     {
-        
+        $object = $this->create('abc');
+        $this->assertFalse(isset($object[-1]));
     }
     
     /**
@@ -1440,7 +1441,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetExistsReturnsFalseIfProvidedIndexExceedsStringLength()
     {
-        
+        $object = $this->create('abc');
+        $this->assertFalse(isset($object[3]));
     }
     
     /**
@@ -1448,7 +1450,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetExistsReturnsTrueIfValidCharacterIndexIsProvided()
     {
-        
+        $object = $this->create('abc');
+        $this->assertTrue(isset($object[2]));
     }
     
     /**
@@ -1456,7 +1459,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetGetThrowsExceptionIfInvalidIndexIsProvided()
     {
-        
+        $this->setExpectedException('OutOfBoundsException');
+        $object = $this->create('abc');
+        $object[5];
     }
     
     /**
@@ -1464,7 +1469,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetGetReturnsCorrectCharacter()
     {
-        
+        $object = $this->create('abc');
+        $this->assertEquals('b', $object[1]);
     }
     
     /**
@@ -1472,7 +1478,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetGetHandlesMultiByteCharacterCorrectly()
     {
-        
+        $object = $this->create('äüö');
+        $this->assertEquals('ü', $object[1]);
     }
     
     /**
@@ -1481,7 +1488,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetSetThrowsException()
     {
-    
+        $this->setExpectedException('LogicException');
+        $object = $this->create('abc');
+        $object[0] = 'z';
     }
     
     /**
@@ -1490,7 +1499,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testOffsetUnsetThrowsException()
     {
-    
+        $this->setExpectedException('LogicException');
+        $object = $this->create('abc');
+        unset($object[0]);
     }
     
     /**
