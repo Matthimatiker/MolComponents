@@ -1121,32 +1121,32 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Ensures that contains() returns true if a list of needles is provided and
-     * the string contains at least one needle in the list.
-     */
-    public function testContainsReturnsTrueIfStringContainsAtLeastOneOfTheNeedles()
-    {
-        $result = $this->create('abc')->contains(array('d', 'a'));
-        $this->assertTrue($result);
-    }
-    
-    /**
-     * Ensures that contains() returns false if a list of needles is provided
-     * and the string does not contain any of the needles.
-     */
-    public function testContainsReturnsFalseIfStringContainsNoneOfTheNeedles()
-    {
-        $result = $this->create('abc')->contains(array('d', 'f'));
-        $this->assertFalse($result);
-    }
-    
-    /**
      * Checks if contains() accepts a string object as argument.
      */
     public function testContainsAcceptsStringObjectAsArgument()
     {
         $result = $this->create('abc')->contains($this->create('b'));
         $this->assertTrue($result);
+    }
+    
+    /**
+     * Ensures that containsAny() returns true if a list of needles is provided and
+     * the string contains at least one needle in the list.
+     */
+    public function testContainsAnyReturnsTrueIfStringContainsAtLeastOneOfTheNeedles()
+    {
+        $result = $this->create('abc')->containsAny(array('d', 'a'));
+        $this->assertTrue($result);
+    }
+    
+    /**
+     * Ensures that containsAny() returns false if a list of needles is provided
+     * and the string does not contain any of the needles.
+     */
+    public function testContainsAnyReturnsFalseIfStringContainsNoneOfTheNeedles()
+    {
+        $result = $this->create('abc')->containsAny(array('d', 'f'));
+        $this->assertFalse($result);
     }
     
     /**

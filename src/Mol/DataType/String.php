@@ -304,6 +304,17 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     }
     
     /**
+     * Checks if the string contains any of the provided needles.
+     *
+     * @param array(string|Mol_DataType_String) $needles
+     * @return boolean True if the string contains a needle, false otherwise.
+     */
+    public function containsAny(array $needles)
+    {
+        
+    }
+    
+    /**
      * Removes the given prefix from the string.
      *
      * This method has no effect if the string does not start with $prefix.
