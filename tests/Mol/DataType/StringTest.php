@@ -1158,16 +1158,27 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($result);
     }
     
+    /**
+     * Ensures that containsAll() returns true if the string contains all
+     * of the provided needles.
+     */
     public function testContainsAllReturnsTrueIfStringContainsAllNeedles()
     {
         
     }
     
+    /**
+     * Ensures that containsAll() returns false if the string contains only some
+     * of the provided needles.
+     */
     public function testContainsAllReturnsFalseIfStringContainsOnlySomeOfTheNeedles()
     {
         
     }
     
+    /**
+     * Checks if containsAll() accepts a list of string objects as argument.
+     */
     public function testContainsAllAcceptsCollectionOfStringObjectsAsArgument()
     {
         
