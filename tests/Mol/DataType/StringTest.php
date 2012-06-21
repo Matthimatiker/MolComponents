@@ -99,7 +99,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateReturnsProvidedStringObjectIfNoCharsetConversionIsRequired()
     {
-        
+        $input  = $this->create('test', Mol_DataType_String::CHARSET_UTF8);
+        $object = Mol_DataType_String::create($input, Mol_DataType_String::CHARSET_UTF8);
+        $this->assertSame($input, $object);
     }
     
     /**
@@ -107,7 +109,10 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateConvertsCharsetOfProvidedStringObjectIfNecessary()
     {
-        
+        $input  = $this->create('test', Mol_DataType_String::CHARSET_LATIN1);
+        $object = Mol_DataType_String::create($input, Mol_DataType_String::CHARSET_UTF8);
+        $this->assertStringObject($object);
+        $this->assertEquals(Mol_DataType_String::CHARSET_UTF8, $object->getCharset());
     }
     
     /**
