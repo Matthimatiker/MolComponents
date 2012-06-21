@@ -251,7 +251,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if indexOf() accepts a string object as argument.
      */
-    public function testIndexOfAcceptsStringObject()
+    public function testIndexOfAcceptsStringObjectAsArgument()
     {
         $index = $this->create('abcabc')->indexOf($this->create('b'));
         $this->assertEquals(1, $index);
@@ -307,7 +307,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if lastIndexOf() accepts a string object as argument.
      */
-    public function testLastIndexOfAcceptsStringObject()
+    public function testLastIndexOfAcceptsStringObjectAsArgument()
     {
         $index = $this->create('abcabc')->lastIndexOf($this->create('b'));
         $this->assertEquals(4, $index);
@@ -370,7 +370,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if indexesOf() accepts a string object as argument.
      */
-    public function testIndexesOfAcceptsStringObject()
+    public function testIndexesOfAcceptsStringObjectAsArgument()
     {
         $indexes = $this->create('abc')->indexesOf($this->create('b'));
         $this->assertInternalType('array', $indexes);
@@ -419,7 +419,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if startsWith() accepts a string object as argument.
      */
-    public function testStartsWithAcceptsStringObject()
+    public function testStartsWithAcceptsStringObjectAsArgument()
     {
         $result = $this->create('test-string')->startsWith($this->create('test'));
         $this->assertTrue($result);
@@ -457,7 +457,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if endsWith() accepts a string object as argument.
      */
-    public function testEndsWithAcceptsStringObject()
+    public function testEndsWithAcceptsStringObjectAsArgument()
     {
         $result = $this->create('test-string')->endsWith($this->create('string'));
         $this->assertTrue($result);
@@ -497,7 +497,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if removePrefix() accepts a string object as argument.
      */
-    public function testRemovePrefixAcceptsStringObject()
+    public function testRemovePrefixAcceptsStringObjectAsArgument()
     {
         $object = $this->create('this is a test string')->removePrefix($this->create('this '));
         $this->assertStringObject($object);
@@ -538,7 +538,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if removeSuffix() accepts a string object as argument.
      */
-    public function testRemoveSuffixAcceptsStringObject()
+    public function testRemoveSuffixAcceptsStringObjectAsArgument()
     {
         $object = $this->create('this is a test string')->removeSuffix($this->create(' string'));
         $this->assertStringObject($object);
@@ -959,6 +959,29 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if equals() accepts string objects as argument.
+     */
+    public function testEqualsAcceptsStringObjectAsArgument()
+    {
+        $equal = $this->create('abc')->equals($this->create('abc'));
+        $this->assertTrue($equal);
+    }
+    
+    /**
+     * Ensures that equals() converts the charset of a provided string
+     * object before comparison.
+     */
+    public function testEqualsUnifiesCharsetToCompareStrings()
+    {
+        $latin1 = $this->create('äüö')->convertTo(Mol_DataType_String::CHARSET_LATIN1);
+        $this->assertStringObject($latin1);
+        // The raw string values are not equal, but equals() should convert
+        // the charset of the provided string for comparison.
+        $equal = $this->create('äüö')->equals($latin1);
+        $this->assertTrue($equal);
+    }
+    
+    /**
      * Checks if length() returns an integer.
      */
     public function testLengthReturnsInteger()
@@ -1118,6 +1141,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if contains() accepts a string object as argument.
+     */
+    public function testContainsAcceptsStringObjectAsArgument()
+    {
+        $result = $this->create('abc')->contains($this->create('b'));
+        $this->assertTrue($result);
+    }
+    
+    /**
      * Checks if reverse() inverts the order of characters.
      */
     public function testReverseInvertsCharacterOrder()
@@ -1192,6 +1224,14 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if splitAt() accepts a string object as argument.
+     */
+    public function testSplitAtAcceptsStringObjectAsArgument()
+    {
+        
+    }
+    
+    /**
      * Ensures that compareTo() returns -1 if the string is less than the provided string.
      */
     public function testCompareToReturnsMinusOneIfStringIsLessThanComparedString()
@@ -1250,7 +1290,7 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if concat() accepts a string object.
      */
-    public function testConcatAcceptsStringObject()
+    public function testConcatAcceptsStringObjectAsArgument()
     {
         $this->setExpectedException(null);
         $this->create('abc')->concat($this->create('xyz'));
