@@ -598,7 +598,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReplaceAcceptsStringObjectAsSearchParameter()
     {
-        
+        $object = $this->create('hello world')->replace($this->create('hello'), 'dummy');
+        $this->assertStringObject($object);
+        $this->assertEquals('dummy world', $object->toString());
     }
     
     /**
@@ -606,7 +608,13 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReplaceAcceptsCollectionOfStringObjectsAsSearchParameter()
     {
-        
+        $search = array(
+            $this->create('hello'),
+            $this->create('home')
+        );
+        $object = $this->create('hello world')->replace($search, 'dummy');
+        $this->assertStringObject($object);
+        $this->assertEquals('dummy world', $object->toString());
     }
     
     /**
@@ -614,7 +622,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReplaceAcceptsStringObjectAsReplaceParamater()
     {
-        
+        $object = $this->create('hello world')->replace('hello', $this->create('dummy'));
+        $this->assertStringObject($object);
+        $this->assertEquals('dummy world', $object->toString());
     }
     
     /**
