@@ -108,6 +108,9 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public static function create($string, $charset = self::CHARSET_UTF8)
     {
+        if ($string instanceof self) {
+            return $string->convertTo($charset);
+        }
         return new self($string, $charset);
     }
     
