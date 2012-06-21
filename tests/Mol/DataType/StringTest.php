@@ -1159,6 +1159,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that containsAny() returns true if an empty list of needles is provided.
+     */
+    public function testContainsAnyReturnsTrueIfListOfNeedlesIsEmpty()
+    {
+        $result = $this->create('abc')->containsAny(array());
+        $this->assertTrue($result);
+    }
+    
+    /**
      * Ensures that containsAll() returns true if the string contains all
      * of the provided needles.
      */
@@ -1185,6 +1194,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     {
         $needles = array($this->create('b'), $this->create('c'));
         $result  = $this->create('abc')->containsAll($needles);
+        $this->assertTrue($result);
+    }
+    
+    /**
+     * Ensures that containsAll() returns true if an empty list of needles is provided.
+     */
+    public function testContainsAllReturnsTrueIfListOfNeedlesIsEmpty()
+    {
+        $result = $this->create('abc')->containsAll(array());
         $this->assertTrue($result);
     }
     
