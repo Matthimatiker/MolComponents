@@ -1150,6 +1150,30 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that containsAny() can work with string objects.
+     */
+    public function testContainsAnyAcceptsCollectionOfStringObjectsAsArgument()
+    {
+        $result = $this->create('abc')->containsAny(array($this->create('b')));
+        $this->assertTrue($result);
+    }
+    
+    public function testContainsAllReturnsTrueIfStringContainsAllNeedles()
+    {
+        
+    }
+    
+    public function testContainsAllReturnsFalseIfStringContainsOnlySomeOfTheNeedles()
+    {
+        
+    }
+    
+    public function testContainsAllAcceptsCollectionOfStringObjectsAsArgument()
+    {
+        
+    }
+    
+    /**
      * Checks if reverse() inverts the order of characters.
      */
     public function testReverseInvertsCharacterOrder()
