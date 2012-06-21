@@ -23,7 +23,7 @@
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 14.06.2012
  */
-class Mol_DataType_String implements IteratorAggregate, Countable
+class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
 {
     
     /**
@@ -691,6 +691,26 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     public function __toString()
     {
         return $this->toString();
+    }
+    
+    public function offsetExists($index)
+    {
+        
+    }
+    
+    public function offsetGet($index)
+    {
+        
+    }
+    
+    public function offsetSet($index, $value)
+    {
+        
+    }
+    
+    public function offsetUnset($offset)
+    {
+        
     }
     
     /**
