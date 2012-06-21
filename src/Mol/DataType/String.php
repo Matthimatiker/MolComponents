@@ -98,6 +98,24 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
     protected $charset = null;
     
     /**
+     * Cached list of characters in this string.
+     *
+     * Contains null if the characters were not requested yet.
+     *
+     * @var array(string)|null
+     */
+    private $characters = null;
+    
+    /**
+     * Cached length of this string.
+     *
+     * Contains null if the length were not requested yet.
+     *
+     * @var integer|null
+     */
+    private $length = null;
+    
+    /**
      * Creates a string object from the given raw string.
      *
      * It is assumed that the string uses the mentioned charset.
@@ -564,12 +582,14 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function toCharacters()
     {
-        $characters = array();
-        $length     = $this->length();
-        for ($i = 0; $i < $length; $i++) {
-            $characters[] = $this->rawSubString($i, 1);
+        if ($this->characters === null) {
+            $this->characters = array();
+            $length = $this->length();
+            for ($i = 0; $i < $length; $i++) {
+                $this->characters[] = $this->rawSubString($i, 1);
+            }
         }
-        return $characters;
+        return $this->characters;
     }
     
     /**
@@ -600,7 +620,10 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function length()
     {
-        return mb_strlen($this->value, $this->charset);
+        if ($this->length === null) {
+            $this->length = mb_strlen($this->value, $this->charset);
+        }
+        return $this->length;
     }
     
     /**
