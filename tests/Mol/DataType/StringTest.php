@@ -93,11 +93,18 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Mol_DataType_String::CHARSET_LATIN1, $object->getCharset());
     }
     
+    /**
+     * Ensures that create() returns a provided string object if no charset conversion
+     * is necessary.
+     */
     public function testCreateReturnsProvidedStringObjectIfNoCharsetConversionIsRequired()
     {
         
     }
     
+    /**
+     * Checks if create() converts the charset of a passed string object if necessary.
+     */
     public function testCreateConvertsCharsetOfProvidedStringObjectIfNecessary()
     {
         
