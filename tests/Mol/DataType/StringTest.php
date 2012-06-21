@@ -594,6 +594,30 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if replace() accepts a string object as search parameter.
+     */
+    public function testReplaceAcceptsStringObjectAsSearchParameter()
+    {
+        
+    }
+    
+    /**
+     * Ensures that replace() accepts an array of string objects as search parameter.
+     */
+    public function testReplaceAcceptsCollectionOfStringObjectsAsSearchParameter()
+    {
+        
+    }
+    
+    /**
+     * Checks if replace() accepts a string object as replace parameter.
+     */
+    public function testReplaceAcceptsStringObjectAsReplaceParamater()
+    {
+        
+    }
+    
+    /**
      * Checks if subString() extracts the correct part of the string.
      */
     public function testSubStringExtractsRequestedPartOfString()
