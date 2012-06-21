@@ -1426,41 +1426,68 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->create('test')->concat(new stdClass());
     }
     
+    /**
+     * Ensures that offsetExists() returns false if a negative index is provided.
+     */
     public function testOffsetExistsReturnsFalseIfNegativeIndexIsProvided()
     {
         
     }
     
+    /**
+     * Ensures that offsetExists() returns false if a an index that exceeds the
+     * length of the string is passed.
+     */
     public function testOffsetExistsReturnsFalseIfProvidedIndexExceedsStringLength()
     {
         
     }
     
+    /**
+     * Ensures that offsetExists() returns true if a valid character index is passed.
+     */
     public function testOffsetExistsReturnsTrueIfValidCharacterIndexIsProvided()
     {
         
     }
     
+    /**
+     * Ensures that offsetGet() throws an exception if an invalid index is passed.
+     */
     public function testOffsetGetThrowsExceptionIfInvalidIndexIsProvided()
     {
         
     }
     
+    /**
+     * Checks if offsetGet() returns the correct character.
+     */
     public function testOffsetGetReturnsCorrectCharacter()
     {
         
     }
     
+    /**
+     * Checks if offsetGet() treats multi-byte characters correctly.
+     */
     public function testOffsetGetHandlesMultiByteCharacterCorrectly()
     {
         
     }
     
+    /**
+     * Ensures that offsetSet() throws an exception as this method
+     * is not supposed to be called.
+     */
     public function testOffsetSetThrowsException()
     {
     
     }
     
+    /**
+     * Ensures that offsetUnset() throws an exception as this method
+     * is not supposed to be called.
+     */
     public function testOffsetUnsetThrowsException()
     {
     
