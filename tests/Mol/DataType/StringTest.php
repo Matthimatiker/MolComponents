@@ -1261,6 +1261,29 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if compareTo() accepts a string object as argument.
+     */
+    public function testCompareToAcceptsStringObjectAsArgument()
+    {
+        $result = $this->create('c')->compareTo($this->create('c'));
+        $this->assertEquals(0, $result);
+    }
+    
+    /**
+     * Ensures that compareTo() converts the charset of the provided string
+     * object before performing the comparison.
+     */
+    public function testCompareToUnifiesCharsetBeforeComparison()
+    {
+        $latin1 = $this->create('äöü')->convertTo(Mol_DataType_String::CHARSET_LATIN1);
+        $this->assertStringObject($latin1);
+        // The raw strings are not equal, but compareTo() should unifiy the charset
+        // before performing the comparison.
+        $result = $this->create('äöü')->compareTo($latin1);
+        $this->assertEquals(0, $result);
+    }
+    
+    /**
      * Checks if concat() returns a string object.
      */
     public function testConcatReturnsStringObject()
