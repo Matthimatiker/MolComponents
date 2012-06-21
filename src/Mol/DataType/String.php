@@ -199,13 +199,13 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * If provided as second argument then the search will
      * begin at the given index.
      *
-     * @param string $needle
+     * @param string|Mol_DataType_String $needle
      * @param integer $fromIndex
      * @return integer Index or -1 if $needle was not found.
      */
     public function indexOf($needle, $fromIndex = 0)
     {
-        $position = mb_strpos($this->value, $needle, $fromIndex, $this->charset);
+        $position = mb_strpos($this->value, $this->toValue($needle), $fromIndex, $this->charset);
         if ($position === false) {
             return -1;
         }
@@ -219,7 +219,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * The search is performed from right to left.
      * If $fromIndex is provided then the search will begin at that index.
      *
-     * @param string $needle
+     * @param string|Mol_DataType_String $needle
      * @param integer|null $fromIndex
      * @return integer Index or -1 if $needle was not found.
      */
@@ -231,7 +231,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             // We cut of the end of the string starting at ($fromIndex + 1) to simulate searching backwards.
             $search = $this->rawSubString(0, $fromIndex + 1);
         }
-        $position = mb_strrpos($search, $needle, null, $this->charset);
+        $position = mb_strrpos($search, $this->toValue($needle), null, $this->charset);
         if ($position === false) {
             return -1;
         }
@@ -241,11 +241,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     /**
      * Returns the indexes of all occurrences of $needle.
      *
-     * @param string $needle
+     * @param string|Mol_DataType_String $needle
      * @return array(integer)
      */
     public function indexesOf($needle)
     {
+        $needle  = $this->toValue($needle);
         $offset  = 0;
         $indexes = array();
         while (($position = $this->indexOf($needle, $offset)) !== -1) {
@@ -259,22 +260,23 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     /**
      * Checks if the string starts with the provided prefix.
      *
-     * @param string $prefix
+     * @param string|Mol_DataType_String $prefix
      * @return boolean True if the string starts with the prefix, false otherwise.
      */
     public function startsWith($prefix)
     {
-        return strpos($this->value, $prefix) === 0;
+        return strpos($this->value, $this->toValue($prefix)) === 0;
     }
     
     /**
      * Checks if the string ends with the provided suffix.
      *
-     * @param string $suffix
+     * @param string|Mol_DataType_String $suffix
      * @return boolean True if the string ends with the suffix, false otherwise.
      */
     public function endsWith($suffix)
     {
+        $suffix = $this->toValue($suffix);
         $expectedPosition = $this->lengthInBytes() - $this->getLengthInBytes($suffix);
         return strrpos($this->value, $suffix) === $expectedPosition;
     }
@@ -285,12 +287,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      * If an array of strings is provided then contains() will check
      * if the string contains at least one of the needles.
      *
-     * @param string|array(string) $needle A single or multiple needles.
+     * @param string|Mol_DataType_String|array(string) $needle A single or multiple needles.
      * @return boolean True if the string contains the needle, false otherwise.
      */
     public function contains($needle)
     {
-        $needles = is_array($needle) ? $needle : array($needle);
+        $needles = is_array($needle) ? $needle : array($this->toValue($needle));
         foreach ($needles as $needle) {
             /* @var $needle string */
             if (strpos($this->value, $needle) !== false) {
@@ -306,11 +308,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      *
      * This method has no effect if the string does not start with $prefix.
      *
-     * @param string $prefix
+     * @param string|Mol_DataType_String $prefix
      * @return Mol_DataType_String String without prefix.
      */
     public function removePrefix($prefix)
     {
+        $prefix = $this->toValue($prefix);
         if (!$this->startsWith($prefix)) {
             // Nothing to remove.
             return $this;
@@ -324,11 +327,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      *
      * This method has no effect if the string does not end with $suffix.
      *
-     * @param string $suffix
+     * @param string|Mol_DataType_String $suffix
      * @return Mol_DataType_String String without suffix.
      */
     public function removeSuffix($suffix)
     {
+        $suffix = $this->toValue($suffix);
         if (!$this->endsWith($suffix)) {
             // Nothing to remove.
             return $this;
@@ -514,7 +518,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     /**
      * Splits the string by using the provided delimiter.
      *
-     * @param string $delimiter
+     * @param string|Mol_DataType_String $delimiter
      * @param integer|null $limit Maximal number of parts.
      * @return array(string)
      */
@@ -524,7 +528,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
             // Use a limit that cannot be reached by splitting the string.
             $limit = $this->lengthInBytes();
         }
-        return explode($delimiter, $this->value, $limit);
+        return explode($this->toValue($delimiter), $this->value, $limit);
     }
     
     /**
@@ -555,12 +559,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     /**
      * Checks if the strings are equal.
      *
-     * @param string $string
+     * @param string|Mol_DataType_String $string
      * @return boolean True if the strings are equal, false otherwise.
      */
     public function equals($string)
     {
-        return $this->value === $string;
+        return $this->value === $this->toValue($string);
     }
     
     /**
@@ -623,12 +627,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      *
      * The COMPARE_* constants may be used to check the result.
      *
-     * @param string $other
+     * @param string|Mol_DataType_String $other
      * @return integer -1 if string < $other, 0 if string == $other, 1 if string > $other.
      */
     public function compareTo($other)
     {
-        $result = strcmp($this->value, $other);
+        $result = strcmp($this->value, $this->toValue($other));
         if ($result < 0) {
             return self::COMPARE_LESS_THAN_OTHER;
         }
