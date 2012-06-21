@@ -701,7 +701,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function offsetExists($index)
     {
-        
+        return $index >= 0 && $index < $this->length();
     }
     
     /**
@@ -713,7 +713,13 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function offsetGet($index)
     {
-        
+        if (!isset($this[$index])) {
+            $template = '"%s" is not a valid index. Valid indexes span from 0 to %s.';
+            $message  = sprintf($template, $index, ($this->length() - 1));
+            throw new OutOfBoundsException($message);
+        }
+        $characters = $this->toCharacters();
+        return $characters[$index];
     }
     
     /**
@@ -728,7 +734,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function offsetSet($index, $value)
     {
-        
+        throw new LogicException('Overwriting characters is not supported.');
     }
     
     /**
@@ -742,7 +748,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function offsetUnset($index)
     {
-        
+        throw new LogicException('Deleting characters is not supported.');
     }
     
     /**
