@@ -218,7 +218,7 @@ class Mol_Util_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Tests signature replace(array(string=>string)):
+     * Tests signature replace(string, array(string=>string)):
      * Checks if replace() applies the mapping of search/replace pairs to the string.
      */
     public function testReplaceAppliesMappingIfAssociativeArrayIsProvided()
