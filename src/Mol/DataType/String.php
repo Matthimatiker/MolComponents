@@ -386,7 +386,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
     }
     
     /**
-     * Replaces all occurrences of $search by $replace.
+     * Replaces all occurrences of $searchOrMapping by $replace.
      *
      * This method provides 3 signatures:
      *
