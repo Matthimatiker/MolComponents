@@ -382,11 +382,11 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function replace($searchOrMapping, $replace = null)
     {
-        $search = $searchOrMapping;
+        $search = $this->toValues($searchOrMapping);
         if ($replace === null && is_array($searchOrMapping)) {
             // Mapping provided.
+            $replace = $search;
             $search  = array_keys($searchOrMapping);
-            $replace = array_values($searchOrMapping);
         }
         $replaced = str_replace($search, $replace, $this->value);
         return $this->createString($replaced);
@@ -705,6 +705,22 @@ class Mol_DataType_String implements IteratorAggregate, Countable
         $type    = is_object($data) ? get_class($data) : gettype($data);
         $message = 'Expected string or instance of ' . __CLASS__ . ', but ' . $type . ' provided.';
         throw new InvalidArgumentException($message);
+    }
+    
+    /**
+     * Converts the provided list into an array of simple string values.
+     *
+     * @param array(string|Mol_DataType_String|mixed)|string|Mol_DataType_String|mixed $data
+     * @return array(string)
+     */
+    protected function toValues($data)
+    {
+        // Unify to array.
+        if (!is_array($data)) {
+            $data = array($data);
+        }
+        // Converts item to string values.
+        return array_map(array($this, 'toValue'), $data);
     }
     
     /**
