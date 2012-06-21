@@ -1228,7 +1228,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSplitAtAcceptsStringObjectAsArgument()
     {
-        
+        $parts = $this->create('hello splitted world')->splitAt($this->create(' '));
+        $this->assertInternalType('array', $parts);
+        $this->assertEquals(3, count($parts));
     }
     
     /**
