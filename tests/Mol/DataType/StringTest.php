@@ -1164,7 +1164,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsAllReturnsTrueIfStringContainsAllNeedles()
     {
-        
+        $result = $this->create('abc')->containsAll(array('a', 'c'));
+        $this->assertTrue($result);
     }
     
     /**
@@ -1173,7 +1174,8 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsAllReturnsFalseIfStringContainsOnlySomeOfTheNeedles()
     {
-        
+        $result = $this->create('abc')->containsAll(array('a', 'd', 'c'));
+        $this->assertFalse($result);
     }
     
     /**
@@ -1181,7 +1183,9 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsAllAcceptsCollectionOfStringObjectsAsArgument()
     {
-        
+        $needles = array($this->create('b'), $this->create('c'));
+        $result  = $this->create('abc')->containsAll($needles);
+        $this->assertTrue($result);
     }
     
     /**
