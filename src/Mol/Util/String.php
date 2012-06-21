@@ -40,7 +40,7 @@ class Mol_Util_String
      */
     public static function startsWith($subject, $prefix)
     {
-        
+        return strpos($subject, $prefix) === 0;
     }
     
     /**
@@ -52,7 +52,8 @@ class Mol_Util_String
      */
     public static function endsWith($subject, $suffix)
     {
-        
+        $expectedPosition = strlen($subject) - strlen($suffix);
+        return strrpos($subject, $suffix) === $expectedPosition;
     }
     
     /**
@@ -64,7 +65,7 @@ class Mol_Util_String
      */
     public static function contains($subject, $needle)
     {
-        
+        return strpos($subject, (string)$needle) !== false;
     }
     
     /**
@@ -76,6 +77,16 @@ class Mol_Util_String
      */
     public static function containsAny($subject, array $needles)
     {
+        if (count($needles) === 0) {
+            return true;
+        }
+        foreach ($needles as $needle) {
+            /* @var $needle string */
+            if (self::contains($subject, $needle)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
@@ -87,7 +98,13 @@ class Mol_Util_String
      */
     public static function containsAll($subject, array $needles)
     {
-        
+        foreach ($needles as $needle) {
+            /* @var $needle string */
+            if (!self::contains($subject, $needle)) {
+                return false;
+            }
+        }
+        return true;
     }
     
     /**
@@ -132,7 +149,13 @@ class Mol_Util_String
      */
     public static function replace($subject, $searchOrMapping, $replace = null)
     {
-        
+        $search = $searchOrMapping;
+        if ($replace === null && is_array($searchOrMapping)) {
+            // Mapping provided.
+            $search  = array_keys($searchOrMapping);
+            $replace = array_values($searchOrMapping);
+        }
+        return str_replace($search, $replace, $subject);
     }
     
 }
