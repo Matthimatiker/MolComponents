@@ -227,7 +227,7 @@ class Mol_Util_StringTest extends PHPUnit_Framework_TestCase
                 'hello' => 'welcome',
                 'world' => 'home'
         );
-        $result = Mol_Util_String::replace('hello world', $mapping);
+        $result  = Mol_Util_String::replace('hello world', $mapping);
         $this->assertEquals('welcome home', $result);
     }
     
