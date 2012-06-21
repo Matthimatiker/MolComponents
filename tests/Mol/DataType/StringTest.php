@@ -1426,6 +1426,46 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $this->create('test')->concat(new stdClass());
     }
     
+    public function testOffsetExistsReturnsFalseIfNegativeIndexIsProvided()
+    {
+        
+    }
+    
+    public function testOffsetExistsReturnsFalseIfProvidedIndexExceedsStringLength()
+    {
+        
+    }
+    
+    public function testOffsetExistsReturnsTrueIfValidCharacterIndexIsProvided()
+    {
+        
+    }
+    
+    public function testOffsetGetThrowsExceptionIfInvalidIndexIsProvided()
+    {
+        
+    }
+    
+    public function testOffsetGetReturnsCorrectCharacter()
+    {
+        
+    }
+    
+    public function testOffsetGetHandlesMultiByteCharacterCorrectly()
+    {
+        
+    }
+    
+    public function testOffsetSetThrowsException()
+    {
+    
+    }
+    
+    public function testOffsetUnsetThrowsException()
+    {
+    
+    }
+    
     /**
      * Creates a string object.
      *
