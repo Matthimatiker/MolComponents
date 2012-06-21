@@ -102,7 +102,7 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      *
      * It is assumed that the string uses the mentioned charset.
      *
-     * @param string $string The raw string.
+     * @param string|Mol_DataType_String $string The raw string.
      * @param string $charset The charset of the string.
      * @return Mol_DataType_String
      */
