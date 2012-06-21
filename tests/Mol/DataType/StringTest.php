@@ -495,6 +495,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if removePrefix() accepts a string object as argument.
+     */
+    public function testRemovePrefixAcceptsStringObject()
+    {
+        $object = $this->create('this is a test string')->removePrefix($this->create('this '));
+        $this->assertStringObject($object);
+        $this->assertEquals('is a test string', $object->toString());
+    }
+    
+    /**
      * Checks if removeSuffix() removes the provided suffix from the string.
      */
     public function testRemoveSuffixRemovesProvidedSuffix()
@@ -523,6 +533,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
         $object = $this->create('this is a test string')->removeSuffix('test');
         $this->assertStringObject($object);
         $this->assertEquals('this is a test string', $object->toString());
+    }
+    
+    /**
+     * Checks if removeSuffix() accepts a string object as argument.
+     */
+    public function testRemoveSuffixAcceptsStringObject()
+    {
+        $object = $this->create('this is a test string')->removeSuffix($this->create(' string'));
+        $this->assertStringObject($object);
+        $this->assertEquals('this is a test', $object->toString());
     }
     
     /**
