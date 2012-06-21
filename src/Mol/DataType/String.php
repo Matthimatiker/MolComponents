@@ -693,22 +693,54 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
         return $this->toString();
     }
     
+    /**
+     * Checks if the provided character index exists.
+     *
+     * @param integer $index
+     * @return boolean True if the index is valid, false otherwise.
+     */
     public function offsetExists($index)
     {
         
     }
     
+    /**
+     * Returns the character at position $index.
+     *
+     * @param integer $index
+     * @return string The character.
+     * @throws OutOfBoundsException If an invalid index was provided.
+     */
     public function offsetGet($index)
     {
         
     }
     
+    /**
+     * Overwriting characters is not supported.
+     *
+     * This method is implemented, because it is required by ArrayAccess.
+     * It will always throw an exception.
+     *
+     * @param integer $index
+     * @param string $value
+     * @throws LogicException Always, as overwriting characters is not supported.
+     */
     public function offsetSet($index, $value)
     {
         
     }
     
-    public function offsetUnset($offset)
+    /**
+     * Deleting characters is not supported.
+     *
+     * This method is implemented, because it is required by ArrayAccess.
+     * It will always throw an exception.
+     *
+     * @param integer $index
+     * @throws LogicException Always, as deleting characters is not supported.
+     */
+    public function offsetUnset($index)
     {
         
     }
