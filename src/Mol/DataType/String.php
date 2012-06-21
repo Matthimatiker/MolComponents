@@ -284,23 +284,12 @@ class Mol_DataType_String implements IteratorAggregate, Countable
     /**
      * Checks if the string contains the provided needle.
      *
-     * If an array of strings is provided then contains() will check
-     * if the string contains at least one of the needles.
-     *
-     * @param string|Mol_DataType_String|array(string) $needle A single or multiple needles.
+     * @param string|Mol_DataType_String $needle
      * @return boolean True if the string contains the needle, false otherwise.
      */
     public function contains($needle)
     {
-        $needles = is_array($needle) ? $needle : array($this->toValue($needle));
-        foreach ($needles as $needle) {
-            /* @var $needle string */
-            if (strpos($this->value, $needle) !== false) {
-                // String contains needle.
-                return true;
-            }
-        }
-        return false;
+        return strpos($this->value, $this->toValue($needle)) !== false;
     }
     
     /**
@@ -311,7 +300,16 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function containsAny(array $needles)
     {
-        
+        if (count($needles) === 0) {
+            return true;
+        }
+        foreach ($needles as $needle) {
+            /* @var $needle string|Mol_DataType_String */
+            if ($this->contains($needle)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
@@ -322,7 +320,13 @@ class Mol_DataType_String implements IteratorAggregate, Countable
      */
     public function containsAll(array $needles)
     {
-        
+        foreach ($needles as $needle) {
+            /* @var $needle string|Mol_DataType_String */
+            if (!$this->contains($needle)) {
+                return false;
+            }
+        }
+        return true;
     }
     
     /**
