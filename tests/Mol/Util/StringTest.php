@@ -130,6 +130,17 @@ class Mol_Util_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if contains() searches for digits that are passed as argument.
+     *
+     * Ensures that integer values are not converted to characters internally.
+     */
+    public function testContainsSearchesForProvidedDigits()
+    {
+        $result = Mol_Util_String::contains('123', 2);
+        $this->assertTrue($result);
+    }
+    
+    /**
      * Ensures that containsAny() returns true if a list of needles is provided and
      * the string contains at least one needle in the list.
      */
