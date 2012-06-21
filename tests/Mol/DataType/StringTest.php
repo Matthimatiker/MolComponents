@@ -249,6 +249,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if indexOf() accepts a string object as argument.
+     */
+    public function testIndexOfAcceptsStringObject()
+    {
+        $index = $this->create('abcabc')->indexOf($this->create('b'));
+        $this->assertEquals(1, $index);
+    }
+    
+    /**
      * Ensures that lastIndexOf() returns -1 of the string does not contain the needle.
      */
     public function testLastIndexOfReturnsMinusOneIfStringDoesNotContainNeedle()
@@ -293,6 +302,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     {
         $index = $this->create('abcabc')->lastIndexOf('a', 3);
         $this->assertEquals(3, $index);
+    }
+    
+    /**
+     * Checks if lastIndexOf() accepts a string object as argument.
+     */
+    public function testLastIndexOfAcceptsStringObject()
+    {
+        $index = $this->create('abcabc')->lastIndexOf($this->create('b'));
+        $this->assertEquals(4, $index);
     }
     
     /**
@@ -350,6 +368,16 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if indexesOf() accepts a string object as argument.
+     */
+    public function testIndexesOfAcceptsStringObject()
+    {
+        $indexes = $this->create('abc')->indexesOf($this->create('b'));
+        $this->assertInternalType('array', $indexes);
+        $this->assertContains(1, $indexes);
+    }
+    
+    /**
      * Ensures that startsWith() returns true if the string starts with the given
      * prefix.
      */
@@ -389,6 +417,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if startsWith() accepts a string object as argument.
+     */
+    public function testStartsWithAcceptsStringObject()
+    {
+        $result = $this->create('test-string')->startsWith($this->create('test'));
+        $this->assertTrue($result);
+    }
+    
+    /**
      * Ensures that endsWith() returns true if the string ends with the given suffix.
      */
     public function testEndsWithReturnsTrueIfTheStringEndsWithTheProvidedSuffix()
@@ -415,6 +452,15 @@ class Mol_DataType_StringTest extends PHPUnit_Framework_TestCase
     {
         $result = $this->create('this is a test string')->endsWith('demo');
         $this->assertFalse($result);
+    }
+    
+    /**
+     * Checks if endsWith() accepts a string object as argument.
+     */
+    public function testEndsWithAcceptsStringObject()
+    {
+        $result = $this->create('test-string')->endsWith($this->create('string'));
+        $this->assertTrue($result);
     }
     
     /**
