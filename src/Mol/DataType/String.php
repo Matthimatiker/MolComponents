@@ -23,8 +23,25 @@
  *
  * Each string is represented by an object that encapsulates the
  * raw string value and the charset.
+ *
  * The content of a string object is not changable, if a modification
  * is performed then a new string object will be created and returned.
+ *
+ * If necessary methods take the charset into account. Therefore it
+ * is possible to compare string with different charsets and so on.
+ *
+ * == Usage ==
+ *
+ * String objects are instantiated via create():
+ * <code>
+ * $stringObject = Mol_DataType_String::create('my string');
+ * </code>
+ *
+ * If no charset is provided then UTF-8 is assumed, but you may
+ * specify the charset of the provided string too:
+ * <code>
+ * $stringObject = Mol_DataType_String::create('my string', 'latin1');
+ * </code>
  *
  * @category PHP
  * @package Mol_DataType
