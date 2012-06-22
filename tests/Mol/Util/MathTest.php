@@ -39,7 +39,8 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSignThrowsExceptionIfNeitherIntegerNorDoubleIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        Mol_Util_Math::sign('this is not numeric');
     }
     
     /**
@@ -47,7 +48,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSignReturnsMinusOneIfProvidedIntegerIsLessThanZero()
     {
-        
+        $this->assertEquals(-1, Mol_Util_Math::sign(-42));
     }
     
     /**
@@ -55,7 +56,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSignReturnsZeroIfProvidedIntegerIsZero()
     {
-        
+        $this->assertEquals(0, Mol_Util_Math::sign(0));
     }
     
     /**
@@ -63,7 +64,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSignReturnsZeroIfProvidedIntegerIsGreaterThanZero()
     {
-    
+        $this->assertEquals(1, Mol_Util_Math::sign(42));
     }
     
     /**
@@ -71,7 +72,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSignReturnsMinusOneIfProvidedDoubleIsLessThanZero()
     {
-    
+        $this->assertEquals(-1, Mol_Util_Math::sign(-7.5));
     }
     
     /**
@@ -79,7 +80,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSignReturnsZeroIfProvidedDoubleIsZero()
     {
-    
+        $this->assertEquals(0, Mol_Util_Math::sign(0.0));
     }
     
     /**
@@ -87,7 +88,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testSignReturnsZeroIfProvidedDoubleIsGreaterThanZero()
     {
-    
+        $this->assertEquals(1, Mol_Util_Math::sign(7.5));
     }
     
     /**
@@ -95,7 +96,8 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testIsEvenThrowsExceptionIfNoIntegerIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        Mol_Util_Math::isEven(4.2);
     }
     
     /**
@@ -103,7 +105,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testIsEvenReturnsTrueIfProvidedIntegerIsEven()
     {
-        
+        $this->assertTrue(Mol_Util_Math::isEven(2));
     }
     
     /**
@@ -111,7 +113,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testIsEvenReturnsFalseIfProvidedIntegerIsOdd()
     {
-        
+        $this->assertFalse(Mol_Util_Math::isEven(5));
     }
     
     /**
@@ -119,7 +121,8 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testIsOddThrowsExceptionIfNoIntegerIsProvided()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        Mol_Util_Math::isOdd(4.2);
     }
     
     /**
@@ -127,7 +130,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testIsOddReturnsFalseIfProvidedIntegerIsEven()
     {
-    
+        $this->assertFalse(Mol_Util_Math::isOdd(6));
     }
     
     /**
@@ -135,7 +138,7 @@ class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
      */
     public function testIsOddReturnsTrueIfProvidedIntegerIsOdd()
     {
-    
+        $this->assertTrue(Mol_Util_Math::isOdd(7));
     }
     
 }
