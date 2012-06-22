@@ -283,7 +283,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function startsWith($prefix)
     {
-        return strpos($this->value, $this->toValue($prefix)) === 0;
+        return Mol_Util_String::startsWith($this->value, $this->toValue($prefix));
     }
     
     /**
@@ -294,9 +294,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function endsWith($suffix)
     {
-        $suffix = $this->toValue($suffix);
-        $expectedPosition = $this->lengthInBytes() - $this->getLengthInBytes($suffix);
-        return strrpos($this->value, $suffix) === $expectedPosition;
+        return Mol_Util_String::endsWith($this->value, $this->toValue($suffix));
     }
     
     /**
@@ -307,7 +305,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function contains($needle)
     {
-        return strpos($this->value, $this->toValue($needle)) !== false;
+        return Mol_Util_String::contains($this->value, $this->toValue($needle));
     }
     
     /**
@@ -318,16 +316,8 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function containsAny(array $needles)
     {
-        if (count($needles) === 0) {
-            return true;
-        }
-        foreach ($needles as $needle) {
-            /* @var $needle string|Mol_DataType_String */
-            if ($this->contains($needle)) {
-                return true;
-            }
-        }
-        return false;
+        $needles = $this->toValues($needles);
+        return Mol_Util_String::containsAny($this->value, $needles);
     }
     
     /**
@@ -338,13 +328,8 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      */
     public function containsAll(array $needles)
     {
-        foreach ($needles as $needle) {
-            /* @var $needle string|Mol_DataType_String */
-            if (!$this->contains($needle)) {
-                return false;
-            }
-        }
-        return true;
+        $needles = $this->toValues($needles);
+        return Mol_Util_String::containsAll($this->value, $needles);
     }
     
     /**
@@ -358,12 +343,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
     public function removePrefix($prefix)
     {
         $prefix = $this->toValue($prefix);
-        if (!$this->startsWith($prefix)) {
-            // Nothing to remove.
-            return $this;
-        }
-        $withoutPrefix = substr($this->value, $this->getLengthInBytes($prefix));
-        return $this->createString($withoutPrefix);
+        return $this->createString(Mol_Util_String::removePrefix($this->value, $prefix));
     }
     
     /**
@@ -377,12 +357,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
     public function removeSuffix($suffix)
     {
         $suffix = $this->toValue($suffix);
-        if (!$this->endsWith($suffix)) {
-            // Nothing to remove.
-            return $this;
-        }
-        $withoutSuffix = substr($this->value, 0, $this->lengthInBytes() - $this->getLengthInBytes($suffix));
-        return $this->createString($withoutSuffix);
+        return $this->createString(Mol_Util_String::removeSuffix($this->value, $suffix));
     }
     
     /**
@@ -432,8 +407,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
             $replace = $search;
             $search  = array_keys($searchOrMapping);
         }
-        $replaced = str_replace($search, $replace, $this->value);
-        return $this->createString($replaced);
+        return $this->createString(Mol_Util_String::replace($this->value, $search, $replace));
     }
     
     /**
