@@ -36,6 +36,7 @@ class Mol_Util_Math
      *
      * @param integer|double $value
      * @return integer -1 if $value < 0, 0 if $value == 0 and 1 if $value > 0.
+     * @throws InvalidArgumentException If no integer or double is provided.
      */
     public static function sign($value)
     {
@@ -55,6 +56,7 @@ class Mol_Util_Math
      *
      * @param integer $value
      * @return boolean True if $value is even, false otherwise.
+     * @throws InvalidArgumentException If no integer is provided.
      */
     public static function isEven($value)
     {
@@ -74,6 +76,7 @@ class Mol_Util_Math
      *
      * @param integer $value
      * @return boolean True if $value is odd, false otherwise.
+     * @throws InvalidArgumentException If no integer is provided.
      */
     public static function isOdd($value)
     {
