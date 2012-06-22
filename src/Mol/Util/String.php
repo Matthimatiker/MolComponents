@@ -17,6 +17,7 @@
  *
  * This class contains lightweight helper methods that simplify string handling.
  * All operations are independent of the underlying charset of the subject string.
+ *
  * If you need to perform actions that depend on the charset, then try to use
  * Mol_DataType_String as it includes charset handling.
  *
