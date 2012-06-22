@@ -33,4 +33,69 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Util_MathTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testSignThrowsExceptionIfNeitherIntegerNorDoubleIsProvided()
+    {
+        
+    }
+    
+    public function testSignReturnsMinusOneIfProvidedIntegerIsLessThanZero()
+    {
+        
+    }
+    
+    public function testSignReturnsZeroIfProvidedIntegerIsZero()
+    {
+        
+    }
+    
+    public function testSignReturnsZeroIfProvidedIntegerIsGreaterThanZero()
+    {
+    
+    }
+    
+    public function testSignReturnsMinusOneIfProvidedDoubleIsLessThanZero()
+    {
+    
+    }
+    
+    public function testSignReturnsZeroIfProvidedDoubleIsZero()
+    {
+    
+    }
+    
+    public function testSignReturnsZeroIfProvidedDoubleIsGreaterThanZero()
+    {
+    
+    }
+    
+    public function testIsEvenThrowsExceptionIfNoIntegerIsProvided()
+    {
+        
+    }
+    
+    public function testIsEvenReturnsTrueIfProvidedIntegerIsEven()
+    {
+        
+    }
+    
+    public function testIsEvenReturnsFalseIfProvidedIntegerIsOdd()
+    {
+        
+    }
+    
+    public function testIsOddThrowsExceptionIfNoIntegerIsProvided()
+    {
+    
+    }
+    
+    public function testIsOddReturnsFalseIfProvidedIntegerIsEven()
+    {
+    
+    }
+    
+    public function testIsOddReturnsTrueIfProvidedIntegerIsOdd()
+    {
+    
+    }
+    
 }
