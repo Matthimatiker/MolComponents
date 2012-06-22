@@ -108,6 +108,34 @@ class Mol_Util_String
     }
     
     /**
+     * Removes the given prefix from the string.
+     *
+     * This method has no effect if the string does not start with $prefix.
+     *
+     * @param string $subject
+     * @param string $prefix
+     * @return string String without prefix.
+     */
+    public static function removePrefix($subject, $prefix)
+    {
+        
+    }
+    
+    /**
+     * Removes the given suffix from the string.
+     *
+     * This method has no effect if the string does not end with $suffix.
+     *
+     * @param string $subject
+     * @param string $suffix
+     * @return string String without suffix.
+     */
+    public static function removeSuffix($subject, $suffix)
+    {
+        
+    }
+    
+    /**
      * Replaces all occurrences of $searchOrMapping by $replace.
      *
      * This method provides 3 signatures:
