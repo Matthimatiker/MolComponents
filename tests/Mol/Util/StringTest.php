@@ -199,6 +199,62 @@ class Mol_Util_StringTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if removePrefix() removes the given prefix from the string.
+     */
+    public function testRemovePrefixRemovesProvidedPrefix()
+    {
+        $result = Mol_Util_String::removePrefix('this is a test string', 'this ');
+        $this->assertEquals('is a test string', $result);
+    }
+    
+    /**
+     * Ensures that removePrefix() removes the prefix only once.
+     */
+    public function testRemovePrefixRemovesPrefixOnlyOnce()
+    {
+        $result = Mol_Util_String::removePrefix('testtestdemo', 'test');
+        $this->assertEquals('testdemo', $result);
+    }
+    
+    /**
+     * Ensures that removePrefix() does not modify the string if it does not
+     * start with the prefix but contains it.
+     */
+    public function testRemovePrefixDoesNotModifyStringIfItOnlyContainsPrefix()
+    {
+        $result = Mol_Util_String::removePrefix('this is a test string', 'test ');
+        $this->assertEquals('this is a test string', $result);
+    }
+    
+    /**
+     * Checks if removeSuffix() removes the provided suffix from the string.
+     */
+    public function testRemoveSuffixRemovesProvidedSuffix()
+    {
+        $result = Mol_Util_String::removeSuffix('this is a test string', ' string');
+        $this->assertEquals('this is a test', $result);
+    }
+    
+    /**
+     * Ensures that removeSuffix() removes the suffix only once.
+     */
+    public function testRemoveSuffixRemovesSuffixOnlyOnce()
+    {
+        $result = Mol_Util_String::removeSuffix('demotesttest', 'test');
+        $this->assertEquals('demotest', $result);
+    }
+    
+    /**
+     * Ensures that removeSuffix() does not modify the string if it does not
+     * end with the suffix but contains it.
+     */
+    public function testRemoveSuffixDoesNotModifyStringIfItOnlyContainsSuffix()
+    {
+        $result = Mol_Util_String::removeSuffix('this is a test string', 'test');
+        $this->assertEquals('this is a test string', $result);
+    }
+    
+    /**
      * Ensures that replace() does not modify the string if it does not contain
      * the search value.
      */
