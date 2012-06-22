@@ -40,7 +40,16 @@ class Mol_Util_Math
      */
     public static function sign($value)
     {
-        
+        if (!is_int($value) && !is_double($value)) {
+            throw new InvalidArgumentException('Integer or double expected.');
+        }
+        if ($value > 0) {
+            return 1;
+        }
+        if ($value < 0) {
+            return -1;
+        }
+        return 0;
     }
     
     /**
@@ -60,7 +69,11 @@ class Mol_Util_Math
      */
     public static function isEven($value)
     {
-        
+        if (!is_int($value)) {
+            throw new InvalidArgumentException('Integer expected.');
+        }
+        // Check the last bit to determine if the value is even.
+        return ($value & 1) === 0;
     }
     
     /**
@@ -80,7 +93,11 @@ class Mol_Util_Math
      */
     public static function isOdd($value)
     {
-        
+        if (!is_int($value)) {
+            throw new InvalidArgumentException('Integer expected.');
+        }
+        // Check the last bit to determine if the value is odd.
+        return ($value & 1) === 1;
     }
     
 }
