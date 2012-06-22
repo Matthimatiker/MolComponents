@@ -43,6 +43,20 @@
  * $stringObject = Mol_DataType_String::create('my string', 'latin1');
  * </code>
  *
+ * Once a string object is created you may use its methods to
+ * inspect the string:
+ * <code>
+ * $stringObject->endsWith('Test');
+ * </code>
+ *
+ * All methods respect the charset if necessary, so multi-byte characters
+ * are handled correctly:
+ * <code>
+ * $stringObject = Mol_DataType_String::create('äüö', 'UTF-8');
+ * // Returns: array('ä', 'ü', 'ö')
+ * $characters   = $stringObject->toCharacters();
+ * </code>
+ *
  * @category PHP
  * @package Mol_DataType
  * @author Matthias Molitor <matthias@matthimatiker.de>
