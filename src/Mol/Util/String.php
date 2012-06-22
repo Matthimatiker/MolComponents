@@ -118,7 +118,11 @@ class Mol_Util_String
      */
     public static function removePrefix($subject, $prefix)
     {
-        
+        if (!self::startsWith($subject, $prefix)) {
+            // Nothing to remove.
+            return $subject;
+        }
+        return substr($subject, strlen($prefix));
     }
     
     /**
@@ -132,7 +136,11 @@ class Mol_Util_String
      */
     public static function removeSuffix($subject, $suffix)
     {
-        
+        if (!self::endsWith($subject, $suffix)) {
+            // Nothing to remove.
+            return $subject;
+        }
+        return substr($subject, 0, strlen($subject) - strlen($suffix));
     }
     
     /**
