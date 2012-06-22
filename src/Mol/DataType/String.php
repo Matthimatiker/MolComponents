@@ -13,7 +13,18 @@
  */
 
 /**
- * Class that simplifies string handling.
+ * Class that simplifies charset-dependent string handling.
+ *
+ * Hint:
+ * Have a closer look at Mol_Util_String if you are searching for
+ * string methods that do not require knowledge about the charset.
+ *
+ * == Description ==
+ *
+ * Each string is represented by an object that encapsulates the
+ * raw string value and the charset.
+ * The content of a string object is not changable, if a modification
+ * is performed then a new string object will be created and returned.
  *
  * @category PHP
  * @package Mol_DataType
