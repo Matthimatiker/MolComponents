@@ -220,7 +220,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->relationValidator->expects($this->any())
                                 ->method('isValid')
                                 ->will($this->returnValue(false));
-        $this->simulateMessageList(array('my' => 'message with [%label%]'));
+        $this->simulateMessageList(array('my' => 'message with [%compareLabel%]'));
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
         $messages = $this->validator->getMessages();
@@ -248,7 +248,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->simulateSuccessfulRelationValidation();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
-        $this->assertEquals('Your name', $this->validator->label);
+        $this->assertEquals('Your name', $this->validator->compareLabel);
     }
     
     /**
@@ -259,7 +259,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->simulateSuccessfulRelationValidation();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
-        $this->assertEquals('Matthias', $this->validator->comparedValue);
+        $this->assertEquals('Matthias', $this->validator->compareValue);
     }
     
     /**
@@ -281,7 +281,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->relationValidator->expects($this->any())
                                 ->method('isValid')
                                 ->will($this->returnValue(false));
-        $this->simulateMessageList(array('message' => 'compared to %comparedValue%'));
+        $this->simulateMessageList(array('message' => 'compared to %compareValue%'));
         $this->validator->setObscureValue(true);
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
