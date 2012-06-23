@@ -27,6 +27,21 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
 {
     
     /**
+     * The validator that is used to check the relation
+     * of the compared values.
+     *
+     * @var Zend_Validate_Interface
+     */
+    protected $relationValidator = null;
+    
+    /**
+     * The element use value is compared.
+     *
+     * @var Zend_Form_Element
+     */
+    protected $element = null;
+    
+    /**
      * Creates a validator that uses the provided relation and
      * compares the validated value against the value of the given
      * form element.
