@@ -216,6 +216,9 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      */
     protected function getCompareValue()
     {
+        if ($this->getObscureValue() && is_string($this->rawCompareValue)) {
+            return str_repeat('*', strlen($this->rawCompareValue));
+        }
         return $this->rawCompareValue;
     }
     
