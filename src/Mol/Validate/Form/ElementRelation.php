@@ -31,7 +31,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      * compares the validated value against the value of the given
      * form element.
      *
-     * @param string $relation
+     * @param string|Zend_Validate_Interface $relation
      * @param Zend_Form_Element $element
      */
     public function __construct($relation, Zend_Form_Element $element)
