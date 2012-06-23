@@ -22,6 +22,9 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 23.06.2012
+ * @property string $compareName The name of the compared element.
+ * @property string $compareLabel The label of the compared element.
+ * @property string|null $compareValue The value that was compared last.
  */
 class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
 {
