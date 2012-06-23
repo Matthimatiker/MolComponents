@@ -34,11 +34,47 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Validate_Form_ElementRelation
+     */
+    protected $validator = null;
+    
+    /**
+     * The mocked relation validator.
+     *
+     * @var PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $relationValidator = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->relationValidator = $this->createRelationValidator();
+        $element = new Zend_Form_Element_Text('name');
+        $element->setLabel('Your name');
+        $this->validator = new Mol_Validate_Form_ElementRelation($this->relationValidator, $element);
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->relationValidator = null;
+        $this->validator = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that isValid() returns false if no context is provided.
      */
     public function testIsValidReturnsFalseIfNoContextIsProvided()
     {
-        
+        $this->assertFalse($this->validator->isValid('test'));
     }
     
     /**
@@ -47,7 +83,10 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageIfNoContextIsProvided()
     {
-        
+        $this->validator->isValid('test');
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
     /**
@@ -55,7 +94,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidReturnsFalseIfContextIsNotAnArray()
     {
-        
+        $this->assertFalse($this->validator->isValid('test', new stdClass()));
     }
     
     /**
@@ -64,7 +103,10 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageIfContextIsNotAnArray()
     {
-    
+        $this->validator->isValid('test', new stdClass());
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
     /**
@@ -73,7 +115,8 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidReturnsFalseIfComparedValueIsMissing()
     {
-        
+        $context = array('another' => 'value');
+        $this->assertFalse($this->validator->isValid('test', $context));
     }
     
     /**
@@ -82,7 +125,11 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageIfComparedValueIsMissing()
     {
-    
+        $context = array('another' => 'value');
+        $this->validator->isValid('test', $context);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
     /**
@@ -170,6 +217,16 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
     public function testConstructorThrowsExceptionIfInvalidRelationObjectIsProvided()
     {
     
+    }
+    
+    /**
+     * Creates a mocked relation validator.
+     *
+     * @return  PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function createRelationValidator()
+    {
+        return $this->getMock('Zend_Validate_Interface');
     }
     
 }
