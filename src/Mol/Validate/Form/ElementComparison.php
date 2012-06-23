@@ -27,7 +27,7 @@ class Mol_Validate_Form_ElementComparison extends Zend_Validate_Abstract
 {
     
     /**
-     * Checks if the values of teh two form elements fulfill the relation.
+     * Checks if the values of the two form elements fulfill the relation.
      *
      * @param mixed $value
      * @param array(string=>string)|null $context
