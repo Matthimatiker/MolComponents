@@ -269,6 +269,16 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if the name of the compared element is available as property.
+     */
+    public function testNameOfComparedElementIsAccessibleAsProperty()
+    {
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
+        $this->assertEquals('name', $this->validator->compareName);
+    }
+    
+    /**
      * Ensures that the compared value is obscured if configured.
      */
     public function testComparedValueIsObscuredIfRequired()
@@ -278,7 +288,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
                                 ->will($this->returnValue(false));
         $this->relationValidator->expects($this->any())
                                 ->method('getMessages')
-                                ->will($this->returnValue(array('my' => 'compared to %comparedValue%')));
+                                ->will($this->returnValue(array('message' => 'compared to %comparedValue%')));
         $this->validator->setObscureValue(true);
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
