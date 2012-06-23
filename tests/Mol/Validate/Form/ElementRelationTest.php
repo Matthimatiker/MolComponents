@@ -48,15 +48,22 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
     protected $relationValidator = null;
     
     /**
+     * The element whose value is compared.
+     *
+     * @var Zend_Form_Element_Text
+     */
+    protected $element = null;
+    
+    /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
      */
     protected function setUp()
     {
         parent::setUp();
         $this->relationValidator = $this->createRelationValidator();
-        $element = new Zend_Form_Element_Text('name');
-        $element->setLabel('Your name');
-        $this->validator = new Mol_Validate_Form_ElementRelation($this->relationValidator, $element);
+        $this->element = new Zend_Form_Element_Text('name');
+        $this->element->setLabel('Your name');
+        $this->validator = new Mol_Validate_Form_ElementRelation($this->relationValidator, $this->element);
     }
     
     /**
@@ -64,8 +71,9 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
+        $this->validator         = null;
+        $this->element           = null;
         $this->relationValidator = null;
-        $this->validator = null;
         parent::tearDown();
     }
     
@@ -175,6 +183,22 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that isValid() returns true if the relation validator accepts the
+     * compare values.
+     */
+    public function testValidatorAcceptsInputIfRelationValidatorDoesNotRejectValues()
+    {
+        $this->relationValidator->expects($this->any())
+                                ->method('isValid')
+                                ->will($this->returnValue(true));
+        $this->relationValidator->expects($this->any())
+                                ->method('getMessages')
+                                ->will($this->returnValue(array()));
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->assertTrue($this->validator->isValid('Matthias', $context));
+    }
+    
+    /**
      * Ensures that getMessages() returns the messages that are provided by the
      * relation validator.
      */
@@ -219,7 +243,9 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatedValueIsAccessibleAsProperty()
     {
-        
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
+        $this->assertEquals('test', $this->validator->value);
     }
     
     /**
@@ -227,7 +253,9 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testLabelOfComparedElementIsAccessibleAsProperty()
     {
-        
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
+        $this->assertEquals('Your name', $this->validator->label);
     }
     
     /**
@@ -235,7 +263,9 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testComparedValueIsAccessibleAsProperty()
     {
-    
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
+        $this->assertEquals('Matthias', $this->validator->comparedValue);
     }
     
     /**
@@ -244,7 +274,8 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorThrowsExceptionIfInvalidRelationIdentifierIsProvided()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Validate_Form_ElementRelation('buhuhu', $this->element);
     }
     
     /**
@@ -255,7 +286,8 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorThrowsExceptionIfInvalidRelationObjectIsProvided()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Validate_Form_ElementRelation(new stdClass(), $this->element);
     }
     
     /**
