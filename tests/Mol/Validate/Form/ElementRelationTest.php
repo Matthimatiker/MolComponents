@@ -269,6 +269,26 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the compared value is obscured if configured.
+     */
+    public function testComparedValueIsObscuredIfRequired()
+    {
+        $this->relationValidator->expects($this->any())
+                                ->method('isValid')
+                                ->will($this->returnValue(false));
+        $this->relationValidator->expects($this->any())
+                                ->method('getMessages')
+                                ->will($this->returnValue(array('my' => 'compared to %comparedValue%')));
+        $this->validator->setObscureValue(true);
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertEquals(1, count($messages));
+        $this->assertNotContains('Matthias', current($messages));
+    }
+    
+    /**
      * Ensures that the constructor throws an exception if an invalid relation identifier
      * is provided.
      */
