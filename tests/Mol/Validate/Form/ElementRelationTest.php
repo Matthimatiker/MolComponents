@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Validate_Form_ElementComparisonTest
+ * Mol_Validate_Form_ElementRelationTest
  *
  * @category PHP
  * @package Mol_Validate
@@ -30,7 +30,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 23.06.2012
  */
-class Mol_Validate_Form_ElementComparisonTest extends PHPUnit_Framework_TestCase
+class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
 {
     
 }

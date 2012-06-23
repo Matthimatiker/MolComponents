@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Validate_Form_ElementComparison
+ * Mol_Validate_Form_ElementRelation
  *
  * @category PHP
  * @package Mol_Validate
@@ -23,7 +23,7 @@
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 23.06.2012
  */
-class Mol_Validate_Form_ElementComparison extends Zend_Validate_Abstract
+class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
 {
     
     /**
