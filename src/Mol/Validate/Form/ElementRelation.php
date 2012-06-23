@@ -149,10 +149,10 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
     public function __get($property)
     {
         switch ($property) {
-            case 'compareLabel':
-                return $this->getCompareLabel();
             case 'compareName':
                 return $this->getCompareName();
+            case 'compareLabel':
+                return $this->getCompareLabel();
             case 'compareValue':
                 return $this->getCompareValue();
         }
@@ -193,16 +193,6 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
     }
     
     /**
-     * Returns the label if the compared element.
-     *
-     * @return string
-     */
-    protected function getCompareLabel()
-    {
-        return $this->element->getLabel();
-    }
-    
-    /**
      * Returns the name of the compoared element.
      *
      * @return string
@@ -210,6 +200,16 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
     protected function getCompareName()
     {
         return $this->element->getName();
+    }
+    
+    /**
+     * Returns the label if the compared element.
+     *
+     * @return string
+     */
+    protected function getCompareLabel()
+    {
+        return $this->element->getLabel();
     }
     
     /**
