@@ -137,7 +137,12 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatedValueIsPassedToRelationValidator()
     {
-        
+        $this->relationValidator->expects($this->once())
+                                ->method('isValid')
+                                ->with('test')
+                                ->will($this->returnValue(false));
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
     }
     
     /**
@@ -145,7 +150,12 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testCompareValueIsPassedToRelationValidator()
     {
-        
+        $this->relationValidator->expects($this->once())
+                                ->method('isValid')
+                                ->with(new PHPUnit_Framework_Constraint_IsAnything(), 'Matthias')
+                                ->will($this->returnValue(false));
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
     }
     
     /**
@@ -154,7 +164,14 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsInputIfRelationValidatorDoesNotAcceptValues()
     {
-        
+        $this->relationValidator->expects($this->any())
+                                ->method('isValid')
+                                ->will($this->returnValue(false));
+        $this->relationValidator->expects($this->any())
+                                ->method('getMessages')
+                                ->will($this->returnValue(array()));
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->assertFalse($this->validator->isValid('test', $context));
     }
     
     /**
@@ -163,7 +180,18 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testGetMessagesReturnsMessagesProvidedByRelationValidator()
     {
-        
+        $this->relationValidator->expects($this->any())
+                                ->method('isValid')
+                                ->will($this->returnValue(false));
+        $this->relationValidator->expects($this->any())
+                                ->method('getMessages')
+                                ->will($this->returnValue(array('my' => 'message')));
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertArrayHasKey('my', $messages);
+        $this->assertEquals($messages['my'], 'message');
     }
     
     /**
@@ -172,7 +200,18 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorInjectsPropertiesIntoMessagesThatAreProvidedByTheRelationValidator()
     {
-        
+        $this->relationValidator->expects($this->any())
+                                ->method('isValid')
+                                ->will($this->returnValue(false));
+        $this->relationValidator->expects($this->any())
+                                ->method('getMessages')
+                                ->will($this->returnValue(array('my' => 'message with [%label%]')));
+        $context = array('another' => 'value', 'name' => 'Matthias');
+        $this->validator->isValid('test', $context);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertArrayHasKey('my', $messages);
+        $this->assertContains('[Your name]', $messages['my']);
     }
     
     /**
