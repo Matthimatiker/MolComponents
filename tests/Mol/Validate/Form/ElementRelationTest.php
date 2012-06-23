@@ -83,6 +83,11 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testValidatorInjectsPropertiesIntoMessagesThatAreProvidedByTheRelationValidator()
+    {
+        
+    }
+    
     public function testValidatedValueIsAccessibleViaMagicProperty()
     {
         
