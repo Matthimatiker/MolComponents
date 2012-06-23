@@ -149,6 +149,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
                                 ->method('isValid')
                                 ->with('test')
                                 ->will($this->returnValue(false));
+        $this->simulateMessageList();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
     }
@@ -162,6 +163,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
                                 ->method('isValid')
                                 ->with(new PHPUnit_Framework_Constraint_IsAnything(), 'Matthias')
                                 ->will($this->returnValue(false));
+        $this->simulateMessageList();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
     }
@@ -175,9 +177,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->relationValidator->expects($this->any())
                                 ->method('isValid')
                                 ->will($this->returnValue(false));
-        $this->relationValidator->expects($this->any())
-                                ->method('getMessages')
-                                ->will($this->returnValue(array()));
+        $this->simulateMessageList();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->assertFalse($this->validator->isValid('test', $context));
     }
@@ -188,12 +188,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsInputIfRelationValidatorDoesNotRejectValues()
     {
-        $this->relationValidator->expects($this->any())
-                                ->method('isValid')
-                                ->will($this->returnValue(true));
-        $this->relationValidator->expects($this->any())
-                                ->method('getMessages')
-                                ->will($this->returnValue(array()));
+        $this->simulateSuccessfulRelationValidation();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->assertTrue($this->validator->isValid('Matthias', $context));
     }
@@ -207,9 +202,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->relationValidator->expects($this->any())
                                 ->method('isValid')
                                 ->will($this->returnValue(false));
-        $this->relationValidator->expects($this->any())
-                                ->method('getMessages')
-                                ->will($this->returnValue(array('my' => 'message')));
+        $this->simulateMessageList(array('my' => 'message'));
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
         $messages = $this->validator->getMessages();
@@ -227,9 +220,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->relationValidator->expects($this->any())
                                 ->method('isValid')
                                 ->will($this->returnValue(false));
-        $this->relationValidator->expects($this->any())
-                                ->method('getMessages')
-                                ->will($this->returnValue(array('my' => 'message with [%label%]')));
+        $this->simulateMessageList(array('my' => 'message with [%label%]'));
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
         $messages = $this->validator->getMessages();
@@ -243,6 +234,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatedValueIsAccessibleAsProperty()
     {
+        $this->simulateSuccessfulRelationValidation();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
         $this->assertEquals('test', $this->validator->value);
@@ -253,6 +245,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testLabelOfComparedElementIsAccessibleAsProperty()
     {
+        $this->simulateSuccessfulRelationValidation();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
         $this->assertEquals('Your name', $this->validator->label);
@@ -263,6 +256,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testComparedValueIsAccessibleAsProperty()
     {
+        $this->simulateSuccessfulRelationValidation();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
         $this->assertEquals('Matthias', $this->validator->comparedValue);
@@ -273,6 +267,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testNameOfComparedElementIsAccessibleAsProperty()
     {
+        $this->simulateSuccessfulRelationValidation();
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
         $this->assertEquals('name', $this->validator->compareName);
@@ -286,9 +281,7 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $this->relationValidator->expects($this->any())
                                 ->method('isValid')
                                 ->will($this->returnValue(false));
-        $this->relationValidator->expects($this->any())
-                                ->method('getMessages')
-                                ->will($this->returnValue(array('message' => 'compared to %comparedValue%')));
+        $this->simulateMessageList(array('message' => 'compared to %comparedValue%'));
         $this->validator->setObscureValue(true);
         $context = array('another' => 'value', 'name' => 'Matthias');
         $this->validator->isValid('test', $context);
@@ -328,6 +321,29 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
     protected function createRelationValidator()
     {
         return $this->getMock('Zend_Validate_Interface');
+    }
+    
+    /**
+     * Simulates a successful relation validation.
+     */
+    protected function simulateSuccessfulRelationValidation()
+    {
+        $this->relationValidator->expects($this->any())
+                                ->method('isValid')
+                                ->will($this->returnValue(true));
+        $this->simulateMessageList();
+    }
+    
+    /**
+     * Simulates the provided list of relation validation messages.
+     *
+     * @param array(string=>string) $messages
+     */
+    protected function simulateMessageList(array $messages = array())
+    {
+        $this->relationValidator->expects($this->any())
+                                ->method('getMessages')
+                                ->will($this->returnValue($messages));
     }
     
 }
