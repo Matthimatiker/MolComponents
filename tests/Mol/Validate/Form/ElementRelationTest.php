@@ -33,4 +33,79 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testIsValidReturnsFalseIfNoContextIsProvided()
+    {
+        
+    }
+    
+    public function testValidatorProvidesMessageIfNoContextIsProvided()
+    {
+        
+    }
+    
+    public function testIsValidReturnsFalseIfContextIsNotAnArray()
+    {
+        
+    }
+    
+    public function testValidatorProvidesMessageIfContextIsNotAnArray()
+    {
+    
+    }
+    
+    public function testIsValidReturnsFalseIfComparedValueIsMissing()
+    {
+        
+    }
+    
+    public function testValidatorProvidesMessageIfComparedValueIsMissing()
+    {
+    
+    }
+    
+    public function testValidatedValueIsPassedToRelationValidator()
+    {
+        
+    }
+    
+    public function testCompareValueIsPassedToRelationValidator()
+    {
+        
+    }
+    
+    public function testValidatorRejectsInputIfRelationValidatorDoesNotAcceptValues()
+    {
+        
+    }
+    
+    public function testGetMessagesReturnsMessagesProvidedByRelationValidator()
+    {
+        
+    }
+    
+    public function testValidatedValueIsAccessibleViaMagicProperty()
+    {
+        
+    }
+    
+    public function testLabelOfComparedElementIsAccessibleViaMagicProperty()
+    {
+        
+    }
+    
+    public function testComparedValueIsAccessibleViaMagicProperty()
+    {
+    
+    }
+    
+    public function testConstructorThrowsExceptionIfInvalidRelationIdentifierIsProvided()
+    {
+    
+    }
+    
+    public function testConstructorThrowsExceptionIfInvalidRelationObjectIsProvided()
+    {
+    
+    }
+    
 }
