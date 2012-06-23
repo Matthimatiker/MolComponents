@@ -288,7 +288,9 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
         $messages = $this->validator->getMessages();
         $this->assertInternalType('array', $messages);
         $this->assertEquals(1, count($messages));
-        $this->assertNotContains('Matthias', current($messages));
+        $message = current($messages);
+        $this->assertNotContains('%compareValue%', $message);
+        $this->assertNotContains('Matthias', $message);
     }
     
     /**
