@@ -27,6 +27,19 @@ class Mol_Validate_Form_ElementComparison extends Zend_Validate_Abstract
 {
     
     /**
+     * Creates a validator that uses the provided relation and
+     * compares the validated value against the value of the given
+     * form element.
+     *
+     * @param string $relation
+     * @param Zend_Form_Element $element
+     */
+    public function __construct($relation, Zend_Form_Element $element)
+    {
+        
+    }
+    
+    /**
      * Checks if the values of the two form elements fulfill the relation.
      *
      * @param mixed $value
