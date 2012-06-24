@@ -33,16 +33,25 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_Form_Relation_EqualTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Ensures that the validator rejects values that differ.
+     */
     public function testValidatorRejectsValuesThatDiffer()
     {
         
     }
     
+    /**
+     * Checks if the validator accepts equal values.
+     */
     public function testValidatorAcceptsEqualValues()
     {
         
     }
     
+    /**
+     * Ensures that the validator provides a failure message if the values differ.
+     */
     public function testValidatorProvidesMessageIfValuesAreNotEqual()
     {
         
