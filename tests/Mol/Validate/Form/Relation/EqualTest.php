@@ -34,11 +34,36 @@ class Mol_Validate_Form_Relation_EqualTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Validate_Form_Relation_Equal
+     */
+    protected $validator = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->validator = new Mol_Validate_Form_Relation_Equal();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->validator = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that the validator rejects values that differ.
      */
     public function testValidatorRejectsValuesThatDiffer()
     {
-        
+        $this->assertFalse($this->validator->isValid(7, 42));
     }
     
     /**
@@ -46,7 +71,7 @@ class Mol_Validate_Form_Relation_EqualTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsEqualValues()
     {
-        
+        $this->assertTrue($this->validator->isValid(42, 42));
     }
     
     /**
@@ -54,7 +79,10 @@ class Mol_Validate_Form_Relation_EqualTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageIfValuesAreNotEqual()
     {
-        
+        $this->validator->isValid(7, 42);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
