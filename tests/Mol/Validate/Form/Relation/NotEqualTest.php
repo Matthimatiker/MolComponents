@@ -63,7 +63,7 @@ class Mol_Validate_Form_Relation_NotEqualTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsValuesThatDiffer()
     {
-        
+        $this->assertTrue($this->validator->isValid(7, 42));
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Validate_Form_Relation_NotEqualTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsEqualValues()
     {
-        
+        $this->assertFalse($this->validator->isValid(42, 42));
     }
     
     /**
@@ -80,7 +80,10 @@ class Mol_Validate_Form_Relation_NotEqualTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesFailureMessageIfValuesAreEqual()
     {
-        
+        $this->validator->isValid(42, 42);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
