@@ -166,7 +166,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      *
      * @param string|Zend_Validate_Interface $relationOrIdentifier
      * @return Zend_Validate_Interface
-     * @throws InvalidArgumentException If an invalid identifier is provided.
+     * @throws InvalidArgumentException If an invalid relation is provided.
      */
     protected function toRelation($relationOrIdentifier)
     {
