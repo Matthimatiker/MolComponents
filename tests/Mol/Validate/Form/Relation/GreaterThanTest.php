@@ -33,4 +33,29 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_Form_Relation_GreaterThanTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testValidatorRejectsValueThatIsLessThanTheComparedOne()
+    {
+        
+    }
+    
+    public function testValidatorRejectsValueThatEqualsTheComparedOne()
+    {
+    
+    }
+    
+    public function testValidatorAcceptsValueThatIsGreaterThanTheComparedOne()
+    {
+        
+    }
+    
+    public function testValidatorProvidedMessageIfValueIsLessThanTheComparedOne()
+    {
+    
+    }
+    
+    public function testValidatorProvidesMessageIfValueEqualsTheComparedOne()
+    {
+    
+    }
+    
 }
