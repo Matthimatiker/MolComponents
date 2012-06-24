@@ -42,7 +42,7 @@ class Mol_Validate_Form_Relation_GreaterThan extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageTemplates = array(
-        self::LESS_OR_EQUAL => "'%compareLabel%'"
+        self::LESS_OR_EQUAL => "Input must be greater than '%compareLabel%'"
     );
     
     /**
