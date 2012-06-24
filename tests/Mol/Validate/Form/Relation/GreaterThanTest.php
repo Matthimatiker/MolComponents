@@ -63,7 +63,7 @@ class Mol_Validate_Form_Relation_GreaterThanTest extends PHPUnit_Framework_TestC
      */
     public function testValidatorRejectsValueThatIsLessThanTheComparedOne()
     {
-        
+        $this->assertFalse($this->validator->isValid(7, 8));
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Validate_Form_Relation_GreaterThanTest extends PHPUnit_Framework_TestC
      */
     public function testValidatorRejectsValueThatEqualsTheComparedOne()
     {
-    
+        $this->assertFalse($this->validator->isValid(7, 7));
     }
     
     /**
@@ -79,7 +79,7 @@ class Mol_Validate_Form_Relation_GreaterThanTest extends PHPUnit_Framework_TestC
      */
     public function testValidatorAcceptsValueThatIsGreaterThanTheComparedOne()
     {
-        
+        $this->assertTrue($this->validator->isValid(9, 8));
     }
     
     /**
@@ -88,7 +88,8 @@ class Mol_Validate_Form_Relation_GreaterThanTest extends PHPUnit_Framework_TestC
      */
     public function testValidatorProvidedMessageIfValueIsLessThanTheComparedOne()
     {
-    
+        $this->validator->isValid(7, 8);
+        $this->assertFailureMessage();
     }
     
     /**
@@ -97,7 +98,18 @@ class Mol_Validate_Form_Relation_GreaterThanTest extends PHPUnit_Framework_TestC
      */
     public function testValidatorProvidesMessageIfValueEqualsTheComparedOne()
     {
+        $this->validator->isValid(7, 7);
+        $this->assertFailureMessage();
+    }
     
+    /**
+     * Asserts that the validator provides at least one failure message.
+     */
+    protected function assertFailureMessage()
+    {
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
