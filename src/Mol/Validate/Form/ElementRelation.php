@@ -170,11 +170,37 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      */
     protected function toRelationValidator($relation)
     {
+        if (is_string($relation)) {
+            $relation = $this->createRelationByIdentifier($relation);
+        }
         if (!($relation instanceof Zend_Validate_Interface)) {
             $message = 'No valid relation validator provided.';
             throw new InvalidArgumentException($message);
         }
         return $relation;
+    }
+    
+    /**
+     * Creates the relation validator that belongs to the provided identifier.
+     *
+     * @param string $identifier
+     * @return Zend_Validate_Interface
+     * @throws InvalidArgumentException If an invalid identifier is provided.
+     */
+    protected function createRelationByIdentifier($identifier)
+    {
+        switch ($identifier) {
+            case '==':
+                
+            case '!=':
+                
+            case '>':
+                
+            case '<':
+                
+        }
+        $message = '"' . $identifier . '" is not a valid relation identifier.';
+        throw new InvalidArgumentException($message);
     }
     
     /**
