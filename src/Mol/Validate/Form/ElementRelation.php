@@ -164,20 +164,20 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      *
      * If a validator is provided then it will be returned.
      *
-     * @param string|Zend_Validate_Interface $relation
+     * @param string|Zend_Validate_Interface $relationOrIdentifier
      * @return Zend_Validate_Interface
      * @throws InvalidArgumentException If an invalid identifier is provided.
      */
-    protected function toRelationValidator($relation)
+    protected function toRelationValidator($relationOrIdentifier)
     {
-        if (is_string($relation)) {
-            $relation = $this->createRelationByIdentifier($relation);
+        if (is_string($relationOrIdentifier)) {
+            $relationOrIdentifier = $this->createRelationByIdentifier($relationOrIdentifier);
         }
-        if (!($relation instanceof Zend_Validate_Interface)) {
+        if (!($relationOrIdentifier instanceof Zend_Validate_Interface)) {
             $message = 'No valid relation validator provided.';
             throw new InvalidArgumentException($message);
         }
-        return $relation;
+        return $relationOrIdentifier;
     }
     
     /**
