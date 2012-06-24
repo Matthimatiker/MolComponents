@@ -33,4 +33,29 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_Form_Relation_NotEqualTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * System under test.
+     *
+     * @var Mol_Validate_Form_Relation_NotEqual
+     */
+    protected $validator = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->validator = new Mol_Validate_Form_Relation_NotEqual();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->validator = null;
+        parent::tearDown();
+    }
+    
 }
