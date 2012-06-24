@@ -320,7 +320,8 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorAcceptsEqualRelationIdentifier()
     {
-        
+        $this->setExpectedException(null);
+        new Mol_Validate_Form_ElementRelation('==', $this->element);
     }
     
     /**
@@ -328,7 +329,8 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorAcceptsNotEqualRelationIdentifier()
     {
-        
+        $this->setExpectedException(null);
+        new Mol_Validate_Form_ElementRelation('!=', $this->element);
     }
     
     /**
@@ -336,7 +338,8 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorAcceptsGreaterThanRelationIdentifier()
     {
-    
+        $this->setExpectedException(null);
+        new Mol_Validate_Form_ElementRelation('>', $this->element);
     }
     
     /**
@@ -344,7 +347,8 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorAcceptsLessThanRelationIdentifier()
     {
-    
+        $this->setExpectedException(null);
+        new Mol_Validate_Form_ElementRelation('<', $this->element);
     }
     
     /**
