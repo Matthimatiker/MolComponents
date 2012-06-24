@@ -105,7 +105,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      */
     public function __construct($relation, Zend_Form_Element $element)
     {
-        $this->relation = $this->toRelationValidator($relation);
+        $this->relation = $this->toRelation($relation);
         $this->element  = $element;
     }
     
@@ -168,7 +168,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      * @return Zend_Validate_Interface
      * @throws InvalidArgumentException If an invalid identifier is provided.
      */
-    protected function toRelationValidator($relationOrIdentifier)
+    protected function toRelation($relationOrIdentifier)
     {
         if (is_string($relationOrIdentifier)) {
             $relationOrIdentifier = $this->createRelationByIdentifier($relationOrIdentifier);
