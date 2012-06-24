@@ -33,7 +33,7 @@ class Mol_Validate_Form_Relation_Equal extends Zend_Validate_Abstract
      *
      * @var string
      */
-    const NOT_EQUAL = 'relationEqualNotEqual';
+    const NOT_EQUAL = 'relationEqualValuesNotEqual';
     
     /**
      * Failure message templates.
