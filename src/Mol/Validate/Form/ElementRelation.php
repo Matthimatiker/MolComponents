@@ -213,6 +213,8 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
         foreach ($messages as $key => $message) {
             /* @var $key string */
             /* @var $message string */
+            // Route message through this validator to ensure
+            // that placeholders are substituted.
             $this->_messageTemplates[$key] = $message;
             $this->_error($key);
         }
