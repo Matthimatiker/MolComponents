@@ -25,7 +25,19 @@
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 24.06.2012
  */
-class Mol_Validate_Form_Relation_Equal
+class Mol_Validate_Form_Relation_Equal extends Zend_Validate_Abstract
 {
+    
+    /**
+     * Checks if the two values are equal.
+     *
+     * @param mixed $value
+     * @param mixed $other The compared value.
+     * @return boolean True if the values are equal, false otherwise.
+     */
+    public function isValid($value, $other = null)
+    {
+        
+    }
     
 }
