@@ -57,7 +57,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      *
      * @var Zend_Validate_Interface
      */
-    protected $relationValidator = null;
+    protected $relation = null;
     
     /**
      * The element use value is compared.
@@ -105,8 +105,8 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      */
     public function __construct($relation, Zend_Form_Element $element)
     {
-        $this->relationValidator = $this->toRelationValidator($relation);
-        $this->element           = $element;
+        $this->relation = $this->toRelationValidator($relation);
+        $this->element  = $element;
     }
     
     /**
@@ -133,8 +133,8 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
             return false;
         }
         $this->rawCompareValue = $context[$this->getCompareName()];
-        if (!$this->relationValidator->isValid($value, $this->rawCompareValue)) {
-            $this->addMessages($this->relationValidator->getMessages());
+        if (!$this->relation->isValid($value, $this->rawCompareValue)) {
+            $this->addMessages($this->relation->getMessages());
             return false;
         }
         return true;
