@@ -58,16 +58,26 @@ class Mol_Validate_Form_Relation_NotEqualTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Checks if the validator accepts values that differ.
+     */
     public function testValidatorAcceptsValuesThatDiffer()
     {
         
     }
     
+    /**
+     * Ensures that the validator rejects values that are equal.
+     */
     public function testValidatorRejectsEqualValues()
     {
         
     }
     
+    /**
+     * Ensures that the validator provides a failure message if the
+     * values are equal.
+     */
     public function testValidatorProvidesFailureMessageIfValuesAreEqual()
     {
         
