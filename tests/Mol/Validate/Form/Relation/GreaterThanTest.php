@@ -34,6 +34,31 @@ class Mol_Validate_Form_Relation_GreaterThanTest extends PHPUnit_Framework_TestC
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Validate_Form_Relation_GreaterThan
+     */
+    protected $validator = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->validator = new Mol_Validate_Form_Relation_GreaterThan();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->validator = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Checks if the validator rejects a value that is less than $other.
      */
     public function testValidatorRejectsValueThatIsLessThanTheComparedOne()
