@@ -260,9 +260,9 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function createView()
     {
-        $view = new Mol_Test_View_Mock();
+        $view = new Zend_View();
         Zend_Dojo::enableView($view);
-        $view->setHelper('Url', new Mol_Test_View_Helper_Url());
+        $view->registerHelper(new Mol_Test_View_Helper_Url(), 'url');
         return $view;
     }
 
