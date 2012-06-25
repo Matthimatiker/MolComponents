@@ -62,10 +62,10 @@ class Mol_Filter_Cast implements Zend_Filter_Interface
     }
 
     /**
-     * Zend_Filter_Interface::filter()
+     * Casts the value into the type that was passed to the constructor.
      *
      * @param mixed $value
-     * @return mixed Der konvertierte Wert.
+     * @return mixed The converted value.
      */
     public function filter($value)
     {
