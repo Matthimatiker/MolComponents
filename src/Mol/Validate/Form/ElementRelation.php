@@ -15,6 +15,78 @@
 /**
  * Validator that compares the values of two different form elements.
  *
+ * == Usage ==
+ *
+ * The validator is can simply be added to a form element.
+ * The relation and the compared element are passed to the
+ * constructor of the validator.
+ *
+ * Example:
+ * <code>
+ * // Create elements that expect date values in format yyyy-mm-dd:
+ * $from = new Zend_Form_Element_Text('from);
+ * $to = new Zend_Form_Element_Text('to');
+ * // Ensure that the provided "to" date is only valid if it is
+ * // beyond the "from" date:
+ * $to->addValidator(new Mol_Validate_Form_ElementRelation('>', $from));
+ * </code>
+ *
+ * The constructor accepts the relation first, then the compared element.
+ * That order makes it easy to read the relation rule. The example above
+ * tells:
+ * $to > $from
+ *
+ * As shown relation identifiers (strings) can be provided if built-in
+ * relations are used.
+ * The following relation identifiers are currently supported:
+ * # ==
+ * # !=
+ * # <
+ * # >
+ *
+ * More specific or custom relations can be provided as object instead
+ * of the relation identifier.
+ *
+ *
+ * == Custom relations ==
+ *
+ * The relation validators that are used internally must implement
+ * the Zend_Validate_Interface interface.
+ *
+ * The isValid() method should accept a second (for compability reasons
+ * optional) value:
+ * <code>
+ * pblic function isValid($value, $other = null)
+ * {
+ * }
+ * </code>
+ *
+ * The relation object is then passed to the constructor of the ElementRelation
+ * validator.
+ * For example we could use a custom relation validator that checks for a maximal
+ * difference between two values.
+ * Adding it could look like this:
+ * <code>
+ * $relation = new My_Custom_MaxDiffRelation(42);
+ * $validator = new Mol_Validate_Form_ElementRelation($relation, $comparedElement);
+ * </code>
+ *
+ *
+ * == Error messages ==
+ *
+ * The ElementRelation validator will pass through the messages that are provided
+ * by the internal relation validator.
+ *
+ * It will also translate these messages if possible/desired. Therefore the relation
+ * does not need to take care of translation itself.
+ *
+ * Furthermore the ElementRelation supports some additional placeholders in the
+ * messages.
+ * Currently the following additional placeholders are supported:
+ * # %compareName%  - The name of the compared element
+ * # %compareLabel% - The label of the compared element
+ * # %compareValue% - The value that was compared
+ *
  * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -90,8 +162,8 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageVariables = array(
-        'compareLabel' => 'compareLabel',
         'compareName'  => 'compareName',
+        'compareLabel' => 'compareLabel',
         'compareValue' => 'compareValue'
     );
     
@@ -196,8 +268,12 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
                 return new Mol_Validate_Form_Relation_NotEqual();
             case '>':
                 return new Mol_Validate_Form_Relation_GreaterThan();
+            case '>=':
+                return new Mol_Validate_Form_Relation_GreaterThanOrEqual();
             case '<':
                 return new Mol_Validate_Form_Relation_LessThan();
+            case '<=':
+                return new Mol_Validate_Form_Relation_LessThanOrEqual();
         }
         $message = '"' . $identifier . '" is not a valid relation identifier.';
         throw new InvalidArgumentException($message);
