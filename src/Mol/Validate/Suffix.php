@@ -27,6 +27,16 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
 {
     
     /**
+     * Creates a validator that accepts the provided suffixes.
+     *
+     * @param array(string) $suffixes
+     */
+    public function __construct(array $suffixes = array())
+    {
+        
+    }
+    
+    /**
      * Checks if the value ends with an accepted suffix.
      *
      * @param string $value
