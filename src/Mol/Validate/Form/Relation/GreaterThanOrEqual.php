@@ -29,11 +29,11 @@ class Mol_Validate_Form_Relation_GreaterThanOrEqual extends Zend_Validate_Abstra
 {
     
     /**
-     * Checks if $value is greater than $other.
+     * Checks if $value is greater than or equal to $other.
      *
      * @param mixed $value
      * @param mixed $other The compared value.
-     * @return boolean True if the value is greater, false otherwise.
+     * @return boolean True if the value is greater or equal, false otherwise.
      */
     public function isValid($value, $other = null)
     {
