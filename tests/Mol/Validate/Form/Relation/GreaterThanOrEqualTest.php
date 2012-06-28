@@ -19,7 +19,7 @@
 require_once(dirname(__FILE__) . '/bootstrap.php');
 
 /**
- * Tests the GreaterThabOrEqual relation.
+ * Tests the GreaterThanOrEqual relation.
  *
  * @category PHP
  * @package Mol_Validate
