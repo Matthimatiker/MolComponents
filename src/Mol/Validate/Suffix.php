@@ -22,7 +22,7 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 28.06.2012
- * @property string $suffixes Comma-separated list of accepted suffixes.
+ * @property string $allowedSuffixes Comma-separated list of accepted suffixes.
  */
 class Mol_Validate_Suffix extends Zend_Validate_Abstract
 {
@@ -32,7 +32,7 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      *
      * @var string
      */
-    const INVALID = 'suffixInvalidType';
+    const INVALID_TYPE = 'suffixInvalidType';
     
     /**
      * Identifier for failure message if value does not end with any
@@ -48,8 +48,8 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageTemplates = array(
-        self::INVALID   => "Invalid data type provided, expected string",
-        self::NO_SUFFIX => "'%value%' must end with one of the following suffixes: %suffixes%"
+        self::INVALID_TYPE => "Invalid data type provided, expected string",
+        self::NO_SUFFIX    => "'%value%' must end with one of the following suffixes: %allowedSuffixes%"
     );
     
     /**
@@ -58,7 +58,7 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageVariables = array(
-        'suffixes'  => 'suffixes'
+        'allowedSuffixes' => 'allowedSuffixes'
     );
     
     /**
@@ -76,7 +76,15 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      */
     public function __construct($suffixesOrSuffix = array())
     {
-        
+        if (is_string($suffixesOrSuffix)) {
+            // Single suffix provided.
+            $suffixesOrSuffix = array($suffixesOrSuffix);
+        }
+        if (!is_array($suffixesOrSuffix)) {
+            $message = 'Expected list of suffixes (array) or single suffix (string).';
+            throw new InvalidArgumentException($message);
+        }
+        $this->suffixes = $suffixesOrSuffix;
     }
     
     /**
@@ -87,7 +95,38 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      */
     public function isValid($value)
     {
-        
+        $this->_setValue($value);
+        if (!is_string($value)) {
+            $this->_error(self::INVALID_TYPE);
+            return false;
+        }
+        if (count($this->suffixes) === 0) {
+            // We do not have any suffix to check against,
+            // therefore we accept any string.
+            return true;
+        }
+        if (!$this->endsWithSuffix($value)) {
+            $this->_error(self::NO_SUFFIX);
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Checks if the value ends with an allowed suffix.
+     *
+     * @param string $value
+     * @return boolean True if the value ends with a suffix, false otherwise.
+     */
+    protected function endsWithSuffix($value)
+    {
+        foreach ($this->suffixes as $suffix) {
+            /* @var $suffix string */
+            if (Mol_Util_String::endsWith($value, $suffix)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
@@ -97,7 +136,7 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      */
     public function getSuffixes()
     {
-        
+        return $this->suffixes;
     }
     
     /**
@@ -108,7 +147,8 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      */
     public function setSuffixes(array $suffixes)
     {
-        
+        $this->suffixes = $suffixes;
+        return $this;
     }
     
 }
