@@ -54,7 +54,11 @@ class Mol_Validate_Form_Relation_LessThanOrEqual extends Zend_Validate_Abstract
      */
     public function isValid($value, $other = null)
     {
-        
+        if ($value > $other) {
+            $this->_error(self::GREATER);
+            return false;
+        }
+        return true;
     }
     
 }
