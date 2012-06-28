@@ -352,6 +352,24 @@ class Mol_Validate_Form_ElementRelationTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if the constructor accepts the identifier for the GreaterThanOrEqual relation
+     */
+    public function testConstructorAcceptsGreaterThanOrEqualRelationIdentifier()
+    {
+        $this->setExpectedException(null);
+        new Mol_Validate_Form_ElementRelation('>=', $this->element);
+    }
+    
+    /**
+     * Checks if the constructor accepts the identifier for the LessThanOrEqual relation
+     */
+    public function testConstructorAcceptsLessThanOrEqualRelationIdentifier()
+    {
+        $this->setExpectedException(null);
+        new Mol_Validate_Form_ElementRelation('<=', $this->element);
+    }
+    
+    /**
      * Creates a mocked relation validator.
      *
      * @return  PHPUnit_Framework_MockObject_MockObject
