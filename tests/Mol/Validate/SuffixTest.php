@@ -33,4 +33,79 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testGetSuffixesReturnsArray()
+    {
+        
+    }
+    
+    public function testGetSuffixesReturnsCorrectNumberOfSuffixes()
+    {
+        
+    }
+    
+    public function testGetSuffixesReturnsCorrectSuffixes()
+    {
+        
+    }
+    
+    public function testSetSuffixesProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testSetSuffixesOverwritesCurrentSuffixes()
+    {
+        
+    }
+    
+    public function testIsValidRejectsInvalidValue()
+    {
+        
+    }
+    
+    public function testIsValidAcceptsValueWithAcceptedSuffix()
+    {
+        
+    }
+    
+    public function testIsValidAcceptsValueWithSuffixFromEndOfList()
+    {
+        
+    }
+    
+    public function testIsValidRejectsValueWithoutAcceptedSuffix()
+    {
+        
+    }
+    
+    public function testIsValidAcceptsValueIfListOfAcceptedSuffixesIsEmpty()
+    {
+        
+    }
+    
+    public function testValidatorProvidesMessageIfInvalidValueIsProvided()
+    {
+        
+    }
+    
+    public function testValidatorProvidesMessageIfValueWithoutAcceptedSuffixIsProvided()
+    {
+        
+    }
+    
+    public function testSuffixesPropertyContainsStringRepresentationOfAllowedSuffixes()
+    {
+        
+    }
+    
+    public function testConstructorThrowsExceptionIfInvalidSuffixParameterIsProvided()
+    {
+        
+    }
+    
+    public function testConstructorAcceptsSingleSuffix()
+    {
+        
+    }
+    
 }
