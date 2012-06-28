@@ -15,6 +15,43 @@
 /**
  * Validator that checks if a value ends with an accepted suffix.
  *
+ * == Usage ==
+ *
+ * Multiple allowed suffixes can be passed to the constructor:
+ * <code>
+ * $allowed   = array('.txt', '.doc');
+ * $validator = new Mol_Validate_Suffix($allowed);
+ * </code>
+ *
+ * A single suffix is also allowed as constructor arguments:
+ * <code>
+ * $validator = new Mol_Validate_Suffix('.txt');
+ * </code>
+ *
+ * The method setSuffixes() may be used to change the allowed
+ * suffixes after creation:
+ * <code>
+ * $validator = new Mol_Validate_Suffix('.txt');
+ * $validator->setSuffixes('.png', '.jpg');
+ * </code>
+ *
+ * The validator accepts only strings that end with an allowed suffix:
+ * <code>
+ * $validator = new Mol_Validate_Suffix('.txt');
+ * // Returns true:
+ * $validator->isValid('test.txt');
+ * // Returns false:
+ * $validator->isValid('test.pdf');
+ * </code>
+ *
+ * The validator will accept any string if the list of allowed
+ * suffixes is empty:
+ * <code>
+ * $validator = new Mol_Validate_Suffix(array());
+ * // Returns true:
+ * $validator->isValid('test.pdf');
+ * </code>
+ *
  * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
