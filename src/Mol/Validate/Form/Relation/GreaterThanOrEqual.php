@@ -29,6 +29,23 @@ class Mol_Validate_Form_Relation_GreaterThanOrEqual extends Zend_Validate_Abstra
 {
     
     /**
+     * Identifier for failure message if value is less
+     * than the compared value.
+     *
+     * @var string
+     */
+    const LESS = 'relationGreaterThanOrEqualValueLess';
+    
+    /**
+     * Failure message templates.
+     *
+     * @var array(string=>string)
+     */
+    protected $_messageTemplates = array(
+            self::LESS => "Input must be greater than or equal to '%compareLabel%'"
+    );
+    
+    /**
      * Checks if $value is greater than or equal to $other.
      *
      * @param mixed $value
