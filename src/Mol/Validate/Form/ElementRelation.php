@@ -43,6 +43,8 @@
  * # !=
  * # <
  * # >
+ * # <=
+ * # >=
  *
  * More specific or custom relations can be provided as object instead
  * of the relation identifier.
