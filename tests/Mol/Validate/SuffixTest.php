@@ -63,7 +63,8 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testGetSuffixesReturnsArray()
     {
-        
+        $suffixes = $this->validator->getSuffixes();
+        $this->assertInternalType('array', $suffixes);
     }
     
     /**
@@ -71,7 +72,9 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testGetSuffixesReturnsCorrectNumberOfSuffixes()
     {
-        
+        $suffixes = $this->validator->getSuffixes();
+        $this->assertInternalType('array', $suffixes);
+        $this->assertEquals(2, count($suffixes));
     }
     
     /**
@@ -79,7 +82,10 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testGetSuffixesReturnsCorrectSuffixes()
     {
-        
+        $suffixes = $this->validator->getSuffixes();
+        $this->assertInternalType('array', $suffixes);
+        $this->assertContains('.txt', $suffixes);
+        $this->assertContains('.dat', $suffixes);
     }
     
     /**
@@ -87,7 +93,7 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testSetSuffixesProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->validator, $this->validator->setSuffixes(array('.png')));
     }
     
     /**
@@ -95,7 +101,23 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testSetSuffixesOverwritesCurrentSuffixes()
     {
-        
+        $this->validator->setSuffixes(array('.png'));
+        $suffixes = $this->validator->getSuffixes();
+        $this->assertInternalType('array', $suffixes);
+        $this->assertNotContains('.txt', $suffixes);
+        $this->assertNotContains('.dat', $suffixes);
+    }
+    
+    /**
+     * Checks if setSuffixes() sets the provided suffixes.
+     */
+    public function testSetSuffixesSetsNewSuffixes()
+    {
+        $this->validator->setSuffixes(array('.png', '.gif'));
+        $suffixes = $this->validator->getSuffixes();
+        $this->assertInternalType('array', $suffixes);
+        $this->assertContains('.png', $suffixes);
+        $this->assertContains('.gif', $suffixes);
     }
     
     /**
@@ -103,15 +125,15 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidRejectsInvalidValue()
     {
-        
+        $this->assertFalse($this->validator->isValid(new stdClass()));
     }
     
     /**
-     * Checks if isValid() accepts a value with an accepted suffix.
+     * Checks if isValid() accepts a value with an allowed suffix.
      */
-    public function testIsValidAcceptsValueWithAcceptedSuffix()
+    public function testIsValidAcceptsValueWithAllowedSuffix()
     {
-        
+        $this->assertTrue($this->validator->isValid('test.txt'));
     }
     
     /**
@@ -120,7 +142,7 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidAcceptsValueWithSuffixFromEndOfList()
     {
-        
+        $this->assertTrue($this->validator->isValid('test.dat'));
     }
     
     /**
@@ -128,7 +150,7 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidRejectsValueWithoutAcceptedSuffix()
     {
-        
+        $this->assertFalse($this->validator->isValid('invalid.jpg'));
     }
     
     /**
@@ -137,7 +159,8 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testIsValidAcceptsValueIfListOfAcceptedSuffixesIsEmpty()
     {
-        
+        $this->validator->setSuffixes(array());
+        $this->assertTrue($this->validator->isValid('image.jpg'));
     }
     
     /**
@@ -146,7 +169,8 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageIfInvalidValueIsProvided()
     {
-        
+        $this->validator->isValid(new stdClass());
+        $this->assertFailureMessage();
     }
     
     /**
@@ -155,7 +179,8 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageIfValueWithoutAcceptedSuffixIsProvided()
     {
-        
+        $this->validator->isValid('invalid.jpg');
+        $this->assertFailureMessage();
     }
     
     /**
@@ -163,7 +188,10 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testSuffixesPropertyContainsStringRepresentationOfAllowedSuffixes()
     {
-        
+        $list = $this->validator->suffixes;
+        $this->assertInternalType('string', $list);
+        $this->assertContains('.txt', $list);
+        $this->assertContains('.dat', $list);
     }
     
     /**
@@ -172,7 +200,8 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorThrowsExceptionIfInvalidSuffixParameterIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Validate_Suffix(new stdClass());
     }
     
     /**
@@ -180,7 +209,19 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorAcceptsSingleSuffix()
     {
-        
+        $this->validator = new Mol_Validate_Suffix('.jpg');
+        $suffixes = $this->validator->getSuffixes();
+        $this->assertEquals(array('.jpg'), $suffixes);
+    }
+    
+    /**
+     * Asserts that the validator provides at least one failure message.
+     */
+    protected function assertFailureMessage()
+    {
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
