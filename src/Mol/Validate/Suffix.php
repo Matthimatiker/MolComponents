@@ -37,4 +37,25 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
         
     }
     
+    /**
+     * Returns a list of accepted suffixes.
+     *
+     * @return array(string)
+     */
+    public function getSuffixes()
+    {
+        
+    }
+    
+    /**
+     * Sets the accepted suffixes.
+     *
+     * @param array(string) $suffixes
+     * @return Mol_Validate_Suffix Provides a fluent interface.
+     */
+    public function setSuffixes(array $suffixes)
+    {
+        
+    }
+    
 }
