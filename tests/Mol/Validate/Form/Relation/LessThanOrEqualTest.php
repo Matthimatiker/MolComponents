@@ -34,6 +34,31 @@ class Mol_Validate_Form_Relation_LessThanOrEqualTest extends PHPUnit_Framework_T
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Validate_Form_Relation_LessThanOrEqual
+     */
+    protected $validator = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->validator = null;
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->validator = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Checks if the validator accepts values that are less than $other.
      */
     public function testValidatorAcceptsValueThatIsLessThanTheComparedOne()
