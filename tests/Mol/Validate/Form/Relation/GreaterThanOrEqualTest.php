@@ -63,7 +63,7 @@ class Mol_Validate_Form_Relation_GreaterThanOrEqualTest extends PHPUnit_Framewor
      */
     public function testValidatorRejectsValueThatIsLessThanTheComparedOne()
     {
-        
+        $this->assertFalse($this->validator->isValid(41, 42));
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Validate_Form_Relation_GreaterThanOrEqualTest extends PHPUnit_Framewor
      */
     public function testValidatorAcceptsValuesThatEqualsTheComparedOne()
     {
-        
+        $this->assertTrue($this->validator->isValid(42, 42));
     }
     
     /**
@@ -79,7 +79,7 @@ class Mol_Validate_Form_Relation_GreaterThanOrEqualTest extends PHPUnit_Framewor
      */
     public function testValidatorAcceptsValueThatIsGreaterThanTheComparedOne()
     {
-        
+        $this->assertTrue($this->validator->isValid(43, 42));
     }
     
     /**
@@ -88,7 +88,10 @@ class Mol_Validate_Form_Relation_GreaterThanOrEqualTest extends PHPUnit_Framewor
      */
     public function testValidatorProvidesMessageIfValueIsLessThanTheComparedOne()
     {
-        
+        $this->validator->isValid(41, 42);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
