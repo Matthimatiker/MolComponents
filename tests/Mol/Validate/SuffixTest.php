@@ -184,11 +184,11 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if the suffixes property contains the allowed suffixes.
+     * Checks if the allowedSuffixes property contains the allowed suffixes.
      */
-    public function testSuffixesPropertyContainsStringRepresentationOfAllowedSuffixes()
+    public function testAllowedSuffixesPropertyContainsStringRepresentationOfAllowedSuffixes()
     {
-        $list = $this->validator->suffixes;
+        $list = $this->validator->allowedSuffixes;
         $this->assertInternalType('string', $list);
         $this->assertContains('.txt', $list);
         $this->assertContains('.dat', $list);
