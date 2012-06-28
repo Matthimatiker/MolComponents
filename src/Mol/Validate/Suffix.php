@@ -30,7 +30,7 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
      * Checks if the value ends with an accepted suffix.
      *
      * @param string $value
-     * @return boolean
+     * @return boolean True if the value ends with a valid suffix, false otherwise.
      */
     public function isValid($value)
     {
