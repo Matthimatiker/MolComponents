@@ -162,8 +162,8 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageVariables = array(
-        'compareLabel' => 'compareLabel',
         'compareName'  => 'compareName',
+        'compareLabel' => 'compareLabel',
         'compareValue' => 'compareValue'
     );
     
