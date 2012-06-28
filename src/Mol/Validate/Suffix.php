@@ -22,6 +22,7 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/AspectPHP
  * @since 28.06.2012
+ * @property string $suffixes Comma-separated list of accepted suffixes.
  */
 class Mol_Validate_Suffix extends Zend_Validate_Abstract
 {
