@@ -46,7 +46,7 @@ class Mol_Validate_Form_Relation_LessThanOrEqualTest extends PHPUnit_Framework_T
     protected function setUp()
     {
         parent::setUp();
-        $this->validator = null;
+        $this->validator = new Mol_Validate_Form_Relation_LessThanOrEqual();
     }
     
     /**
@@ -63,7 +63,7 @@ class Mol_Validate_Form_Relation_LessThanOrEqualTest extends PHPUnit_Framework_T
      */
     public function testValidatorAcceptsValueThatIsLessThanTheComparedOne()
     {
-        
+        $this->assertTrue($this->validator->isValid(7, 8));
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Validate_Form_Relation_LessThanOrEqualTest extends PHPUnit_Framework_T
      */
     public function testValidatorAcceptsValueThatEqualsTheComparedOne()
     {
-        
+        $this->assertTrue($this->validator->isValid(7, 7));
     }
     
     /**
@@ -79,7 +79,7 @@ class Mol_Validate_Form_Relation_LessThanOrEqualTest extends PHPUnit_Framework_T
      */
     public function testValidatorRejectsValueThatIsGreaterThanTheComparedOne()
     {
-        
+        $this->assertFalse($this->validator->isValid(7, 6));
     }
     
     /**
@@ -88,7 +88,10 @@ class Mol_Validate_Form_Relation_LessThanOrEqualTest extends PHPUnit_Framework_T
      */
     public function testValidatorProvidesMessageIfValueIsGreaterThanTheComparedOne()
     {
-        
+        $this->validator->isValid(7, 6);
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
