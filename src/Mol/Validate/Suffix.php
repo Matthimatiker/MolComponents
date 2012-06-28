@@ -151,4 +151,42 @@ class Mol_Validate_Suffix extends Zend_Validate_Abstract
         return $this;
     }
     
+    /**
+     * Provides access to additional magic properties that
+     * can be used in failure messages.
+     *
+     * @param string $property
+     * @return mixed
+     */
+    public function __get($property)
+    {
+        if ($property === 'allowedSuffixes') {
+            return $this->createEnumerationOfSuffixes();
+        }
+        return parent::__get($property);
+    }
+    
+    /**
+     * Creates a comma separated list of allowed suffixes
+     * for usage in failure messages.
+     *
+     * @return string
+     */
+    protected function createEnumerationOfSuffixes()
+    {
+        $suffixes = array_map(array($this, 'wrapInQuotes'), $this->suffixes);
+        return implode(', ', $suffixes);
+    }
+    
+    /**
+     * Wraps the value in single quotes.
+     *
+     * @param string $value
+     * @return string The value in quotes.
+     */
+    protected function wrapInQuotes($value)
+    {
+        return "'$value'";
+    }
+    
 }
