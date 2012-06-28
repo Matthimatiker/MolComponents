@@ -195,6 +195,15 @@ class Mol_Validate_SuffixTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if the magic "value" property still contains the correct value.
+     */
+    public function testValuePropertyContainsCorrectValue()
+    {
+        $this->validator->isValid('invalid.jpg');
+        $this->assertEquals('invalid.jpg', $this->validator->value);
+    }
+    
+    /**
      * Ensures that the constructor throws an exception if a suffixes parameter of
      * invalid type is passed.
      */
