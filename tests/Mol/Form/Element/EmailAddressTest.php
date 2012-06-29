@@ -58,6 +58,15 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that setAllowedHostnames() overwrites the previous hostname
+     * whitelist.
+     */
+    public function testSetAllowedHostnamesOverwritesPreviousRestrictions()
+    {
+        
+    }
+    
+    /**
      * Checks if getAllowedHostnames() returns an array.
      */
     public function testGetAllowedHostnamesReturnsArray()
