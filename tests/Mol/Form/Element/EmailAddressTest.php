@@ -73,7 +73,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         
     }
     
-    public function testElementRejectsMailWhoseHostnameIsSuffixOfAllowedHostname()
+    public function testElementRejectsMailWhoseHostnameContainsAllowedHostnameAsSuffix()
     {
         
     }
