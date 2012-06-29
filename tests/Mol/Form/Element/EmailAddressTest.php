@@ -33,4 +33,49 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testElementRejectsInvalidMail()
+    {
+    
+    }
+    
+    public function testElementAcceptsValidMail()
+    {
+        
+    }
+    
+    public function testSetHostnamesProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testGetHostnamesReturnsArray()
+    {
+        
+    }
+    
+    public function testGetHostnamesReturnsExpectedNumberOfItems()
+    {
+        
+    }
+    
+    public function testGetHostnamesReturnsCorrectItems()
+    {
+        
+    }
+    
+    public function testElementAcceptsMailWithAllowedHostname()
+    {
+        
+    }
+    
+    public function testElementAcceptsMailWithNotWhitelistedHostname()
+    {
+        
+    }
+    
+    public function testElementRejectsMailWhoseHostnameIsSuffixOfAllowedHostname()
+    {
+        
+    }
+    
 }
