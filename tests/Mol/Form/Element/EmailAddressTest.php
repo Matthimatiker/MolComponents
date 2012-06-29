@@ -78,4 +78,19 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testGetEmailAddressReturnsNullIfNoAdressWasProvided()
+    {
+        
+    }
+    
+    public function testGetEmailAddressReturnsProvidedAddress()
+    {
+        
+    }
+    
+    public function testGetEmailAddressReturnsNullIfProvidedAddressIsNotValid()
+    {
+        
+    }
+    
 }
