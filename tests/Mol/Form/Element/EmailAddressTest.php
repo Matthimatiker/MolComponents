@@ -50,33 +50,33 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if setHostnames() provides a fluent interface.
+     * Checks if setAllowedHostnames() provides a fluent interface.
      */
-    public function testSetHostnamesProvidesFluentInterface()
+    public function testSetAllowedHostnamesProvidesFluentInterface()
     {
         
     }
     
     /**
-     * Checks if getHostnames() returns an array.
+     * Checks if getAllowedHostnames() returns an array.
      */
-    public function testGetHostnamesReturnsArray()
+    public function testGetAllowedHostnamesReturnsArray()
     {
         
     }
     
     /**
-     * Checks if getHostnames() returns the correct number of hostnames.
+     * Checks if getAllowedHostnames() returns the correct number of hostnames.
      */
-    public function testGetHostnamesReturnsExpectedNumberOfItems()
+    public function testGetAllowedHostnamesReturnsExpectedNumberOfItems()
     {
         
     }
     
     /**
-     * Ensures that getHostnames() returns the correct hostnames.
+     * Ensures that getAllowedHostnames() returns the correct hostnames.
      */
-    public function testGetHostnamesReturnsCorrectItems()
+    public function testGetAllowedHostnamesReturnsCorrectItems()
     {
         
     }
