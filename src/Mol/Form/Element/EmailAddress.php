@@ -53,6 +53,16 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     }
     
     /**
+     * Checks if hostname restrictions are applied.
+     *
+     * @return boolean True if hostname restrictions are active, false otherwise.
+     */
+    public function hasHostnameRestrictions()
+    {
+        
+    }
+    
+    /**
      * Returns the provided email address.
      *
      * Returns null if no address was provided.
