@@ -34,6 +34,9 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      * $element->setHostnames(array('example.com', 'example.org));
      * </code>
      *
+     * If an empty array is provided then the current hostname
+     * restrictions are removed.
+     *
      * @param array(string) $hosts
      * @return Mol_Form_Element_EmailAddress Provides a fluent interface.
      */
@@ -44,6 +47,8 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     
     /**
      * Returns the allowed hostnames.
+     *
+     * An empty array the hostname is not restricted.
      *
      * @return array(string)
      */
