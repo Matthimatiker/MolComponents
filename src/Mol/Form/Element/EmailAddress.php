@@ -26,4 +26,30 @@
 class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
 {
     
+    /**
+     * Sets the allowed hostnames.
+     *
+     * Example:
+     * <code>
+     * $element->setHostnames(array('example.com', 'example.org));
+     * </code>
+     *
+     * @param array(string) $hosts
+     * @return Mol_Form_Element_EmailAddress Provides a fluent interface.
+     */
+    public function setHostnames(array $hosts)
+    {
+    
+    }
+    
+    /**
+     * Returns the allowed hostnames.
+     *
+     * @return array(string)
+     */
+    public function getHostnames()
+    {
+    
+    }
+    
 }
