@@ -37,7 +37,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      * @param array(string) $hosts
      * @return Mol_Form_Element_EmailAddress Provides a fluent interface.
      */
-    public function setHostnames(array $hosts)
+    public function setAllowedHostnames(array $hosts)
     {
     
     }
@@ -47,7 +47,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      *
      * @return array(string)
      */
-    public function getHostnames()
+    public function getAllowedHostnames()
     {
     
     }
