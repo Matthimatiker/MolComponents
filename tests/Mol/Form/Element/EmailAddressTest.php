@@ -34,6 +34,31 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Form_Element_EmailAddress
+     */
+    protected $element = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->element = new Mol_Form_Element_EmailAddress('email');
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->element = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that the element rejects invalid mail adresses.
      */
     public function testElementRejectsInvalidMail()
