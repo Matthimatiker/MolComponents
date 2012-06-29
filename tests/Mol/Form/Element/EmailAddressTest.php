@@ -67,6 +67,24 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that setAllowedHostnames() removes the current hostname restrictions
+     * if an empty array is provided.
+     */
+    public function testSetAllowedHostnamesRemovesRestrictionIfEmptyArrayIsProvided()
+    {
+        
+    }
+    
+    /**
+     * Checks if setAllowedHostnames() removes leading "@" characters from
+     * provided hostnames.
+     */
+    public function testSetAllowedHostnamesRemovesLeadingAtCharacter()
+    {
+        
+    }
+    
+    /**
      * Checks if getAllowedHostnames() returns an array.
      */
     public function testGetAllowedHostnamesReturnsArray()
@@ -86,6 +104,15 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      * Ensures that getAllowedHostnames() returns the correct hostnames.
      */
     public function testGetAllowedHostnamesReturnsCorrectItems()
+    {
+        
+    }
+    
+    /**
+     * Ensures that getAllowedHostnames() returns an empty array if the hostname
+     * is currently not restricted.
+     */
+    public function testGetAllowedHostnamesReturnsEmptyArrayIfNoRestrictionsAreActive()
     {
         
     }
