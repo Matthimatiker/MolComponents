@@ -52,4 +52,16 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     
     }
     
+    /**
+     * Returns the provided email address.
+     *
+     * Returns null if no address was provided.
+     *
+     * @return string|null
+     */
+    public function getEmailAddress()
+    {
+        
+    }
+    
 }
