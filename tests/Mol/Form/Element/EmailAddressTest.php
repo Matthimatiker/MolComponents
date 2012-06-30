@@ -244,16 +244,28 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->element->getEmailAddress());
     }
     
+    /**
+     * Checks if the element removes leading and/or trailing whitespace
+     * automatically.
+     */
     public function testElementRemovesWhitespaceAutomatically()
     {
         
     }
     
+    /**
+     * Ensures that the element accepts mail addresses with leading or
+     * trailing whitespace.
+     */
     public function testElementsAcceptsMailWithLeadingOrTrailingWhitespace()
     {
         
     }
     
+    /**
+     * Ensures that getEmailAddress() returns the address without leading or
+     * trailing whitespace.
+     */
     public function testGetEmailAddressReturnsAddressWithoutWhitespace()
     {
         
