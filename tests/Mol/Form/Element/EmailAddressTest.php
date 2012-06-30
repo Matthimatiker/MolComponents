@@ -306,4 +306,13 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertNull($list);
     }
     
+    /**
+     * Checks if the hostnames attribute is null after element creation.
+     */
+    public function testHostnamesAttributeIsInitiallyNull()
+    {
+        $attribute = $this->element->getAttrib(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIB);
+        $this->assertNull($attribute);
+    }
+    
 }
