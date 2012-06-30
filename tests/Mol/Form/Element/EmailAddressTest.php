@@ -161,7 +161,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHostnameRestrictionsInitiallyReturnsFalse()
     {
-        
+        $this->assertFalse($this->element->hasHostnameRestrictions());
     }
     
     /**
@@ -170,7 +170,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHostnameRestrictionsReturnsTrueIfListOfHostnamesWasProvided()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org'));
+        $this->assertTrue($this->element->hasHostnameRestrictions());
     }
     
     /**
@@ -179,7 +180,9 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHostnameRestrictionsReturnsFalseIfRestrictionsWereRemoved()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org'));
+        $this->element->setAllowedHostnames(array());
+        $this->assertFalse($this->element->hasHostnameRestrictions());
     }
     
     /**
