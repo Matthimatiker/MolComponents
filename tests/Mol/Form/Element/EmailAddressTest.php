@@ -273,4 +273,14 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('matthias@matthimatiker.de', $this->element->getEmailAddress());
     }
     
+    /**
+     * Checks if it is possible to render the element.
+     */
+    public function testElementIsRenderable()
+    {
+        $markup = $this->element->render(new Zend_View());
+        $this->assertInternalType('string', $markup);
+        $this->assertNotEmpty($markup);
+    }
+    
 }
