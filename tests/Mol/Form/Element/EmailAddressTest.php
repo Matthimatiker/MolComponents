@@ -283,4 +283,14 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($markup);
     }
     
+    public function testElementContainsAttributeWithAllowedHostnames()
+    {
+        
+    }
+    
+    public function testElementDoesNotContainHostnamesAttributeIfNoWhitelistWasProvided()
+    {
+        
+    }
+    
 }
