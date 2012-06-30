@@ -15,6 +15,35 @@
 /**
  * Pre-configured form element that accepts email addresses.
  *
+ * == Usage ==
+ *
+ * The element can simply be added to any Zend_Form, no further configuration
+ * is required:
+ * <code>
+ * $email = new Mol_Form_Element_EmailAddress('email');
+ * $email->setLabel('Email address');
+ * $form->addElement($email);
+ * </code>
+ *
+ * Without further configuration the element will accept only
+ * valid email addresses:
+ * <code>
+ * // Returns true:
+ * $element->isValid('matthias@matthimatiker.de');
+ * // Returns false:
+ * $element->isValid('hello');
+ * </code>
+ *
+ * Optionally the accepted hostnames can be restricted by providing
+ * a whitelist:
+ * <code>
+ * $element->setAcceptedHostnames(array('matthimatiker.de'));
+ * // Returns true:
+ * $element->isValid('matthias@matthimatiker.de');
+ * // Returns false:
+ * $element->isValid('matthias@another-hostname.org');
+ * </code>
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
