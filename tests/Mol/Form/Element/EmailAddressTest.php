@@ -250,16 +250,17 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testElementRemovesWhitespaceAutomatically()
     {
-        
+        $this->element->setValue(' matthias@matthimatiker.de ');
+        $this->assertEquals('matthias@matthimatiker.de', $this->element->getValue());
     }
     
     /**
      * Ensures that the element accepts mail addresses with leading or
      * trailing whitespace.
      */
-    public function testElementsAcceptsMailWithLeadingOrTrailingWhitespace()
+    public function testElementAcceptsMailWithLeadingOrTrailingWhitespace()
     {
-        
+        $this->assertTrue($this->element->isValid(' matthias@matthimatiker.de '));
     }
     
     /**
@@ -268,7 +269,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testGetEmailAddressReturnsAddressWithoutWhitespace()
     {
-        
+        $this->element->setValue(' matthias@matthimatiker.de ');
+        $this->assertEquals('matthias@matthimatiker.de', $this->element->getEmailAddress());
     }
     
 }
