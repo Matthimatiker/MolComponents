@@ -63,7 +63,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testElementRejectsInvalidMail()
     {
-    
+        $this->assertFalse($this->element->isValid('invalid'));
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testElementAcceptsValidMail()
     {
-        
+        $this->assertTrue($this->element->isValid('matthias@matthimatiker.de'));
     }
     
     /**
@@ -79,7 +79,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testSetAllowedHostnamesProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->element, $this->element->setAllowedHostnames(array('example.org')));
     }
     
     /**
@@ -88,16 +88,20 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testSetAllowedHostnamesOverwritesPreviousRestrictions()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org'));
+        $this->element->setAllowedHostnames(array('example.com'));
+        $this->assertEquals(array('example.com'), $this->element->getAllowedHostnames());
     }
     
     /**
      * Ensures that setAllowedHostnames() removes the current hostname restrictions
      * if an empty array is provided.
      */
-    public function testSetAllowedHostnamesRemovesRestrictionIfEmptyArrayIsProvided()
+    public function testSetAllowedHostnamesRemovesRestrictionsIfEmptyArrayIsProvided()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org'));
+        $this->element->setAllowedHostnames(array());
+        $this->assertEquals(array(), $this->element->getAllowedHostnames());
     }
     
     /**
@@ -106,7 +110,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testSetAllowedHostnamesRemovesLeadingAtCharacter()
     {
-        
+        $this->element->setAllowedHostnames(array('@example.org'));
+        $this->assertEquals(array('example.org'), $this->element->getAllowedHostnames());
     }
     
     /**
@@ -114,7 +119,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testGetAllowedHostnamesReturnsArray()
     {
-        
+        $this->assertInternalType('array', $this->element->getAllowedHostnames());
     }
     
     /**
@@ -122,7 +127,10 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testGetAllowedHostnamesReturnsExpectedNumberOfItems()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org', 'example.com'));
+        $allowed = $this->element->getAllowedHostnames();
+        $this->assertInternalType('array', $allowed);
+        $this->assertEquals(2, count($allowed));
     }
     
     /**
@@ -130,16 +138,21 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testGetAllowedHostnamesReturnsCorrectItems()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org', 'example.com'));
+        $allowed = $this->element->getAllowedHostnames();
+        $this->assertInternalType('array', $allowed);
+        $this->assertContains('example.org', $allowed);
+        $this->assertContains('example.com', $allowed);
     }
     
     /**
-     * Ensures that getAllowedHostnames() returns an empty array if the hostname
-     * is currently not restricted.
+     * Ensures that getAllowedHostnames() returns an empty array after element creation
+     * as the hostname is not restricted per default.
      */
-    public function testGetAllowedHostnamesReturnsEmptyArrayIfNoRestrictionsAreActive()
+    public function testGetAllowedHostnamesInitiallyReturnsEmptyArray()
     {
-        
+        $allowed = $this->element->getAllowedHostnames();
+        $this->assertEquals(array(), $allowed);
     }
     
     /**
@@ -147,7 +160,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testElementAcceptsMailWithAllowedHostname()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org', 'example.com'));
+        $this->assertTrue($this->element->isValid('user@example.org'));
     }
     
     /**
@@ -156,7 +170,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testElementRejectsMailWithNotWhitelistedHostname()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org', 'example.com'));
+        $this->assertFalse($this->element->isValid('user@another-domain.com'));
     }
     
     /**
@@ -169,7 +184,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testElementRejectsMailWhoseHostnameContainsAllowedHostnameAsSuffix()
     {
-        
+        $this->element->setAllowedHostnames(array('example.org'));
+        $this->assertFalse($this->element->isValid('info@not-example.org'));
     }
     
     /**
@@ -177,7 +193,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testGetEmailAddressReturnsNullIfNoAdressWasProvided()
     {
-        
+        $this->assertNull($this->element->getEmailAddress());
     }
     
     /**
@@ -185,7 +201,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testGetEmailAddressReturnsProvidedAddress()
     {
-        
+        $this->element->setValue('matthias@matthimatiker.de');
+        $this->assertEquals('matthias@matthimatiker.de', $this->element->getEmailAddress());
     }
     
     /**
@@ -193,7 +210,8 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testGetEmailAddressReturnsNullIfProvidedAddressIsNotValid()
     {
-        
+        $this->element->setValue('invalid');
+        $this->assertNull($this->element->getEmailAddress());
     }
     
 }
