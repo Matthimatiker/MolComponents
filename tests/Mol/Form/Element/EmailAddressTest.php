@@ -315,4 +315,15 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertNull($attribute);
     }
     
+    /**
+     * Checks if the rendered marup contains the hostnames attribute.
+     */
+    public function testRenderedMarkupContainsHostnamesAttribute()
+    {
+        $this->element->setAllowedHostnames(array('example.org', 'example.com'));
+        $markup = $this->element->render(new Zend_View());
+        $this->assertInternalType('string', $markup);
+        $this->assertContains(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIBUTE, $markup);
+    }
+    
 }
