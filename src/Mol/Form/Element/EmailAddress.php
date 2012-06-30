@@ -56,6 +56,14 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
 {
     
     /**
+     * Names of the attribute that contains a list of allowed
+     * hostnames if available.
+     *
+     * @var string
+     */
+    const HOSTNAMES_ATTRIB = 'data-allowed-hostnames';
+    
+    /**
      * Validator that is used to check against a list of allowed hostnames.
      *
      * We have to use a underscore for variable declaration to avoid collisions
