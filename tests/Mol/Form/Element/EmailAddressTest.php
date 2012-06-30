@@ -283,11 +283,18 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($markup);
     }
     
+    /**
+     * Checks if the element provides an attribute that contains the allowed hostnames.
+     */
     public function testElementContainsAttributeWithAllowedHostnames()
     {
         
     }
     
+    /**
+     * Ensures that the element does not contain a hostnames attribute if no hostname
+     * whitelist is available.
+     */
     public function testElementDoesNotContainHostnamesAttributeIfNoWhitelistWasProvided()
     {
         
