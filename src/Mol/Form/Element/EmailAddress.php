@@ -27,6 +27,24 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
 {
     
     /**
+     * Validator that is used to check against a list of allowed hostnames.
+     *
+     * @var Mol_Validate_Suffix
+     */
+    protected $hostnameValidator = null;
+    
+    /**
+     * Initializes the filters and validators for this element.
+     */
+    public function init()
+    {
+        $this->addFilter('StringTrim');
+        $this->addValidator('EmailAddress', true);
+        $this->hostnameValidator = new Mol_Validate_Suffix();
+        $this->addValidator($this->hostnameValidator, true);
+    }
+    
+    /**
      * Sets the allowed hostnames.
      *
      * Example:
@@ -37,12 +55,17 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      * If an empty array is provided then the current hostname
      * restrictions are removed.
      *
-     * @param array(string) $hosts
+     * @param array(string) $hostnames
      * @return Mol_Form_Element_EmailAddress Provides a fluent interface.
      */
-    public function setAllowedHostnames(array $hosts)
+    public function setAllowedHostnames(array $hostnames)
     {
-    
+        // Unify provided hostnames...
+        $hostnames = array_map(array($this, 'removeLeadingAtCharacter'), $hostnames);
+        // ... and convert them to valid suffixes.
+        $hostnames = array_map(array($this, 'addLeadingAtCharacter'), $hostnames);
+        $this->hostnameValidator->setSuffixes($hostnames);
+        return $this;
     }
     
     /**
@@ -54,7 +77,8 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      */
     public function getAllowedHostnames()
     {
-    
+        $suffixes = $this->hostnameValidator->getSuffixes();
+        return array_map(array($this, 'removeLeadingAtCharacter'), $suffixes);
     }
     
     /**
@@ -64,7 +88,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      */
     public function hasHostnameRestrictions()
     {
-        
+        return count($this->getAllowedHostnames()) > 0;
     }
     
     /**
@@ -72,11 +96,59 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      *
      * Returns null if no address was provided.
      *
-     * @return string|null
+     * @return string|null A valid email address or null.
      */
     public function getEmailAddress()
     {
-        
+        $value = $this->getValue();
+        if (empty($value)) {
+            return null;
+        }
+        if (!$this->isValidEmailAddress($value)) {
+            return null;
+        }
+        return $value;
+    }
+    
+    /**
+     * Checks if the provided value is a valid email address.
+     *
+     * An address is valid if it fulfills all validation rules of the element.
+     * The state of the element itself is not changed by this method.
+     *
+     * @param string $value
+     * @return boolean True if a valid address is provided, false otherwise.
+     */
+    protected function isValidEmailAddress($value)
+    {
+        $rules = new Zend_Validate();
+        foreach ($this->getValidators() as $validator) {
+            /* @var $validator Zend_Validate_Interface */
+            $rules->addValidator($validator, true);
+        }
+        return $rules->isValid($value);
+    }
+    
+    /**
+     * Removes leading "@" characters from the provided string.
+     *
+     * @param string $value
+     * @return string The value without leading "@" character.
+     */
+    protected function removeLeadingAtCharacter($value)
+    {
+        return ltrim($value, '@');
+    }
+    
+    /**
+     * Adds an "@" character to the start of the provided string.
+     *
+     * @param string $value
+     * @return string The value with leading "@" character.
+     */
+    protected function addLeadingAtCharacter($value)
+    {
+        return '@' .  $value;
     }
     
 }
