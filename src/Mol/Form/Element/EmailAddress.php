@@ -44,6 +44,14 @@
  * $element->isValid('matthias@another-hostname.org');
  * </code>
  *
+ * The rendered element contains a data attribute that holds a
+ * comma-separated list of allowed hostnames (if at least one
+ * hostname is available):
+ * <code>
+ * <input type="text" name="email" id="email" value="" data-allowed-hostnames="example.org,example.com" />"
+ * </code>
+ * That information may be used for client-side validation via JavaScript.
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
