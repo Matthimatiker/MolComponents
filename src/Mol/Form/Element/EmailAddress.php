@@ -61,7 +61,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      *
      * @var string
      */
-    const HOSTNAMES_ATTRIB = 'data-allowed-hostnames';
+    const HOSTNAMES_ATTRIBUTE = 'data-allowed-hostnames';
     
     /**
      * Validator that is used to check against a list of allowed hostnames.
@@ -102,7 +102,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     {
         $suffixes = $this->toSuffixes($hostnames);
         $this->_hostnameValidator->setSuffixes($suffixes);
-        $this->setAttrib(self::HOSTNAMES_ATTRIB, $this->toHostnamesAttribute($hostnames));
+        $this->setAttrib(self::HOSTNAMES_ATTRIBUTE, $this->toHostnamesAttribute($hostnames));
         return $this;
     }
     

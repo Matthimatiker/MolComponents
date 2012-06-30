@@ -289,7 +289,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
     public function testElementContainsAttributeWithAllowedHostnames()
     {
         $this->element->setAllowedHostnames(array('example.org', 'example.com'));
-        $attribute = $this->element->getAttrib(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIB);
+        $attribute = $this->element->getAttrib(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIBUTE);
         $this->assertInternalType('string', $attribute);
         $this->assertContains('example.org', $attribute);
         $this->assertContains('example.com', $attribute);
@@ -302,7 +302,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
     public function testElementDoesNotContainHostnamesAttributeIfNoWhitelistWasProvided()
     {
         $this->element->setAllowedHostnames(array());
-        $attribute = $this->element->getAttrib(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIB);
+        $attribute = $this->element->getAttrib(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIBUTE);
         $this->assertNull($attribute);
     }
     
@@ -311,7 +311,7 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public function testHostnamesAttributeIsInitiallyNull()
     {
-        $attribute = $this->element->getAttrib(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIB);
+        $attribute = $this->element->getAttrib(Mol_Form_Element_EmailAddress::HOSTNAMES_ATTRIBUTE);
         $this->assertNull($attribute);
     }
     
