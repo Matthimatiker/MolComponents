@@ -155,16 +155,28 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $allowed);
     }
     
+    /**
+     * Ensures that hasHostnameRestrictions() returns initially false as the
+     * hostnames are not restricted per default.
+     */
     public function testHasHostnameRestrictionsInitiallyReturnsFalse()
     {
         
     }
     
+    /**
+     * Ensures that hasHostnameRestrictions() returns true if a hostname whitelist
+     * was provided.
+     */
     public function testHasHostnameRestrictionsReturnsTrueIfListOfHostnamesWasProvided()
     {
         
     }
     
+    /**
+     * Ensures that hasHostnameRestrictions() returns false if a hostname whitelist
+     * was provided, but the restrictions were removed afterwards.
+     */
     public function testHasHostnameRestrictionsReturnsFalseIfRestrictionsWereRemoved()
     {
         
