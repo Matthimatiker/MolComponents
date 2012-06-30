@@ -155,6 +155,21 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $allowed);
     }
     
+    public function testHasHostnameRestrictionsInitiallyReturnsFalse()
+    {
+        
+    }
+    
+    public function testHasHostnameRestrictionsReturnsTrueIfListOfHostnamesWasProvided()
+    {
+        
+    }
+    
+    public function testHasHostnameRestrictionsReturnsFalseIfRestrictionsWereRemoved()
+    {
+        
+    }
+    
     /**
      * Ensures that the element accepts mail addresses with allowed hostname.
      */
