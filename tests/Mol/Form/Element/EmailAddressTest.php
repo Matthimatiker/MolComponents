@@ -244,4 +244,19 @@ class Mol_Form_Element_EmailAddressTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->element->getEmailAddress());
     }
     
+    public function testElementRemovesWhitespaceAutomatically()
+    {
+        
+    }
+    
+    public function testElementsAcceptsMailWithLeadingOrTrailingWhitespace()
+    {
+        
+    }
+    
+    public function testGetEmailAddressReturnsAddressWithoutWhitespace()
+    {
+        
+    }
+    
 }
