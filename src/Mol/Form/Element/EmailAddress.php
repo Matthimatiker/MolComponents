@@ -102,6 +102,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     {
         $suffixes = $this->toSuffixes($hostnames);
         $this->_hostnameValidator->setSuffixes($suffixes);
+        $this->setAttrib(self::HOSTNAMES_ATTRIB, $this->toHostnameAttribute($hostnames));
         return $this;
     }
     
@@ -191,6 +192,24 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
         $hostnames = $this->toHostnames($hostnames);
         // ... and convert them to valid suffixes.
         return array_map(array($this, 'addLeadingAtCharacter'), $hostnames);
+    }
+    
+    /**
+     * Converts the provided hostnames to a string that is used
+     * as element attribute.
+     *
+     * @param array(string) $hostnames
+     * @return string|null
+     */
+    protected function toHostnameAttribute(array $hostnames)
+    {
+        if (count($hostnames) === 0) {
+            // No hostnames available.
+            return null;
+        }
+        // Unify provided hostnames.
+        $hostnames = $this->toHostnames($hostnames);
+        return implode(',', $hostnames);
     }
     
     /**
