@@ -58,9 +58,12 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     /**
      * Validator that is used to check against a list of allowed hostnames.
      *
+     * We have to use a underscore for attribute declaration to avoid collisions
+     * with the getAttribs() method of Zend_Form_Element.
+     *
      * @var Mol_Validate_Suffix
      */
-    protected $hostnameValidator = null;
+    protected $_hostnameValidator = null;
     
     /**
      * Initializes the filters and validators for this element.
@@ -69,8 +72,8 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     {
         $this->addFilter('StringTrim');
         $this->addValidator('EmailAddress', true);
-        $this->hostnameValidator = new Mol_Validate_Suffix();
-        $this->addValidator($this->hostnameValidator, true);
+        $this->_hostnameValidator = new Mol_Validate_Suffix();
+        $this->addValidator($this->_hostnameValidator, true);
     }
     
     /**
@@ -90,7 +93,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     public function setAllowedHostnames(array $hostnames)
     {
         $suffixes = $this->toSuffixes($hostnames);
-        $this->hostnameValidator->setSuffixes($suffixes);
+        $this->_hostnameValidator->setSuffixes($suffixes);
         return $this;
     }
     
@@ -103,7 +106,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      */
     public function getAllowedHostnames()
     {
-        $suffixes = $this->hostnameValidator->getSuffixes();
+        $suffixes = $this->_hostnameValidator->getSuffixes();
         return $this->toHostnames($suffixes);
     }
     
