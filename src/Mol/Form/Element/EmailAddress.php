@@ -60,11 +60,8 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      */
     public function setAllowedHostnames(array $hostnames)
     {
-        // Unify provided hostnames...
-        $hostnames = array_map(array($this, 'removeLeadingAtCharacter'), $hostnames);
-        // ... and convert them to valid suffixes.
-        $hostnames = array_map(array($this, 'addLeadingAtCharacter'), $hostnames);
-        $this->hostnameValidator->setSuffixes($hostnames);
+        $suffixes = $this->toSuffixes($hostnames);
+        $this->hostnameValidator->setSuffixes($suffixes);
         return $this;
     }
     
@@ -78,7 +75,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     public function getAllowedHostnames()
     {
         $suffixes = $this->hostnameValidator->getSuffixes();
-        return array_map(array($this, 'removeLeadingAtCharacter'), $suffixes);
+        return $this->toHostnames($suffixes);
     }
     
     /**
@@ -127,6 +124,33 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
             $rules->addValidator($validator, true);
         }
         return $rules->isValid($value);
+    }
+    
+    /**
+     * Converts the provided suffixes to hostnames by removing
+     * the leading "@" characters.
+     *
+     * @param array(string) $suffixes
+     * @return array(string) The hostnames.
+     */
+    protected function toHostnames(array $suffixes)
+    {
+        return array_map(array($this, 'removeLeadingAtCharacter'), $suffixes);
+    }
+    
+    /**
+     * Converts the provided hostnames to suffixes that may be used
+     * for validation by adding a leading "@" character.
+     *
+     * @param array(string) $hostnames
+     * @return array(string) The suffixes.
+     */
+    protected function toSuffixes(array $hostnames)
+    {
+        // Unify provided hostnames...
+        $hostnames = $this->toHostnames($hostnames);
+        // ... and convert them to valid suffixes.
+        return array_map(array($this, 'addLeadingAtCharacter'), $hostnames);
     }
     
     /**
