@@ -102,7 +102,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     {
         $suffixes = $this->toSuffixes($hostnames);
         $this->_hostnameValidator->setSuffixes($suffixes);
-        $this->setAttrib(self::HOSTNAMES_ATTRIB, $this->toHostnameAttribute($hostnames));
+        $this->setAttrib(self::HOSTNAMES_ATTRIB, $this->toHostnamesAttribute($hostnames));
         return $this;
     }
     
@@ -201,7 +201,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      * @param array(string) $hostnames
      * @return string|null
      */
-    protected function toHostnameAttribute(array $hostnames)
+    protected function toHostnamesAttribute(array $hostnames)
     {
         if (count($hostnames) === 0) {
             // No hostnames available.
