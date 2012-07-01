@@ -75,6 +75,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that the factory omits the subject if no configuration is
+     * available in the requested template.
+     */
     public function testCreateOmitsSubjectIfConfigurationIsNotAvailable()
     {
         
@@ -88,6 +92,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that the factory omits the to-recipients if no configuration is
+     * available in the requested template.
+     */
     public function testCreateOmitsToRecipientsIfConfigurationIsNotAvailable()
     {
     
@@ -101,6 +109,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     
     }
     
+    /**
+     * Ensures that the factory omits the cc-recipients if no configuration is
+     * available in the requested template.
+     */
     public function testCreateOmitsCcRecipientsIfConfigurationIsNotAvailable()
     {
     
@@ -114,6 +126,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     
     }
     
+    /**
+     * Ensures that the factory omits the bcc-recipients if no configuration is
+     * available in the requested template.
+     */
     public function testCreateOmitsBccRecipientsIfConfigurationIsNotAvailable()
     {
     
@@ -127,6 +143,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that the factory omits the sender if no configuration is
+     * available in the requested template.
+     */
     public function testCreateOmitsSenderIfConfigurationIsNotAvailable()
     {
     
@@ -140,6 +160,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that create() uses the default charset if the requested
+     * template does not provide a configuration value.
+     */
     public function testCreateUsesDefaultCharsetIfConfigurationIsNotAvailable()
     {
     
@@ -170,6 +194,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that the factory omits rendering the text template if it
+     * is not configured in the requested template.
+     */
     public function testCreateOmitsTextScriptIfConfigurationIsNotAvailable()
     {
     
@@ -183,6 +211,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that the factory omits rendering the HTML template if it
+     * is not configured in the requested template.
+     */
     public function testCreateOmitsHtmlScriptIfConfigurationIsNotAvailable()
     {
     
