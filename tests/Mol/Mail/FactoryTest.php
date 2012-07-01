@@ -75,6 +75,11 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testCreateOmitsSubjectIfConfigurationIsNotAvailable()
+    {
+        
+    }
+    
     /**
      * Checks if the factory adds the configured to-recpients.
      */
@@ -83,10 +88,20 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testCreateOmitsToRecipientsIfConfigurationIsNotAvailable()
+    {
+    
+    }
+    
     /**
      * Checks if the factory adds the configured cc-recpients.
      */
     public function testCreateAddsConfiguredCcRecipients()
+    {
+    
+    }
+    
+    public function testCreateOmitsCcRecipientsIfConfigurationIsNotAvailable()
     {
     
     }
@@ -99,6 +114,11 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     
     }
     
+    public function testCreateOmitsBccRecipientsIfConfigurationIsNotAvailable()
+    {
+    
+    }
+    
     /**
      * Checks if the factory sets the configured sender.
      */
@@ -107,12 +127,22 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testCreateOmitsSenderIfConfigurationIsNotAvailable()
+    {
+    
+    }
+    
     /**
      * Ensures that the factory uses the configured charset.
      */
     public function testCreateSetsConfiguredCharset()
     {
         
+    }
+    
+    public function testCreateUsesDefaultCharsetIfConfigurationIsNotAvailable()
+    {
+    
     }
     
     /**
@@ -140,12 +170,22 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testCreateOmitsTextScriptIfConfigurationIsNotAvailable()
+    {
+    
+    }
+    
     /**
      * Checks if create() renders the configured view script for the HTML version.
      */
     public function testCreateRendersConfiguredHtmlScript()
     {
         
+    }
+    
+    public function testCreateOmitsHtmlScriptIfConfigurationIsNotAvailable()
+    {
+    
     }
     
 }
