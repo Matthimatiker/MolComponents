@@ -15,6 +15,57 @@
 /**
  * Factory that uses template configurations to create pre-filled mail objects.
  *
+ * == Configuration ==
+ *
+ * The factory expects a list of template configurations as first constructor
+ * parameter:
+ * <code>
+ * $settings = array(
+ *     'invitation' => array(
+ *         'subject' => 'Please visit our site'
+ *     ),
+ *     'registration' => array(
+ *         'subject' => 'Thank you for registration'
+ *     )
+ * );
+ * $factory = new Mol_Mail_Factory(new Zend_Config($settings), $view);
+ * </code>
+ * The key equals the name of the template ("invitation" and "registration"
+ * this example). The template settings are assigned as value.
+ *
+ * Each template configuration may contain the following settings:
+ * # charset     (string)        - Charset of the email.
+ * # subject     (string)        - Subject line, will automatically be translated.
+ * # to          (array(string)) - List of default "to" recipients
+ * # cc          (array(string)) - List of default "cc" recipients
+ * # bcc         (array(string)) - List of default "bcc" recipients
+ * # sender      (string)        - Sender address
+ * # script.text (string)        - Template that renders the text part
+ * # script.html (string)        - Template that renders the HTML part
+ *
+ * Template settings example:
+ * <code>
+ * $settings = array(
+ *     'charset' => 'UTF-8',
+ *     'subject' => 'Hello world!',
+ *     'to' => array(
+ *         'user@example.org',
+ *         'second-user@example.org'
+ *     ),
+ *     'cc' => array(
+ *         'another.user@example.org'
+ *     ),
+ *     'bcc' => array(
+ *         'archive@example.com'
+ *     ),
+ *     'sender' => 'mailer@example.org',
+ *     'script' => array(
+ *         'text' => 'hello.text.phtml',
+ *         'html' => 'hello.html.phtml'
+ *     )
+ * );
+ * </code>
+ *
  * @category PHP
  * @package Mol_Mail
  * @author Matthias Molitor <matthias@matthimatiker.de>
