@@ -33,4 +33,74 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testCreateThrowsExceptionIfTemplateDoesNotExist()
+    {
+        
+    }
+    
+    public function testCreateReturnsMailObjectsIfNoTemplateIsProvided()
+    {
+        
+    }
+    
+    public function testMailCharsetIsUtf8PerDefault()
+    {
+        
+    }
+    
+    public function testCreateSetsConfiguredSubject()
+    {
+        
+    }
+    
+    public function testCreateTranslatesSubject()
+    {
+        
+    }
+    
+    public function testCreateAddsConfiguredToRecipients()
+    {
+        
+    }
+    
+    public function testCreateAddsConfiguredCcRecipients()
+    {
+    
+    }
+    
+    public function testCreateAddsConfiguredBccRecipients()
+    {
+    
+    }
+    
+    public function testCreateSetsConfiguredSender()
+    {
+        
+    }
+    
+    public function testCreateSetsConfiguredCharset()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfConfiguredViewScriptIsNotAvailable()
+    {
+    
+    }
+    
+    public function testCreatePassesParametersToView()
+    {
+    
+    }
+    
+    public function testCreateRendersConfiguredTextScript()
+    {
+        
+    }
+    
+    public function testCreateRendersConfiguredHtmlScript()
+    {
+        
+    }
+    
 }
