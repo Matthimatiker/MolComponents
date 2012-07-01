@@ -52,9 +52,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if the factory uses the UTF-8 charset for mails per default.
+     * Checks if the factory uses the view charset for mails per default.
      */
-    public function testMailCharsetIsUtf8PerDefault()
+    public function testMailCharsetEqualsViewEncodingPerDefault()
     {
         
     }
@@ -161,10 +161,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Ensures that create() uses the default charset if the requested
+     * Ensures that create() uses the view charset if the requested
      * template does not provide a configuration value.
      */
-    public function testCreateUsesDefaultCharsetIfConfigurationIsNotAvailable()
+    public function testCreateUsesViewCharsetIfConfigurationIsNotAvailable()
     {
     
     }
