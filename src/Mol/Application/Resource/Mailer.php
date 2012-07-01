@@ -15,6 +15,9 @@
 /**
  * Initializes a mail factory that is used to create mails by templates.
  *
+ * This resource depends on the following resources:
+ * # view - Used for rendering mail templates.
+ *
  * @category PHP
  * @package Mol_Mail
  * @author Matthias Molitor <matthias@matthimatiker.de>
