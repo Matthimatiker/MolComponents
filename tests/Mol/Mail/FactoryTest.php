@@ -34,6 +34,31 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Mail_Factory
+     */
+    protected $factory = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->factory = new Mol_Mail_Factory($this->createConfig(), $this->createView());
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->factory = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that create() throws an exception if the provided template
      * does not exist.
      */
@@ -218,6 +243,50 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     public function testCreateOmitsHtmlScriptIfConfigurationIsNotAvailable()
     {
     
+    }
+    
+    /**
+     * Creates template configurations for testing.
+     *
+     * @return Zend_Config
+     */
+    protected function createConfig()
+    {
+        $templates = array(
+            // Template with all possible settings.
+            'hello' => array(
+                'charset' => 'UTF-8',
+                'subject' => 'Hello world!',
+                'to' => array(
+                    'user@example.org',
+                    'second-user@example.org'
+                ),
+                'cc' => array(
+                    'another.user@example.org'
+                ),
+                'bcc' => array(
+                    'archive@example.com'
+                ),
+                'sender' => 'mailer@example.org',
+                'script' => array(
+                    'text' => 'hello.text.phtml',
+                    'html' => 'hello.html.phtml'
+                )
+            ),
+            // An empty template.
+            'empty' => array()
+        );
+        return new Zend_Config($templates);
+    }
+    
+    /**
+     * Creates a view for testing.
+     *
+     * @return Zend_View
+     */
+    protected function createView()
+    {
+        return new Zend_View();
     }
     
 }
