@@ -64,7 +64,8 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfTemplateDoesNotExist()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->factory->create('missing');
     }
     
     /**
@@ -73,7 +74,8 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateReturnsMailObjectsIfNoTemplateIsProvided()
     {
-        
+        $mail = $this->factory->create();
+        $this->assertInstanceOf('Zend_Mail', $mail);
     }
     
     /**
@@ -81,7 +83,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testMailCharsetEqualsViewEncodingPerDefault()
     {
-        
+        $mail = $this->factory->create();
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('UTF-8', $mail->getCharset());
     }
     
     /**
@@ -89,7 +93,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateSetsConfiguredSubject()
     {
-        
+        $mail = $this->factory->create('hello');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('Hello world!', $mail->getSubject());
     }
     
     /**
@@ -97,7 +103,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateTranslatesSubject()
     {
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     /**
@@ -106,7 +112,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsSubjectIfConfigurationIsNotAvailable()
     {
-        
+        $mail = $this->factory->create('empty');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEmpty($mail->getSubject());
     }
     
     /**
@@ -286,7 +294,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     protected function createView()
     {
-        return new Zend_View();
+        $view = new Zend_View();
+        $view->setEncoding('UTF-8');
+        return $view;
     }
     
 }
