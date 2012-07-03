@@ -122,7 +122,11 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateAddsConfiguredToRecipients()
     {
-        
+        $mail = $this->factory->create('hello');
+        $this->assertHasHeader($mail, 'To', 2);
+        $recipients = $mail->getRecipients();
+        $this->assertContains('user@example.org', $recipients);
+        $this->assertContains('second-user@example.org', $recipients);
     }
     
     /**
@@ -131,7 +135,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsToRecipientsIfConfigurationIsNotAvailable()
     {
-    
+        $mail = $this->factory->create('empty');
+        $this->assertHasHeader($mail, 'To', 0);
+        $this->assertEquals(array(), $mail->getRecipients());
     }
     
     /**
@@ -148,7 +154,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsCcRecipientsIfConfigurationIsNotAvailable()
     {
-    
+        
     }
     
     /**
@@ -297,6 +303,23 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $view = new Zend_View();
         $view->setEncoding('UTF-8');
         return $view;
+    }
+    
+    /**
+     * Asserts that the mail has the expected number of headers
+     * of type $name.
+     *
+     * @param Zend_Mail $mail
+     * @param string $name
+     * @param integer $expectedNumber
+     */
+    protected function assertHasHeader($mail, $name, $expectedNumber)
+    {
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $headers = $mail->getHeaders();
+        $this->assertArrayHasKey($name, $headers);
+        $message = 'Unexpected number of headers of type "' . $name . '".';
+        $this->assertEquals($expectedNumber, count($headers[$name]), $message);
     }
     
 }
