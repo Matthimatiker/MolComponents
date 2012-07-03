@@ -145,7 +145,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateAddsConfiguredCcRecipients()
     {
-    
+        $mail = $this->factory->create('hello');
+        $this->assertHasHeader($mail, 'Cc', 1);
+        $recipients = $mail->getRecipients();
+        $this->assertContains('another.user@example.org', $recipients);
     }
     
     /**
@@ -154,7 +157,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsCcRecipientsIfConfigurationIsNotAvailable()
     {
-        
+        $mail = $this->factory->create('empty');
+        $this->assertHasHeader($mail, 'Cc', 0);
+        $this->assertEquals(array(), $mail->getRecipients());
     }
     
     /**
@@ -162,7 +167,8 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateAddsConfiguredBccRecipients()
     {
-    
+        $mail = $this->factory->create('hello');
+        $this->assertHasHeader($mail, 'Bcc', 1);
     }
     
     /**
@@ -171,7 +177,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsBccRecipientsIfConfigurationIsNotAvailable()
     {
-    
+        $mail = $this->factory->create('empty');
+        $this->assertHasHeader($mail, 'Bcc', 0);
+        $this->assertEquals(array(), $mail->getRecipients());
     }
     
     /**
@@ -179,7 +187,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateSetsConfiguredSender()
     {
-        
+        $mail = $this->factory->create('hello');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('mailer@example.org', $mail->getFrom());
     }
     
     /**
@@ -188,7 +198,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsSenderIfConfigurationIsNotAvailable()
     {
-    
+        $mail = $this->factory->create('empty');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertNull($mail->getFrom());
     }
     
     /**
@@ -196,7 +208,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateSetsConfiguredCharset()
     {
-        
+        $mail = $this->factory->create('hello');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('ISO-8859-1', $mail->getCharset());
     }
     
     /**
@@ -205,7 +219,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateUsesViewCharsetIfConfigurationIsNotAvailable()
     {
-    
+        $mail = $this->factory->create('empty');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('UTF-8', $mail->getCharset());
     }
     
     /**
@@ -214,7 +230,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfConfiguredViewScriptIsNotAvailable()
     {
-    
+        
     }
     
     /**
@@ -269,7 +285,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $templates = array(
             // Template with all possible settings.
             'hello' => array(
-                'charset' => 'UTF-8',
+                'charset' => 'ISO-8859-1',
                 'subject' => 'Hello world!',
                 'to' => array(
                     'user@example.org',
