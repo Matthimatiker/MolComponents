@@ -246,7 +246,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateRendersConfiguredTextScript()
     {
-        
+        $mail = $this->factory->create('hello');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('Text template', $mail->getBodyText(true));
     }
     
     /**
@@ -263,7 +265,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateRendersConfiguredHtmlScript()
     {
-        
+        $mail = $this->factory->create('hello');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('HTML template', $mail->getBodyHtml(true));
     }
     
     /**
@@ -318,6 +322,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     {
         $view = new Zend_View();
         $view->setEncoding('UTF-8');
+        $view->setScriptPath(dirname(__FILE__) . '/TestData');
         return $view;
     }
     
