@@ -215,6 +215,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('ISO-8859-1', $mail->getCharset());
     }
     
+    // @todo set replyTo
+    // @todo rename "sender" to "from"
+    
     /**
      * Ensures that create() uses the view charset if the requested
      * template does not provide a configuration value.
