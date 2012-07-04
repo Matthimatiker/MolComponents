@@ -154,10 +154,10 @@ class Mol_Mail_Factory
             $mail->setFrom($configuration->sender);
         }
         if (isset($configuration->script->text)) {
-            
+            $mail->setBodyText($this->render($configuration->script->text, $parameters));
         }
         if (isset($configuration->script->html)) {
-        
+            $mail->setBodyHtml($this->render($configuration->script->html, $parameters));
         }
         return $mail;
     }
@@ -176,6 +176,20 @@ class Mol_Mail_Factory
             throw new InvalidArgumentException($message);
         }
         return $this->templates->get($template);
+    }
+    
+    /**
+     * Renders the provided script.
+     *
+     * @param string $script
+     * @param array(string=>mixed) $parameters
+     * @return string The rendered content.
+     */
+    protected function render($script, array $parameters)
+    {
+        $this->view->clearVars();
+        $this->view->assign($parameters);
+        return $this->view->render($script);
     }
     
     /**
