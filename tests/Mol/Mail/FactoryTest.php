@@ -103,7 +103,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateTranslatesSubject()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $mail = $this->factory->create('subject-translation');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('translated', $mail->getSubject());
     }
     
     /**
