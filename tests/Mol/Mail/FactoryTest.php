@@ -428,6 +428,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Zend_Mail', $mail);
         $headers = $mail->getHeaders();
+        if (!isset($headers[$name]) && $expectedNumber === 0) {
+            // Header does not exist, test passed.
+            return;
+        }
         $this->assertArrayHasKey($name, $headers);
         $message = 'Unexpected number of headers of type "' . $name . '".';
         $this->assertEquals($expectedNumber, count($headers[$name]), $message);
