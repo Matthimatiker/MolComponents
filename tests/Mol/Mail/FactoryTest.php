@@ -217,6 +217,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     
     // @todo set replyTo
     // @todo rename "sender" to "from"
+    // @todo support single mail addresses
     
     /**
      * Ensures that create() uses the view charset if the requested
