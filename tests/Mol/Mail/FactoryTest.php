@@ -351,6 +351,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
                     'text' => 'parameter.phtml',
                     'html' => 'parameter.phtml'
                 )
+            ),
+            'subject-translation' => array(
+                'subject' => 'subjectMsgId'
             )
         );
         return new Zend_Config($templates);
@@ -366,6 +369,16 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $view = new Zend_View();
         $view->setEncoding('UTF-8');
         $view->setScriptPath(dirname(__FILE__) . '/TestData');
+        
+        // Register a translator for testing.
+        $translatorOptions = array(
+            'adapter' => 'array',
+            'content' =>  array('subjectMsgId' => 'translated'),
+            'locale'  => 'en'
+        );
+        $translator = new Zend_Translate($translatorOptions);
+        $view->registerHelper(new Zend_View_Helper_Translate($translator), 'translate');
+        
         return $view;
     }
     
