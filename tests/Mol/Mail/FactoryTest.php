@@ -260,7 +260,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsTextScriptIfConfigurationIsNotAvailable()
     {
-    
+        $mail = $this->factory->create('empty');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEmpty($mail->getBodyText(true));
     }
     
     /**
@@ -279,7 +281,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateOmitsHtmlScriptIfConfigurationIsNotAvailable()
     {
-    
+        $mail = $this->factory->create('empty');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEmpty($mail->getBodyHtml(true));
     }
     
     /**
