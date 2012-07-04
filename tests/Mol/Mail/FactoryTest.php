@@ -230,7 +230,8 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfConfiguredTextViewScriptIsNotAvailable()
     {
-        
+        $this->setExpectedException('Zend_View_Exception');
+        $this->factory->create('invalid-text-script');
     }
     
     /**
@@ -239,13 +240,22 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfConfiguredHtmlViewScriptIsNotAvailable()
     {
+        $this->setExpectedException('Zend_View_Exception');
+        $this->factory->create('invalid-html-script');
+    }
+    
+    /**
+     * Checks if create() passes the provided params to the text script.
+     */
+    public function testCreatePassesParametersToTextView()
+    {
     
     }
     
     /**
-     * Checks if create() passes the provided params to the view object.
+     * Checks if create() passes the provided params to the HTML script.
      */
-    public function testCreatePassesParametersToView()
+    public function testCreatePassesParametersToHtmlView()
     {
     
     }
@@ -317,7 +327,17 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
                 )
             ),
             // An empty template.
-            'empty' => array()
+            'empty' => array(),
+            'invalid-text-script' => array(
+                'script' => array(
+                    'text' => 'missing.phtml'
+                )
+            ),
+            'invalid-html-script' => array(
+                'script' => array(
+                    'html' => 'missing.phtml'
+                )
+            )
         );
         return new Zend_Config($templates);
     }
