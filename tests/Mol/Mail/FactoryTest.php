@@ -245,26 +245,6 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if create() passes the provided params to the text script.
-     */
-    public function testCreatePassesParametersToTextView()
-    {
-        $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
-        $this->assertInstanceOf('Zend_Mail', $mail);
-        $this->assertContains('testing', $mail->getBodyText(true));
-    }
-    
-    /**
-     * Checks if create() passes the provided params to the HTML script.
-     */
-    public function testCreatePassesParametersToHtmlView()
-    {
-        $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
-        $this->assertInstanceOf('Zend_Mail', $mail);
-        $this->assertContains('testing', $mail->getBodyHtml(true));
-    }
-    
-    /**
      * Checks if create() renders the configured view script for the text version.
      */
     public function testCreateRendersConfiguredTextScript()
@@ -300,6 +280,26 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     public function testCreateOmitsHtmlScriptIfConfigurationIsNotAvailable()
     {
     
+    }
+    
+    /**
+     * Checks if create() passes the provided params to the text script.
+     */
+    public function testCreatePassesParametersToTextView()
+    {
+        $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertContains('testing', $mail->getBodyText(true));
+    }
+    
+    /**
+     * Checks if create() passes the provided params to the HTML script.
+     */
+    public function testCreatePassesParametersToHtmlView()
+    {
+        $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertContains('testing', $mail->getBodyHtml(true));
     }
     
     /**
