@@ -313,6 +313,34 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that text view parameters from previous create() calls are not re-used.
+     */
+    public function testCreateDoesNotUseTextScriptParamsFromPreviousCall()
+    {
+        $this->factory->create('view-parameters', array('param' => 'testing'));
+        // Create mail without parameters.
+        $mail = $this->factory->create('view-parameters', array());
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $body = $mail->getBodyText(true);
+        $this->assertInternalType('string', $body);
+        $this->assertNotContains('testing', $body);
+    }
+    
+    /**
+     * Ensures that HTML view parameters from previous create() calls are not re-used.
+     */
+    public function testCreateDoesNotUseHtmlScriptParamsFromPreviousCall()
+    {
+        $this->factory->create('view-parameters', array('param' => 'testing'));
+        // Create mail without parameters.
+        $mail = $this->factory->create('view-parameters', array());
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $body = $mail->getBodyHtml(true);
+        $this->assertInternalType('string', $body);
+        $this->assertNotContains('testing', $body);
+    }
+    
+    /**
      * Creates template configurations for testing.
      *
      * @return Zend_Config
