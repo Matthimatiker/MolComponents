@@ -295,7 +295,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     {
         $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
         $this->assertInstanceOf('Zend_Mail', $mail);
-        $this->assertContains('testing', $mail->getBodyText(true));
+        $body = $mail->getBodyText(true);
+        $this->assertInternalType('string', $body);
+        $this->assertContains('testing', $body);
     }
     
     /**
@@ -305,7 +307,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     {
         $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
         $this->assertInstanceOf('Zend_Mail', $mail);
-        $this->assertContains('testing', $mail->getBodyHtml(true));
+        $body = $mail->getBodyHtml(true);
+        $this->assertInternalType('string', $body);
+        $this->assertContains('testing', $body);
     }
     
     /**
