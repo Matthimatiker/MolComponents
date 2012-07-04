@@ -433,6 +433,10 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
             return;
         }
         $this->assertArrayHasKey($name, $headers);
+        if (isset($headers[$name]['append'])) {
+            // Remove append flag from header list.
+            unset($headers[$name]['append']);
+        }
         $message = 'Unexpected number of headers of type "' . $name . '".';
         $this->assertEquals($expectedNumber, count($headers[$name]), $message);
     }
