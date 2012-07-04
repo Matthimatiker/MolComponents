@@ -249,7 +249,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreatePassesParametersToTextView()
     {
-    
+        $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertContains('testing', $mail->getBodyText(true));
     }
     
     /**
@@ -257,7 +259,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreatePassesParametersToHtmlView()
     {
-    
+        $mail = $this->factory->create('view-parameters', array('param' => 'testing'));
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertContains('testing', $mail->getBodyHtml(true));
     }
     
     /**
@@ -336,6 +340,12 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
             'invalid-html-script' => array(
                 'script' => array(
                     'html' => 'missing.phtml'
+                )
+            ),
+            'view-parameters' => array(
+                'script' => array(
+                    'text' => 'parameter.phtml',
+                    'html' => 'parameter.phtml'
                 )
             )
         );
