@@ -225,12 +225,21 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Ensures that create() throws an exception if a configured view script
+     * Ensures that create() throws an exception if a configured text view script
      * does not exist.
      */
-    public function testCreateThrowsExceptionIfConfiguredViewScriptIsNotAvailable()
+    public function testCreateThrowsExceptionIfConfiguredTextViewScriptIsNotAvailable()
     {
         
+    }
+    
+    /**
+     * Ensures that create() throws an exception if a configured html view script
+     * does not exist.
+     */
+    public function testCreateThrowsExceptionIfConfiguredHtmlViewScriptIsNotAvailable()
+    {
+    
     }
     
     /**
