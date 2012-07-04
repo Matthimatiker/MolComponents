@@ -78,6 +78,21 @@ class Mol_Mail_Factory
 {
     
     /**
+     * The configured templates.
+     *
+     * @var Zend_Config
+     */
+    protected $templates = null;
+    
+    /**
+     * The view that is used for view script rendering
+     * and whose translator is used to translate subjects.
+     *
+     * @var Zend_View
+     */
+    protected $view = null;
+    
+    /**
      * Creates the factory.
      *
      * @param Zend_Config $templates The template configurations.
@@ -85,7 +100,8 @@ class Mol_Mail_Factory
      */
     public function __construct(Zend_Config $templates, Zend_View $view)
     {
-        
+        $this->templates = $templates;
+        $this->view      = $view;
     }
     
     /**
@@ -103,7 +119,12 @@ class Mol_Mail_Factory
      */
     public function create($template = null, array $parameters = array())
     {
-        
+        if ($template === null) {
+            // Create mail without template.
+            return $this->createMail($this->getDefaultCharset());
+        }
+        $template = $this->getConfigFor($template);
+        return $this->createMailFrom($template, $parameters);
     }
     
     /**
@@ -115,7 +136,30 @@ class Mol_Mail_Factory
      */
     protected function createMailFrom(Zend_Config $configuration, array $parameters)
     {
+        $charset = $configuration->get('charset', $this->getDefaultCharset());
+        $mail    = $this->createMail($charset);
+        if (isset($configuration->subject)) {
+            $mail->setSubject($this->translate($configuration->subject));
+        }
+        if (isset($configuration->to)) {
+            $mail->addTo($configuration->to->toArray());
+        }
+        if (isset($configuration->cc)) {
+            $mail->addCc($configuration->cc->toArray());
+        }
+        if (isset($configuration->bcc)) {
+            $mail->addBcc($configuration->bcc->toArray());
+        }
+        if (isset($configuration->sender)) {
+            $mail->setFrom($configuration->sender);
+        }
+        if (isset($configuration->script->text)) {
+            
+        }
+        if (isset($configuration->script->html)) {
         
+        }
+        return $mail;
     }
     
     /**
@@ -127,7 +171,11 @@ class Mol_Mail_Factory
      */
     protected function getConfigFor($template)
     {
-        
+        if (!isset($this->templates->{$template})) {
+            $message = 'The template "' . $template . '" does not exist.';
+            throw new InvalidArgumentException($message);
+        }
+        return $this->templates->get($template);
     }
     
     /**
@@ -135,11 +183,33 @@ class Mol_Mail_Factory
      *
      * Can be overwritten to work with more specific mail objects.
      *
+     * @param string $charset
      * @return Zend_Mail
      */
-    protected function createMail()
+    protected function createMail($charset)
     {
-        
+        return new Zend_Mail($charset);
+    }
+    
+    /**
+     * Uses the view translator to translate the provided message id.
+     *
+     * @param string $messageId
+     * @return string
+     */
+    protected function translate($messageId)
+    {
+        return $this->view->translate($messageId);
+    }
+    
+    /**
+     * Returns the default mail charset.
+     *
+     * @return string
+     */
+    protected function getDefaultCharset()
+    {
+        return $this->view->getEncoding();
     }
     
 }
