@@ -142,13 +142,13 @@ class Mol_Mail_Factory
             $mail->setSubject($this->translate($configuration->subject));
         }
         if (isset($configuration->to)) {
-            $mail->addTo($configuration->to->toArray());
+            $mail->addTo($this->toRecipientList($configuration->to));
         }
         if (isset($configuration->cc)) {
-            $mail->addCc($configuration->cc->toArray());
+            $mail->addCc($this->toRecipientList($configuration->cc));
         }
         if (isset($configuration->bcc)) {
-            $mail->addBcc($configuration->bcc->toArray());
+            $mail->addBcc($this->toRecipientList($configuration->bcc));
         }
         if (isset($configuration->sender)) {
             $mail->setFrom($configuration->sender);
@@ -160,6 +160,22 @@ class Mol_Mail_Factory
             $mail->setBodyHtml($this->render($configuration->script->html, $parameters));
         }
         return $mail;
+    }
+    
+    /**
+     * Converts the provided value into an array of recipients.
+     *
+     * @param Zend_Config|string $value
+     * @return array(string) A list of recipients.
+     */
+    protected function toRecipientList($value)
+    {
+        if (is_string($value)) {
+            // Single recipient as string provided.
+            return array($value);
+        }
+        // Config entry with list of recipients assumed.
+        return $value->toArray();
     }
     
     /**
