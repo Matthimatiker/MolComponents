@@ -39,7 +39,7 @@
  * # to          (array(string)) - List of default "to" recipients
  * # cc          (array(string)) - List of default "cc" recipients
  * # bcc         (array(string)) - List of default "bcc" recipients
- * # sender      (string)        - Sender address
+ * # from        (string)        - Sender address
  * # script.text (string)        - Template that renders the text part
  * # script.html (string)        - Template that renders the HTML part
  *
@@ -58,7 +58,7 @@
  *     'bcc' => array(
  *         'archive@example.com'
  *     ),
- *     'sender' => 'mailer@example.org',
+ *     'from'   => 'mailer@example.org',
  *     'script' => array(
  *         'text' => 'hello.text.phtml',
  *         'html' => 'hello.html.phtml'
