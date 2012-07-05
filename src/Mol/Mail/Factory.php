@@ -150,6 +150,9 @@ class Mol_Mail_Factory
         if (isset($configuration->bcc)) {
             $mail->addBcc($this->toRecipientList($configuration->bcc));
         }
+        if (isset($configuration->replyTo)) {
+            $mail->setReplyTo($configuration->replyTo);
+        }
         if (isset($configuration->sender)) {
             $mail->setFrom($configuration->sender);
         }
