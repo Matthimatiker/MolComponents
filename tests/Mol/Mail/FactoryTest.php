@@ -215,9 +215,62 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('ISO-8859-1', $mail->getCharset());
     }
     
-    // @todo set replyTo
+    /**
+     * Checks if create() sets the configured reply-to address.
+     */
+    public function testCreateSetsConfiguredReplyTo()
+    {
+        $mail = $this->factory->create('hello');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('reply@example.com', $mail->getReplyTo());
+    }
+    
+    /**
+     * Ensures that create() does not set a reply-to address if none
+     * was configured.
+     */
+    public function testCreateOmitsReplyToIfConfigurationIsNotAvailable()
+    {
+        $mail = $this->factory->create('empty');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEmpty($mail->getReplyTo());
+    }
+    
+    /**
+     * Checks if the factory accepts a "to" setting that contains just
+     * one recipient as string.
+     */
+    public function testFactoryAcceptsSingleToRecipientAsString()
+    {
+        $mail = $this->factory->create('single-to-recipient');
+        $this->assertHasHeader($mail, 'To', 1);
+        $recipients = $mail->getRecipients();
+        $this->assertContains('recipient@example.com', $recipients);
+    }
+    
+    /**
+     * Checks if the factory accepts a "cc" setting that contains just
+     * one recipient as string.
+     */
+    public function testFactoryAcceptsSingleCcRecipientAsString()
+    {
+        $mail = $this->factory->create('single-cc-recipient');
+        $this->assertHasHeader($mail, 'Cc', 1);
+        $recipients = $mail->getRecipients();
+        $this->assertContains('recipient@example.com', $recipients);
+    }
+    
+    /**
+     * Checks if the factory accepts a "bcc" setting that contains just
+     * one recipient as string.
+     */
+    public function testFactoryAcceptsSingleBccRecipientAsString()
+    {
+        $mail = $this->factory->create('single-bcc-recipient');
+        $this->assertHasHeader($mail, 'Bcc', 1);
+    }
+    
     // @todo rename "sender" to "from"
-    // @todo support single mail addresses
     
     /**
      * Ensures that create() uses the view charset if the requested
@@ -367,6 +420,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
                     'archive@example.com'
                 ),
                 'sender' => 'mailer@example.org',
+                'replyTo' => 'reply@example.com',
                 'script' => array(
                     'text' => 'hello.text.phtml',
                     'html' => 'hello.html.phtml'
@@ -392,6 +446,15 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
             ),
             'subject-translation' => array(
                 'subject' => 'subjectMsgId'
+            ),
+            'single-to-recipient' => array(
+                'to' => 'recipient@example.com'
+            ),
+            'single-cc-recipient' => array(
+                'cc' => 'recipient@example.com'
+            ),
+            'single-bcc-recipient' => array(
+                'bcc' => 'recipient@example.com'
             )
         );
         return new Zend_Config($templates);
