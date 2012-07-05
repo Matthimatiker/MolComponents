@@ -39,6 +39,7 @@
  * # to          (array(string)) - List of default "to" recipients
  * # cc          (array(string)) - List of default "cc" recipients
  * # bcc         (array(string)) - List of default "bcc" recipients
+ * # replyTo     (string)        - A reply-to address
  * # from        (string)        - Sender address
  * # script.text (string)        - Template that renders the text part
  * # script.html (string)        - Template that renders the HTML part
