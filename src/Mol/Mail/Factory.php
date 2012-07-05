@@ -153,8 +153,8 @@ class Mol_Mail_Factory
         if (isset($configuration->replyTo)) {
             $mail->setReplyTo($configuration->replyTo);
         }
-        if (isset($configuration->sender)) {
-            $mail->setFrom($configuration->sender);
+        if (isset($configuration->from)) {
+            $mail->setFrom($configuration->from);
         }
         if (isset($configuration->script->text)) {
             $mail->setBodyText($this->render($configuration->script->text, $parameters));
