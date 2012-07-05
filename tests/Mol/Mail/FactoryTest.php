@@ -270,8 +270,6 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $this->assertHasHeader($mail, 'Bcc', 1);
     }
     
-    // @todo rename "sender" to "from"
-    
     /**
      * Ensures that create() uses the view charset if the requested
      * template does not provide a configuration value.
@@ -419,9 +417,9 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
                 'bcc' => array(
                     'archive@example.com'
                 ),
-                'sender' => 'mailer@example.org',
+                'from'    => 'mailer@example.org',
                 'replyTo' => 'reply@example.com',
-                'script' => array(
+                'script'  => array(
                     'text' => 'hello.text.phtml',
                     'html' => 'hello.html.phtml'
                 )
