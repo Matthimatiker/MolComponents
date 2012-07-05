@@ -33,21 +33,34 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Checks if init() returns a mail factory.
+     */
     public function testInitReturnsFactory()
     {
         
     }
     
+    /**
+     * Ensures that the original view that is provided by the bootstrapper
+     * is not modified.
+     */
     public function testResourceDoesNotModifyScriptPathOfOriginalView()
     {
         
     }
     
+    /**
+     * Checks if the resource merges the configured config files.
+     */
     public function testResourceMergesProvidedConfigurationFiles()
     {
         
     }
     
+    /**
+     * Ensures that the resource uses the configured script paths.
+     */
     public function testResourceSetsConfiguredScriptPaths()
     {
         
