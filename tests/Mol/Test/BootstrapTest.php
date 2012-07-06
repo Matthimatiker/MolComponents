@@ -132,6 +132,15 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the run() method does not raise any error.
+     */
+    public function testRunDoesNothing()
+    {
+        $this->setExpectedException(null);
+        $this->bootstrapper->run();
+    }
+    
+    /**
      * Creates a new bootstrapper for testing.
      *
      * @return Mol_Test_Bootstrap
