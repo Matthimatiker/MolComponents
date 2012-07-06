@@ -33,41 +33,67 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Ensures that create() returns always new bootstrapper instances.
+     */
     public function testCreateReturnsNewBootstrapperOnEachCall()
     {
         
     }
     
+    /**
+     * Checks if the bootstrapper implements the bootstrapper interface.
+     */
     public function testBootrapperImplementsBootstrapperInterface()
     {
         
     }
     
+    /**
+     * Checks if simulateResource() provides a fluent interface.
+     */
     public function testSimulateResourceProvidesFluentInterface()
     {
         
     }
     
+    /**
+     * Ensures that getResource() returns simulated resources.
+     */
     public function testGetResourceReturnsSimulatedResource()
     {
     
     }
     
+    /**
+     * Ensures that a resource is overwritten if simlateResource() is called again.
+     */
     public function testSimulateResourceOverwritesPreviousResourceWithSameName()
     {
         
     }
     
+    /**
+     * Ensures that multiple bootstrapper instances do not share their resources.
+     */
+    public function testBootstrappersDoNotShareResources()
+    {
+    
+    }
+    
+    /**
+     * Ensures that bootstrap() does not throw an exception if the provided
+     * resource was simulated.
+     */
     public function testBootstrapDoesNotThrowExceptionIfResourceWasSimulated()
     {
         
     }
     
-    public function testBootstrappersDoNotShareResources()
-    {
-        
-    }
-    
+    /**
+     * Ensures that bootstrap() throws an exception if the provided resource
+     * was not simulated.
+     */
     public function testBootstrapThrowsExceptionIfResourceWasNotSimulated()
     {
         
