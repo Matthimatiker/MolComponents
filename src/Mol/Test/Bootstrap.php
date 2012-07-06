@@ -38,6 +38,18 @@ class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
     }
     
     /**
+     * Creates the bootstrapper.
+     *
+     * @param Zend_Application|Zend_Application_Bootstrap_Bootstrapper $application
+     */
+    public function __construct($application)
+    {
+        parent::__construct($application);
+        // Uses a simple container that is not global.
+        $this->setContainer(new stdClass());
+    }
+    
+    /**
      * Simulates the resource with the provided name.
      *
      * The bootstrapper will behave as if the resource was already initialized.
