@@ -33,4 +33,44 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testCreateReturnsNewBootstrapperOnEachCall()
+    {
+        
+    }
+    
+    public function testBootrapperImplementsBootstrapperInterface()
+    {
+        
+    }
+    
+    public function testSimulateResourceProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testGetResourceReturnsSimulatedResource()
+    {
+    
+    }
+    
+    public function testSimulateResourceOverwritesPreviousResourceWithSameName()
+    {
+        
+    }
+    
+    public function testBootstrapDoesNotThrowExceptionIfResourceWasSimulated()
+    {
+        
+    }
+    
+    public function testBootstrappersDoNotShareResources()
+    {
+        
+    }
+    
+    public function testBootstrapThrowsExceptionIfResourceWasNotSimulated()
+    {
+        
+    }
+    
 }
