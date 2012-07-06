@@ -43,6 +43,8 @@ class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
     /**
      * Simulates the resource with the provided name.
      *
+     * The bootstrapper will behave as if the resource was already initialized.
+     *
      * @param string $name The name of the resource.
      * @param mixed $result The result of the resource that  will be stored in the container.
      * @return Mol_Test_Bootstrap Provides a fluent interface.
