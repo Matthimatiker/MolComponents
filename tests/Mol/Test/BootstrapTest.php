@@ -151,6 +151,16 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the bootstrapper is not able to bootstrap the default Zend
+     * resources automatically.
+     */
+    public function testBootstrapperDoesNotBootstrapZendResources()
+    {
+        $this->setExpectedException('Zend_Application_Bootstrap_Exception');
+        $this->bootstrapper->bootstrap('view');
+    }
+    
+    /**
      * Creates a new bootstrapper for testing.
      *
      * @return Mol_Test_Bootstrap
