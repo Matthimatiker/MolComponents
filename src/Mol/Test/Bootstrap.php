@@ -26,10 +26,6 @@
 class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
 {
     
-    // @todo do not share resources (custom container)
-    // @todo do not force users to create instances of Zend_Application as constructor argument
-    // @todo simulation of resources
-    
     /**
      * Creates a pre-configured boostrapper.
      *
@@ -53,4 +49,5 @@ class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
     {
         
     }
+    
 }
