@@ -25,7 +25,30 @@
  */
 class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
 {
+    
     // @todo do not share resources (custom container)
     // @todo do not force users to create instances of Zend_Application as constructor argument
     // @todo simulation of resources
+    
+    /**
+     * Creates a pre-configured boostrapper.
+     *
+     * @return Mol_Test_Bootstrap
+     */
+    public static function create()
+    {
+        
+    }
+    
+    /**
+     * Simulates the resource with the provided name.
+     *
+     * @param string $name The name of the resource.
+     * @param mixed $result The result of the resource that  will be stored in the container.
+     * @return Mol_Test_Bootstrap Provides a fluent interface.
+     */
+    public function simulateResource($name, $result = null)
+    {
+        
+    }
 }
