@@ -34,6 +34,31 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Test_Bootstrap
+     */
+    protected $bootstrapper = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->bootstrapper = $this->createBootstrapper();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->bootstrapper = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that create() returns always new bootstrapper instances.
      */
     public function testCreateReturnsNewBootstrapperOnEachCall()
@@ -97,6 +122,18 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
     public function testBootstrapThrowsExceptionIfResourceWasNotSimulated()
     {
         
+    }
+    
+    /**
+     * Creates a new bootstrapper for testing.
+     *
+     * @return Mol_Test_Bootstrap
+     */
+    protected function createBootstrapper()
+    {
+        $bootstrapper = Mol_Test_Bootstrap::create();
+        $this->assertInstanceOf('Mol_Test_Bootstrap', $bootstrapper);
+        return $bootstrapper;
     }
     
 }
