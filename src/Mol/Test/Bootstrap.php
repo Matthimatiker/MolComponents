@@ -50,4 +50,13 @@ class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
         
     }
     
+    /**
+     * Run method as required by the interface.
+     *
+     * Simply does nothing.
+     */
+    public function run()
+    {
+    }
+    
 }
