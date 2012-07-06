@@ -34,6 +34,42 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Application_Resource_Mailer
+     */
+    protected $resource = null;
+    
+    /**
+     * The bootstrapper that is used to simulate resources.
+     *
+     * @var Mol_Test_Bootstrap
+     */
+    protected $bootstrapper = null;
+
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->bootstrapper = $this->createBootstrapper();
+        $this->resource     = new Mol_Application_Resource_Mailer();
+        $this->resource->setBootstrap($this->bootstrapper);
+        $this->resource->setOptions(array());
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->resource     = null;
+        $this->bootstrapper = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Checks if init() returns a mail factory.
      */
     public function testInitReturnsFactory()
@@ -64,6 +100,18 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
     public function testResourceSetsConfiguredScriptPaths()
     {
         
+    }
+    
+    /**
+     * Creates a bootstrapper for testing.
+     *
+     * @return Mol_Test_Bootstrap
+     */
+    protected function createBootstrapper()
+    {
+        $bootstrapper = Mol_Test_Bootstrap::create();
+        $bootstrapper->simulateResource('view', new Zend_View());
+        return $bootstrapper;
     }
     
 }
