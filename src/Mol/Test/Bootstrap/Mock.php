@@ -26,6 +26,7 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.01.2011
+ * @deprecated Use Mol_Test_Bootstrap as it is a *real* bootstrapper class and fully tested.
  */
 class Mol_Test_Bootstrap_Mock
 {
