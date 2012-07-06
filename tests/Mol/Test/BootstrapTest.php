@@ -112,6 +112,16 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that simulateResource() normalizes the resource name
+     * in the same way as the other bootstrap methods do (lowercase).
+     */
+    public function testSimulateResourceNormalizesResourceName()
+    {
+        $this->bootstrapper->simulateResource('camelCase', 'test');
+        $this->assertEquals('test', $this->bootstrapper->getResource('camelCase'));
+    }
+    
+    /**
      * Ensures that multiple bootstrapper instances do not share their resources.
      */
     public function testBootstrappersDoNotShareResources()
