@@ -15,6 +15,26 @@
 /**
  * A bootstrapper that supports simulation of resources and is used for testing.
  *
+ * == Usage ==
+ *
+ * The static create() method may be used to instantiate a new bootstrapper:
+ * <code>
+ * $bootstrapper = Mol_Test_Bootstrap::create();
+ * </code>
+ * This helper method automatically creates an Zend_Application object
+ * that is required as constructor argument for bootstrappers.
+ *
+ * The method simulateResource() is used to simulated arbitrary resources:
+ * <code>
+ * $bootstrapper->simulateResource('view', new Zend_View());
+ * </code>
+ *
+ * After resource injection the usual boostrapper methods may be used
+ * to retrieve the simulated values:
+ * <code>
+ * $view = $bootstrapper->getResource('view');
+ * </code>
+ *
  * @category PHP
  * @package Mol_Test
  * @author Matthias Molitor <matthias@matthimatiker.de>
