@@ -63,7 +63,7 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateReturnsNewBootstrapperOnEachCall()
     {
-        
+        $this->assertNotSame(Mol_Test_Bootstrap::create(), Mol_Test_Bootstrap::create());
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootrapperImplementsBootstrapperInterface()
     {
-        
+        $this->assertInstanceOf('Zend_Application_Bootstrap_Bootstrapper', $this->bootstrapper);
     }
     
     /**
@@ -79,7 +79,7 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testSimulateResourceProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->bootstrapper, $this->bootstrapper->simulateResource('test'));
     }
     
     /**
@@ -87,7 +87,8 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testGetResourceReturnsSimulatedResource()
     {
-    
+        $this->bootstrapper->simulateResource('hello', 'world');
+        $this->assertEquals('world', $this->bootstrapper->getResource('hello'));
     }
     
     /**
@@ -95,7 +96,9 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testSimulateResourceOverwritesPreviousResourceWithSameName()
     {
-        
+        $this->bootstrapper->simulateResource('hello', 'world');
+        $this->bootstrapper->simulateResource('hello', 'test');
+        $this->assertEquals('test', $this->bootstrapper->getResource('hello'));
     }
     
     /**
@@ -103,7 +106,9 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrappersDoNotShareResources()
     {
-    
+        $other = $this->createBootstrapper();
+        $this->bootstrapper->simulateResource('hello', 'world');
+        $this->assertNull($other->getResource('hello'));
     }
     
     /**
@@ -112,7 +117,8 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapDoesNotThrowExceptionIfResourceWasSimulated()
     {
-        
+        $this->bootstrapper->simulateResource('hello', 'world');
+        $this->bootstrapper->bootstrap('hello');
     }
     
     /**
@@ -121,7 +127,8 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapThrowsExceptionIfResourceWasNotSimulated()
     {
-        
+        $this->setExpectedException('Zend_Application_Bootstrap_Exception');
+        $this->bootstrapper->bootstrap('hello');
     }
     
     /**
