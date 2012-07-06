@@ -33,7 +33,8 @@ class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
      */
     public static function create()
     {
-        
+        $application = new Zend_Application('testing', array());
+        return new self($application);
     }
     
     /**
@@ -47,7 +48,10 @@ class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
      */
     public function simulateResource($name, $result = null)
     {
-        
+        $name = strtolower($name);
+        $this->_markRun($name);
+        $container = $this->getContainer()->{$name} = $result;
+        return $this;
     }
     
     /**
