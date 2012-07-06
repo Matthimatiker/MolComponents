@@ -102,6 +102,16 @@ class Mol_Test_BootstrapTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if it is possible to overwrite a resource with null.
+     */
+    public function testSimulateResourceCanOverwriteResourceWithNull()
+    {
+        $this->bootstrapper->simulateResource('hello', 'world');
+        $this->bootstrapper->simulateResource('hello', null);
+        $this->assertNull($this->bootstrapper->getResource('hello'));
+    }
+    
+    /**
      * Ensures that multiple bootstrapper instances do not share their resources.
      */
     public function testBootstrappersDoNotShareResources()
