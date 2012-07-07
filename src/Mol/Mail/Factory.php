@@ -129,6 +129,16 @@ class Mol_Mail_Factory
     }
     
     /**
+     * Returns the view that is used to render mail contents.
+     *
+     * @return Zend_View
+     */
+    public function getView()
+    {
+    
+    }
+    
+    /**
      * Uses the given configuration to prepare a mail object.
      *
      * @param Zend_Config $configuration The template configuration.
