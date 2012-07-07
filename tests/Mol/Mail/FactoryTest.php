@@ -405,9 +405,17 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if getView() returns the view object that is used by the factory.
+     * Checks if getView() returns an instance of Zend_View.
      */
     public function testGetViewReturnsViewObject()
+    {
+        $this->assertInstanceOf('Zend_View', $this->factory->getView());
+    }
+    
+    /**
+     * Checks if getView() returns the view object that is used by the factory.
+     */
+    public function testGetViewReturnsCorrectView()
     {
         $this->assertSame($this->view, $this->factory->getView());
     }
