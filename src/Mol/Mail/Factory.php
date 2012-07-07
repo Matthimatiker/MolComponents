@@ -135,7 +135,7 @@ class Mol_Mail_Factory
      */
     public function getView()
     {
-    
+        return $this->view;
     }
     
     /**
