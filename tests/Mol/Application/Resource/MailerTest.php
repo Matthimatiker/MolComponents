@@ -56,7 +56,7 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
         $this->bootstrapper = $this->createBootstrapper();
         $this->resource     = new Mol_Application_Resource_Mailer();
         $this->resource->setBootstrap($this->bootstrapper);
-        $this->resource->setOptions(array());
+        $this->resource->setOptions($this->createOptions());
     }
     
     /**
@@ -112,6 +112,48 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
         $bootstrapper = Mol_Test_Bootstrap::create();
         $bootstrapper->simulateResource('view', new Zend_View());
         return $bootstrapper;
+    }
+    
+    /**
+     * Creates resource options for testing.
+     *
+     * @return array(string=>mixed)
+     */
+    protected function createOptions()
+    {
+        $options = array(
+            'templates' => array(
+                $this->toPath('mailer-a.ini'),
+                $this->toPath('mailer-b.ini')
+            ),
+            'scripts' => array(
+               $this->getTestDataPath()
+            )
+        );
+        return $options;
+    }
+    
+    /**
+     * Returns the path to the provided test file.
+     *
+     * Test files are located in TestData/Mailer.
+     *
+     * @param string $file The file name.
+     * @return string
+     */
+    protected function toPath($file)
+    {
+        return $this->getTestDataPath() . '/' . $file;
+    }
+    
+    /**
+     * Returns the path of the test data directory.
+     *
+     * @return string
+     */
+    protected function getTestDataPath()
+    {
+        return dirname(__FILE__) . '/TestData/Mailer';
     }
     
 }
