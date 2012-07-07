@@ -74,7 +74,8 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testInitReturnsFactory()
     {
-        
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
     }
     
     /**
@@ -83,7 +84,9 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceDoesNotModifyScriptPathOfOriginalView()
     {
-        
+        $previous = $this->getView()->getScriptPaths();
+        $this->resource->init();
+        $this->assertEquals($previous, $this->getView()->getScriptPaths());
     }
     
     /**
@@ -99,7 +102,12 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceSetsConfiguredScriptPaths()
     {
-        
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+        $view = $factory->getView();
+        $this->assertInstanceOf('Zend_View', $view);
+        $expected = array($this->getTestDataPath() . '/');
+        $this->assertEquals($expected, $view->getScriptPaths());
     }
     
     /**
@@ -112,6 +120,16 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
         $bootstrapper = Mol_Test_Bootstrap::create();
         $bootstrapper->simulateResource('view', new Zend_View());
         return $bootstrapper;
+    }
+    
+    /**
+     * Returns the simulated view.
+     *
+     * @return Zend_View
+     */
+    protected function getView()
+    {
+        return $this->bootstrapper->getResource('view');
     }
     
     /**
