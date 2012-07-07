@@ -41,12 +41,20 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     protected $factory = null;
     
     /**
+     * The view that is used by the factory.
+     *
+     * @var Zend_View
+     */
+    protected $view = null;
+    
+    /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
      */
     protected function setUp()
     {
         parent::setUp();
-        $this->factory = new Mol_Mail_Factory($this->createConfig(), $this->createView());
+        $this->view    = $this->createView();
+        $this->factory = new Mol_Mail_Factory($this->createConfig(), $this->view);
     }
     
     /**
@@ -55,6 +63,7 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $this->factory = null;
+        $this->view    = null;
         parent::tearDown();
     }
     
@@ -393,6 +402,14 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $body = $mail->getBodyHtml(true);
         $this->assertInternalType('string', $body);
         $this->assertNotContains('testing', $body);
+    }
+    
+    /**
+     * Checks if getView() returns the view object that is used by the factory.
+     */
+    public function testGetViewReturnsViewObject()
+    {
+        $this->assertSame($this->view, $this->factory->getView());
     }
     
     /**
