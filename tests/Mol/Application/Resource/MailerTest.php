@@ -178,11 +178,19 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
         $this->assertNotSame($this->getView(), $view);
     }
     
+    /**
+     * Ensures that the resource accepts a single template configuration
+     * file as "templates" option.
+     */
     public function testResourceAcceptsSingleTemplateFileAsArgument()
     {
         
     }
     
+    /**
+     * Ensures that the resource accepts a single view script path
+     * as "scripts" option.
+     */
     public function testResourceAcceptsSingleScriptPathAsArgument()
     {
         
