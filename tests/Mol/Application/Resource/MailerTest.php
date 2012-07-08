@@ -92,6 +92,19 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that an exception is thrown if a referenced template configuration
+     * file does not exist.
+     */
+    public function testResourceThrowsExceptionIfReferencedConfigurationFileDoesNotExist()
+    {
+        $this->setExpectedException('Zend_Application_Resource_Exception');
+        $options = $this->createOptions();
+        $options['templates'] = array($this->toPath('missing.ini'));
+        $this->resource->setOptions($options);
+        $this->resource->init();
+    }
+    
+    /**
      * Ensures that the original view that is provided by the bootstrapper
      * is not modified.
      */
