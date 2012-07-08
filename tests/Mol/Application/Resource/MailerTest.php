@@ -124,6 +124,18 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the resource does not pass the original view
+     * to the mail factory.
+     */
+    public function testResourceDoesNotInjectOriginalViewIntoFactory()
+    {
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+        $view = $factory->getView();
+        $this->assertNotSame($this->getView(), $view);
+    }
+    
+    /**
      * Creates a bootstrapper for testing.
      *
      * @return Mol_Test_Bootstrap
