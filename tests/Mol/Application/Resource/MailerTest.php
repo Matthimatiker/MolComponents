@@ -79,6 +79,19 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the resource creates a factory even if neither template
+     * configurations nor script paths were provided.
+     */
+    public function testInitReturnsFactoryEvenIfNoOptionsWereProvided()
+    {
+        // Equals the following configuration:
+        // resources.mailer = On
+        $this->resource->setOptions(array(true));
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+    }
+    
+    /**
      * Ensures that the original view that is provided by the bootstrapper
      * is not modified.
      */
