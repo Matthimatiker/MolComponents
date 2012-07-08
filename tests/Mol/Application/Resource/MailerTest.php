@@ -108,7 +108,11 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testTemplatesFromPreviousConfigurationsAreNotLost()
     {
-        
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+        $mail = $factory->create('a');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('Mail A', $mail->getSubject());
     }
     
     /**
@@ -116,7 +120,11 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testTemplatesFromFollowingConfigurationsAreAdded()
     {
-        
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+        $mail = $factory->create('c');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('Mail C', $mail->getSubject());
     }
     
     /**
@@ -125,7 +133,11 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testFollowingTemplateConfigurationsOverwritePreviousOnesIfConflictOccurs()
     {
-        
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+        $mail = $factory->create('b');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('Mail B, modified', $mail->getSubject());
     }
     
     /**
