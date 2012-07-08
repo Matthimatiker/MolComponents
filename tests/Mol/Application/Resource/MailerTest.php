@@ -184,7 +184,15 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceAcceptsSingleTemplateFileAsArgument()
     {
-        
+        $options = $this->createOptions();
+        $options['templates'] = $this->toPath('mailer-a.ini');
+        $this->resource->setOptions($options);
+        // Mail template a should be available:
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+        $mail = $factory->create('a');
+        $this->assertInstanceOf('Zend_Mail', $mail);
+        $this->assertEquals('Mail A', $mail->getSubject());
     }
     
     /**
@@ -193,7 +201,14 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceAcceptsSingleScriptPathAsArgument()
     {
-        
+        $options = $this->createOptions();
+        $options['scripts'] = $this->getTestDataPath();
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+        $view = $factory->getView();
+        $this->assertInstanceOf('Zend_View', $view);
+        $this->assertEquals(array($this->getTestDataPath() . '/'), $view->getScriptPaths());
     }
     
     /**
