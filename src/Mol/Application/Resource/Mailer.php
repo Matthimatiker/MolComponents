@@ -59,17 +59,12 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      *
      * @param array(string) $files
      * @return Zend_Config
-     * @throws Zend_Application_Resource_Exception If a config file does not exist.
      */
     protected function getConfig(array $files)
     {
         $templates = new Zend_Config(array(), true);
         foreach ($files as $file) {
             /* @var $file string */
-            if (!is_file($file)) {
-                $message = 'Mail template configuration file "' . $file . '" does not exist.';
-                throw new Zend_Application_Resource_Exception($message);
-            }
             $config = new Zend_Config_Ini($file);
             $templates->merge($config);
         }
@@ -84,7 +79,15 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function getConfigFiles()
     {
-        return $this->asList('templates');
+        $files = $this->asList('templates');
+        $valid = array_filter($files, 'is_file');
+        if (count($valid) !== count($files)) {
+            // At least one path does not point to an existing file.
+            $notExisting = array_diff($files, $valid);
+            $message = 'The following mail template configuration files do not exist: ' . implode(', ', $notExisting);
+            throw new Zend_Application_Resource_Exception($message);
+        }
+        return $files;
     }
 
     /**
