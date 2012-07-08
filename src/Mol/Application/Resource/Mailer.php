@@ -36,7 +36,9 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     public function init()
     {
-        
+        $templates = $this->getConfig($this->getConfigFiles());
+        $view      = $this->prepare($this->getView());
+        return $this->createFactory($templates, $view);
     }
     
     /**
@@ -49,7 +51,7 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function createFactory(Zend_Config $templates, Zend_View $view)
     {
-        
+        return new Mol_Mail_Factory($templates, $view);
     }
     
     /**
@@ -57,10 +59,21 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      *
      * @param array(string) $files
      * @return Zend_Config
+     * @throws Zend_Application_Resource_Exception If a config file does not exist.
      */
     protected function getConfig(array $files)
     {
-        
+        $templates = new Zend_Config(array(), true);
+        foreach ($files as $file) {
+            /* @var $file string */
+            if (!is_file($file)) {
+                $message = 'Mail template configuration file "' . $file . '" does not exist.';
+                throw new Zend_Application_Resource_Exception($message);
+            }
+            $config = new Zend_Config_Ini($file);
+            $templates->merge($config);
+        }
+        return $templates;
     }
     
     /**
@@ -71,7 +84,11 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function getConfigFiles()
     {
-        
+        $options = $this->getOptions();
+        if (!isset($options['templates'])) {
+            return array();
+        }
+        return $options['templates'];
     }
 
     /**
@@ -81,7 +98,8 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function getView()
     {
-        
+        $this->getBootstrap()->bootstrap('view');
+        return $this->getBootstrap()->getResource('view');
     }
     
     /**
@@ -96,7 +114,10 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function prepare(Zend_View $view)
     {
-    
+        $view = clone $view;
+        /* @var $view Zend_View */
+        $view->setScriptPath($this->getScriptPaths());
+        return $view;
     }
 
     /**
@@ -106,7 +127,11 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function getScriptPaths()
     {
-        
+        $options = $this->getOptions();
+        if (!isset($options['scripts'])) {
+            return array();
+        }
+        return $options['scripts'];
     }
     
 }
