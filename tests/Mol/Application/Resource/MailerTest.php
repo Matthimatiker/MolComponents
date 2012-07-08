@@ -103,9 +103,27 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if the resource merges the configured config files.
+     * Ensures that the templates in the first configuration file are not lost
+     * when the second one is added.
      */
-    public function testResourceMergesProvidedConfigurationFiles()
+    public function testTemplatesFromPreviousConfigurationsAreNotLost()
+    {
+        
+    }
+    
+    /**
+     * Checks if the templates from the second configuration file are added.
+     */
+    public function testTemplatesFromFollowingConfigurationsAreAdded()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the second configuration file overwrites the template settings in
+     * the first one if both declare the same template.
+     */
+    public function testFollowingTemplateConfigurationsOverwritePreviousOnesIfConflictOccurs()
     {
         
     }
