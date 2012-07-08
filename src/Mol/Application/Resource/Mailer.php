@@ -84,14 +84,7 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function getConfigFiles()
     {
-        $options = $this->getOptions();
-        if (!isset($options['templates'])) {
-            return array();
-        }
-        if (!is_array($options['templates'])) {
-            return array($options['templates']);
-        }
-        return $options['templates'];
+        return $this->asList('templates');
     }
 
     /**
@@ -130,11 +123,27 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
      */
     protected function getScriptPaths()
     {
+        return $this->asList('scripts');
+    }
+    
+    /**
+     * Returns the contents of the option $name as list.
+     *
+     * Returns an empty array if the option was not provided.
+     *
+     * @param string $name The option name.
+     * @return array(string)
+     */
+    protected function asList($name)
+    {
         $options = $this->getOptions();
-        if (!isset($options['scripts'])) {
+        if (!isset($options[$name])) {
             return array();
         }
-        return $options['scripts'];
+        if (!is_array($options[$name])) {
+            return array($options[$name]);
+        }
+        return $options[$name];
     }
     
 }
