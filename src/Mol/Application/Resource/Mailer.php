@@ -88,6 +88,9 @@ class Mol_Application_Resource_Mailer extends Zend_Application_Resource_Resource
         if (!isset($options['templates'])) {
             return array();
         }
+        if (!is_array($options['templates'])) {
+            return array($options['templates']);
+        }
         return $options['templates'];
     }
 
