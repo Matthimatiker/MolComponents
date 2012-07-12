@@ -18,6 +18,47 @@
  * This resource depends on the following resources:
  * # view - Used for rendering mail templates.
  *
+ * == Usage ==
+ *
+ * To create a mail factory without templates it is enough
+ * to just activate the resource:
+ * <code>
+ * resources.mailer = On
+ * </code>
+ * This configuration might be useful to avoid the manual creation
+ * of mail objects.
+ *
+ * The following code can be used to create a mail object in the context
+ * of an action controller:
+ * <code>
+ * $mail = $this->getInvokeArg('bootstrap')->getResource('mailer')->create();
+ * </code>
+ *
+ * Advanced features can be used by configuring mail template configuration
+ * files and paths to view scripts:
+ * <code>
+ * resources.mailer.templates[] = APPLICATION_PATH "/mails/user-related.ini"
+ * resources.mailer.templates[] = APPLICATION_PATH "/mails/notifications.ini"
+ * resources.mailer.scripts[]   = APPLICATION_PATH "/mails/views"
+ * </code>
+ * Any number of template configurations and script paths can be added.
+ * In case of conflict the later defined template configurations will
+ * overwrite the settings of their predecessors.
+ * The script paths are searched for mail content templates that
+ * are referenced by template configurations.
+ * Have a look at {@link Mol_Mail_Factory} to learn about the possible
+ * template settings.
+ *
+ * Assuming that the template "user-registration" is defined then the
+ * following code (in the context of an action controller) will create
+ * a pre-configured mail object:
+ * <code>
+ * $parameters = array('userName', $name);
+ * $mail       = $this->getInvokeArg('bootstrap')->getResource('mailer')->create('user-registration', $parameters);
+ * </code>
+ * The create() method receives a template name and (optionally) a list
+ * of parameters that is passed to the configured content view scripts.
+ *
  * @category PHP
  * @package Mol_Mail
  * @author Matthias Molitor <matthias@matthimatiker.de>
