@@ -20,6 +20,8 @@
  *
  * == Usage ==
  *
+ * === Simple mail creation ===
+ *
  * To create a mail factory without templates it is enough
  * to just activate the resource:
  * <code>
@@ -33,6 +35,9 @@
  * <code>
  * $mail = $this->getInvokeArg('bootstrap')->getResource('mailer')->create();
  * </code>
+ *
+ *
+ * === Configuration and usage of templates ===
  *
  * Advanced features can be used by configuring mail template configuration
  * files and paths to view scripts:
