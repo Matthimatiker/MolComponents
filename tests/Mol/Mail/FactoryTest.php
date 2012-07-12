@@ -493,6 +493,8 @@ class Mol_Mail_FactoryTest extends PHPUnit_Framework_TestCase
         $view = new Zend_View();
         $view->setEncoding('UTF-8');
         $view->setScriptPath(dirname(__FILE__) . '/TestData');
+        // Simulate short_open_tag=On if necessary.
+        $view->setUseStreamWrapper(true);
         
         // Register a translator for testing.
         $translatorOptions = array(
