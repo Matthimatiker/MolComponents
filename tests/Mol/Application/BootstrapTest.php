@@ -56,4 +56,14 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testGetResourceReturnsCorrectValueIfResourceWasNotLazyLoaded()
+    {
+        
+    }
+    
+    public function testGetResourceReturnsCorrectValueIfResourceIsLazyLoaded()
+    {
+        
+    }
+    
 }
