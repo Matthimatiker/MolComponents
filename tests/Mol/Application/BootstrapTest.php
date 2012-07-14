@@ -41,4 +41,19 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testBootstrapperDoesNotApplyLazyLoadingIfLazyLoadOptionIsNotProvided()
+    {
+        
+    }
+    
+    public function testBootstrapperDoesNotApplyLazyLoadingIfLazyLoadOptionIsFalse()
+    {
+        
+    }
+    
+    public function testBootstrapperAppliesLazyLoadingIfLazyLoadOptionIsTrue()
+    {
+        
+    }
+    
 }
