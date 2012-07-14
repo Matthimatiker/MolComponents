@@ -33,4 +33,12 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Ensures that the lazyLoad option is not passed to resource plugins.
+     */
+    public function testBootstrapperDoesNotPassLazyLoadOptionToResource()
+    {
+        
+    }
+    
 }
