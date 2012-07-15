@@ -38,7 +38,8 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testConstructorThrowsExceptionIfNoResourceIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Application_Bootstrap_LazyLoad_ResourceDecorator(new stdClass());
     }
     
     /**
