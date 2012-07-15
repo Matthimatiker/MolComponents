@@ -27,6 +27,20 @@ class Mol_Application_Bootstrap_LazyLoader
 {
     
     /**
+     * The callback or null if it was already executed.
+     *
+     * @var mixed|null
+     */
+    protected $callback = null;
+    
+    /**
+     * Holds the result of the callback after execution.
+     *
+     * @var mixed
+     */
+    protected $result = null;
+    
+    /**
      * Creates a lazy loader.
      *
      * @param mixed $callback A callback.
@@ -34,7 +48,11 @@ class Mol_Application_Bootstrap_LazyLoader
      */
     public function __construct($callback)
     {
-        
+        if (!is_callable($callback)) {
+            $message = 'Valid callback expected.';
+            throw new InvalidArgumentException($message);
+        }
+        $this->callback = $callback;
     }
     
     /**
@@ -44,7 +62,13 @@ class Mol_Application_Bootstrap_LazyLoader
      */
     public function load()
     {
-        
+        if ($this->callback !== null) {
+            // Callback was not executed before.
+            $this->result = call_user_func_array($this->callback, array());
+            // Remove the callback to ensure that it is not executed again.
+            $this->callback = null;
+        }
+        return $this->result;
     }
     
 }
