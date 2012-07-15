@@ -33,51 +33,82 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Ensures that the constructor throws an exception if no resource is provided.
+     */
     public function testConstructorThrowsExceptionIfNoResourceIsProvided()
     {
         
     }
     
+    /**
+     * Checks if setBootstrap() provides a fluent interface.
+     */
     public function testSetBootstrapProvidesFluentInterface()
     {
         
     }
     
+    /**
+     * Checks if setBootstrap() passes the bootstrapper to the inner resource.
+     */
     public function testSetBootstrapPassesBootstrapperToInnerResource()
     {
         
     }
     
+    /**
+     * Checks if getBootstrap() returns teh bootstrapper from the inner resource.
+     */
     public function testGetBootstrapReturnsBootstrapperFromInnerResource()
     {
         
     }
     
+    /**
+     * Checks if setOptions() provides a fluent interface.
+     */
     public function testSetOptionsProvidesFluentInterface()
     {
         
     }
     
+    /**
+     * Ensures that setOptions() passes the options to the inner resource.
+     */
     public function testSetOptionsPassesOptionsToInnerResource()
     {
         
     }
     
+    /**
+     * Checks if getOptions() returns the options from the inner resource.
+     */
     public function testGetOptionsReturnsOptionsFromInnerResource()
     {
         
     }
     
+    /**
+     * Checks if init() returns a lazy loader.
+     */
     public function testInitReturnsLazyLoader()
     {
         
     }
     
+    /**
+     * Ensures that init() creates a new lazy loader on each call.
+     */
     public function testInitCreateNewLazyLoaderOnEachCall()
     {
         
     }
     
+    /**
+     * Ensures that the lazy loader that is returned by init() calls the init()
+     * method of the inner resource.
+     */
     public function testInitReturnsLazyLoaderThatInitializesTheInnerResource()
     {
         
