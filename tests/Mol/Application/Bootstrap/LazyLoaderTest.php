@@ -33,4 +33,29 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Application_Bootstrap_LazyLoaderTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testConstructorThrowsExceptionIfInvalidCallbackIsProvided()
+    {
+        
+    }
+    
+    public function testLoadExecutesCallback()
+    {
+        
+    }
+    
+    public function testCallbackIsExecutedOnlyOnceEvenIfLoadIsCalledMultipleTimes()
+    {
+        
+    }
+    
+    public function testLoadReturnsResultOfCallback()
+    {
+        
+    }
+    
+    public function testLoadReturnsCorrectResultOnFollowingCalls()
+    {
+        
+    }
+    
 }
