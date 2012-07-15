@@ -41,26 +41,43 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that lazy loading is not applied if the lazyLoad option is not provided.
+     */
     public function testBootstrapperDoesNotApplyLazyLoadingIfLazyLoadOptionIsNotProvided()
     {
         
     }
     
+    /**
+     * Ensures that lazy loading is not applied if the lazyLoad option evaluates to false.
+     */
     public function testBootstrapperDoesNotApplyLazyLoadingIfLazyLoadOptionIsFalse()
     {
         
     }
     
+    /**
+     * Ensures that lazy loading is applied if the lazyLoad option is true.
+     */
     public function testBootstrapperAppliesLazyLoadingIfLazyLoadOptionIsTrue()
     {
         
     }
     
+    /**
+     * Ensures that getResource() returns the correct value if the resource
+     * was bootstrapped without lazy loading.
+     */
     public function testGetResourceReturnsCorrectValueIfResourceWasNotLazyLoaded()
     {
         
     }
     
+    /**
+     * Ensures that getResource() returns the correct value if the resource is
+     * lazy loaded.
+     */
     public function testGetResourceReturnsCorrectValueIfResourceIsLazyLoaded()
     {
         
