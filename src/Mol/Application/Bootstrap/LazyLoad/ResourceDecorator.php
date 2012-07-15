@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Bootstrap_LazyLoad_ResourceDecorator
+ * Mol_Application_Bootstrap_LazyLoad_ResourceDecorator
  *
  * @category PHP
  * @package Mol_Bootstrap
@@ -24,7 +24,7 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 15.07.2012
  */
-class Mol_Bootstrap_LazyLoad_ResourceDecorator
+class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator
 {
     
 }

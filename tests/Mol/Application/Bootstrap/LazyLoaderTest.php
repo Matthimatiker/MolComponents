@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Bootstrap_LazyLoaderTest
+ * Mol_Application_Bootstrap_LazyLoaderTest
  *
  * @category PHP
  * @package Mol_Bootstrap
@@ -30,7 +30,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 15.07.2012
  */
-class Mol_Bootstrap_LazyLoaderTest extends PHPUnit_Framework_TestCase
+class Mol_Application_Bootstrap_LazyLoaderTest extends PHPUnit_Framework_TestCase
 {
     
 }
