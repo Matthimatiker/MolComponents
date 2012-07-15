@@ -30,6 +30,7 @@ class Mol_Bootstrap_LazyLoader
      * Creates a lazy loader.
      *
      * @param mixed $callback A callback.
+     * @throws InvalidArgumentException If the callback is not valid.
      */
     public function __construct($callback)
     {
