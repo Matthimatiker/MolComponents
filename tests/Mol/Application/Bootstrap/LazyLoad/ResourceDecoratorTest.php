@@ -81,7 +81,7 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testSetBootstrapProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->decorator, $this->decorator->setBootstrap($this->createBootstrapper()));
     }
     
     /**
@@ -89,6 +89,11 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testSetBootstrapPassesBootstrapperToInnerResource()
     {
+        $bootstrapper = $this->createBootstrapper();
+        $this->innerResource->expects($this->once())
+                            ->method('setBootstrap')
+                            ->with($this->isInstanceOf(get_class($bootstrapper)));
+        $this->decorator->setBootstrap($bootstrapper);
         
     }
     
@@ -157,6 +162,16 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
     protected function createInnerResource()
     {
         return $this->getMock('Zend_Application_Resource_Resource');
+    }
+    
+    /**
+     * Creates a bootstrapper for testing.
+     *
+     * @return Mol_Test_Bootstrap
+     */
+    protected function createBootstrapper()
+    {
+        return Mol_Test_Bootstrap::create();
     }
     
 }
