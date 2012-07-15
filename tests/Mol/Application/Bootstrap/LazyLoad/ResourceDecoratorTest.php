@@ -98,11 +98,15 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
     }
     
     /**
-     * Checks if getBootstrap() returns teh bootstrapper from the inner resource.
+     * Checks if getBootstrap() returns the bootstrapper from the inner resource.
      */
     public function testGetBootstrapReturnsBootstrapperFromInnerResource()
     {
-        
+        $bootstrapper = $this->createBootstrapper();
+        $this->innerResource->expects($this->once())
+                            ->method('getBootstrap')
+                            ->will($this->returnValue($bootstrapper));
+        $this->assertSame($bootstrapper, $this->decorator->getBootstrap());
     }
     
     /**
@@ -110,7 +114,7 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testSetOptionsProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->decorator, $this->decorator->setOptions(array()));
     }
     
     /**
@@ -118,7 +122,11 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testSetOptionsPassesOptionsToInnerResource()
     {
-        
+        $options = array('a' => 'b');
+        $this->innerResource->expects($this->once())
+             ->method('setOptions')
+             ->with($options);
+        $this->decorator->setOptions($options);
     }
     
     /**
