@@ -34,6 +34,40 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Application_Bootstrap_LazyLoad_ResourceDecorator
+     */
+    protected $decorator = null;
+    
+    /**
+     * The decorated resource.
+     *
+     * @var Zend_Application_Resource_Resource|PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $innerResource = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->innerResource = $this->createInnerResource();
+        $this->decorator     = new Mol_Application_Bootstrap_LazyLoad_ResourceDecorator($this->innerResource);
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->decorator     = null;
+        $this->innerResource = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that the constructor throws an exception if no resource is provided.
      */
     public function testConstructorThrowsExceptionIfNoResourceIsProvided()
@@ -113,6 +147,16 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
     public function testInitReturnsLazyLoaderThatInitializesTheInnerResource()
     {
         
+    }
+    
+    /**
+     * Creates a mock that is used as inner resource.
+     *
+     * @return Zend_Application_Resource_Resource|PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function createInnerResource()
+    {
+        return $this->getMock('Zend_Application_Resource_Resource');
     }
     
 }
