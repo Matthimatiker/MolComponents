@@ -60,6 +60,15 @@ class Mol_Application_Bootstrap_LazyLoaderTest extends PHPUnit_Framework_TestCas
     }
     
     /**
+     * Ensures that the callback is executed only once, even if it returns
+     * null as result.
+     */
+    public function testCallbackIsExecutedOnlyOnceEvenIfCallbackReturnsNull()
+    {
+        
+    }
+    
+    /**
      * Checks if load() returns the return value of the callback.
      */
     public function testLoadReturnsResultOfCallback()
