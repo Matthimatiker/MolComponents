@@ -33,4 +33,54 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testConstructorThrowsExceptionIfNoResourceIsProvided()
+    {
+        
+    }
+    
+    public function testSetBootstrapProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testSetBootstrapPassesBootstrapperToInnerResource()
+    {
+        
+    }
+    
+    public function testGetBootstrapReturnsBootstrapperFromInnerResource()
+    {
+        
+    }
+    
+    public function testSetOptionsProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testSetOptionsPassesOptionsToInnerResource()
+    {
+        
+    }
+    
+    public function testGetOptionsReturnsOptionsFromInnerResource()
+    {
+        
+    }
+    
+    public function testInitReturnsLazyLoader()
+    {
+        
+    }
+    
+    public function testInitCreateNewLazyLoaderOnEachCall()
+    {
+        
+    }
+    
+    public function testInitReturnsLazyLoaderThatInitializesTheInnerResource()
+    {
+        
+    }
+    
 }
