@@ -164,6 +164,16 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testBootstrapperThrowsExceptionIfConfiguredResourceWasNotFoundByThePluginLoader()
+    {
+        
+    }
+    
+    public function testBootstrapperThrowsExceptionIfResourceWasNotConfigured()
+    {
+        
+    }
+    
     /**
      * Asserts that the test resource was lazy loaded.
      */
