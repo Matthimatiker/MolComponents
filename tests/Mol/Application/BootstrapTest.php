@@ -34,6 +34,31 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Application_Bootstrap
+     */
+    protected $bootstrapper = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->bootstrapper = new Mol_Application_Bootstrap(Mol_Test_Bootstrap::create());
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->bootstrapper = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that the lazyLoad option is not passed to resource plugins.
      */
     public function testBootstrapperDoesNotPassLazyLoadOptionToResource()
