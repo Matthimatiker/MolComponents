@@ -71,13 +71,7 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperDoesNotPassLazyLoadOptionToResource()
     {
-        $options = array(
-            'resources' => array(
-                self::RESOURCE_NAME => array(
-                    'lazyLoad' => false
-                )
-            )
-        );
+        $options = $this->createOptions(array('lazyLoad' => false));
         $this->bootstrapper->setOptions($options);
         $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
         $resource = $this->bootstrapper->getResource(self::RESOURCE_NAME);
@@ -126,6 +120,24 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
     public function testGetResourceReturnsCorrectValueIfResourceIsLazyLoaded()
     {
         
+    }
+    
+    /**
+     * Creates options that can be consumed by the bootstrapper.
+     *
+     * Uses the provided options for the simulated lazy resource.
+     *
+     * @param array(string=>mixed) $resourceOptions
+     * @return array(string=>array(string=>mixed))
+     */
+    protected function createOptions($resourceOptions)
+    {
+        $options = array(
+            'resources' => array(
+                self::RESOURCE_NAME => $resourceOptions
+            )
+        );
+        return $options;
     }
     
     /**
