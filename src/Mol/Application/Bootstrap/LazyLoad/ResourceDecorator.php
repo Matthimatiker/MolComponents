@@ -26,6 +26,14 @@
  */
 class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator implements Zend_Application_Resource_Resource
 {
+    
+    /**
+     * The decorated resource.
+     *
+     * @var Zend_Application_Resource_Resource
+     */
+    protected $innerResource = null;
+    
     /**
      * Decorates the provided resource.
      *
@@ -34,7 +42,11 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator implements Zend_Appli
      */
     public function __construct($resource = null)
     {
-        
+        if (!($resource instanceof Zend_Application_Resource_Resource)) {
+            $message = 'Instance of Zend_Application_Resource_Resource expected.';
+            throw new InvalidArgumentException($message);
+        }
+        $this->innerResource = $resource;
     }
     
     /**
@@ -45,7 +57,8 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator implements Zend_Appli
      */
     public function setBootstrap(Zend_Application_Bootstrap_Bootstrapper $bootstrap)
     {
-        
+        $this->innerResource->setBootstrap($bootstrap);
+        return $this;
     }
     
     /**
@@ -55,7 +68,7 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator implements Zend_Appli
      */
     public function getBootstrap()
     {
-        
+        return $this->innerResource->getBootstrap();
     }
     
     /**
@@ -66,7 +79,8 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator implements Zend_Appli
      */
     public function setOptions(array $options)
     {
-        
+        $this->innerResource->setOptions($options);
+        return $this;
     }
     
     /**
@@ -76,7 +90,7 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator implements Zend_Appli
      */
     public function getOptions()
     {
-        
+        return $this->innerResource->getOptions();
     }
     
     /**
@@ -90,7 +104,7 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecorator implements Zend_Appli
      */
     public function init()
     {
-        
+        return new Mol_Application_Bootstrap_LazyLoader(array($this->innerResource, 'init'));
     }
     
 }
