@@ -82,6 +82,11 @@ class Mol_Application_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $result = parent::getResource($name);
         if ($result instanceof Mol_Application_Bootstrap_LazyLoader) {
+            // The resource uses lazy loading. As the resource
+            // is requested now we have to load it finally.
+            // The LazyLoader ensures that the resource is executed
+            // only once, even if getResource() is called multiple
+            // times.
             return $result->load();
         }
         return $result;
