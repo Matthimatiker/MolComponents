@@ -73,7 +73,9 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
     {
         $options = $this->createOptions(array('lazyLoad' => false));
         $this->bootstrapper->setOptions($options);
+        
         $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        
         $resource = $this->bootstrapper->getResource(self::RESOURCE_NAME);
         $this->assertInstanceOf('Mol_Application_Bootstrap_TestData_LazyResource', $resource);
         $resourceOptions = $resource->getOptions();
@@ -85,7 +87,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperDoesNotApplyLazyLoadingIfLazyLoadOptionIsNotProvided()
     {
-    
+        $options = $this->createOptions(array());
+        $this->bootstrapper->setOptions($options);
+        
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        
+        $this->assertNotLazyLoaded();
     }
     
     /**
@@ -93,7 +100,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperDoesNotApplyLazyLoadingIfLazyLoadOptionIsFalse()
     {
+        $options = $this->createOptions(array('lazyLoad' => false));
+        $this->bootstrapper->setOptions($options);
         
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        
+        $this->assertNotLazyLoaded();
     }
     
     /**
@@ -101,7 +113,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperAppliesLazyLoadingIfLazyLoadOptionIsTrue()
     {
+        $options = $this->createOptions(array('lazyLoad' => true));
+        $this->bootstrapper->setOptions($options);
         
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        
+        $this->assertLazyLoaded();
     }
     
     /**
@@ -149,7 +166,7 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
     {
         $container = $this->bootstrapper->getContainer();
         $message   = 'Container does not contain result of ' . self::RESOURCE_NAME . ' resource.';
-        $this->assertTrue($container->{self::RESOURCE_NAME}, $message);
+        $this->assertTrue(isset($container->{self::RESOURCE_NAME}), $message);
     }
     
     /**
