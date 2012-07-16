@@ -39,7 +39,26 @@ class Mol_Application_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      */
     protected function _loadPluginResource($resource, $options)
     {
-        
+        $options  = (array)$options;
+        $lazyLoad = false;
+        if (isset($options['lazyLoad'])) {
+            $lazyLoad = $options['lazyLoad'];
+            // Do not pass the lazyLoad option to the resource
+            // to be as transparent as possible.
+            unset($options['lazyLoad']);
+        }
+        $name = parent::_loadPluginResource($resource, $options);
+        if ($name === false) {
+            return false;
+        }
+        if ($lazyLoad) {
+            /* @var $loadedPlugin Zend_Application_Resource_Resource */
+            $loadedPlugin = $this->_pluginResources[$name];
+            // Wrap the plugin into a decorator that ensures that calls to init() do not
+            // immediately execute the original plugin.
+            $this->_pluginResources[$name] = new Mol_Application_Bootstrap_LazyLoad_ResourceDecorator($loadedPlugin);
+        }
+        return $name;
     }
     
     /**
@@ -51,7 +70,11 @@ class Mol_Application_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      */
     public function getResource($name)
     {
-    
+        $result = parent::getResource($name);
+        if ($result instanceof Mol_Application_Bootstrap_LazyLoader) {
+            return $result->load();
+        }
+        return $result;
     }
     
 }
