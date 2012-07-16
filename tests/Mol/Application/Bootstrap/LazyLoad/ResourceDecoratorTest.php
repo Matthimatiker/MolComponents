@@ -134,7 +134,11 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testGetOptionsReturnsOptionsFromInnerResource()
     {
-        
+        $options = array('a' => 'b');
+        $this->innerResource->expects($this->once())
+             ->method('getOptions')
+             ->will($this->returnValue($options));
+        $this->assertEquals($options, $this->decorator->getOptions());
     }
     
     /**
@@ -142,7 +146,8 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testInitReturnsLazyLoader()
     {
-        
+        $loader = $this->decorator->init();
+        $this->assertInstanceOf('Mol_Application_Bootstrap_LazyLoader', $loader);
     }
     
     /**
@@ -150,7 +155,7 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testInitCreateNewLazyLoaderOnEachCall()
     {
-        
+        $this->assertNotSame($this->decorator->init(), $this->decorator->init());
     }
     
     /**
@@ -159,7 +164,12 @@ class Mol_Application_Bootstrap_LazyLoad_ResourceDecoratorTest extends PHPUnit_F
      */
     public function testInitReturnsLazyLoaderThatInitializesTheInnerResource()
     {
-        
+        $this->innerResource->expects($this->once())
+             ->method('init')
+             ->will($this->returnValue(null));
+        $loader = $this->decorator->init();
+        $this->assertInstanceOf('Mol_Application_Bootstrap_LazyLoader', $loader);
+        $loader->load();
     }
     
     /**
