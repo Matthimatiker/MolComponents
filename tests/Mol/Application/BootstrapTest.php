@@ -85,7 +85,7 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperDoesNotApplyLazyLoadingIfLazyLoadOptionIsNotProvided()
     {
-        
+    
     }
     
     /**
@@ -120,6 +120,36 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
     public function testGetResourceReturnsCorrectValueIfResourceIsLazyLoaded()
     {
         
+    }
+    
+    /**
+     * Asserts that the test resource was lazy loaded.
+     */
+    protected function assertLazyLoaded()
+    {
+        $this->assertInContainer();
+        $result = $this->bootstrapper->getContainer()->{self::RESOURCE_NAME};
+        $this->assertInstanceOf('Mol_Application_Bootstrap_LazyLoader', $result);
+    }
+    
+    /**
+     * Asserts that the test resource was not lazy loaded.
+     */
+    protected function assertNotLazyLoaded()
+    {
+        $this->assertInContainer();
+        $result = $this->bootstrapper->getContainer()->{self::RESOURCE_NAME};
+        $this->assertNotInstanceOf('Mol_Application_Bootstrap_LazyLoader', $result);
+    }
+    
+    /**
+     * Asserts that the container contains the result of the test resource.
+     */
+    protected function assertInContainer()
+    {
+        $container = $this->bootstrapper->getContainer();
+        $message   = 'Container does not contain result of ' . self::RESOURCE_NAME . ' resource.';
+        $this->assertTrue($container->{self::RESOURCE_NAME}, $message);
     }
     
     /**
