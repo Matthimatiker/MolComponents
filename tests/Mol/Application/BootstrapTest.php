@@ -47,6 +47,7 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->bootstrapper = new Mol_Application_Bootstrap(Mol_Test_Bootstrap::create());
+        $this->bootstrapper->setPluginLoader($this->createPluginLoader());
     }
     
     /**
@@ -106,6 +107,41 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
     public function testGetResourceReturnsCorrectValueIfResourceIsLazyLoaded()
     {
         
+    }
+    
+    /**
+     * Creates a mocked plugin loader.
+     *
+     * The plugin loader simulates the loading of the resource named "lazy".
+     *
+     * @return Zend_Loader_PluginLoader_Interface
+     */
+    protected function createPluginLoader()
+    {
+        $mock = $this->getMock('Zend_Loader_PluginLoader_Interface');
+        $mock->expects($this->any())
+             ->method('load')
+             ->will($this->returnCallback(array($this, 'getClassFor')));
+        return $mock;
+    }
+    
+    /**
+     * Returns the class name for the resource with the provided short name.
+     *
+     * Is used as callback that simulates the load() method of the plugin loader.
+     *
+     * @param string $resource The short resource name.
+     * @return string The class name.
+     */
+    public function getClassFor($resource)
+    {
+        if ($resource !== 'lazy') {
+            // Simulate a resource that was not found.
+            return false;
+        }
+        // Ensure that the mock resource class is loaded.
+        require_once(dirname(__FILE__) . '/TestData/LazyResource.php');
+        return 'Mol_Application_Bootstrap_TestData_LazyResource';
     }
     
 }
