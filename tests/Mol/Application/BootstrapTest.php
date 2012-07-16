@@ -149,6 +149,21 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->bootstrapper->getResource(self::RESOURCE_NAME));
     }
     
+    public function testHasResourceReturnsTrueIfResourceWasNotLazyLoaded()
+    {
+        
+    }
+    
+    public function testHasResourceReturnsTrueIfResourceWasLazyLoaded()
+    {
+    
+    }
+    
+    public function testHasResourceReturnsFalseIfResourceWasNotLoadedYet()
+    {
+        
+    }
+    
     /**
      * Asserts that the test resource was lazy loaded.
      */
