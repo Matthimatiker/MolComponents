@@ -15,6 +15,48 @@
 /**
  * Bootstrapper that adds support for lazy loading.
  *
+ * == Usage ==
+ *
+ * == Bootstrapper configuration ==
+ *
+ * Use this bootstrapper as base class for your own bootstrap class:
+ * <code>
+ * class My_Bootstrap extends Mol_Application_Bootstrap
+ * {
+ * }
+ * </code>
+ *
+ * Add the bootstrap configuration to your application.ini to
+ * ensure that the bootstrapper is used:
+ * <code>
+ * bootstrap.path  = APPLICATION_PATH "/Bootstrap.php"
+ * bootstrap.class = "My_Bootstrap"
+ * </code>
+ *
+ *
+ * == Lazy loading configuration ==
+ *
+ * Now it is possible to activate lazy loading for any configured
+ * resource by setting the lazyLoad option:
+ * <code>
+ * resources.log.stream.writerName          = "Stream"
+ * resources.log.stream.writerParams.stream = APPLICATION_PATH "/storage/logs/application.log"
+ * resources.log.stream.writerParams.mode   = "a"
+ * resources.log.lazyLoad                   = On
+ * </code>
+ *
+ * To load a resource the getResource() method of the bootstrapper is used as usual.
+ * The following code retrieves the lazy loaded logger in context of an action
+ * controller:
+ * <code>
+ * $bootstrap = $this->getInvokeArg('bootstrap');
+ * $logger $bootstrap->getResource('log');
+ * </code>
+ *
+ * Keep in mind that some resources must be executed early as they modify
+ * the global state of the application and will not be retrieved explicitely
+ * via getResource().
+ *
  * @category PHP
  * @package Mol_Bootstrap
  * @author Matthias Molitor <matthias@matthimatiker.de>
