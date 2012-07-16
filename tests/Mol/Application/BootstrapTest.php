@@ -34,6 +34,13 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * Short name of the resource that is used for testing.
+     *
+     * @var string
+     */
+    const RESOURCE_NAME = 'lazy';
+    
+    /**
      * System under test.
      *
      * @var Mol_Application_Bootstrap
@@ -66,14 +73,14 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
     {
         $options = array(
             'resources' => array(
-                'lazy' => array(
+                self::RESOURCE_NAME => array(
                     'lazyLoad' => false
                 )
             )
         );
         $this->bootstrapper->setOptions($options);
-        $this->bootstrapper->bootstrap('lazy');
-        $resource = $this->bootstrapper->getResource('lazy');
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        $resource = $this->bootstrapper->getResource(self::RESOURCE_NAME);
         $this->assertInstanceOf('Mol_Application_Bootstrap_TestData_LazyResource', $resource);
         $resourceOptions = $resource->getOptions();
         $this->assertArrayNotHasKey('lazyLoad', $resourceOptions);
@@ -147,7 +154,7 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function getClassFor($resource)
     {
-        if ($resource !== 'lazy') {
+        if ($resource !== self::RESOURCE_NAME) {
             // Simulate a resource that was not found.
             return false;
         }
