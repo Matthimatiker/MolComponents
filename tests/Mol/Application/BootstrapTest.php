@@ -149,26 +149,45 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->bootstrapper->getResource(self::RESOURCE_NAME));
     }
     
+    /**
+     * Ensures that hasResource() returns true if the resource was bootstrapped
+     * and not lazy loaded.
+     */
     public function testHasResourceReturnsTrueIfResourceWasNotLazyLoaded()
     {
         
     }
     
+    /**
+     * Ensures that hasResource() returns true if the resource was bootstrapped
+     * and is lazy loaded.
+     */
     public function testHasResourceReturnsTrueIfResourceWasLazyLoaded()
     {
     
     }
     
+    /**
+     * Ensures that hasResource() returns false if the resource is configured,
+     * but was not bootstrapped yet.
+     */
     public function testHasResourceReturnsFalseIfResourceWasNotLoadedYet()
     {
         
     }
     
+    /**
+     * Ensures that an exception is thrown if the configured resource was not found by
+     * the plugin loader.
+     */
     public function testBootstrapperThrowsExceptionIfConfiguredResourceWasNotFoundByThePluginLoader()
     {
         
     }
     
+    /**
+     * Ensures that an exception is thrown if the requested resource is not configured.
+     */
     public function testBootstrapperThrowsExceptionIfResourceWasNotConfigured()
     {
         
