@@ -31,12 +31,14 @@ class Mol_Application_Bootstrap_TestData_LazyResource extends Zend_Application_R
     /**
      * Returns the configured return value (if provided).
      *
-     * @return mixed|null
+     * If no return value is provided then the resource itself will be returned.
+     *
+     * @return mixed|Mol_Application_Bootstrap_TestData_LazyResource
      */
     public function init()
     {
         $options = $this->getOptions();
-        return isset($options['return']) ? $options['return'] : null;
+        return isset($options['return']) ? $options['return'] : $this;
     }
     
 }
