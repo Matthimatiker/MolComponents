@@ -64,7 +64,19 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperDoesNotPassLazyLoadOptionToResource()
     {
-        
+        $options = array(
+            'resources' => array(
+                'lazy' => array(
+                    'lazyLoad' => false
+                )
+            )
+        );
+        $this->bootstrapper->setOptions($options);
+        $this->bootstrapper->bootstrap('lazy');
+        $resource = $this->bootstrapper->getResource('lazy');
+        $this->assertInstanceOf('Mol_Application_Bootstrap_TestData_LazyResource', $resource);
+        $resourceOptions = $resource->getOptions();
+        $this->assertArrayNotHasKey('lazyLoad', $resourceOptions);
     }
     
     /**
