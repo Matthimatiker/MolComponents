@@ -155,7 +155,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testHasResourceReturnsTrueIfResourceWasNotLazyLoaded()
     {
+        $options = $this->createOptions(array('lazyLoad' => false));
+        $this->bootstrapper->setOptions($options);
         
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        
+        $this->assertTrue($this->bootstrapper->hasResource(self::RESOURCE_NAME));
     }
     
     /**
@@ -164,7 +169,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testHasResourceReturnsTrueIfResourceWasLazyLoaded()
     {
-    
+        $options = $this->createOptions(array('lazyLoad' => true));
+        $this->bootstrapper->setOptions($options);
+        
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        
+        $this->assertTrue($this->bootstrapper->hasResource(self::RESOURCE_NAME));
     }
     
     /**
@@ -173,7 +183,10 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testHasResourceReturnsFalseIfResourceWasNotLoadedYet()
     {
+        $options = $this->createOptions(array('lazyLoad' => false));
+        $this->bootstrapper->setOptions($options);
         
+        $this->assertFalse($this->bootstrapper->hasResource(self::RESOURCE_NAME));
     }
     
     /**
@@ -182,7 +195,16 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperThrowsExceptionIfConfiguredResourceWasNotFoundByThePluginLoader()
     {
+        $this->setExpectedException('Zend_Application_Bootstrap_Exception');
         
+        $options = array(
+            'resources' => array(
+                'missing' => array()
+            )
+        );
+        $this->bootstrapper->setOptions($options);
+        
+        $this->bootstrapper->bootstrap('missing');
     }
     
     /**
@@ -190,7 +212,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testBootstrapperThrowsExceptionIfResourceWasNotConfigured()
     {
+        $this->setExpectedException('Zend_Application_Bootstrap_Exception');
         
+        $options = array();
+        $this->bootstrapper->setOptions($options);
+        
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
     }
     
     /**
