@@ -26,7 +26,6 @@
 class Mol_Application_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     
-    
     /**
      * Loads the resource and store it in the $_pluginResources attribute.
      *
@@ -49,6 +48,7 @@ class Mol_Application_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         }
         $name = parent::_loadPluginResource($resource, $options);
         if ($name === false) {
+            // Resource was not found.
             return false;
         }
         if ($lazyLoad) {
