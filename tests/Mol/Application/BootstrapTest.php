@@ -127,7 +127,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testGetResourceReturnsCorrectValueIfResourceWasNotLazyLoaded()
     {
+        $result  = new stdClass();
+        $options = $this->createOptions(array('lazyLoad' => false, 'return' => $result));
+        $this->bootstrapper->setOptions($options);
         
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        $this->assertSame($result, $this->bootstrapper->getResource(self::RESOURCE_NAME));
     }
     
     /**
@@ -136,7 +141,12 @@ class Mol_Application_BootstrapTest extends PHPUnit_Framework_TestCase
      */
     public function testGetResourceReturnsCorrectValueIfResourceIsLazyLoaded()
     {
+        $result  = new stdClass();
+        $options = $this->createOptions(array('lazyLoad' => true, 'return' => $result));
+        $this->bootstrapper->setOptions($options);
         
+        $this->bootstrapper->bootstrap(self::RESOURCE_NAME);
+        $this->assertSame($result, $this->bootstrapper->getResource(self::RESOURCE_NAME));
     }
     
     /**
