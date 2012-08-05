@@ -40,6 +40,7 @@ class Mol_Util_ObjectBuilder
      * requirement then an exception will be thrown.
      *
      * @param string|null $typeConstraint
+     * @throws InvalidArgumentException If provided type is not a class or interface.
      */
     public function __construct($typeConstraint = null)
     {
