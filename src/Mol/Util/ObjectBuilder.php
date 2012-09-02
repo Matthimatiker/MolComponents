@@ -74,7 +74,7 @@ class Mol_Util_ObjectBuilder
         $reflection = $this->toReflectionClass($class);
         if (!$this->fulfillsTypeConstraint($reflection)) {
             $format  = 'Class %s is not of required type %s.';
-            $message = sprintf($format, $reflection->name, $this->typeConstraint);
+            $message = sprintf($format, $reflection->getName(), $this->typeConstraint);
             throw new InvalidArgumentException($message);
         }
         return $this->createInstance($reflection, $constructorArguments);
