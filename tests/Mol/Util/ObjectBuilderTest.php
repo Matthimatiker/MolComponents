@@ -44,6 +44,24 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() throws an exception if the provided argument is not
+     * a class name.
+     */
+    public function testCreateThrowsExceptionIfProvidedArgumentIsNoValidClassName()
+    {
+        
+    }
+    
+    /**
+     * Ensures that create() throws an exception if the provided argument is the
+     * name of an interface, but not a class name.
+     */
+    public function testCreateThrowsExceptionIfInterfaceNameIsProvidedAsArgument()
+    {
+        
+    }
+    
+    /**
      * Ensures that create() throws an exception if the requested class does not meet
      * the parent class requirement.
      */
