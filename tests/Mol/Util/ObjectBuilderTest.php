@@ -140,7 +140,7 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     public function testCreateInstantiatesClassIfOptionalConstructorArgumentsAreOmitted()
     {
         $iterator = new ArrayIterator(array());
-        $object   = $this->builder()->create('CachingIterator ', array($iterator));
+        $object   = $this->builder()->create('CachingIterator', array($iterator));
         $this->assertInstanceOf('CachingIterator', $object);
     }
     
@@ -150,7 +150,7 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     public function testCreateInstantiatesClassIfAllConstructorArgumentsAreProvided()
     {
         $iterator = new ArrayIterator(array());
-        $object   = $this->builder()->create('CachingIterator ', array($iterator, CachingIterator::CALL_TOSTRING));
+        $object   = $this->builder()->create('CachingIterator', array($iterator, CachingIterator::CALL_TOSTRING));
         $this->assertInstanceOf('CachingIterator', $object);
     }
     
