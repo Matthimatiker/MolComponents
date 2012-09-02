@@ -74,6 +74,16 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() instantiates the requested class if it equals the
+     * class that was provided as constraint.
+     */
+    public function testCreateInstantiatesClassThatEqualsParentClassConstraint()
+    {
+        $object = $this->builder('Exception')->create('Exception');
+        $this->assertInstanceOf('Exception', $object);
+    }
+    
+    /**
      * Ensures that create() instantiates the requested class if it meets the
      * parent class constraint.
      */
