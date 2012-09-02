@@ -33,46 +33,81 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Ensures that the constructor throws an exception if an invalid type constraint
+     * is passed.
+     */
     public function testConstructorThrowsExceptionIfProvidedConstraintIsNeitherClassNorInterface()
     {
         
     }
     
+    /**
+     * Ensures that create() throws an exception if the requested class does not meet
+     * the parent class requirement.
+     */
     public function testCreateThrowsExceptionIfClassDoesNotFulfillParentClassConstraint()
     {
         
     }
     
+    /**
+     * Ensures that create() throws an exception if the requested class does not meet
+     * the interface requirement.
+     */
     public function testCreateThrowsExceptionIfClassDoesNotFulfillInterfaceConstraint()
     {
     
     }
     
+    /**
+     * Ensures that create() instantiates the requested class if no constraints
+     * were provided.
+     */
     public function testCreateInstantiatesClassThatMeetsParentClassConstraint()
     {
         
     }
     
+    /**
+     * Ensures that create() instantiates the requested class if it meets the
+     * parent class constraint.
+     */
     public function testCreateInstantiatesClassThatMeetsInterfaceConstraint()
     {
     
     }
     
+    /**
+     * Ensures that create() instantiates the requested class if it meets the
+     * interface constraint.
+     */
     public function testCreateInstantiatesClassIfNoConstraintIsActive()
     {
         
     }
     
+    /**
+     * Ensures that an exception is thrown if a constructor argument is required, but
+     * not passed to create().
+     */
     public function testCreateThrowsExceptionIfRequiredConstructorArgumentsAreNotProvided()
     {
         
     }
     
+    /**
+     * Ensures that create() instantiates the class if a constructor argument is optional
+     * and therefore not provided.
+     */
     public function testCreateInstantiatesClassIfOptionalConstructorArgumentsAreOmitted()
     {
         
     }
     
+    /**
+     * Checks if create() passes the provided constructor arguments to the created class.
+     */
     public function testCreatePassesConstructorArguments()
     {
         
