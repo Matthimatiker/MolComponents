@@ -64,6 +64,18 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() throws an exception if the requested class is abstract.
+     */
+    public function testCreateThrowsExceptionIfInstanceOfAbstractClassIsRequested()
+    {
+        $name = uniqid('AbstractTestClass');
+        $code = 'abstract class ' . $name . ' {}';
+        eval($code);
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder()->create($name);
+    }
+    
+    /**
      * Ensures that create() throws an exception if the requested class does not meet
      * the parent class requirement.
      */
