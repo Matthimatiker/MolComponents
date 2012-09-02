@@ -115,6 +115,16 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() instantiates the class if all constructor arguments are provided.
+     */
+    public function testCreateInstantiatesClassIfAllConstructorArgumentsAreProvided()
+    {
+        $iterator = new ArrayIterator(array());
+        $object   = $this->builder()->create('CachingIterator ', array($iterator, CachingIterator::CALL_TOSTRING));
+        $this->assertInstanceOf('CachingIterator', $object);
+    }
+    
+    /**
      * Checks if create() passes the provided constructor arguments to the created class.
      */
     public function testCreatePassesConstructorArguments()
