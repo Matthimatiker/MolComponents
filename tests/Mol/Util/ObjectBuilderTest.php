@@ -49,7 +49,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfProvidedArgumentIsNoValidClassName()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder()->create('Missing');
     }
     
     /**
@@ -58,7 +59,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfInterfaceNameIsProvidedAsArgument()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder()->create('Countable');
     }
     
     /**
