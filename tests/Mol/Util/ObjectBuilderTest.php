@@ -68,10 +68,10 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfInstanceOfAbstractClassIsRequested()
     {
+        $this->setExpectedException('BadMethodCallException');
         $name = uniqid('AbstractTestClass');
         $code = 'abstract class ' . $name . ' {}';
         eval($code);
-        $this->setExpectedException('InvalidArgumentException');
         $this->builder()->create($name);
     }
     
