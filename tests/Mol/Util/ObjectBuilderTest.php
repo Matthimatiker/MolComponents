@@ -39,7 +39,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorThrowsExceptionIfProvidedConstraintIsNeitherClassNorInterface()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder('Missing');
     }
     
     /**
@@ -48,7 +49,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfClassDoesNotFulfillParentClassConstraint()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder('Exception')->create('stdClass');
     }
     
     /**
@@ -57,7 +59,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfClassDoesNotFulfillInterfaceConstraint()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder('Countable')->create('stdClass');
     }
     
     /**
@@ -66,7 +69,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesClassThatMeetsParentClassConstraint()
     {
-        
+        $object = $this->builder('Exception')->create('LogicException');
+        $this->assertInstanceOf('LogicException', $object);
     }
     
     /**
@@ -75,7 +79,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesClassThatMeetsInterfaceConstraint()
     {
-    
+        $object = $this->builder('Countable')->create('ArrayObject');
+        $this->assertInstanceOf('ArrayObject', $object);
     }
     
     /**
@@ -84,7 +89,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesClassIfNoConstraintIsActive()
     {
-        
+        $object = $this->builder()->create('stdClass');
+        $this->assertInstanceOf('stdClass', $object);
     }
     
     /**
@@ -93,7 +99,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfRequiredConstructorArgumentsAreNotProvided()
     {
-        
+        $this->setExpectedException('BadMethodCallException');
+        $this->builder()->create('DateTimeZone');
     }
     
     /**
@@ -102,7 +109,9 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesClassIfOptionalConstructorArgumentsAreOmitted()
     {
-        
+        $iterator = new ArrayIterator(array());
+        $object   = $this->builder()->create('CachingIterator ', array($iterator));
+        $this->assertInstanceOf('CachingIterator', $object);
     }
     
     /**
@@ -110,7 +119,11 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreatePassesConstructorArguments()
     {
-        
+        /* @var $object ArrayObject */
+        $values = array(1, 2, 3);
+        $object = $this->builder()->create('ArrayObject', array($values));
+        $this->assertInstanceOf('ArrayObject', $object);
+        $this->assertEquals($values, $object->getArrayCopy());
     }
     
     /**
