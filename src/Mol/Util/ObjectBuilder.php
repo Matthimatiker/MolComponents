@@ -90,7 +90,7 @@ class Mol_Util_ObjectBuilder
     protected function toReflectionClass($name)
     {
         if (!$this->isClass($name)) {
-            $message = 'Valid class name expected. Received: ' . $name;
+            $message = 'Valid class name expected. Received: "' . $name . '"';
             throw new InvalidArgumentException($message);
         }
         return new ReflectionClass($name);
