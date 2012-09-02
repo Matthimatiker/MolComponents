@@ -72,16 +72,28 @@ class Mol_Util_ObjectBuilder
      */
     public function create($class, array $constructorArguments = array())
     {
-        if (!$this->isClass($class)) {
-            $message = 'Valid class name expected. Received: ' . $class;
-            throw new InvalidArgumentException($message);
-        }
-        $reflection = new ReflectionClass($class);
+        $reflection = $this->toReflectionClass($class);
         if (!$this->fulfillsTypeConstraint($reflection)) {
             $format  = 'Class %s is not of required type %s.';
             $message = sprintf($format, $reflection->name, $this->typeConstraint);
             throw new InvalidArgumentException($message);
         }
+    }
+    
+    /**
+     * Creates a reflection object for the provided class.
+     *
+     * @param string $name The name of the class.
+     * @return ReflectionClass
+     * @throws InvalidArgumentException If no valid class name is provided.
+     */
+    protected function toReflectionClass($name)
+    {
+        if (!$this->isClass($name)) {
+            $message = 'Valid class name expected. Received: ' . $name;
+            throw new InvalidArgumentException($message);
+        }
+        return new ReflectionClass($name);
     }
     
     /**
