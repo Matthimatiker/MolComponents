@@ -33,4 +33,49 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testConstructorThrowsExceptionIfProvidedConstraintIsNeitherClassNorInterface()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfClassDoesNotFulfillParentClassConstraint()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfClassDoesNotFulfillInterfaceConstraint()
+    {
+    
+    }
+    
+    public function testCreateInstantiatesClassThatMeetsParentClassConstraint()
+    {
+        
+    }
+    
+    public function testCreateInstantiatesClassThatMeetsInterfaceConstraint()
+    {
+    
+    }
+    
+    public function testCreateInstantiatesClassIfNoConstraintIsActive()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfRequiredConstructorArgumentsAreNotProvided()
+    {
+        
+    }
+    
+    public function testCreateInstantiatesClassIfOptionalConstructorArgumentsAreOmitted()
+    {
+        
+    }
+    
+    public function testCreatePassesConstructorArguments()
+    {
+        
+    }
+    
 }
