@@ -32,6 +32,16 @@ class Mol_Util_ObjectBuilder
 {
     
     /**
+     * Type that is required for created instances.
+     *
+     * A type constraint is the name of a class or interface.
+     * Contains null if no type is required.
+     *
+     * @var string|null
+     */
+    protected $typeConstraint = null;
+    
+    /**
      * Creates a new object builder.
      *
      * If a type contraint is provided then the builder
@@ -45,6 +55,11 @@ class Mol_Util_ObjectBuilder
     public function __construct($typeConstraint = null)
     {
         
+        if ($typeConstraint !== null && !$this->isType($typeConstraint)) {
+            $message = 'Type constraint must be a class or interface name.';
+            throw new InvalidArgumentException($message);
+        }
+        $this->typeConstraint = $typeConstraint;
     }
     
     /**
@@ -53,10 +68,77 @@ class Mol_Util_ObjectBuilder
      * @param string $class That class that should be instantiated.
      * @param array(mixed) $constructorArguments Constructor arguments for creation.
      * @throws InvalidArgumentException If the provided class does not meet the type requirements.
+     * @throws BadMethodCallException If the required number of constructor arguments is not provided.
      */
     public function create($class, array $constructorArguments = array())
     {
-        
+        if (!$this->isClass($class)) {
+            $message = 'Valid class name expected. Received: ' . $class;
+            throw new InvalidArgumentException($message);
+        }
+        $reflection = new ReflectionClass($class);
+        if (!$this->fulfillsTypeConstraint($reflection)) {
+            $format  = 'Class %s is not of required type %s.';
+            $message = sprintf($format, $reflection->name, $this->typeConstraint);
+            throw new InvalidArgumentException($message);
+        }
+    }
+    
+    /**
+     * Checks if the provided class fulfills the type requirements.
+     *
+     * @param ReflectionClass $class
+     * @return boolean True if the requirements are fulfilled, false otherwise.
+     */
+    protected function fulfillsTypeConstraint(ReflectionClass $class)
+    {
+        if ($this->typeConstraint === null) {
+            // No requirements available.
+            return true;
+        }
+        if ($class->implementsInterface($this->typeConstraint)) {
+            // Class implements the required interface.
+            return true;
+        }
+        if ($class->isSubclassOf($this->typeConstraint)) {
+            // Class is a subclass of the required type.
+            return true;
+        }
+        // Type requirements not fulfilled.
+        return false;
+    }
+    
+    /**
+     * Checks if $name is a valid type (class or interface).
+     *
+     * @param string $name
+     * @return boolean True if $name is a type, false otherwise.
+     */
+    protected function isType($name)
+    {
+        return $this->isClass($name) || $this->isInterface($name);
+    }
+    
+    /**
+     * Checks if the provided value is a valid class name.
+     *
+     * @param string $name
+     * @return boolean True if $name is a class, false otherwise.
+     */
+    protected function isClass($name)
+    {
+        return class_exists($name, true);
+    }
+    
+    /**
+     * Checks if the provided value is a valid interface name.
+     *
+     * @param string $name
+     * @return boolean True if $name is an interface, false otherwise.
+     */
+    protected function isInterface($name)
+    {
+        return interface_exists($name, true);
     }
     
 }
