@@ -121,7 +121,7 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function builder($constraint = null)
     {
-        
+        return new Mol_Util_ObjectBuilder($constraint);
     }
     
 }
