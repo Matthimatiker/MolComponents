@@ -107,6 +107,14 @@ class Mol_Util_ObjectBuilder
      */
     protected function createInstance(ReflectionClass $class, array $constructorArguments)
     {
+        /* @var $constructor ReflectionMethod|null */
+        $constructor = $class->getConstructor();
+        if ($constructor !== null && $constructor->getNumberOfRequiredParameters() > count($constructorArguments)) {
+            $format            = '%s requires at least %s parameters for construction, but only %s were provided.';
+            $requiredArguments = $constructor->getNumberOfRequiredParameters();
+            $message           = sprintf($format, $class->getName(), $requiredArguments, count($constructorArguments));
+            throw new BadMethodCallException($message);
+        }
         return $class->newInstanceArgs($constructorArguments);
     }
     
