@@ -106,6 +106,10 @@ class Mol_Util_ObjectBuilder
      */
     protected function createInstance(ReflectionClass $class, array $constructorArguments)
     {
+        if (!$class->isInstantiable()) {
+            $message = 'Class "' . $class->getName() . '" is not instantiable.';
+            throw new BadMethodCallException($message);
+        }
         /* @var $constructor ReflectionMethod|null */
         $constructor = $class->getConstructor();
         if ($constructor !== null && $constructor->getNumberOfRequiredParameters() > count($constructorArguments)) {
