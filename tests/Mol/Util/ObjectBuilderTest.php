@@ -109,7 +109,7 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesClassThatMeetsInterfaceConstraint()
     {
-        $object = $this->builder('Countable')->create('ArrayObject');
+        $object = $this->builder('Countable')->create('ArrayObject', array(array()));
         $this->assertInstanceOf('ArrayObject', $object);
     }
     
