@@ -68,7 +68,6 @@ class Mol_Util_ObjectBuilder
      * @param string $class That class that should be instantiated.
      * @param array(mixed) $constructorArguments Constructor arguments for creation.
      * @throws InvalidArgumentException If the provided class does not meet the type requirements.
-     * @throws BadMethodCallException If the required number of constructor arguments is not provided.
      */
     public function create($class, array $constructorArguments = array())
     {
@@ -78,6 +77,7 @@ class Mol_Util_ObjectBuilder
             $message = sprintf($format, $reflection->name, $this->typeConstraint);
             throw new InvalidArgumentException($message);
         }
+        return $this->createInstance($reflection, $constructorArguments);
     }
     
     /**
@@ -97,6 +97,20 @@ class Mol_Util_ObjectBuilder
     }
     
     /**
+     * Uses the provided constructor arguments to create a new instance
+     * of the given class type.
+     *
+     * @param ReflectionClass $class
+     * @param array(mixed) $constructorArguments
+     * @return object An instance of the requested class.
+     * @throws BadMethodCallException If constructor arguments are missing.
+     */
+    protected function createInstance(ReflectionClass $class, array $constructorArguments)
+    {
+        return $class->newInstanceArgs($constructorArguments);
+    }
+    
+    /**
      * Checks if the provided class fulfills the type requirements.
      *
      * @param ReflectionClass $class
@@ -108,12 +122,16 @@ class Mol_Util_ObjectBuilder
             // No requirements available.
             return true;
         }
-        if ($class->implementsInterface($this->typeConstraint)) {
+        if ($this->isInterface($this->typeConstraint) && $class->implementsInterface($this->typeConstraint)) {
             // Class implements the required interface.
             return true;
         }
         if ($class->isSubclassOf($this->typeConstraint)) {
             // Class is a subclass of the required type.
+            return true;
+        }
+        if ($class->name === $this->typeConstraint) {
+            // Class equals required type.
             return true;
         }
         // Type requirements not fulfilled.
