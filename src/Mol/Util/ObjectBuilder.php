@@ -54,7 +54,6 @@ class Mol_Util_ObjectBuilder
      */
     public function __construct($typeConstraint = null)
     {
-        
         if ($typeConstraint !== null && !$this->isType($typeConstraint)) {
             $message = 'Type constraint must be a class or interface name.';
             throw new InvalidArgumentException($message);
