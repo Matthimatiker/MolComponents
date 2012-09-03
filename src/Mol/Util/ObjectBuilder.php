@@ -141,7 +141,7 @@ class Mol_Util_ObjectBuilder
             // Class is a subclass of the required type.
             return true;
         }
-        if ($class->name === $this->typeConstraint) {
+        if ($class->getName() === $this->typeConstraint) {
             // Class equals required type.
             return true;
         }
