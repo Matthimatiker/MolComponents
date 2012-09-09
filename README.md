@@ -1,5 +1,7 @@
 # MolComponents #
 
+Master: [![Build Status](https://secure.travis-ci.org/Matthimatiker/MolComponents.png?branch=master)](http://travis-ci.org/Matthimatiker/MolComponents)
+
 Library that extends the capabilities of Zend Framework 1.
 
 ## Requirements ##
