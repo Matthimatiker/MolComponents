@@ -58,4 +58,79 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    public function testAddAliasProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testGetAliasesReturnsArray()
+    {
+        
+    }
+    
+    public function testGetAliasesReturnsMappingOfAliasesToClasses()
+    {
+    
+    }
+    
+    public function testRegisterPluginProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testGetPluginsReturnsArray()
+    {
+        
+    }
+    
+    public function testGetPluginsReturnsRegisteredPlugins()
+    {
+    
+    }
+    
+    public function testCreateReturnsProvidedFormInstance()
+    {
+        
+    }
+    
+    public function testCreateInstantiatesFormOfGivenType()
+    {
+        
+    }
+    
+    public function testCreateInstantiatesFormOfCorrectTypeIfAliasIsProvided()
+    {
+    
+    }
+    
+    public function testCreateInstantiatesFormOfCorrectTypeIfClassNameIsUsedAsAlias()
+    {
+    
+    }
+    
+    public function testCreatePassesFormToRegisteredPlugins()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfAliasDoesNotExist()
+    {
+    
+    }
+    
+    public function testCreateThrowsExceptionIfAliasPointsToInvalidClass()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfNoFormClassIsProvided()
+    {
+        
+    }
+    
+    public function testCreateThrowsExceptionIfProvidedObjectIsNoFormInstance()
+    {
+        
+    }
+    
 }
