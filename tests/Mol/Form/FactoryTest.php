@@ -58,41 +58,67 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Checks if addAlias() provides a fluent interface.
+     */
     public function testAddAliasProvidesFluentInterface()
     {
         
     }
     
+    /**
+     * Ensures that getAliases() returns an array.
+     */
     public function testGetAliasesReturnsArray()
     {
         
     }
     
+    /**
+     * Checks if getAliases() returns the correct mapping of aliases
+     * to classes.
+     */
     public function testGetAliasesReturnsMappingOfAliasesToClasses()
     {
     
     }
     
+    /**
+     * Checks if registerPlugin() provides a fluent interface.
+     */
     public function testRegisterPluginProvidesFluentInterface()
     {
         
     }
     
+    /**
+     * Ensures that getPlugins() returns an array.
+     */
     public function testGetPluginsReturnsArray()
     {
         
     }
     
+    /**
+     * Checks if getPlugins() returns the registered plugins.
+     */
     public function testGetPluginsReturnsRegisteredPlugins()
     {
     
     }
     
+    /**
+     * Ensures that create() returns the form instance that is
+     * passed as argument.
+     */
     public function testCreateReturnsProvidedFormInstance()
     {
         
     }
     
+    /**
+     * Checks if create() creates an instance of the given form class.
+     */
     public function testCreateInstantiatesFormOfGivenType()
     {
         
