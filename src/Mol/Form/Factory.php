@@ -26,4 +26,69 @@
 class Mol_Form_Factory
 {
     
+    /**
+     * Creates the requested form.
+     *
+     * The provided argument can be...
+     * # an alias that points to a class name
+     * # a class name
+     * # a form instance
+     *
+     * If a form instance is given then it will be passed
+     * to all registered plugins and returned afterwards.
+     *
+     * @param string|Zend_Form $aliasOrClassOrForm
+     * @return Zend_Form
+     */
+    public function create($aliasOrClassOrForm)
+    {
+        
+    }
+    
+    /**
+     * Adds an alias that points to the provided form class.
+     *
+     * @param string $alias
+     * @param string $class
+     * @return Mol_Form_Factory Provides a fluent interface.
+     */
+    public function addAlias($alias, $class)
+    {
+        
+    }
+    
+    /**
+     * Returns a list of registered aliases.
+     *
+     * The key is the alias, the value the form class
+     * that the alias points to.
+     *
+     * @return array(string=>string)
+     */
+    public function getAliases()
+    {
+        
+    }
+    
+    /**
+     * Registers the provided plugin.
+     *
+     * @param Mol_Form_Factory_Plugin $plugin
+     * @return Mol_Form_Factory Provides a fluent interface.
+     */
+    public function registerPlugin(Mol_Form_Factory_Plugin $plugin)
+    {
+        
+    }
+    
+    /**
+     * Returns a registered plugins.
+     *
+     * @return array(Mol_Form_Factory_Plugin)
+     */
+    public function getPlugins()
+    {
+        
+    }
+    
 }
