@@ -26,4 +26,11 @@
 interface Mol_Form_Factory_Plugin
 {
     
+    /**
+     * Gives the plugin the chance to enhance the provided form.
+     *
+     * @param Zend_Form $form
+     */
+    public function enhance(Zend_Form $form);
+    
 }
