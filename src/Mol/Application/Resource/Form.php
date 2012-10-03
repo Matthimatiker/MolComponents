@@ -15,6 +15,9 @@
 /**
  * Initializes the form factory.
  *
+ * This resource allows the configuration of aliases and
+ * factory plugins.
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
