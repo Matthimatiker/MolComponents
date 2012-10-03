@@ -184,13 +184,9 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesFormOfCorrectTypeIfClassNameIsUsedAsAlias()
     {
-        // Create a sub class of Zend_Form.
-        $formMock = $this->getMock('Zend_Form');
-        $subClass = get_class($formMock);
-        $this->factory->addAlias('Zend_Form', $subClass);
+        $this->factory->addAlias('Zend_Form', 'Zend_Form_SubForm');
         $form = $this->factory->create('Zend_Form');
-        $this->assertInstanceOf('Zend_Form', $form);
-        $this->assertEquals($subClass, get_class($form));
+        $this->assertInstanceOf('Zend_Form_SubForm', $form);
     }
     
     /**
