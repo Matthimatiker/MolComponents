@@ -34,12 +34,19 @@ class Mol_Form_Factory_Plugin_NullTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Form_Factory_Plugin_Null
+     */
+    protected $plugin = null;
+    
+    /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
      */
     protected function setUp()
     {
         parent::setUp();
-        
+        $this->plugin = new Mol_Form_Factory_Plugin_Null();
     }
     
     /**
@@ -47,7 +54,7 @@ class Mol_Form_Factory_Plugin_NullTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
+        $this->plugin = null;
         parent::tearDown();
     }
     
