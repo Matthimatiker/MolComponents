@@ -58,4 +58,15 @@ class Mol_Form_Factory_Plugin_NullTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Ensures that enhance() does not modify the provided form.
+     */
+    public function testEnhanceDoesNotModifyForm()
+    {
+        $form = new Zend_Form();
+        $form->addElement(new Zend_Form_Element_Text('name'));
+        $this->plugin->enhance($form);
+        $this->assertEquals(1, count($form->getElements()));
+    }
+    
 }
