@@ -27,6 +27,20 @@ class Mol_Form_Factory
 {
     
     /**
+     * Map from registered aliases to form classes.
+     *
+     * @var array(string=>string)
+     */
+    protected $aliases = array();
+    
+    /**
+     * List of registered plugins.
+     *
+     * @var Mol_Form_Factory_Plugin
+     */
+    protected $plugins = array();
+    
+    /**
      * Creates the requested form.
      *
      * The provided argument can be...
@@ -54,7 +68,8 @@ class Mol_Form_Factory
      */
     public function addAlias($alias, $class)
     {
-        
+        $this->aliases[$alias] = $class;
+        return $this;
     }
     
     /**
@@ -67,7 +82,7 @@ class Mol_Form_Factory
      */
     public function getAliases()
     {
-        
+        return $this->aliases;
     }
     
     /**
@@ -78,7 +93,8 @@ class Mol_Form_Factory
      */
     public function registerPlugin(Mol_Form_Factory_Plugin $plugin)
     {
-        
+        $this->plugins[] = $plugin;
+        return $this;
     }
     
     /**
@@ -88,7 +104,7 @@ class Mol_Form_Factory
      */
     public function getPlugins()
     {
-        
+        return $this->plugins;
     }
     
 }
