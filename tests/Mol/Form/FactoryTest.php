@@ -124,36 +124,63 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that create() instantiates a form of the type that the given
+     * alias points to.
+     */
     public function testCreateInstantiatesFormOfCorrectTypeIfAliasIsProvided()
     {
     
     }
     
+    /**
+     * Ensures that create() instantiates the correct form type even if a form
+     * class name is used as alias.
+     */
     public function testCreateInstantiatesFormOfCorrectTypeIfClassNameIsUsedAsAlias()
     {
     
     }
     
+    /**
+     * Checks if the factory passes the created form to the registered plugins.
+     */
     public function testCreatePassesFormToRegisteredPlugins()
     {
         
     }
     
+    /**
+     * Ensures that create() throws an exception if the given alias does
+     * not exist.
+     */
     public function testCreateThrowsExceptionIfAliasDoesNotExist()
     {
     
     }
     
+    /**
+     * Ensures that create() throws an exception if the given alias points
+     * to an invalid class.
+     */
     public function testCreateThrowsExceptionIfAliasPointsToInvalidClass()
     {
         
     }
     
+    /**
+     * Ensures that create() throws an exception if the given class is
+     * not a valid form class.
+     */
     public function testCreateThrowsExceptionIfNoFormClassIsProvided()
     {
         
     }
     
+    /**
+     * Ensures that create() throws an exception if the given object is not
+     * an instance of Zend_Form.
+     */
     public function testCreateThrowsExceptionIfProvidedObjectIsNoFormInstance()
     {
         
