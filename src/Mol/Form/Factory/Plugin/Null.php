@@ -44,7 +44,6 @@ class Mol_Form_Factory_Plugin_Null implements Mol_Form_Factory_Plugin
      */
     public function enhance(Zend_Form $form)
     {
-        
     }
     
 }
