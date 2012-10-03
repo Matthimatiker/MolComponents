@@ -63,7 +63,7 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testAddAliasProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->factory, $this->factory->addAlias('registration', 'Zend_Form'));
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testGetAliasesReturnsArray()
     {
-        
+        $this->assertInternalType('array', $this->factory->getAliases());
     }
     
     /**
@@ -80,7 +80,14 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testGetAliasesReturnsMappingOfAliasesToClasses()
     {
-    
+        $this->factory->addAlias('registration', 'Zend_Form');
+        $this->factory->addAlias('login', 'Zend_Form');
+        $aliases  = $this->factory->getAliases();
+        $expected = array(
+            'registration' => 'Zend_Form',
+            'login'        => 'Zend_Form'
+        );
+        $this->assertEquals($expected, $aliases);
     }
     
     /**
@@ -88,7 +95,7 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testRegisterPluginProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->factory, $this->factory->registerPlugin(new Mol_Form_Factory_Plugin_Null()));
     }
     
     /**
@@ -96,7 +103,7 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testGetPluginsReturnsArray()
     {
-        
+        $this->assertInternalType('array', $this->factory->getPlugins());
     }
     
     /**
@@ -104,7 +111,27 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testGetPluginsReturnsRegisteredPlugins()
     {
+        $plugin = new Mol_Form_Factory_Plugin_Null();
+        $this->factory->registerPlugin($plugin);
+        $plugins = $this->factory->getPlugins();
+        $this->assertInternalType('array', $plugins);
+        $this->assertEquals(1, count($plugins));
+        $this->assertContains($plugin, $plugins);
+    }
     
+    /**
+     * Ensures that getPlugins() returns the plugins in order of their
+     * registration.
+     */
+    public function testGetPluginsReturnsPluginsInRegistrationOrder()
+    {
+        $first = new Mol_Form_Factory_Plugin_Null();
+        $this->factory->registerPlugin($first);
+        $second = new Mol_Form_Factory_Plugin_Null();
+        $this->factory->registerPlugin($second);
+        $plugins = $this->factory->getPlugins();
+        $this->assertInternalType('array', $plugins);
+        $this->assertGreaterThan(array_search($first, $plugins, true), array_search($second, $plugins, true));
     }
     
     /**
@@ -113,7 +140,8 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateReturnsProvidedFormInstance()
     {
-        
+        $form = new Zend_Form();
+        $this->assertSame($form, $this->factory->create($form));
     }
     
     /**
@@ -121,7 +149,8 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesFormOfGivenType()
     {
-        
+        $form = $this->factory->create('Zend_Form');
+        $this->assertInstanceOf('Zend_Form', $form);
     }
     
     /**
@@ -130,7 +159,9 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesFormOfCorrectTypeIfAliasIsProvided()
     {
-    
+        $this->factory->addAlias('login', 'Zend_Form');
+        $form = $this->factory->create('login');
+        $this->assertInstanceOf('Zend_Form', $form);
     }
     
     /**
@@ -139,7 +170,13 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesFormOfCorrectTypeIfClassNameIsUsedAsAlias()
     {
-    
+        // Create a sub class of Zend_Form.
+        $formMock = $this->getMock('Zend_Form');
+        $subClass = get_class($formMock);
+        $this->factory->addAlias('Zend_Form', $subClass);
+        $form = $this->factory->create('Zend_Form');
+        $this->assertInstanceOf('Zend_Form', $form);
+        $this->assertEquals($subClass, get_class($form));
     }
     
     /**
@@ -147,7 +184,12 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreatePassesFormToRegisteredPlugins()
     {
-        
+        $plugin = $this->getMock('Mol_Form_Factory_Plugin');
+        $plugin->expects($this->once())
+               ->method('enhance')
+               ->with($this->isInstanceOf('Zend_Form'));
+        $this->factory->registerPlugin($plugin);
+        $this->factory->create('Zend_Form');
     }
     
     /**
@@ -156,7 +198,8 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfAliasDoesNotExist()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->factory->create('notExistingAlias');
     }
     
     /**
@@ -165,7 +208,9 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfAliasPointsToInvalidClass()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->factory->addAlias('alias', 'stdClass');
+        $this->factory->create('alias');
     }
     
     /**
@@ -174,7 +219,8 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfNoFormClassIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->factory->create('stdClass');
     }
     
     /**
@@ -183,7 +229,8 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfProvidedObjectIsNoFormInstance()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->factory->create(new stdClass());
     }
     
 }
