@@ -66,10 +66,7 @@ class Mol_Form_Factory
     public function create($aliasOrClassOrForm)
     {
         $form = $this->toForm($aliasOrClassOrForm);
-        foreach ($this->plugins as $plugin) {
-            /* @var $plugin Mol_Form_Factory_Plugin */
-            $plugin->enhance($form);
-        }
+        $this->applyPlugins($form);
         return $form;
     }
     
@@ -119,6 +116,19 @@ class Mol_Form_Factory
     public function getPlugins()
     {
         return $this->plugins;
+    }
+    
+    /**
+     * Passes the given form to all registered plugins.
+     *
+     * @param Zend_Form $form
+     */
+    protected function applyPlugins(Zend_Form $form)
+    {
+        foreach ($this->plugins as $plugin) {
+            /* @var $plugin Mol_Form_Factory_Plugin */
+            $plugin->enhance($form);
+        }
     }
     
     /**
