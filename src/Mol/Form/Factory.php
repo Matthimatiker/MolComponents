@@ -66,7 +66,10 @@ class Mol_Form_Factory
     public function create($aliasOrClassOrForm)
     {
         $form = $this->toForm($aliasOrClassOrForm);
-        
+        foreach ($this->plugins as $plugin) {
+            /* @var $plugin Mol_Form_Factory_Plugin */
+            $plugin->enhance($form);
+        }
         return $form;
     }
     
