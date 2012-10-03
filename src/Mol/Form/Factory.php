@@ -41,6 +41,15 @@ class Mol_Form_Factory
     protected $plugins = array();
     
     /**
+     * The builder that is used to create forms.
+     *
+     * Contains null if the builder was not created yet.
+     *
+     * @var Mol_Util_ObjectBuilder|null
+     */
+    protected $builder = null;
+    
+    /**
      * Creates the requested form.
      *
      * The provided argument can be...
@@ -56,7 +65,9 @@ class Mol_Form_Factory
      */
     public function create($aliasOrClassOrForm)
     {
+        $form = $this->toForm($aliasOrClassOrForm);
         
+        return $form;
     }
     
     /**
@@ -105,6 +116,74 @@ class Mol_Form_Factory
     public function getPlugins()
     {
         return $this->plugins;
+    }
+    
+    /**
+     * Converts the given alias, class or form instance
+     * to a form object.
+     *
+     * @param string|Zend_Form $aliasOrClassOrForm
+     * @return Zend_Form
+     * @throws InvalidArgumentException If an invalid alias or class name is provided.
+     */
+    protected function toForm($aliasOrClassOrForm)
+    {
+        if ($aliasOrClassOrForm instanceof Zend_Form) {
+            // Form instance provided.
+            return $aliasOrClassOrForm;
+        }
+        if (is_string($aliasOrClassOrForm)) {
+            // Alias or class name provided.
+            $class = $this->resolveToClass($aliasOrClassOrForm);
+            return $this->createForm($class);
+        }
+        $message = 'Expected alias or class name or Zend_Form instance, but received '
+                 . 'argument of type "' . gettype($aliasOrClassOrForm) . '".';
+        throw new InvalidArgumentException($message);
+    }
+    
+    /**
+     * Creates an instance of the given form class.
+     *
+     * @param string $class
+     * @return Zend_Form
+     */
+    protected function createForm($class)
+    {
+        return $this->getFormBuilder()->create($class);
+    }
+    
+    /**
+     * Returns the builder object that is used to create form instances.
+     *
+     * If the builder does not exist yet it will be created.
+     *
+     * @return Mol_Util_ObjectBuilder
+     */
+    protected function getFormBuilder()
+    {
+        if ($this->builder === null) {
+            $this->builder = new Mol_Util_ObjectBuilder('Zend_Form');
+        }
+        return $this->builder;
+    }
+    
+    /**
+     * Resolves the given alias to a class name.
+     *
+     * Returns the input value if no such alias exists.
+     *
+     * @param string $aliasOrClass
+     * @return string The class name.
+     */
+    protected function resolveToClass($aliasOrClass)
+    {
+        if (isset($this->aliases[$aliasOrClass])) {
+            // Resolve existing alias.
+            return $this->aliases[$aliasOrClass];
+        }
+        // Alias does not exist.
+        return $aliasOrClass;
     }
     
 }
