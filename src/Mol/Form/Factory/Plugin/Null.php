@@ -29,6 +29,15 @@ class Mol_Form_Factory_Plugin_Null implements Mol_Form_Factory_Plugin
 {
     
     /**
+     * See {@link Mol_Form_Factory_Plugin::__construct()} for details.
+     *
+     * @param array(string=>mixed) $options
+     */
+    public function __construct(array $options = array())
+    {
+    }
+    
+    /**
      * See {@link Mol_Form_Factory_Plugin::enhance()} for details.
      *
      * @param Zend_Form $form

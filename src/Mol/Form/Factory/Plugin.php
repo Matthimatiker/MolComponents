@@ -27,6 +27,14 @@ interface Mol_Form_Factory_Plugin
 {
     
     /**
+     * Enforced constructor signature that allows automatic
+     * creation of plugin classes.
+     *
+     * @param array(string=>mixed) $options
+     */
+    public function __construct(array $options = array());
+    
+    /**
      * Gives the plugin the chance to enhance the provided form.
      *
      * @param Zend_Form $form
