@@ -59,36 +59,60 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Checks if init() returns a form factory.
+     */
     public function testInitReturnsFormFactory()
     {
         
     }
     
+    /**
+     * Checks if the resource adds the configured aliases.
+     */
     public function testResourceAddsConfiguredAliases()
     {
         
     }
     
+    /**
+     * Checks if the resource registers the configured plugins.
+     */
     public function testResourceRegistersConfiguredPlugins()
     {
         
     }
     
+    /**
+     * Ensures that the plugins are registered in the same order as they
+     * are configured.
+     */
     public function testResourceRegistersPluginsInConfigurationOrder()
     {
         
     }
     
+    /**
+     * Ensures that the resource registers plugins that are configured as combination
+     * of plugin class and options, instead of just a class.
+     */
     public function testResourceRegistersConfiguredPluginIfPluginOptionsAreProvided()
     {
     
     }
     
+    /**
+     * Checks if the resource passes configured options to plugins.
+     */
     public function testResourcePassesConfiguredOptionsToPlugin()
     {
         
     }
     
+    /**
+     * Ensures that an exception is thrown if a class that is configured as
+     * plugin does not implement the plugin interface.
+     */
     public function testResourceThrowsExceptionIfConfiguredPluginClassIsNotValid()
     {
         
