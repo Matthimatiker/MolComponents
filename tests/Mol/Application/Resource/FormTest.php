@@ -59,4 +59,39 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    public function testInitReturnsFormFactory()
+    {
+        
+    }
+    
+    public function testResourceAddsConfiguredAliases()
+    {
+        
+    }
+    
+    public function testResourceRegistersConfiguredPlugins()
+    {
+        
+    }
+    
+    public function testResourceRegistersPluginsInConfigurationOrder()
+    {
+        
+    }
+    
+    public function testResourceRegistersConfiguredPluginIfPluginOptionsAreProvided()
+    {
+    
+    }
+    
+    public function testResourcePassesConfiguredOptionsToPlugin()
+    {
+        
+    }
+    
+    public function testResourceThrowsExceptionIfConfiguredPluginClassIsNotValid()
+    {
+        
+    }
+    
 }
