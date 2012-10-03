@@ -91,6 +91,20 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if addAlias() overwrites the previous alias with the
+     * same name.
+     */
+    public function testAddAliasOverwritesExistingAliasWithSameName()
+    {
+        $this->factory->addAlias('login', 'Zend_Form_SubForm');
+        $this->factory->addAlias('login', 'Zend_Form');
+        $aliases = $this->factory->getAliases();
+        $this->assertInternalType('array', $aliases);
+        $this->assertArrayHasKey('login', $aliases);
+        $this->assertEquals('Zend_Form', $aliases['login']);
+    }
+    
+    /**
      * Checks if registerPlugin() provides a fluent interface.
      */
     public function testRegisterPluginProvidesFluentInterface()
