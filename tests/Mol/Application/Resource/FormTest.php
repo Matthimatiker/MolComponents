@@ -225,4 +225,24 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
         $this->resource->init();
     }
     
+    /**
+     * Ensures that the resource adds a plugin that is configured via "class"
+     * key, but whose options are omitted.
+     */
+    public function testResourceCreatesPluginIfOptionsAreOmitted()
+    {
+        $options = array(
+            'plugins' => array(
+                'noOptions' => array(
+                    'class' => 'Mol_Form_Factory_Plugin_Null'
+                )
+            )
+        );
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
+        $plugins = $factory->getPlugins();
+        $this->assertEquals(1, count($plugins));
+    }
+    
 }
