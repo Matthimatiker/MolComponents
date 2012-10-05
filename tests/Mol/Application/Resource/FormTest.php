@@ -19,6 +19,11 @@
 require_once(dirname(__FILE__) . '/bootstrap.php');
 
 /**
+ * Loads the factory plugin mock that is used in some tests.
+ */
+require_once(dirname(__FILE__) . '/TestData/Form/FactoryPlugin.php');
+
+/**
  * Tests the form resource.
  *
  * @category PHP
@@ -106,11 +111,51 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the resource registers plugins that are configured as combination
+     * of plugin class and options, instead of just a class.
+     */
+    public function testResourceRegistersConfiguredPluginIfPluginOptionsAreProvided()
+    {
+        $options = array(
+            'plugins' => array(
+                'mockPlugin' => array(
+                    'class'   => 'Mol_Application_Resource_TestData_Form_FactoryPlugin',
+                    'options' => array()
+                )
+            )
+        );
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
+        $plugins = $factory->getPlugins();
+        $this->assertEquals(1, count($plugins));
+    }
+    
+    /**
      * Checks if the resource passes configured options to plugins.
      */
     public function testResourcePassesConfiguredOptionsToPlugin()
     {
-    
+        $pluginOptions = array(
+            'a' => 'b'
+        );
+        $options = array(
+            'plugins' => array(
+                'mockPlugin' => array(
+                    'class'   => 'Mol_Application_Resource_TestData_Form_FactoryPlugin',
+                    'options' => $pluginOptions
+                )
+            )
+        );
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
+        $plugins = $factory->getPlugins();
+        $this->assertEquals(1, count($plugins));
+        $this->assertContainsOnly('Mol_Application_Resource_TestData_Form_FactoryPlugin', $plugins);
+        /* @var $plugin Mol_Application_Resource_TestData_Form_FactoryPlugin */
+        $plugin = current($plugins);
+        $this->assertEquals($pluginOptions, $plugin->getOptions());
     }
     
     /**
@@ -119,16 +164,30 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceRegistersPluginsInConfigurationOrder()
     {
-        
-    }
-    
-    /**
-     * Ensures that the resource registers plugins that are configured as combination
-     * of plugin class and options, instead of just a class.
-     */
-    public function testResourceRegistersConfiguredPluginIfPluginOptionsAreProvided()
-    {
-    
+        $options = array(
+            'plugins' => array(
+                'first' => array(
+                    'class'   => 'Mol_Application_Resource_TestData_Form_FactoryPlugin',
+                    'options' => array(
+                        'order' => 1
+                    )
+                ),
+                'second' => array(
+                    'class'   => 'Mol_Application_Resource_TestData_Form_FactoryPlugin',
+                    'options' => array(
+                        'order' => 2
+                    )
+                )
+            )
+        );
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
+        $plugins = $factory->getPlugins();
+        $this->assertEquals(2, count($plugins));
+        $this->assertContainsOnly('Mol_Application_Resource_TestData_Form_FactoryPlugin', $plugins);
+        $this->assertEquals(array('order' => 1), $plugins[0]->getOptions());
+        $this->assertEquals(array('order' => 2), $plugins[1]->getOptions());
     }
     
     /**
