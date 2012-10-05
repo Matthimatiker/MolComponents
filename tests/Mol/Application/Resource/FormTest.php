@@ -226,6 +226,24 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that an exception is thrown if a plugin configuration is provided
+     * as array, but the class key is missing.
+     */
+    public function testResourceThrowsExceptionIfPluginClassIsNotDefined()
+    {
+        $this->setExpectedException('Zend_Application_Resource_Exception');
+        $options = array(
+            'plugins' => array(
+                'missingClass' => array(
+                    'options' => 'Hello world!'
+                )
+            )
+        );
+        $this->resource->setOptions($options);
+        $this->resource->init();
+    }
+    
+    /**
      * Ensures that the resource adds a plugin that is configured via "class"
      * key, but whose options are omitted.
      */
