@@ -80,7 +80,61 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      */
     protected function createPlugins()
     {
-        return array();
+        $options = $this->getOptions();
+        if (!isset($options['plugins'])) {
+            return array();
+        }
+        $plugins = array();
+        foreach ($options['plugins'] as $pluginConfig) {
+            /* @var $pluginConfig string|array(string=>mixed) */
+            $plugins[] = $this->toPlugin($pluginConfig);
+        }
+        return $plugins;
+    }
+    
+    /**
+     * Uses the given configuration to create a factory plugin.
+     *
+     * The configuration can be:
+     * # a string (plugin class, no options)
+     * # an array
+     *   # class (string, plugin class)
+     *   # options (array, plugin options, optional)
+     *
+     * @param string|array(string=>mixed) $config
+     * @return Mol_Form_Factory_Plugin
+     * @throws Zend_Application_Resource_Exception If an invalid configuration is provided.
+     */
+    protected function toPlugin($config)
+    {
+        if (is_string($config)) {
+            // Plugin class provided.
+            return $this->createPlugin($config, array());
+        }
+        if (!isset($config['class'])) {
+            $message = 'Plugin class is not configured.';
+            throw new Zend_Application_Resource_Exception($message);
+        }
+        if (!isset($config['options'])) {
+            $config['options'] = array();
+        }
+        if (!is_array($config['options'])) {
+            $message = 'Plugin options must be provided as array.';
+            throw new Zend_Application_Resource_Exception($message);
+        }
+        return $this->createPlugin($config['class'], $config['options']);
+    }
+    
+    /**
+     * Uses the given class and options to create a plugin instance,
+     *
+     * @param string $class
+     * @param array(string=>mixed) $options
+     * @return Mol_Form_Factory_Plugin
+     */
+    protected function createPlugin($class, array $options)
+    {
+        
     }
     
 }
