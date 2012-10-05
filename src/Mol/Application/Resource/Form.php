@@ -66,7 +66,11 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      */
     protected function createAliases()
     {
-        return array();
+        $options = $this->getOptions();
+        if (!isset($options['aliases'])) {
+            return array();
+        }
+        return $options['aliases'];
     }
     
     /**
