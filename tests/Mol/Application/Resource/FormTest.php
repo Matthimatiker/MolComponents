@@ -64,7 +64,9 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
      */
     public function testInitReturnsFormFactory()
     {
-        
+        $this->resource->setOptions(array(true));
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
     }
     
     /**
@@ -72,7 +74,17 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceAddsConfiguredAliases()
     {
-        
+        $configuredAliases = array(
+            'login' => 'Zend_Form'
+        );
+        $options = array(
+            'aliases' => $configuredAliases
+        );
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
+        $aliases = $factory->getAliases();
+        $this->assertEquals($configuredAliases, $aliases);
     }
     
     /**
@@ -80,7 +92,25 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceRegistersConfiguredPlugins()
     {
-        
+        $options = array(
+            'plugins' => array(
+                'firstPlugin' => 'Mol_Form_Factory_Plugin_Null'
+            )
+        );
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
+        $plugins = $factory->getPlugins();
+        $this->assertEquals(1, count($plugins));
+        $this->assertContainsOnly('Mol_Form_Factory_Plugin_Null', $plugins);
+    }
+    
+    /**
+     * Checks if the resource passes configured options to plugins.
+     */
+    public function testResourcePassesConfiguredOptionsToPlugin()
+    {
+    
     }
     
     /**
@@ -102,20 +132,19 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if the resource passes configured options to plugins.
-     */
-    public function testResourcePassesConfiguredOptionsToPlugin()
-    {
-        
-    }
-    
-    /**
      * Ensures that an exception is thrown if a class that is configured as
      * plugin does not implement the plugin interface.
      */
     public function testResourceThrowsExceptionIfConfiguredPluginClassIsNotValid()
     {
-        
+        $this->setExpectedException('Zend_Application_Resource_Exception');
+        $options = array(
+            'plugins' => array(
+                'invalidPlugin' => 'stdClass'
+            )
+        );
+        $this->resource->setOptions($options);
+        $this->resource->init();
     }
     
 }
