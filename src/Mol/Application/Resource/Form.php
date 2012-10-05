@@ -30,6 +30,14 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
 {
     
     /**
+     * Builder that is used to create plugins or null if it
+     * was not created yet.
+     *
+     * @var Mol_Util_ObjectBuilder|null
+     */
+    protected $pluginBuilder = null;
+    
+    /**
      * Creates a pre-configured form factory.
      *
      * @return Mol_Form_Factory
@@ -134,7 +142,20 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      */
     protected function createPlugin($class, array $options)
     {
-        
+        return $this->getPluginBuilder()->create($class, array($options));
+    }
+    
+    /**
+     * Returns the builder that is used to create plugin instances.
+     *
+     * @return Mol_Util_ObjectBuilder
+     */
+    protected function getPluginBuilder()
+    {
+        if ($this->pluginBuilder === null) {
+            $this->pluginBuilder = new Mol_Util_ObjectBuilder('Mol_Form_Factory_Plugin');
+        }
+        return $this->pluginBuilder;
     }
     
 }
