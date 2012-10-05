@@ -36,7 +36,47 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      */
     public function init()
     {
-        
+        $factory = $this->createFactory();
+        foreach ($this->createAliases() as $alias => $class) {
+            /* @var $alias string */
+            /* @var $class string */
+            $factory->addAlias($alias, $class);
+        }
+        foreach ($this->createPlugins() as $plugin) {
+            /* @var $plugin Mol_Form_Factory_Plugin */
+            $factory->registerPlugin($plugin);
+        }
+        return $factory;
+    }
+    
+    /**
+     * Creates a form factory.
+     *
+     * @return Mol_Form_Factory
+     */
+    protected function createFactory()
+    {
+        return new Mol_Form_Factory();
+    }
+    
+    /**
+     * Creates a map of aliases that will be added to the factory.
+     *
+     * @return array(string=>string)
+     */
+    protected function createAliases()
+    {
+        return array();
+    }
+    
+    /**
+     * Creates the plugins that are registered at the factory.
+     *
+     * @return array(Mol_Form_Factory_Plugin)
+     */
+    protected function createPlugins()
+    {
+        return array();
     }
     
 }
