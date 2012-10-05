@@ -206,4 +206,23 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
         $this->resource->init();
     }
     
+    /**
+     * Ensures that an exception is thrown if the options of a plugin are
+     * not defined as array.
+     */
+    public function testResourceThrowsExceptionIfPluginOptionsAreNotDefinedAsArray()
+    {
+        $this->setExpectedException('Zend_Application_Resource_Exception');
+        $options = array(
+            'plugins' => array(
+                'invalidOptions' => array(
+                    'class'   => 'Mol_Form_Factory_Plugin_Null',
+                    'options' => 'Hello world!'
+                )
+            )
+        );
+        $this->resource->setOptions($options);
+        $this->resource->init();
+    }
+    
 }
