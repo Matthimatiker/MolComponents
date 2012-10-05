@@ -85,6 +85,7 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      * Creates the plugins that are registered at the factory.
      *
      * @return array(Mol_Form_Factory_Plugin)
+     * @throws Zend_Application_Resource_Exception If plugin creation fails.
      */
     protected function createPlugins()
     {
@@ -95,7 +96,11 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
         $plugins = array();
         foreach ($options['plugins'] as $pluginConfig) {
             /* @var $pluginConfig string|array(string=>mixed) */
-            $plugins[] = $this->toPlugin($pluginConfig);
+            try {
+                $plugins[] = $this->toPlugin($pluginConfig);
+            } catch (InvalidArgumentException $e) {
+                throw new Zend_Application_Resource_Exception('Cannot create plugin.', 0, $e);
+            }
         }
         return $plugins;
     }
