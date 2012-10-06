@@ -20,14 +20,14 @@
  *
  * == Usage ==
  *
- * == Activation ==
+ * === Activation ===
  *
  * The following line is enough to activate the form factory:
  * <code>
  * resources.form = On
  * </code>
  *
- * == Adding aliases ==
+ * === Adding aliases ===
  *
  * Additionally aliases can be configured:
  * <code>
@@ -37,7 +37,7 @@
  * The alias must be used as key, the form class that it
  * points to as value.
  *
- * == Configuring plugins ==
+ * === Configuring plugins ===
  *
  * To enhance form that are created by the factory, plugins can
  * be used.
