@@ -15,6 +15,55 @@
 /**
  * Factory that creates form instances.
  *
+ * == Usage ==
+ *
+ * === Creation ===
+ *
+ * The form factory does not require any constructor arguments.
+ * Therefore, the following line is enough to create a new factory:
+ * <code>
+ * $factory = new Mol_Form_Factory();
+ * </code>
+ *
+ * === Creating forms ===
+ *
+ * Without further configuration the factory is able to create forms
+ * by class name:
+ * <code>
+ * // Creates a new Zend_Form instance.
+ * $form = factory->create('Zend_Form');
+ * </code>
+ *
+ * Each call to create() instantiates a new form, created instances
+ * are not cached.
+ *
+ * === Aliases ===
+ *
+ * The method addAlias() can be used to register a form alias.
+ *
+ * Aliases point to form class names and can be passed to
+ * create() instead of the full class name:
+ * <code>
+ * $factory->addAlias('login', 'My_Login_Form');
+ * // Creates an instance of My_Login_Form.
+ * $form = $factory->create('login');
+ * </code>
+ *
+ * Names of form classes can also be used as alias.
+ * That allows mostly transparently switching of form types by
+ * configuration:
+ * <code>
+ * // Creates an instance of My_Login_Form.
+ * $form = $factory->create('My_Login_Form');
+ * $factory->addAlias('My_Login_Form', 'Another_Login_Form');
+ * // Creates an instance of Another_Login_Form.
+ * $form = $factory->create('My_Login_Form');
+ * </code>
+ *
+ * === Plugins ===
+ *
+ * === Enhancing form instances ===
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
