@@ -18,6 +18,51 @@
  * This resource allows the configuration of aliases and
  * factory plugins.
  *
+ * == Usage ==
+ *
+ * == Activation ==
+ *
+ * The following line is enough to activate the form factory:
+ * <code>
+ * resources.form = On
+ * </code>
+ *
+ * == Adding aliases ==
+ *
+ * Additionally aliases can be configured:
+ * <code>
+ * resources.form.aliases.login        = "My_Login_Form"
+ * resources.form.aliases.registration = "My_Registration_Form"
+ * </code>
+ * The alias must be used as key, the form class that it
+ * points to as value.
+ *
+ * == Configuring plugins ==
+ *
+ * To enhance form that are created by the factory, plugins can
+ * be used.
+ *
+ * The following line activates a plugin without providing
+ * further plugin options:
+ * <code>
+ * resources.form.plugins.myPlugin = "My_Form_Factory_Plugin"
+ * </code>
+ * Any key can be used for plugin registration, but the value
+ * must be the name of a class that implements the interface
+ * Mol_Form_Factory_Plugin.
+ *
+ * To provide additional plugin options, the configuration
+ * must use the "class" and "options" keys:
+ * <code>
+ * resources.form.plugins.myPlugin.class = "My_Form_Factory_Plugin"
+ * resources.form.plugins.myPlugin.options.name   = "Earl"
+ * resources.form.plugins.myPlugin.options.filter = On
+ * </code>
+ * In this case the name of the plugin class is assigned to
+ * the "class" key. The "options" key must be any map or
+ * array of plugin options. These options will be directly
+ * passed to the plugin constructor.
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
