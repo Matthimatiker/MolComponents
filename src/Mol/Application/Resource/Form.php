@@ -155,7 +155,7 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      *
      * The configuration can be:
      * # a string (plugin class, no options)
-     * # an array
+     * # an array with the following keys:
      *   # class (string, plugin class)
      *   # options (array, plugin options, optional)
      *
