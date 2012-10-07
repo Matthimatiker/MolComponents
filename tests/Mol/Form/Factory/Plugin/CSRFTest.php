@@ -58,4 +58,29 @@ class Mol_Form_Factory_Plugin_CSRFTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    public function testPluginPassesOptionsToElement()
+    {
+        
+    }
+    
+    public function testPluginAddsElementToForm()
+    {
+        
+    }
+    
+    public function testPluginCreatesNewElementForEachForm()
+    {
+        
+    }
+    
+    public function testPluginDoesNotAddElementIfFormAlreadyContainsCsrfToken()
+    {
+        
+    }
+    
+    public function testPluginUsesConfiguredElementName()
+    {
+        
+    }
+    
 }
