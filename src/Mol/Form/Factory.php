@@ -62,7 +62,29 @@
  *
  * === Plugins ===
  *
- * === Enhancing form instances ===
+ * Plugins are used to improve just created forms.
+ *
+ * Any number of plugins can be added to the factory.
+ * Instantiated forms are passed to each plugin.
+ *
+ * The method registerPlugin() is used to add a plugin
+ * to the factory:
+ * <code>
+ * $factory->registerPlugin($myPluginInstance);
+ * </code>
+ *
+ * Plugins must implement the Mol_Form_Factory_Plugin
+ * interface.
+ *
+ * Plugins are applied in registration order.
+ *
+ * If an already existing form shall be enhanced by
+ * plugins, then the form instance can be passed to
+ * create():
+ * <code>
+ * $form = new Zend_Form();
+ * $form = $factory->create($form);
+ * </code>
  *
  * @category PHP
  * @package Mol_Form
