@@ -58,26 +58,44 @@ class Mol_Form_Factory_Plugin_CSRFTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Checks if the plugin passes the provided element
+     * options to the created CSRF element.
+     */
     public function testPluginPassesOptionsToElement()
     {
         
     }
     
+    /**
+     * Ensures that the plugin adds a CSRF element to the given form.
+     */
     public function testPluginAddsElementToForm()
     {
         
     }
     
+    /**
+     * Ensures that the plugin creates a new CSRF element for each
+     * form that is passed.
+     */
     public function testPluginCreatesNewElementForEachForm()
     {
         
     }
     
+    /**
+     * Ensures that the plugin does not add an element if the form already
+     * contains a CSRF element.
+     */
     public function testPluginDoesNotAddElementIfFormAlreadyContainsCsrfToken()
     {
         
     }
     
+    /**
+     * Checks if the form uses the configured name for the CSRF element.
+     */
     public function testPluginUsesConfiguredElementName()
     {
         
