@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Form_Factory_Plugin_CSRF
+ * Mol_Form_Factory_Plugin_Csrf
  *
  * @category PHP
  * @package Mol_Form
@@ -23,7 +23,7 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 08.10.2012
  */
-class Mol_Form_Factory_Plugin_CSRF implements Mol_Form_Factory_Plugin
+class Mol_Form_Factory_Plugin_Csrf implements Mol_Form_Factory_Plugin
 {
     
     /**

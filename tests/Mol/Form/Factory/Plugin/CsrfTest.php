@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Form_Factory_Plugin_CSRF
+ * Mol_Form_Factory_Plugin_Csrf
  *
  * @category PHP
  * @package Mol_Form
@@ -30,13 +30,13 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 08.10.2012
  */
-class Mol_Form_Factory_Plugin_CSRFTest extends PHPUnit_Framework_TestCase
+class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
 {
     
     /**
      * System under test.
      *
-     * @var Mol_Form_Factory_Plugin_CSRF
+     * @var Mol_Form_Factory_Plugin_Csrf
      */
     protected $plugin = null;
     
