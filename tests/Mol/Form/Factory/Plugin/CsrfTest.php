@@ -153,6 +153,24 @@ class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if the plugin can be created without element options.
+     */
+    public function testPluginCanBeCreatedWithoutElementOptions()
+    {
+        $this->setExpectedException(null);
+        new Mol_Form_Factory_Plugin_Csrf(array());
+    }
+    
+    /**
+     * Ensures that the plugin accepts the token name as element option.
+     */
+    public function testPluginAcceptsNameAsElementOption()
+    {
+        $this->setExpectedException(null);
+        new Mol_Form_Factory_Plugin_Csrf(array('element' => 'my_csrf_token'));
+    }
+    
+    /**
      * Creates a mocked session object.
      *
      * @return stdClass
