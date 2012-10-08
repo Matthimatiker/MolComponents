@@ -47,10 +47,15 @@ class Mol_Form_Factory_Plugin_Csrf implements Mol_Form_Factory_Plugin
      */
     public function __construct(array $options = array())
     {
-        $this->csrfOptions = isset($options['element']) ? $options['element'] : array();
-        if (!isset($this->csrfOptions['name'])) {
-            $this->csrfOptions['name'] = self::DEFAULT_TOKEN_NAME;
+        $elementOptions = isset($options['element']) ? $options['element'] : array();
+        if (is_string($elementOptions)) {
+            // Just the element name was provided.
+            $elementOptions = array('name' => $elementOptions);
         }
+        if (!isset($elementOptions['name'])) {
+            $elementOptions['name'] = self::DEFAULT_TOKEN_NAME;
+        }
+        $this->csrfOptions = $elementOptions;
     }
     
     /**
