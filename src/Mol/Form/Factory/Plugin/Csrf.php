@@ -27,6 +27,13 @@ class Mol_Form_Factory_Plugin_Csrf implements Mol_Form_Factory_Plugin
 {
     
     /**
+     * The default name for the token element.
+     *
+     * @var string
+     */
+    const DEFAULT_TOKEN_NAME = 'csrf_token';
+    
+    /**
      * See {@link Mol_Form_Factory_Plugin::__construct()} for details.
      *
      * @param array(string=>mixed) $options

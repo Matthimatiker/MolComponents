@@ -46,7 +46,14 @@ class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->plugin = null;
+        $options = array(
+            'element' => array(
+                'name'    => 'my_csrf_token',
+                'salt'    => 'csrf-salt',
+                'session' => $this->createSession()
+            )
+        );
+        $this->plugin = new Mol_Form_Factory_Plugin_Csrf($options);
     }
     
     /**
@@ -59,20 +66,15 @@ class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if the plugin passes the provided element
-     * options to the created CSRF element.
-     */
-    public function testPluginPassesOptionsToElement()
-    {
-        
-    }
-    
-    /**
      * Ensures that the plugin adds a CSRF element to the given form.
      */
     public function testPluginAddsElementToForm()
     {
-        
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $elements = $form->getElements();
+        $this->assertEquals(1, count($elements));
+        $this->assertContainsOnly('Zend_Form_Element_Hash', $elements);
     }
     
     /**
@@ -81,7 +83,17 @@ class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginCreatesNewElementForEachForm()
     {
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $elements = $form->getElements();
+        $first    = current($elements);
         
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $elements = $form->getElements();
+        $second   = current($elements);
+        
+        $this->assertNotSame($first, $second);
     }
     
     /**
@@ -90,7 +102,27 @@ class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginDoesNotAddElementIfFormAlreadyContainsCsrfToken()
     {
-        
+        $csrf = new Zend_Form_Element_Hash('another_token', array('session' => $this->createSession()));
+        $form = new Zend_Form();
+        $form->addElement($csrf);
+        $this->plugin->enhance($form);
+        $elements = $form->getElements();
+        $this->assertEquals(1, count($elements));
+    }
+    
+    /**
+     * Checks if the plugin passes the provided element
+     * options to the created CSRF element.
+     */
+    public function testPluginPassesOptionsToElement()
+    {
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $elements = $form->getElements();
+        /* @var $csrf Zend_Form_Element_Hash */
+        $csrf = current($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Hash', $csrf);
+        $this->assertEquals('csrf-salt', $csrf->getSalt());
     }
     
     /**
@@ -98,7 +130,40 @@ class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginUsesConfiguredElementName()
     {
-        
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $this->assertNotNull($form->getElement('my_csrf_token'));
+    }
+    
+    /**
+     * Ensures that the plugin uses the default name if the element
+     * name is not specified in the options.
+     */
+    public function testPluginUsesDefaultNameIfConfigurationIsMissing()
+    {
+        $options = array(
+            'element' => array(
+                'session' => $this->createSession()
+            )
+        );
+        $this->plugin = new Mol_Form_Factory_Plugin_Csrf($options);
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $this->assertNotNull($form->getElement(Mol_Form_Factory_Plugin_Csrf::DEFAULT_TOKEN_NAME));
+    }
+    
+    /**
+     * Creates a mocked session object.
+     *
+     * @return stdClass
+     */
+    protected function createSession()
+    {
+        $methods = array(
+            'setExpirationHops',
+            'setExpirationSeconds'
+        );
+        return $this->getMock('stdClass', $methods);
     }
     
 }
