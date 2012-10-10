@@ -85,7 +85,13 @@ class Mol_Form_Factory_Plugin_Csrf implements Mol_Form_Factory_Plugin
         if ($this->hasCsrf($form)) {
             return;
         }
-        $form->addElement($this->createCsrf());
+        $csrf = $this->createCsrf();
+        if ($form->getElement($csrf->getName())) {
+            // Form already contains an element with the
+            // same name, do not overwrite it.
+            return;
+        }
+        $form->addElement($csrf);
     }
     
     /**
