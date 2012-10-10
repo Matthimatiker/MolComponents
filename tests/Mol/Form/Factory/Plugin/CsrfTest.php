@@ -111,6 +111,18 @@ class Mol_Form_Factory_Plugin_CsrfTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the plugin does not add a CSRF element if the form already contains
+     * an element with the same name as configured for the CSRF element.
+     */
+    public function testPluginDoesNotAddElementIfFormAlreadyContainsElementWithSameName()
+    {
+        $form = new Zend_Form();
+        $form->addElement(new Zend_Form_Element_Text('my_csrf_token'));
+        $this->plugin->enhance($form);
+        $this->assertInstanceOf('Zend_Form_Element_Text', $form->getElement('my_csrf_token'));
+    }
+    
+    /**
      * Checks if the plugin passes the provided element
      * options to the created CSRF element.
      */
