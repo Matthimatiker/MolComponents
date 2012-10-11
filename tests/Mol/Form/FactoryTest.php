@@ -224,6 +224,22 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if create() resolves alias chains.
+     */
+    public function testCreateFollowsAliasChains()
+    {
+        
+    }
+    
+    /**
+     * Ensures that an exception is thrown if multiple aliases form a circle.
+     */
+    public function testCreateThrowsExceptionIfAliasChainFormsCircle()
+    {
+        
+    }
+    
+    /**
      * Ensures that create() throws an exception if the given class is
      * not a valid form class.
      */
