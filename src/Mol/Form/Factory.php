@@ -262,14 +262,24 @@ class Mol_Form_Factory
      *
      * @param string $aliasOrClass
      * @return string The class name.
+     * @throws RuntimeException If an alias circle is detected.
      */
     protected function resolveToClass($aliasOrClass)
     {
-        if (isset($this->aliases[$aliasOrClass])) {
+        /* @var array(string) List of already visited aliases. */
+        $path = array();
+        while (isset($this->aliases[$aliasOrClass])) {
             // Resolve existing alias.
-            return $this->aliases[$aliasOrClass];
+            $path[] = $aliasOrClass;
+            $aliasOrClass = $this->aliases[$aliasOrClass];
+            if (in_array($aliasOrClass, $path)) {
+                // Alias already visted, circle detected.
+                $path[]  = $aliasOrClass;
+                $message = 'Cannot resolve alias, circle detected: ' . implode(' -> ', $path);
+                throw new RuntimeException($message);
+            }
         }
-        // Alias does not exist.
+        // $aliasOrClass is not an alias.
         return $aliasOrClass;
     }
     
