@@ -98,7 +98,7 @@ class Mol_Form_Factory
 {
     
     /**
-     * Map from registered aliases to form classes.
+     * Map from registered aliases to form classes or other aliases.
      *
      * @var array(string=>string)
      */
@@ -144,13 +144,16 @@ class Mol_Form_Factory
     /**
      * Adds an alias that points to the provided form class.
      *
+     * Alternatively the alias can point to another alias.
+     * The factory will try to resolve alias chains at runtime.
+     *
      * @param string $alias
-     * @param string $class
+     * @param string $aliasOrClass
      * @return Mol_Form_Factory Provides a fluent interface.
      */
-    public function addAlias($alias, $class)
+    public function addAlias($alias, $aliasOrClass)
     {
-        $this->aliases[$alias] = $class;
+        $this->aliases[$alias] = $aliasOrClass;
         return $this;
     }
     
