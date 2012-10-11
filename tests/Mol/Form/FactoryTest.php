@@ -228,7 +228,12 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateFollowsAliasChains()
     {
-        
+        // a -> b -> c -> Zend_Form
+        $this->factory->addAlias('a', 'b');
+        $this->factory->addAlias('b', 'c');
+        $this->factory->addAlias('c', 'Zend_Form');
+        $form = $this->factory->create('a');
+        $this->assertInstanceOf('Zend_Form', $form);
     }
     
     /**
@@ -236,7 +241,12 @@ class Mol_Form_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfAliasChainFormsCircle()
     {
-        
+        $this->setExpectedException('RuntimeException');
+        // a -> b -> c -> a
+        $this->factory->addAlias('a', 'b');
+        $this->factory->addAlias('b', 'c');
+        $this->factory->addAlias('c', 'a');
+        $this->factory->create('a');
     }
     
     /**
