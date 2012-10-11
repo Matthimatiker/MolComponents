@@ -160,7 +160,7 @@ class Mol_Form_Factory
     /**
      * Returns a list of registered aliases.
      *
-     * The key is the alias, the value the form class
+     * The key is the alias, the value the form class or alias
      * that the alias points to.
      *
      * @return array(string=>string)
