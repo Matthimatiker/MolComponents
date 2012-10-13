@@ -36,7 +36,10 @@ class Mol_Form_Factory_Plugin_AutoCompleteOff implements Mol_Form_Factory_Plugin
     }
     
     /**
-     * Gives the plugin the chance to enhance the provided form.
+     * Sets the autocomplete attribute of given form to "off".
+     *
+     * The plugin will not modify the form if it already has
+     * an autocomplete attribute.
      *
      * @param Zend_Form $form
      */
