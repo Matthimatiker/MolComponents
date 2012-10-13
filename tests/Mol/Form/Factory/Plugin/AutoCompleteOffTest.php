@@ -58,4 +58,14 @@ class Mol_Form_Factory_Plugin_AutoCompleteOffTest extends PHPUnit_Framework_Test
         parent::tearDown();
     }
     
+    public function testPluginSetAutocompleteAttributeToOff()
+    {
+        
+    }
+    
+    public function testPluginDoesNotModifyAutocompleteAttributeIfItIsAlreadyDefinedByTheForm()
+    {
+        
+    }
+    
 }
