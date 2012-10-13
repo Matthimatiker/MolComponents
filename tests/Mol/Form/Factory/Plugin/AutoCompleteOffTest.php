@@ -63,7 +63,9 @@ class Mol_Form_Factory_Plugin_AutoCompleteOffTest extends PHPUnit_Framework_Test
      */
     public function testPluginAddsAutocompleteAttribute()
     {
-        
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $this->assertNotNull($form->getAttrib('autocomplete'));
     }
     
     /**
@@ -71,7 +73,9 @@ class Mol_Form_Factory_Plugin_AutoCompleteOffTest extends PHPUnit_Framework_Test
      */
     public function testPluginSetAutocompleteAttributeToOff()
     {
-        
+        $form = new Zend_Form();
+        $this->plugin->enhance($form);
+        $this->assertEquals('off', $form->getAttrib('autocomplete'));
     }
     
     /**
@@ -80,7 +84,10 @@ class Mol_Form_Factory_Plugin_AutoCompleteOffTest extends PHPUnit_Framework_Test
      */
     public function testPluginDoesNotModifyAutocompleteAttributeIfItIsAlreadyDefinedInTheForm()
     {
-        
+        $form = new Zend_Form();
+        $form->setAttrib('autocomplete', 'any-value');
+        $this->plugin->enhance($form);
+        $this->assertEquals('any-value', $form->getAttrib('autocomplete'));
     }
     
 }
