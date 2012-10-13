@@ -45,7 +45,12 @@ class Mol_Form_Factory_Plugin_AutoCompleteOff implements Mol_Form_Factory_Plugin
      */
     public function enhance(Zend_Form $form)
     {
-        
+        if ($form->getAttrib('autocomplete') !== null) {
+            // Autocomplete attribute is already set for
+            // this form instance.
+            return;
+        }
+        $form->setAttrib('autocomplete', 'off');
     }
     
 }
