@@ -15,6 +15,15 @@
 /**
  * Plugin that disables browser auto completion for all forms.
  *
+ * = Usage =
+ *
+ * == Configuration ==
+ *
+ * Activate Autocomplete plugin:
+ * <code>
+ * resources.form.plugins.autoComplete = "Mol_Form_Factory_Plugin_AutoCompleteOff"
+ * </code>
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
