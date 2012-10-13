@@ -58,17 +58,27 @@ class Mol_Form_Factory_Plugin_AutoCompleteOffTest extends PHPUnit_Framework_Test
         parent::tearDown();
     }
     
+    /**
+     * Checks if the plugin adds an autocomplete attribute to forms.
+     */
     public function testPluginAddsAutocompleteAttribute()
     {
         
     }
     
+    /**
+     * Ensures that the plugin sets the autocomplete attribute to "off".
+     */
     public function testPluginSetAutocompleteAttributeToOff()
     {
         
     }
     
-    public function testPluginDoesNotModifyAutocompleteAttributeIfItIsAlreadyDefinedByTheForm()
+    /**
+     * Ensures that the plugin does not modify the autocomplete attribute if it
+     * is already defined in the form.
+     */
+    public function testPluginDoesNotModifyAutocompleteAttributeIfItIsAlreadyDefinedInTheForm()
     {
         
     }
