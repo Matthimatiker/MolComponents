@@ -33,4 +33,29 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Form_Factory_Plugin_AutoCompleteOffTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * System under test.
+     *
+     * @var Mol_Form_Factory_Plugin_AutoCompleteOff
+     */
+    protected $plugin = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->plugin = new Mol_Form_Factory_Plugin_AutoCompleteOff();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->plugin = null;
+        parent::tearDown();
+    }
+    
 }
