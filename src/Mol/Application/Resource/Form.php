@@ -63,6 +63,12 @@
  * array of plugin options. These options will be directly
  * passed to the plugin constructor.
  *
+ * == Bootstrapper injection into plugins ==
+ *
+ * If the plugin class implements Mol_Application_Bootstrap_Aware,
+ * then the resource will inject the bootstrapper into the created
+ * plugin.
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
