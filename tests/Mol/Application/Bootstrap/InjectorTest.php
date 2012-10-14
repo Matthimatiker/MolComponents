@@ -67,24 +67,48 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Checks if inject() returns the provided non-bootstrap-aware
+     * object.
+     */
     public function testInjectReturnsProvidedObject()
     {
         
     }
     
+    /**
+     * Checks if inject() returns the provided value.
+     */
     public function testInjectReturnsProvidedValue()
     {
         
     }
     
+    /**
+     * Ensures that inject() injects the bootstrapper into a bootstrap-aware
+     * object.
+     */
     public function testInjectSetsBootstrapperIfObjectIsBootstrapAware()
     {
         
     }
     
+    /**
+     * Checks if inject() returns the provided bootstrap-aware object.
+     */
     public function testInjectReturnsBootstrapAwareObject()
     {
         
+    }
+    
+    /**
+     * Method that is used as callback and checks the received bootstrapper.
+     *
+     * @param mixed $bootstrapper
+     */
+    public function setBootstrap($bootstrapper)
+    {
+        $this->assertSame($this->bootstrapper, $bootstrapper);
     }
     
 }
