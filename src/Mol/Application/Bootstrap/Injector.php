@@ -48,6 +48,13 @@ class Mol_Application_Bootstrap_Injector
 {
     
     /**
+     * The bootstrapper that will be injected.
+     *
+     * @var Zend_Application_Bootstrap_BootstrapAbstract
+     */
+    protected $bootstrapper = null;
+    
+    /**
      * Creates an injector.
      *
      * Requires the bootstrapper that will be injected as an argument.
@@ -56,7 +63,7 @@ class Mol_Application_Bootstrap_Injector
      */
     public function __construct(Zend_Application_Bootstrap_BootstrapAbstract $bootstrapper)
     {
-        
+        $this->bootstrapper = $bootstrapper;
     }
     
     /**
@@ -87,7 +94,10 @@ class Mol_Application_Bootstrap_Injector
      */
     public function inject($object)
     {
-        
+        if ($object instanceof Mol_Application_Bootstrap_Aware) {
+            $object->setBootstrap($this->bootstrapper);
+        }
+        return $object;
     }
     
 }
