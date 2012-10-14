@@ -83,6 +83,14 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
     protected $pluginBuilder = null;
     
     /**
+     * Injector that is used to push the bootstrapper into plugins or
+     * null if the injector was not created yet.
+     *
+     * @var Mol_Application_Bootstrap_Injector|null
+     */
+    protected $bootstrapInjector = null;
+    
+    /**
      * Creates a pre-configured form factory.
      *
      * @return Mol_Form_Factory
@@ -192,7 +200,8 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      */
     protected function createPlugin($class, array $options)
     {
-        return $this->getPluginBuilder()->create($class, array($options));
+        $plugin = $this->getPluginBuilder()->create($class, array($options));
+        return $this->getBootstrapInjector()->inject($plugin);
     }
     
     /**
@@ -206,6 +215,19 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
             $this->pluginBuilder = new Mol_Util_ObjectBuilder('Mol_Form_Factory_Plugin');
         }
         return $this->pluginBuilder;
+    }
+    
+    /**
+     * Returns the injector that is used to push the bootstrapper into plugins.
+     *
+     * @return Mol_Application_Bootstrap_Injector
+     */
+    protected function getBootstrapInjector()
+    {
+        if ($this->bootstrapInjector === null) {
+            $this->bootstrapInjector = new Mol_Application_Bootstrap_Injector($this->getBootstrap());
+        }
+        return $this->bootstrapInjector;
     }
     
 }
