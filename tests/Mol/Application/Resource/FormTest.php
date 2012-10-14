@@ -270,7 +270,20 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceInjectsBootstrapperIntoPluginIfRequested()
     {
-        
+        $options = array(
+            'plugins' => array(
+                'bootstrapAware' => 'Mol_Application_Resource_TestData_Form_FactoryPlugin'
+            )
+        );
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Form_Factory', $factory);
+        $plugins = $factory->getPlugins();
+        $this->assertEquals(1, count($plugins));
+        $this->assertContainsOnly('Mol_Application_Resource_TestData_Form_FactoryPlugin', $plugins);
+        /* @var $plugin Mol_Application_Resource_TestData_Form_FactoryPlugin */
+        $plugin = current($plugins);
+        $this->assertNotNull($plugin->getBootstrap());
     }
     
 }
