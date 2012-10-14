@@ -104,7 +104,7 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
         $object = $this->getMock('Mol_Application_Bootstrap_Aware');
         $object->expects($this->once())
                ->method('setBootstrap')
-               ->will($this->returnCallback(array($this, 'setBootstrap')));
+               ->will($this->returnValue(null));
         $this->injector->inject($object);
     }
     
@@ -115,16 +115,6 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
     {
         $object = $this->getMock('Mol_Application_Bootstrap_Aware');
         $this->assertSame($object, $this->injector->inject($object));
-    }
-    
-    /**
-     * Method that is used as callback and checks the received bootstrapper.
-     *
-     * @param mixed $bootstrapper
-     */
-    public function setBootstrap($bootstrapper)
-    {
-        $this->assertSame($this->bootstrapper, $bootstrapper);
     }
     
 }
