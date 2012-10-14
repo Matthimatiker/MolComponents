@@ -67,4 +67,24 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    public function testInjectReturnsProvidedObject()
+    {
+        
+    }
+    
+    public function testInjectReturnsProvidedValue()
+    {
+        
+    }
+    
+    public function testInjectSetsBootstrapperIfObjectIsBootstrapAware()
+    {
+        
+    }
+    
+    public function testInjectReturnsBootstrapAwareObject()
+    {
+        
+    }
+    
 }
