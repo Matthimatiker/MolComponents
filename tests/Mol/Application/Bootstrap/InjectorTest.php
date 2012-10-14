@@ -73,7 +73,8 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
      */
     public function testInjectReturnsProvidedObject()
     {
-        
+        $object = new stdClass();
+        $this->assertSame($object, $this->injector->inject($object));
     }
     
     /**
@@ -81,7 +82,8 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
      */
     public function testInjectReturnsProvidedValue()
     {
-        
+        $value = null;
+        $this->assertSame($value, $this->injector->inject($value));
     }
     
     /**
@@ -90,7 +92,11 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
      */
     public function testInjectSetsBootstrapperIfObjectIsBootstrapAware()
     {
-        
+        $object = $this->getMock('Mol_Application_Bootstrap_Aware');
+        $object->expects($this->once())
+               ->method('setBootstrap')
+               ->will($this->returnCallback(array($this, 'setBootstrap')));
+        $this->injector->inject($object);
     }
     
     /**
@@ -98,7 +104,8 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
      */
     public function testInjectReturnsBootstrapAwareObject()
     {
-        
+        $object = $this->getMock('Mol_Application_Bootstrap_Aware');
+        $this->assertSame($object, $this->injector->inject($object));
     }
     
     /**
