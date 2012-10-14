@@ -13,7 +13,8 @@
  */
 
 /**
- *
+ * Interface that is used in combination with Mol_Application_Bootstrap_Injector
+ * and defines a way to inject a bootstrapper.
  *
  * @category PHP
  * @package Mol_Bootstrap
@@ -26,9 +27,11 @@
 interface Mol_Application_Bootstrap_Aware
 {
     
-    public function setBootstrap(Zend_Application_Bootstrap_BootstrapAbstract $bootstrapper)
-    {
-        
-    }
+    /**
+     * This method is called to inject a bootstrapper.
+     *
+     * @param Zend_Application_Bootstrap_BootstrapAbstract $bootstrapper
+     */
+    public function setBootstrap(Zend_Application_Bootstrap_BootstrapAbstract $bootstrapper);
     
 }
