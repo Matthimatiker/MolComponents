@@ -263,4 +263,14 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($plugins));
     }
     
+    /**
+     * Ensures that the resource injects the bootstrapper into the created
+     * plugins if these implement the Mol_Application_Bootstrap_Aware
+     * interface.
+     */
+    public function testResourceInjectsBootstrapperIntoPluginIfRequested()
+    {
+        
+    }
+    
 }
