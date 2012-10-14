@@ -33,4 +33,38 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * System under test.
+     *
+     * @var Mol_Application_Bootstrap_Injector
+     */
+    protected $injector = null;
+    
+    /**
+     * The bootstrapper that is used in the tests.
+     *
+     * @var Mol_Test_Bootstrap
+     */
+    protected $bootstrapper = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->bootstrapper = Mol_Test_Bootstrap::create();
+        $this->injector     = new Mol_Application_Bootstrap_Injector($this->bootstrapper);
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->injector     = null;
+        $this->bootstrapper = null;
+        parent::tearDown();
+    }
+    
 }
