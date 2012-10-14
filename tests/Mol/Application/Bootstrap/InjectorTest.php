@@ -78,11 +78,20 @@ class Mol_Application_Bootstrap_InjectorTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if inject() returns the provided value.
+     * Checks if inject() returns the provided null value.
      */
-    public function testInjectReturnsProvidedValue()
+    public function testInjectReturnsProvidedNullValue()
     {
         $value = null;
+        $this->assertSame($value, $this->injector->inject($value));
+    }
+    
+    /**
+     * Checks if inject() returns the provided string value.
+     */
+    public function testInjectReturnsProvidedStringValue()
+    {
+        $value = 'Hello world!';
         $this->assertSame($value, $this->injector->inject($value));
     }
     
