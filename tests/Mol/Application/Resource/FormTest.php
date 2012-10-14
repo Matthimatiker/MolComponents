@@ -46,13 +46,21 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
     protected $resource = null;
     
     /**
+     * The bootstrapper that is used for testing.
+     *
+     * @var Mol_Test_Bootstrap
+     */
+    protected $bootstrapper = null;
+    
+    /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
      */
     protected function setUp()
     {
         parent::setUp();
-        $this->resource = new Mol_Application_Resource_Form();
-        $this->resource->setBootstrap(Mol_Test_Bootstrap::create());
+        $this->bootstrapper = Mol_Test_Bootstrap::create();
+        $this->resource     = new Mol_Application_Resource_Form();
+        $this->resource->setBootstrap($this->bootstrapper);
     }
     
     /**
@@ -60,7 +68,8 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        $this->resource = null;
+        $this->resource     = null;
+        $this->bootstrapper = null;
         parent::tearDown();
     }
     
@@ -283,7 +292,7 @@ class Mol_Application_Resource_FormTest extends PHPUnit_Framework_TestCase
         $this->assertContainsOnly('Mol_Application_Resource_TestData_Form_FactoryPlugin', $plugins);
         /* @var $plugin Mol_Application_Resource_TestData_Form_FactoryPlugin */
         $plugin = current($plugins);
-        $this->assertNotNull($plugin->getBootstrap());
+        $this->assertSame($this->bootstrapper, $plugin->getBootstrap());
     }
     
 }
