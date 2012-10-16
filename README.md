@@ -13,18 +13,11 @@ and at least PHP 5.2 (5.3 recommended).
 
 MolComponents is installable via  [Composer](https://github.com/composer/composer).
 
-Add the github repository to your composer config and require
-*Matthimatiker/MolComponents*:
+Just require *matthimatiker/mol-components* in your composer config :
 
     {
-        "repositories": [
-             {
-                 "type": "vcs",
-                 "url": "https://github.com/Matthimatiker/MolComponents"
-             }
-        ],
         "require": {
-            "Matthimatiker/MolComponents" : "dev-master"
+            "matthimatiker/mol-components": "1.4.1"
         }
     }
     
