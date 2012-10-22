@@ -71,7 +71,7 @@
     <xsd:complexType name="Filter">
         <xsd:sequence>
             <xsd:element name="blacklist" type="FilterContainer" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="whitelist" type="FilterContainer" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="whitelist" type="FilterWhitelist" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>
     
@@ -81,6 +81,14 @@
             <xsd:element name="file" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="exclude" type="FilterExclude" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="FilterWhitelist">
+        <xsd:complexContent>
+            <xsd:extension base="FilterContainer">
+                <xsd:attribute name="processUncoveredFilesFromWhitelist" type="xsd:boolean" use="optional" />
+            </xsd:extension>
+        </xsd:complexContent>
     </xsd:complexType>
     
     <xsd:complexType name="FilterDirectory">
