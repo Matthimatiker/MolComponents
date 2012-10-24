@@ -40,7 +40,7 @@ class Mol_Util_ObjectBuilder
      *
      * @var string|null
      */
-    protected $typeConstraint = null;
+    protected $typeConstraints = null;
     
     /**
      * Creates a new object builder.
@@ -50,16 +50,16 @@ class Mol_Util_ObjectBuilder
      * If a requested instance does not meet the type
      * requirement then an exception will be thrown.
      *
-     * @param string|array(string)|null $typeConstraint
+     * @param string|array(string)|null $typeConstraints
      * @throws InvalidArgumentException If provided type is not a class or interface.
      */
-    public function __construct($typeConstraint = null)
+    public function __construct($typeConstraints = null)
     {
-        if ($typeConstraint !== null && !$this->isType($typeConstraint)) {
+        if ($typeConstraints !== null && !$this->isType($typeConstraints)) {
             $message = 'Type constraint must be a class or interface name.';
             throw new InvalidArgumentException($message);
         }
-        $this->typeConstraint = $typeConstraint;
+        $this->typeConstraints = $typeConstraints;
     }
     
     /**
@@ -74,7 +74,7 @@ class Mol_Util_ObjectBuilder
         $reflection = $this->toReflectionClass($class);
         if (!$this->fulfillsTypeConstraint($reflection)) {
             $format  = 'Class %s is not of required type %s.';
-            $message = sprintf($format, $reflection->getName(), $this->typeConstraint);
+            $message = sprintf($format, $reflection->getName(), $this->typeConstraints);
             throw new InvalidArgumentException($message);
         }
         return $this->createInstance($reflection, $constructorArguments);
@@ -130,19 +130,19 @@ class Mol_Util_ObjectBuilder
      */
     protected function fulfillsTypeConstraint(ReflectionClass $class)
     {
-        if ($this->typeConstraint === null) {
+        if ($this->typeConstraints === null) {
             // No requirements available.
             return true;
         }
-        if ($this->isInterface($this->typeConstraint) && $class->implementsInterface($this->typeConstraint)) {
+        if ($this->isInterface($this->typeConstraints) && $class->implementsInterface($this->typeConstraints)) {
             // Class implements the required interface.
             return true;
         }
-        if ($class->isSubclassOf($this->typeConstraint)) {
+        if ($class->isSubclassOf($this->typeConstraints)) {
             // Class is a subclass of the required type.
             return true;
         }
-        if ($class->getName() === $this->typeConstraint) {
+        if ($class->getName() === $this->typeConstraints) {
             // Class equals required type.
             return true;
         }
