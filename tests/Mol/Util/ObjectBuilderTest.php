@@ -207,6 +207,24 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() throws an exception if multiple type constraints are given and
+     * the passed class violates at least one of these.
+     */
+    public function testCreateThrowsExceptionIfGivenClassViolatesAtLeastOneOfMultipleTypeConstraints()
+    {
+        
+    }
+    
+    /**
+     * Ensures that create() instantiates an object if multiple type constraints are
+     * available and the given class fulfills them all.
+     */
+    public function testCreateInstantiatesObjectIfClassPassesAllGivenTypeConstraints()
+    {
+        
+    }
+    
+    /**
      * Creates an object builder with the provided type constraint.
      *
      * @param string|array(string)|null $constraint
