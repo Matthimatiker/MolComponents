@@ -49,7 +49,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorThrowsExceptionIfOneIfTheProvidedConstraintsIsNoType()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder(array('stdClass', 'Missing'));
     }
     
     /**
@@ -57,7 +58,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorAcceptsMultipleTypeConstraints()
     {
-        
+        $this->setExpectedException(null);
+        $this->builder(array('Countable', 'Traversable'));
     }
     
     /**
@@ -65,7 +67,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorAcceptsEmptyListOfTypeConstraints()
     {
-        
+        $this->setExpectedException(null);
+        $this->builder(array());
     }
     
     /**
