@@ -237,6 +237,16 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() throws an exception if a non-string value
+     * is passed instead of a class name.
+     */
+    public function testCreateThrowsExceptionIfNoStringIsProvided()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder()->create(new stdClass());
+    }
+    
+    /**
      * Creates an object builder with the provided type constraint.
      *
      * @param string|array(string)|null $constraints
