@@ -45,12 +45,12 @@ class Mol_Util_ObjectBuilder
     /**
      * Creates a new object builder.
      *
-     * If a type contraint is provided then the builder
-     * will only create objects from classes of that type.
-     * If a requested instance does not meet the type
-     * requirement, then an exception will be thrown.
+     * If a type contraint is provided, then the builder will only create
+     * objects from classes of that type.
+     * If a requested instance does not meet the type requirements, then
+     * an exception will be thrown.
      *
-     * @param string|array(string)|null $typeConstraints
+     * @param string|array(string)|null $typeConstraints A single type or a list of required types.
      * @throws InvalidArgumentException If provided type constraint is not valid.
      */
     public function __construct($typeConstraints = array())
