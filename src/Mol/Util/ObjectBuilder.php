@@ -129,7 +129,8 @@ class Mol_Util_ObjectBuilder
     protected function toReflectionClass($name)
     {
         if (!$this->isClass($name)) {
-            $message = 'Valid class name expected. Received: "' . $name . '"';
+            $received = is_string($name) ? $name : gettype($name);
+            $message  = 'Valid class name expected. Received: "' . $received . '"';
             throw new InvalidArgumentException($message);
         }
         return new ReflectionClass($name);
@@ -208,7 +209,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isClass($name)
     {
-        return class_exists($name, true);
+        return is_string($name) && class_exists($name, true);
     }
     
     /**
@@ -219,7 +220,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isInterface($name)
     {
-        return interface_exists($name, true);
+        return is_string($name) && interface_exists($name, true);
     }
     
 }
