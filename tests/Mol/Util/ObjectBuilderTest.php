@@ -212,7 +212,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateThrowsExceptionIfGivenClassViolatesAtLeastOneOfMultipleTypeConstraints()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder(array('Countable', 'SplObserver'))->create('ArrayObject', array(array()));
     }
     
     /**
@@ -221,7 +222,8 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateInstantiatesObjectIfClassPassesAllGivenTypeConstraints()
     {
-        
+        $object = $this->builder(array('Countable', 'Traversable'))->create('ArrayObject', array(array()));
+        $this->assertInstanceOf('ArrayObject', $object);
     }
     
     /**
