@@ -54,6 +54,16 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the constructor throws an exception if the given type
+     * constraint argument is an unaccepted data type.
+     */
+    public function testContructorThrowsExceptionIfInvalidArgumentIsPassed()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder(new stdClass());
+    }
+    
+    /**
      * Ensures that the constructor accepts an array of valid type constraints.
      */
     public function testConstructorAcceptsMultipleTypeConstraints()
