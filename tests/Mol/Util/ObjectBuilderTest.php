@@ -44,6 +44,31 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that an exception is thrown if one of multiple provided type constraints
+     * is invalid.
+     */
+    public function testConstructorThrowsExceptionIfOneIfTheProvidedConstraintsIsNoType()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the constructor accepts an array of valid type constraints.
+     */
+    public function testConstructorAcceptsMultipleTypeConstraints()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the constructor accepts an empty type constraints array.
+     */
+    public function testConstructorAcceptsEmptyListOfTypeConstraints()
+    {
+        
+    }
+    
+    /**
      * Ensures that create() throws an exception if the provided argument is not
      * a class name.
      */
