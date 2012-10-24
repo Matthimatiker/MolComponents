@@ -33,12 +33,12 @@ class Mol_Util_ObjectBuilder
 {
     
     /**
-     * Type that is required for created instances.
+     * Types that are required for created instances.
      *
      * A type constraint is the name of a class or interface.
-     * Contains null if no type is required.
+     * Contains a list of all required types.
      *
-     * @var string|null
+     * @var array(string)
      */
     protected $typeConstraints = null;
     
@@ -48,7 +48,7 @@ class Mol_Util_ObjectBuilder
      * If a type contraint is provided then the builder
      * will only create objects from classes of that type.
      * If a requested instance does not meet the type
-     * requirement then an exception will be thrown.
+     * requirement, then an exception will be thrown.
      *
      * @param string|array(string)|null $typeConstraints
      * @throws InvalidArgumentException If provided type is not a class or interface.
