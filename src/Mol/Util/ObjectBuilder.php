@@ -51,14 +51,12 @@ class Mol_Util_ObjectBuilder
      * requirement, then an exception will be thrown.
      *
      * @param string|array(string)|null $typeConstraints
-     * @throws InvalidArgumentException If provided type is not a class or interface.
+     * @throws InvalidArgumentException If provided type constraint is not valid.
      */
-    public function __construct($typeConstraints = null)
+    public function __construct($typeConstraints = array())
     {
-        if ($typeConstraints !== null && !$this->isType($typeConstraints)) {
-            $message = 'Type constraint must be a class or interface name.';
-            throw new InvalidArgumentException($message);
-        }
+        $typeConstraints = $this->toList($typeConstraints);
+        $this->assertContainsOnlyTypes($typeConstraints);
         $this->typeConstraints = $typeConstraints;
     }
     
@@ -72,12 +70,53 @@ class Mol_Util_ObjectBuilder
     public function create($class, array $constructorArguments = array())
     {
         $reflection = $this->toReflectionClass($class);
-        if (!$this->fulfillsTypeConstraint($reflection)) {
-            $format  = 'Class %s is not of required type %s.';
-            $message = sprintf($format, $reflection->getName(), $this->typeConstraints);
+        if (!$this->fulfillsTypeConstraints($reflection)) {
+            $format  = 'Class %s does not fulfill all type constraints: %s';
+            $message = sprintf($format, $reflection->getName(), implode(', ', $this->typeConstraints));
             throw new InvalidArgumentException($message);
         }
         return $this->createInstance($reflection, $constructorArguments);
+    }
+    
+    /**
+     * Converts the given value into a list of items.
+     *
+     * @param string|array(mixed)|null $value
+     * @return array(mixed)
+     * @throws InvalidArgumentException If the value cannot be converted into a list.
+     */
+    protected function toList($value)
+    {
+        if ($value === null) {
+            return array();
+        }
+        if (is_string($value)) {
+            // Single item provided.
+            return array($value);
+        }
+        if (!is_array($value)) {
+            $message = 'Value must be null, a string or an array.';
+            throw new InvalidArgumentException($message);
+        }
+        return $value;
+    }
+    
+    /**
+     * Asserts that the given list contains only type names.
+     *
+     * @param array(string) $listOfTypes
+     * @throws InvalidArgumentException If one of the items is not a type.
+     */
+    protected function assertContainsOnlyTypes(array $listOfTypes)
+    {
+        $validTypes = array_filter($listOfTypes, array($this, 'isType'));
+        if (count($validTypes) === count($listOfTypes)) {
+            // All types in the given list are valid.
+            return;
+        }
+        $invalidTypes = array_diff($listOfTypes, $validTypes);
+        $message      = 'The following types are not valid: ' . implode(', ', $invalidTypes);
+        throw new InvalidArgumentException($message);
     }
     
     /**
@@ -126,28 +165,28 @@ class Mol_Util_ObjectBuilder
      * Checks if the provided class fulfills the type requirements.
      *
      * @param ReflectionClass $class
-     * @return boolean True if the requirements are fulfilled, false otherwise.
+     * @return boolean True if all type requirements are fulfilled, false otherwise.
      */
-    protected function fulfillsTypeConstraint(ReflectionClass $class)
+    protected function fulfillsTypeConstraints(ReflectionClass $class)
     {
-        if ($this->typeConstraints === null) {
-            // No requirements available.
-            return true;
+        foreach ($this->typeConstraints as $type) {
+            /* @var string $type */
+            if ($this->isInterface($type) && $class->implementsInterface($type)) {
+                // Class implements the required interface.
+                continue;
+            }
+            if ($class->isSubclassOf($type)) {
+                // Class is a subclass of the required type.
+                continue;
+            }
+            if ($class->getName() === $type) {
+                // Class equals required type.
+                continue;
+            }
+            return false;
         }
-        if ($this->isInterface($this->typeConstraints) && $class->implementsInterface($this->typeConstraints)) {
-            // Class implements the required interface.
-            return true;
-        }
-        if ($class->isSubclassOf($this->typeConstraints)) {
-            // Class is a subclass of the required type.
-            return true;
-        }
-        if ($class->getName() === $this->typeConstraints) {
-            // Class equals required type.
-            return true;
-        }
-        // Type requirements not fulfilled.
-        return false;
+        // Type requirements fulfilled.
+        return true;
     }
     
     /**
