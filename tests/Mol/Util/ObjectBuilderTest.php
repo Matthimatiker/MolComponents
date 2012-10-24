@@ -44,6 +44,44 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that an exception is thrown if one of multiple provided type constraints
+     * is invalid.
+     */
+    public function testConstructorThrowsExceptionIfOneIfTheProvidedConstraintsIsNoType()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder(array('stdClass', 'Missing'));
+    }
+    
+    /**
+     * Ensures that the constructor throws an exception if the given type
+     * constraint argument is an unaccepted data type.
+     */
+    public function testContructorThrowsExceptionIfInvalidArgumentIsPassed()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder(new stdClass());
+    }
+    
+    /**
+     * Ensures that the constructor accepts an array of valid type constraints.
+     */
+    public function testConstructorAcceptsMultipleTypeConstraints()
+    {
+        $this->setExpectedException(null);
+        $this->builder(array('Countable', 'Traversable'));
+    }
+    
+    /**
+     * Ensures that the constructor accepts an empty type constraints array.
+     */
+    public function testConstructorAcceptsEmptyListOfTypeConstraints()
+    {
+        $this->setExpectedException(null);
+        $this->builder(array());
+    }
+    
+    /**
      * Ensures that create() throws an exception if the provided argument is not
      * a class name.
      */
@@ -179,14 +217,44 @@ class Mol_Util_ObjectBuilderTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that create() throws an exception if multiple type constraints are given and
+     * the passed class violates at least one of these.
+     */
+    public function testCreateThrowsExceptionIfGivenClassViolatesAtLeastOneOfMultipleTypeConstraints()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder(array('Countable', 'SplObserver'))->create('ArrayObject', array(array()));
+    }
+    
+    /**
+     * Ensures that create() instantiates an object if multiple type constraints are
+     * available and the given class fulfills them all.
+     */
+    public function testCreateInstantiatesObjectIfClassPassesAllGivenTypeConstraints()
+    {
+        $object = $this->builder(array('Countable', 'Traversable'))->create('ArrayObject', array(array()));
+        $this->assertInstanceOf('ArrayObject', $object);
+    }
+    
+    /**
+     * Ensures that create() throws an exception if a non-string value
+     * is passed instead of a class name.
+     */
+    public function testCreateThrowsExceptionIfNoStringIsProvided()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->builder()->create(new stdClass());
+    }
+    
+    /**
      * Creates an object builder with the provided type constraint.
      *
-     * @param string|null $constraint
+     * @param string|array(string)|null $constraints
      * @return Mol_Util_ObjectBuilder
      */
-    public function builder($constraint = null)
+    public function builder($constraints = null)
     {
-        return new Mol_Util_ObjectBuilder($constraint);
+        return new Mol_Util_ObjectBuilder($constraints);
     }
     
 }

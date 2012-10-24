@@ -15,10 +15,52 @@
 /**
  * Creates instances of other classes.
  *
- * Optionally enforces a provided type constraint *before* creating
- * an object.
+ * = Usage =
+ *
+ * == Creating a builder ==
+ *
+ * The most simple builder can be created without any constructor argument:
+ * <code>
+ * $builder = new Mol_Util_ObjectBuilder();
+ * </code>
+ * This builder does not enforce any type when creating objects.
+ *
+ * Optionally a type constraint can be passed:
+ * <code>
+ * $builder = new Mol_Util_ObjectBuilder('Countable');
+ * </code>
+ * This builder checks the type constraint *before* creating an object and
+ * rejects instantiation requests for classes that do not fulfill the
+ * type requirement.
  * That is especially useful if the object class was provided by configuration
  * and a common base class or interface is required.
+ *
+ * It is even possible to provide multiple type constraints:
+ * <code>
+ * $builder = new Mol_Util_ObjectBuilder(array('Traversable', 'Countable'));
+ * </code>
+ * In this case the builder will only instantiate classes that fulfill
+ * *all* of the given type constraints.
+ *
+ * == Building objects ==
+ *
+ * The create() method is used to instantiate objects of a given class:
+ * <code>
+ * $array = $builder->create('SplFixedArray');
+ * </code>
+ *
+ * Constructor arguments can be passed as second argument:
+ * <code>
+ * $array = $builder->create('SplFixedArray', array(100));
+ * </code>
+ *
+ * Object creation will fail with an InvalidArgumentException
+ * if the type constraints are not fulfilled:
+ * <code>
+ * $builder = new Mol_Util_ObjectBuilder('ArrayObject');
+ * // This creation will fail:
+ * $array = $builder->create('SplFixedArray', array(100));
+ * </code>
  *
  * @category PHP
  * @package Mol_Util
@@ -32,33 +74,31 @@ class Mol_Util_ObjectBuilder
 {
     
     /**
-     * Type that is required for created instances.
+     * Types that are required for created instances.
      *
      * A type constraint is the name of a class or interface.
-     * Contains null if no type is required.
+     * Contains a list of all required types.
      *
-     * @var string|null
+     * @var array(string)
      */
-    protected $typeConstraint = null;
+    protected $typeConstraints = null;
     
     /**
      * Creates a new object builder.
      *
-     * If a type contraint is provided then the builder
-     * will only create objects from classes of that type.
-     * If a requested instance does not meet the type
-     * requirement then an exception will be thrown.
+     * If a type contraint is provided, then the builder will only create
+     * objects from classes of that type.
+     * If a requested instance does not meet the type requirements, then
+     * an exception will be thrown.
      *
-     * @param string|null $typeConstraint
-     * @throws InvalidArgumentException If provided type is not a class or interface.
+     * @param string|array(string)|null $typeConstraints A single type or a list of required types.
+     * @throws InvalidArgumentException If provided type constraint is not valid.
      */
-    public function __construct($typeConstraint = null)
+    public function __construct($typeConstraints = array())
     {
-        if ($typeConstraint !== null && !$this->isType($typeConstraint)) {
-            $message = 'Type constraint must be a class or interface name.';
-            throw new InvalidArgumentException($message);
-        }
-        $this->typeConstraint = $typeConstraint;
+        $typeConstraints = $this->toList($typeConstraints);
+        $this->assertContainsOnlyTypes($typeConstraints);
+        $this->typeConstraints = $typeConstraints;
     }
     
     /**
@@ -71,12 +111,53 @@ class Mol_Util_ObjectBuilder
     public function create($class, array $constructorArguments = array())
     {
         $reflection = $this->toReflectionClass($class);
-        if (!$this->fulfillsTypeConstraint($reflection)) {
-            $format  = 'Class %s is not of required type %s.';
-            $message = sprintf($format, $reflection->getName(), $this->typeConstraint);
+        if (!$this->fulfillsTypeConstraints($reflection)) {
+            $format  = 'Class %s does not fulfill all type constraints: %s';
+            $message = sprintf($format, $reflection->getName(), implode(', ', $this->typeConstraints));
             throw new InvalidArgumentException($message);
         }
         return $this->createInstance($reflection, $constructorArguments);
+    }
+    
+    /**
+     * Converts the given value into a list of items.
+     *
+     * @param string|array(mixed)|null $value
+     * @return array(mixed)
+     * @throws InvalidArgumentException If the value cannot be converted into a list.
+     */
+    protected function toList($value)
+    {
+        if ($value === null) {
+            return array();
+        }
+        if (is_string($value)) {
+            // Single item provided.
+            return array($value);
+        }
+        if (!is_array($value)) {
+            $message = 'Value must be null, a string or an array.';
+            throw new InvalidArgumentException($message);
+        }
+        return $value;
+    }
+    
+    /**
+     * Asserts that the given list contains only type names.
+     *
+     * @param array(string) $listOfTypes
+     * @throws InvalidArgumentException If one of the items is not a type.
+     */
+    protected function assertContainsOnlyTypes(array $listOfTypes)
+    {
+        $validTypes = array_filter($listOfTypes, array($this, 'isType'));
+        if (count($validTypes) === count($listOfTypes)) {
+            // All types in the given list are valid.
+            return;
+        }
+        $invalidTypes = array_diff($listOfTypes, $validTypes);
+        $message      = 'The following types are not valid: ' . implode(', ', $invalidTypes);
+        throw new InvalidArgumentException($message);
     }
     
     /**
@@ -89,7 +170,8 @@ class Mol_Util_ObjectBuilder
     protected function toReflectionClass($name)
     {
         if (!$this->isClass($name)) {
-            $message = 'Valid class name expected. Received: "' . $name . '"';
+            $received = is_string($name) ? $name : gettype($name);
+            $message  = 'Valid class name expected. Received: "' . $received . '"';
             throw new InvalidArgumentException($message);
         }
         return new ReflectionClass($name);
@@ -125,28 +207,28 @@ class Mol_Util_ObjectBuilder
      * Checks if the provided class fulfills the type requirements.
      *
      * @param ReflectionClass $class
-     * @return boolean True if the requirements are fulfilled, false otherwise.
+     * @return boolean True if all type requirements are fulfilled, false otherwise.
      */
-    protected function fulfillsTypeConstraint(ReflectionClass $class)
+    protected function fulfillsTypeConstraints(ReflectionClass $class)
     {
-        if ($this->typeConstraint === null) {
-            // No requirements available.
-            return true;
+        foreach ($this->typeConstraints as $type) {
+            /* @var string $type */
+            if ($this->isInterface($type) && $class->implementsInterface($type)) {
+                // Class implements the required interface.
+                continue;
+            }
+            if ($class->isSubclassOf($type)) {
+                // Class is a subclass of the required type.
+                continue;
+            }
+            if ($class->getName() === $type) {
+                // Class equals required type.
+                continue;
+            }
+            return false;
         }
-        if ($this->isInterface($this->typeConstraint) && $class->implementsInterface($this->typeConstraint)) {
-            // Class implements the required interface.
-            return true;
-        }
-        if ($class->isSubclassOf($this->typeConstraint)) {
-            // Class is a subclass of the required type.
-            return true;
-        }
-        if ($class->getName() === $this->typeConstraint) {
-            // Class equals required type.
-            return true;
-        }
-        // Type requirements not fulfilled.
-        return false;
+        // Type requirements fulfilled.
+        return true;
     }
     
     /**
@@ -168,7 +250,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isClass($name)
     {
-        return class_exists($name, true);
+        return is_string($name) && class_exists($name, true);
     }
     
     /**
@@ -179,7 +261,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isInterface($name)
     {
-        return interface_exists($name, true);
+        return is_string($name) && interface_exists($name, true);
     }
     
 }
