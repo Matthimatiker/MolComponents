@@ -204,7 +204,10 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testNullIsAcceptedAsRoute()
     {
-        
+        $this->url->withRoute(null);
+        (string)$this->url;
+        $params = $this->getParamsOfLastHelperCall();
+        $this->assertNull($params['name']);
     }
 
     /**
