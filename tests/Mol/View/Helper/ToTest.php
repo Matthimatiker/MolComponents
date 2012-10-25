@@ -131,7 +131,14 @@ class Mol_View_Helper_ToTest extends PHPUnit_Framework_TestCase
      */
     public function testHelperReturnsUrlThatUsesDefaultRoute()
     {
-        
+        (string)$this->helper->to('index', 'index');
+        /* @var $view Zend_View */
+        $view = $this->helper->view;
+        /* @var $urlHelper Mol_Test_View_Helper_Url */
+        $urlHelper = $view->getHelper('url');
+        $urlParams = $urlHelper->getParamsOfCall(0);
+        $this->assertNotNull($urlParams);
+        $this->assertEquals('default', $urlParams['name']);
     }
 
 }
