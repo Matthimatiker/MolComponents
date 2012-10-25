@@ -92,7 +92,9 @@ class Mol_View_Helper_Value_Url
     /**
      * Ensures that the route $name is used.
      *
-     * @param string $name
+     * If null is provided, then the current route will be used.
+     *
+     * @param string|null $name
      * @return Mol_View_Helper_Value_Url Provides a fluent interface.
      */
     public function withRoute($name)
