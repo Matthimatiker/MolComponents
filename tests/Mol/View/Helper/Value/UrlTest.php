@@ -197,6 +197,15 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
         $params = $this->getParamsOfLastHelperCall();
         $this->assertEquals('test', $params['name']);
     }
+    
+    /**
+     * Checks if withRoute() accepts null and passes that value
+     * to the url helper.
+     */
+    public function testNullIsAcceptedAsRoute()
+    {
+        
+    }
 
     /**
      * Ensures that the correct reset flag is passed to the Zend url view helper
