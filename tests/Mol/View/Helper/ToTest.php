@@ -124,6 +124,15 @@ class Mol_View_Helper_ToTest extends PHPUnit_Framework_TestCase
         $url = (string)$this->helper->to('hello', 'world');
         $this->assertContains('module:default', $url);
     }
+    
+    /**
+     * Ensures that the helper returns an url object that uses
+     * the "default" route.
+     */
+    public function testHelperReturnsUrlThatUsesDefaultRoute()
+    {
+        
+    }
 
 }
 
