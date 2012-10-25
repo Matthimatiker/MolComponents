@@ -70,6 +70,7 @@ class Mol_View_Helper_To extends Zend_View_Helper_Abstract
         $url->withParam('action', $action);
         $url->withParam('controller', $controller);
         $url->withParam('module', $module);
+        $url->withRoute('default');
         return $url;
     }
 
