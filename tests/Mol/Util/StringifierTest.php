@@ -38,7 +38,7 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsStringsCorrectly()
     {
-        
+        $this->assertEquals('"Hello World!"', Mol_Util_Stringifier::stringify('Hello World!'));
     }
     
     /**
@@ -46,7 +46,8 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsBooleansCorrectly()
     {
-    
+        $this->assertEquals('true', Mol_Util_Stringifier::stringify(true));
+        $this->assertEquals('false', Mol_Util_Stringifier::stringify(false));
     }
     
     /**
@@ -54,7 +55,7 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsNullCorrectly()
     {
-    
+        $this->assertEquals('null', Mol_Util_Stringifier::stringify(null));
     }
     
     /**
@@ -62,7 +63,7 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsIntegersCorrectly()
     {
-    
+        $this->assertEquals('42', Mol_Util_Stringifier::stringify(42));
     }
     
     /**
@@ -70,7 +71,7 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsDoublesCorrectly()
     {
-    
+        $this->assertEquals('42.42', Mol_Util_Stringifier::stringify(42.42));
     }
     
     /**
@@ -80,7 +81,7 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsDoublesWithoutDecimalsCorrectly()
     {
-        
+        $this->assertEquals('42.0', Mol_Util_Stringifier::stringify(42.0));
     }
     
     /**
@@ -88,7 +89,7 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsObjectsCorrectly()
     {
-    
+        $this->assertEquals('stdClass', Mol_Util_Stringifier::stringify(new stdClass()));
     }
     
     /**
@@ -96,7 +97,10 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsResourcesCorrectly()
     {
-    
+        $handle = fopen(__FILE__, 'r');
+        $representation = Mol_Util_Stringifier::stringify($handle);
+        fclose($handle);
+        $this->assertEquals('file stream', $representation);
     }
     
     /**
@@ -104,7 +108,9 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsNumericalArraysCorrectly()
     {
-        
+        $value = array(1, 2, 3);
+        $representation = Mol_Util_Stringifier::stringify($value);
+        $this->assertEquals('[1, 2, 3]', $representation);
     }
     
     /**
@@ -112,7 +118,9 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsAssociativeArraysCorrectly()
     {
-    
+        $value = array('a' => 'b', 'c' => 'd');
+        $representation = Mol_Util_Stringifier::stringify($value);
+        $this->assertEquals('{"a": "b", "c": "d"}', $representation);
     }
     
     /**
@@ -121,7 +129,9 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsAssociativeArraysWithNumericalKeysCorrectly()
     {
-    
+        $value = array(5 => 42, 8 => 42);
+        $representation = Mol_Util_Stringifier::stringify($value);
+        $this->assertEquals('{5: 42, 8: 42}', $representation);
     }
     
     /**
@@ -129,7 +139,10 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyTransformsClosuresCorrectly()
     {
-    
+        $closure = function () {
+        };
+        $representation = Mol_Util_Stringifier::stringify($closure);
+        $this->assertEquals('Closure', $representation);
     }
     
     /**
