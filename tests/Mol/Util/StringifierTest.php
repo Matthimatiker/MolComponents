@@ -33,4 +33,59 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testStringifyTransformsStringsCorrectly()
+    {
+        
+    }
+    
+    public function testStringifyTransformsBooleansCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsNullCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsIntegersCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsDoublesCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsObjectsCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsResourcesCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsNumericalArraysCorrectly()
+    {
+        
+    }
+    
+    public function testStringifyTransformsAssociativeArraysCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsAssociativeArraysWithNumericalKeysCorrectly()
+    {
+    
+    }
+    
+    public function testStringifyTransformsClosuresCorrectly()
+    {
+    
+    }
+    
 }
