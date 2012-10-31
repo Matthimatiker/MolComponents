@@ -161,7 +161,10 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyExceptionShowsNameOfExceptionClass()
     {
-        
+        $exception = new RuntimeException('An error occurred!', 42);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('RuntimeException', $representation);
     }
     
     /**
@@ -170,7 +173,10 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyExceptionShowsMessage()
     {
-    
+        $exception = new RuntimeException('An error occurred!', 42);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('An error occurred!', $representation);
     }
     
     /**
@@ -179,16 +185,25 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyExceptionShowsCode()
     {
-    
+        $exception = new RuntimeException('An error occurred!', 42);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('42', $representation);
     }
     
     /**
      * Checks if stringifyException() returns a representation that
-     * contains thestack trace of the given exception.
+     * contains the stack trace of the given exception.
      */
-    public function testStringifyExceptionShowsStacktrace()
+    public function testStringifyExceptionShowsStackTrace()
     {
-    
+        $exception = new RuntimeException('An error occurred!', 42);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        // The stack trace should contain at least the name of the
+        // method that created the exception. This is used as an
+        // indicator for correctness here.
+        $this->assertContains('testStringifyExceptionShowsStacktrace', $representation);
     }
     
     /**
@@ -197,7 +212,11 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyExceptionShowsInnerException()
     {
-    
+        $inner = new BadMethodCallException('This is an inner exception!', 7);
+        $exception = new RuntimeException('An error occurred!', 42, $inner);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('This is an inner exception!', $representation);
     }
     
     /**
@@ -206,7 +225,12 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyExceptionShowsInnerExceptionAtLevelTwo()
     {
-    
+        $secondLevelException = new BadMethodCallException('2nd level', 7);
+        $firstLevelException  = new RuntimeException('1st level', 0, $secondLevelException);
+        $exception = new RuntimeException('An error occurred!', 42, $firstLevelException);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('2nd level', $representation);
     }
     
     /**
@@ -215,7 +239,11 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyExceptionIndentsFirstInnerException()
     {
-        
+        $inner = new BadMethodCallException('This is an inner exception!', 7);
+        $exception = new RuntimeException('An error occurred!', 42, $inner);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('> ', $representation);
     }
     
     /**
@@ -224,7 +252,12 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
      */
     public function testStringifyExceptionIndentsSecondInnerException()
     {
-    
+        $secondLevelException = new BadMethodCallException('2nd level', 7);
+        $firstLevelException  = new RuntimeException('1st level', 0, $secondLevelException);
+        $exception = new RuntimeException('An error occurred!', 42, $firstLevelException);
+        $representation = Mol_Util_Stringifier::stringifyException($exception);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('>> ', $representation);
     }
     
 }
