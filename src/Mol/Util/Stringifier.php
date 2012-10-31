@@ -29,4 +29,26 @@
 class Mol_Util_Stringifier
 {
     
+    /**
+     * Stringifies the given value.
+     *
+     * @param array(mixed)|object|string|integer|double|boolean|null|resource $value
+     * @return string
+     */
+    public static function stringify($value)
+    {
+        
+    }
+    
+    /**
+     * Stringifies an exception and all of its inner exceptions.
+     *
+     * @param Exception $exception
+     * @return string
+     */
+    public static function stringifyException(Exception $exception)
+    {
+        
+    }
+    
 }
