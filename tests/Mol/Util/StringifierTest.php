@@ -74,6 +74,16 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that stringify() transforms doubles without decimals
+     * in such a way, that they are identified as doubles easily.
+     * For example: 42.0
+     */
+    public function testStringifyTransformsDoublesWithoutDecimalsCorrectly()
+    {
+        
+    }
+    
+    /**
      * Ensures that stringify() determines the class name of objects.
      */
     public function testStringifyTransformsObjectsCorrectly()
