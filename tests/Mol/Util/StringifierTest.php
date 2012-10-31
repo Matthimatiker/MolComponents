@@ -135,6 +135,16 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that an empty array is rendered correctly.
+     */
+    public function testStringifyTransformsEmptyArrayCorrectly()
+    {
+        $value = array();
+        $representation = Mol_Util_Stringifier::stringify($value);
+        $this->assertEquals('[]', $representation);
+    }
+    
+    /**
      * Checks if a closure is transformed correctly by stringify.
      */
     public function testStringifyTransformsClosuresCorrectly()
