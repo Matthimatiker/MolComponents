@@ -43,6 +43,9 @@ class Mol_Util_Stringifier
     /**
      * Stringifies an exception and all of its inner exceptions.
      *
+     * In contrast to stringify() this specialized method returns
+     * much more information about the given exception.
+     *
      * @param Exception $exception
      * @return string
      */
