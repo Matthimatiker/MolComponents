@@ -88,4 +88,34 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
     
     }
     
+    public function testStringifyExceptionShowsNameOfExceptionClass()
+    {
+        
+    }
+    
+    public function testStringifyExceptionShowsMessage()
+    {
+    
+    }
+    
+    public function testStringifyExceptionShowsCode()
+    {
+    
+    }
+    
+    public function testStringifyExceptionShowsStacktrace()
+    {
+    
+    }
+    
+    public function testStringifyExceptionShowsInnerException()
+    {
+    
+    }
+    
+    public function testStringifyExceptionShowsInnerExceptionAtLevelTwo()
+    {
+    
+    }
+    
 }
