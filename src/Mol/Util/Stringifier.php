@@ -37,7 +37,81 @@ class Mol_Util_Stringifier
      */
     public static function stringify($value)
     {
-        
+        if ($value === null) {
+            return 'null';
+        }
+        if (is_string($value)) {
+            return '"' . $value . '"';
+        }
+        if (is_bool($value)) {
+            return ($value) ? 'true' : 'false';
+        }
+        if (is_object($value)) {
+            return get_class($value);
+        }
+        if (is_resource($value)) {
+            return self::stringifyResource($value);
+        }
+        if (is_array($value)) {
+            return self::stringifyArray($value);
+        }
+        // It is a simple type that can be rendered directly.
+        return $value;
+    }
+    
+    /**
+     * Creates a string representation of the given resource.
+     *
+     * @param resource $resource
+     * @return string
+     */
+    protected static function stringifyResource($resource)
+    {
+        $type = get_resource_type($resource);
+        if ($type === 'stream') {
+            $metaData = stream_get_meta_data($resource);
+            $type = $metaData['stream_type'] . ' ' . $type . ' (' . $metaData['uri'] . ')';
+        }
+        return $type;
+    }
+    
+    /**
+     * Creates a string representation of the given array.
+     *
+     * Distinguishes between numerical and associative arrays.
+     *
+     * @param array(mixed) $array
+     * @return string
+     */
+    protected static function stringifyArray(array $array)
+    {
+        if (self::isNumericalIndexed($array)) {
+            $values = array_map(array(__CLASS__, 'stringify'), array_values($array));
+            return '[' . implode(', ', $values) . ']';
+        }
+        $stringifiedItems = array();
+        foreach ($array as $key => $value) {
+            $stringifiedItems[] = self::stringify($key) . ': ' . self::stringify($value);
+        }
+        return '{' . implode(', ', $stringifiedItems) . '}';
+    }
+    
+    /**
+     * Checks if the given array is numerical indexed.
+     *
+     * Keys of numerical arrays are starting at 0 and they are
+     * increasing in steps of 1.
+     *
+     * @param array(mixed) $array
+     * @return boolean True if the array is numerical indexed, false otherwise.
+     */
+    protected static function isNumericalIndexed(array $array)
+    {
+        $numberOfElements = count($array);
+        $keys = array_keys($array);
+        // Calculate a checksum and check if the keys
+        // sum up correctly.
+        return array_sum($keys) == (($numberOfElements - 1) / 2.0) * $numberOfElements;
     }
     
     /**
