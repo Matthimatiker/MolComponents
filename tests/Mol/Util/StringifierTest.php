@@ -171,6 +171,16 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if stringify() renders multidimensional arrays correctly.
+     */
+    public function testStringifyTransformsMultidimensionalArraysCorrectly()
+    {
+        $value = array('a' => array(1, 2, 3), 'b' => array(4, 5, 6));
+        $representation = Mol_Util_Stringifier::stringify($value);
+        $this->assertEquals('{"a": [1, 2, 3], "b": [4, 5, 6]}', $representation);
+    }
+    
+    /**
      * Checks if a closure is transformed correctly by stringify.
      */
     public function testStringifyTransformsClosuresCorrectly()
