@@ -125,7 +125,34 @@ class Mol_Util_Stringifier
      */
     public static function stringifyException(Exception $exception)
     {
-        
+        $level = 0;
+        $stringified = '';
+        while ($exception !== null) {
+            $representation = 'Type: '    . get_class($exception)          . PHP_EOL
+                            . 'Code: '    . $exception->getCode()          . PHP_EOL
+                            . 'Message: ' . $exception->getMessage()       . PHP_EOL
+                            . 'Trace: '   . ltrim(self::indent($exception->getTraceAsString(), '       '));
+            $indention      = ltrim(str_repeat('>', $level) . ' ');
+            $stringified   .= self::indent($representation, $indention) . PHP_EOL;
+            $exception      = (method_exists($exception, 'getPrevious')) ? $exception->getPrevious() : null;
+            $level++;
+        }
+        return $stringified;
+    }
+    
+    /**
+     * Prepends the given prefix to each line of the provided text.
+     *
+     * @param string $text
+     * @param string $prefix
+     * @return string
+     */
+    protected static function indent($text, $prefix)
+    {
+        // Unify line endings.
+        $text  = str_replace("\r\n", "\n", $text);
+        $lines = explode("\n", $text);
+        return $prefix . implode(PHP_EOL . $prefix, $lines);
     }
     
 }
