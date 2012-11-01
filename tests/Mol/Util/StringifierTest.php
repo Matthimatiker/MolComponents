@@ -239,7 +239,7 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
         // The stack trace should contain at least the name of the
         // method that created the exception. This is used as an
         // indicator for correctness here.
-        $this->assertContains('testStringifyExceptionShowsStacktrace', $representation);
+        $this->assertContains(__FUNCTION__, $representation);
     }
     
     /**
