@@ -93,14 +93,40 @@ class Mol_Util_StringifierTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if stringify() determines the type of provided resources.
+     * Checks if stringify() identifies a stream resource correctly.
      */
-    public function testStringifyTransformsResourcesCorrectly()
+    public function testStringifyIdentifiesStreamResourceCorrectly()
     {
         $handle = fopen(__FILE__, 'r');
         $representation = Mol_Util_Stringifier::stringify($handle);
         fclose($handle);
-        $this->assertEquals('file stream', $representation);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains('stream', $representation);
+    }
+    
+    /**
+     * Checks if stringify() renders the type of a stream resource.
+     */
+    public function testStringifyRendersStreamType()
+    {
+        $handle = fopen(__FILE__, 'r');
+        $meta = stream_get_meta_data($handle);
+        $representation = Mol_Util_Stringifier::stringify($handle);
+        fclose($handle);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains($meta['stream_type'], $representation);
+    }
+    
+    /**
+     * Checks if stringify() renders stream uri.
+     */
+    public function testStringifyRendersStreamUri()
+    {
+        $handle = fopen(__FILE__, 'r');
+        $representation = Mol_Util_Stringifier::stringify($handle);
+        fclose($handle);
+        $this->assertInternalType('string', $representation);
+        $this->assertContains(__FILE__, $representation);
     }
     
     /**
