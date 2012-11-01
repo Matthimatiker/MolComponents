@@ -225,7 +225,7 @@ class Mol_Form_Factory
             return $this->createForm($class);
         }
         $message = 'Expected alias or class name or Zend_Form instance, but received '
-                 . 'argument of type "' . gettype($aliasOrClassOrForm) . '".';
+                 . Mol_Util_Stringifier::stringify($aliasOrClassOrForm) . '.';
         throw new InvalidArgumentException($message);
     }
     

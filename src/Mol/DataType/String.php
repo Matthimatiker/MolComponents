@@ -825,8 +825,8 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
         if ($data instanceof self) {
             return $data->convertTo($this->charset)->toString();
         }
-        $type    = is_object($data) ? get_class($data) : gettype($data);
-        $message = 'Expected string or instance of ' . __CLASS__ . ', but ' . $type . ' provided.';
+        $received = Mol_Util_Stringifier::stringify($data);
+        $message  = 'Expected string or instance of ' . __CLASS__ . ', but ' . $received . ' provided.';
         throw new InvalidArgumentException($message);
     }
     

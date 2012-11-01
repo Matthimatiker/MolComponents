@@ -277,7 +277,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
             case '<=':
                 return new Mol_Validate_Form_Relation_LessThanOrEqual();
         }
-        $message = '"' . $identifier . '" is not a valid relation identifier.';
+        $message = Mol_Util_Stringifier::stringify($identifier) . ' is not a valid relation identifier.';
         throw new InvalidArgumentException($message);
     }
     

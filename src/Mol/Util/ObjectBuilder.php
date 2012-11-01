@@ -156,7 +156,7 @@ class Mol_Util_ObjectBuilder
             return;
         }
         $invalidTypes = array_diff($listOfTypes, $validTypes);
-        $message      = 'The following types are not valid: ' . implode(', ', $invalidTypes);
+        $message      = 'The following types are not valid: ' . Mol_Util_Stringifier::stringify($invalidTypes);
         throw new InvalidArgumentException($message);
     }
     
@@ -170,8 +170,7 @@ class Mol_Util_ObjectBuilder
     protected function toReflectionClass($name)
     {
         if (!$this->isClass($name)) {
-            $received = is_string($name) ? $name : gettype($name);
-            $message  = 'Valid class name expected. Received: "' . $received . '"';
+            $message = 'Valid class name expected. Received: ' . Mol_Util_Stringifier::stringify($name);
             throw new InvalidArgumentException($message);
         }
         return new ReflectionClass($name);
