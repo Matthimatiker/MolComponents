@@ -134,7 +134,8 @@ class Mol_Util_Stringifier
                             . 'Trace: '   . ltrim(self::indent($exception->getTraceAsString(), '       '));
             $indention      = ltrim(str_repeat('>', $level) . ' ');
             $stringified   .= self::indent($representation, $indention) . PHP_EOL;
-            $exception      = (method_exists($exception, 'getPrevious')) ? $exception->getPrevious() : null;
+            // Check if there is a nested exception.
+            $exception = (method_exists($exception, 'getPrevious')) ? $exception->getPrevious() : null;
             $level++;
         }
         return $stringified;
