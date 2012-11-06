@@ -29,4 +29,24 @@
 class Mol_Util_TypeInspector
 {
     
+    public function isType($name)
+    {
+        
+    }
+    
+    public function isClass($name)
+    {
+        
+    }
+    
+    public function isInterface($name)
+    {
+        
+    }
+    
+    public function is($name, $typeOrListOfTypes)
+    {
+        
+    }
+    
 }
