@@ -29,21 +29,50 @@
 class Mol_Util_TypeInspector
 {
     
+    /**
+     *
+     *
+     * @param string $name
+     * @param string|array(string) $typeOrListOfTypes
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
     public function is($name, $typeOrListOfTypes)
     {
     
     }
     
+    /**
+     *
+     *
+     * @param string $name
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
     public function isType($name)
     {
         
     }
     
+    /**
+     *
+     *
+     * @param string $name
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
     public function isClass($name)
     {
         
     }
     
+    /**
+     *
+     *
+     * @param string $name
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
     public function isInterface($name)
     {
         
