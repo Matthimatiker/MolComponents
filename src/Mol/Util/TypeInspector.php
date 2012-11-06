@@ -29,6 +29,11 @@
 class Mol_Util_TypeInspector
 {
     
+    public function is($name, $typeOrListOfTypes)
+    {
+    
+    }
+    
     public function isType($name)
     {
         
@@ -40,11 +45,6 @@ class Mol_Util_TypeInspector
     }
     
     public function isInterface($name)
-    {
-        
-    }
-    
-    public function is($name, $typeOrListOfTypes)
     {
         
     }
