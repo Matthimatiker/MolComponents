@@ -30,12 +30,24 @@ class Mol_Util_TypeInspector
 {
     
     /**
+     * Checks if $name is fulfills all of the given type constraints.
      *
+     * A single type can be provided as second argument:
+     * <code>
+     * // Checks if ArrayObject is of type Countable
+     * $result = $inspector->is('ArrayObject', 'Countable');
+     * </code>
+     *
+     * It is also possible to check multiple constraints at once:
+     * <code>
+     * // Checks if ArrayObject is of type Travaersable *and* Countable
+     * $result = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
+     * </code>
      *
      * @param string $name
      * @param string|array(string) $typeOrListOfTypes
-     * @return boolean
-     * @throws InvalidArgumentException
+     * @return boolean True if $name fulfills all type constraints, false otherwise.
+     * @throws InvalidArgumentException If $name is not a string or if invalid types are provided.
      */
     public function is($name, $typeOrListOfTypes)
     {
@@ -43,11 +55,13 @@ class Mol_Util_TypeInspector
     }
     
     /**
+     * Checks if $name is a type.
      *
+     * Classes and interfaces are recognized as types.
      *
      * @param string $name
-     * @return boolean
-     * @throws InvalidArgumentException
+     * @return boolean True if $name is a type, false otherwise.
+     * @throws InvalidArgumentException If $name is not a string.
      */
     public function isType($name)
     {
@@ -55,11 +69,11 @@ class Mol_Util_TypeInspector
     }
     
     /**
-     *
+     * Checks if $name is a class.
      *
      * @param string $name
-     * @return boolean
-     * @throws InvalidArgumentException
+     * @return boolean True if $name is a class, false othwerwise.
+     * @throws InvalidArgumentException If $name is not a string.
      */
     public function isClass($name)
     {
@@ -67,11 +81,11 @@ class Mol_Util_TypeInspector
     }
     
     /**
-     *
+     * Checks if $name is an interface.
      *
      * @param string $name
-     * @return boolean
-     * @throws InvalidArgumentException
+     * @return boolean True if $name is an interface, false othwerwise.
+     * @throws InvalidArgumentException If $name is not a string.
      */
     public function isInterface($name)
     {
