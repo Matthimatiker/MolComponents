@@ -44,7 +44,7 @@ class Mol_Util_TypeInspector
      * $result = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
      * </code>
      *
-     * @param string $name
+     * @param string $name The name of the type.
      * @param string|array(string) $typeOrListOfTypes
      * @return boolean True if $name fulfills all type constraints, false otherwise.
      * @throws InvalidArgumentException If $name is not a string or if invalid types are provided.
@@ -59,7 +59,7 @@ class Mol_Util_TypeInspector
      *
      * Classes and interfaces are recognized as types.
      *
-     * @param string $name
+     * @param string $name The name of the type.
      * @return boolean True if $name is a type, false otherwise.
      * @throws InvalidArgumentException If $name is not a string.
      */
@@ -71,7 +71,7 @@ class Mol_Util_TypeInspector
     /**
      * Checks if $name is a class.
      *
-     * @param string $name
+     * @param string $name The class name.
      * @return boolean True if $name is a class, false othwerwise.
      * @throws InvalidArgumentException If $name is not a string.
      */
@@ -83,7 +83,7 @@ class Mol_Util_TypeInspector
     /**
      * Checks if $name is an interface.
      *
-     * @param string $name
+     * @param string $name The interface name.
      * @return boolean True if $name is an interface, false othwerwise.
      * @throws InvalidArgumentException If $name is not a string.
      */
