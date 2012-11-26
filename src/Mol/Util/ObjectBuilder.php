@@ -118,7 +118,7 @@ class Mol_Util_ObjectBuilder
     public function create($class, array $constructorArguments = array())
     {
         $reflection = $this->toReflectionClass($class);
-        if (!$this->fulfillsTypeConstraints($reflection)) {
+        if (!$this->fulfillsTypeConstraints($class)) {
             $format  = 'Class %s does not fulfill all type constraints: %s';
             $message = sprintf($format, $reflection->getName(), implode(', ', $this->typeConstraints));
             throw new InvalidArgumentException($message);
@@ -212,12 +212,12 @@ class Mol_Util_ObjectBuilder
     /**
      * Checks if the provided class fulfills the type requirements.
      *
-     * @param ReflectionClass $class
+     * @param string $class
      * @return boolean True if all type requirements are fulfilled, false otherwise.
      */
-    protected function fulfillsTypeConstraints(ReflectionClass $class)
+    protected function fulfillsTypeConstraints($class)
     {
-        return $this->inspector()->is($class->getName(), $this->typeConstraints);
+        return $this->inspector()->is($class, $this->typeConstraints);
     }
     
     /**
