@@ -33,12 +33,37 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testIsClassThrowsExceptionIfNoStringIsProvided()
+    {
+        
+    }
+    
+    public function testIsClassReturnsFalseIfGivenValueIsNoType()
+    {
+        
+    }
+    
+    public function testIsClassReturnsFalseIfGivenValueIsAnInterface()
+    {
+        
+    }
+    
+    public function testIsClassReturnsTrueIfGivenValueIsClassName()
+    {
+        
+    }
+    
     public function testIsThrowsExceptionIfProvidedConstraintIsNoType()
     {
         
     }
     
     public function testIsThrowsExceptionIfAtLeastOneOfTheProvidedConstraintsIsNoType()
+    {
+        
+    }
+    
+    public function testIsThrowsExceptionIfProvidedValueIsNoString()
     {
         
     }
@@ -83,7 +108,12 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     
     }
     
-    public function testIsReturnsTrueIfValueImplementsRequestedTypeInterface()
+    public function testIsReturnsTrueIfValueImplementsRequestedInterfaceType()
+    {
+        
+    }
+    
+    public function testIsReturnsTrueIfValueIsAnInterfaceThatExtendsTheRequestedInterfaceType()
     {
         
     }
