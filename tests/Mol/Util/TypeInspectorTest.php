@@ -53,6 +53,46 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testIsInterfaceThrowsExceptionIfNoStringIsProvided()
+    {
+    
+    }
+    
+    public function testIsInterfaceReturnsFalseIfGivenValueIsNoType()
+    {
+    
+    }
+    
+    public function testIsInterfaceReturnsFalseIfGivenValueIsClassName()
+    {
+    
+    }
+    
+    public function testIsClassReturnsTrueIfGivenValueIsAnInterfaceName()
+    {
+    
+    }
+    
+    public function testIsTypeThrowsExceptionIfGivenValueIsNoString()
+    {
+        
+    }
+    
+    public function testIsTypeReturnsFalseIfGivenValueIsNoTypeName()
+    {
+        
+    }
+    
+    public function testIsTypeReturnsTrueIfGivenValueIsAnInterfaceName()
+    {
+        
+    }
+    
+    public function testIsTypeReturnsTrueIfGivenValueIsClassName()
+    {
+        
+    }
+    
     public function testIsThrowsExceptionIfProvidedConstraintIsNoType()
     {
         
