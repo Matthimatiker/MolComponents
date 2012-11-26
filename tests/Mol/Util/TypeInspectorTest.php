@@ -186,6 +186,21 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the exception is thrown even if the given constraint list
+     * contains arrays.
+     *
+     * Depending on the handling of the constraint list, Array to String conversion
+     * notices may occur in PHP 5.4. These warnings will be converted to exceptions
+     * by PHPUnit, which are of course not of the expected InvalidArgumentException
+     * type.
+     */
+    public function testIsThrowsCorrectExceptionIfConstraintListContainsArrays()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->is('AnyName', array(array('An array instead of a type.')));
+    }
+    
+    /**
      * Ensures that is() throws an exception if the provided name
      * is not a string.
      */
