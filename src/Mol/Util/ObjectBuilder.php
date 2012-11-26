@@ -84,6 +84,13 @@ class Mol_Util_ObjectBuilder
     protected $typeConstraints = null;
     
     /**
+     * Helper object that is used to check the type constraints.
+     *
+     * @var Mol_Util_TypeInspector|null
+     */
+    protected $typeInspector = null;
+    
+    /**
      * Creates a new object builder.
      *
      * If a type contraint is provided, then the builder will only create
@@ -210,24 +217,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function fulfillsTypeConstraints(ReflectionClass $class)
     {
-        foreach ($this->typeConstraints as $type) {
-            /* @var string $type */
-            if ($this->isInterface($type) && $class->implementsInterface($type)) {
-                // Class implements the required interface.
-                continue;
-            }
-            if ($class->isSubclassOf($type)) {
-                // Class is a subclass of the required type.
-                continue;
-            }
-            if ($class->getName() === $type) {
-                // Class equals required type.
-                continue;
-            }
-            return false;
-        }
-        // Type requirements fulfilled.
-        return true;
+        return $this->inspector()->is($class->getName(), $this->typeConstraints);
     }
     
     /**
@@ -238,7 +228,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isType($name)
     {
-        return $this->isClass($name) || $this->isInterface($name);
+        return $this->inspector()->isType($name);
     }
     
     /**
@@ -249,7 +239,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isClass($name)
     {
-        return is_string($name) && class_exists($name, true);
+        return $this->inspector()->isClass($name);
     }
     
     /**
@@ -260,7 +250,22 @@ class Mol_Util_ObjectBuilder
      */
     protected function isInterface($name)
     {
-        return is_string($name) && interface_exists($name, true);
+        return $this->inspector()->isInterface($name);
+    }
+    
+    /**
+     * Returns a type inspector.
+     *
+     * The helper class is created if it does not already exist.
+     *
+     * @return Mol_Util_TypeInspector
+     */
+    protected function inspector()
+    {
+        if ($this->typeInspector === null) {
+            $this->typeInspector = new Mol_Util_TypeInspector();
+        }
+        return $this->typeInspector;
     }
     
 }
