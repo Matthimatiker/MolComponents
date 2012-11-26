@@ -154,7 +154,7 @@ class Mol_Util_TypeInspector
         if (is_string($value)) {
             return;
         }
-        $format  = 'String expected, bt received: %s';
+        $format  = 'String expected, but received: %s';
         $message = sprintf($format, Mol_Util_Stringifier::stringify($value));
         throw new InvalidArgumentException($message);
     }
