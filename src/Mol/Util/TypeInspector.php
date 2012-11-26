@@ -19,6 +19,7 @@
  * do not have to be created to perform checks.
  *
  * TODO: set assertContainsOnlyTypes() to public
+ * TODO: rename assertContainsOnlyTypes() to assertTypes()
  * TODO: add assertClass()
  * TODO: add assertInterface()
  * TODO: add assertType()
