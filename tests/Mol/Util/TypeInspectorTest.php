@@ -74,7 +74,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsClassReturnsFalseIfGivenValueIsNoType()
     {
-        
+        $this->assertFalse($this->inspector->isClass('Missing'));
     }
     
     /**
@@ -83,7 +83,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsClassReturnsFalseIfGivenValueIsAnInterfaceName()
     {
-        
+        $this->assertFalse($this->inspector->isClass('ArrayAccess'));
     }
     
     /**
@@ -91,7 +91,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsClassReturnsTrueIfGivenValueIsClassName()
     {
-        
+        $this->assertTrue($this->inspector->isClass('ArrayObject'));
     }
     
     /**
@@ -110,7 +110,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsInterfaceReturnsFalseIfGivenValueIsNoType()
     {
-    
+        $this->assertFalse($this->inspector->isInterface('Missing'));
     }
     
     /**
@@ -119,7 +119,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsInterfaceReturnsFalseIfGivenValueIsClassName()
     {
-    
+        $this->assertFalse($this->inspector->isInterface('ArrayObject'));
     }
     
     /**
@@ -127,7 +127,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsInterfaceReturnsTrueIfGivenValueIsAnInterfaceName()
     {
-    
+        $this->assertTrue($this->inspector->isInterface('ArrayAccess'));
     }
     
     /**
@@ -146,7 +146,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsTypeReturnsFalseIfGivenValueIsNoTypeName()
     {
-        
+        $this->assertFalse($this->inspector->isType('Missing'));
     }
     
     /**
@@ -154,7 +154,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsTypeReturnsTrueIfGivenValueIsAnInterfaceName()
     {
-        
+        $this->assertTrue($this->inspector->isType('ArrayAccess'));
     }
     
     /**
@@ -162,7 +162,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsTypeReturnsTrueIfGivenValueIsClassName()
     {
-        
+        $this->assertTrue($this->inspector->isType('ArrayObject'));
     }
     
     /**
@@ -201,7 +201,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsBooleanIfProvidedConstraintIsType()
     {
-        
+        $this->assertInternalType('boolean', $this->inspector->is('AnyName', 'ArrayObject'));
     }
     
     /**
@@ -210,7 +210,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsBooleanIfConstraintListContainsOnlyValidTypes()
     {
-        
+        $this->assertInternalType('boolean', $this->inspector->is('AnyName', array('ArrayObject', 'ArrayAccess')));
     }
     
     /**
@@ -219,7 +219,17 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsTrueIfConstraintListIsEmpty()
     {
-        
+        $this->assertTrue($this->inspector->is('stdClass', array()));
+    }
+    
+    /**
+     * Ensures that is() throws an exception if no valid name is passed,
+     * even if the given constraint list is empty.
+     */
+    public function testIsThrowsExceptionIfNoNameIsProvidedEvenIfTypeListIsEmpty()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->is(new stdClass(), array());
     }
     
     /**
@@ -228,7 +238,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsFalseIfValueDoesNotFulfillTypeConstraint()
     {
-        
+        $this->assertFalse($this->inspector->is('stdClass', 'ArrayObject'));
     }
     
     /**
@@ -237,16 +247,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsFalseIfValueDoesNotFulfillAllGivenConstraints()
     {
-        
-    }
-    
-    /**
-     * Ensures that is() returns true if the value fulfills all type constraints
-     * in the provided constraint list.
-     */
-    public function testIsReturnsTrueIfValueFulfillsAllGivenTypeConstraints()
-    {
-        
+        $this->assertFalse($this->inspector->is('stdClass', array('stdClass', 'ArrayAccess')));
     }
     
     /**
@@ -255,7 +256,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsTrueIfClassNameIsExactlyOfRequestedType()
     {
-        
+        $this->assertTrue($this->inspector->is('stdClass', 'stdClass'));
     }
     
     /**
@@ -264,7 +265,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsTrueIfInterfaceNameIsExactlyOfRequestedType()
     {
-    
+        $this->assertTrue($this->inspector->is('IteratorAggregate', 'IteratorAggregate'));
     }
     
     /**
@@ -273,7 +274,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsTrueIfValueIsSubclassOfRequestedType()
     {
-    
+        $this->assertTrue($this->inspector->is('FilterIterator', 'IteratorIterator'));
     }
     
     /**
@@ -282,7 +283,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsTrueIfValueImplementsRequestedInterfaceType()
     {
-        
+        $this->assertTrue($this->inspector->is('ArrayIterator', 'Iterator'));
     }
     
     /**
@@ -291,7 +292,16 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsTrueIfValueIsAnInterfaceThatExtendsTheRequestedInterfaceType()
     {
-        
+        $this->assertTrue($this->inspector->is('Iterator', 'Traversable'));
+    }
+    
+    /**
+     * Ensures that is() returns true if the value fulfills all type constraints
+     * in the provided constraint list.
+     */
+    public function testIsReturnsTrueIfValueFulfillsAllGivenTypeConstraints()
+    {
+        $this->assertTrue($this->inspector->is('ArrayObject', array('ArrayAccess', 'Countable')));
     }
     
 }
