@@ -172,7 +172,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     public function testIsThrowsExceptionIfProvidedConstraintIsNoType()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $this->inspector->is('AnyName', 'Missing');
+        $this->inspector->is('stdClass', 'Missing');
     }
     
     /**
@@ -182,7 +182,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     public function testIsThrowsExceptionIfAtLeastOneOfTheProvidedConstraintsIsNoType()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $this->inspector->is('AnyName', array('ArrayAccess', 'Missing'));
+        $this->inspector->is('stdClass', array('ArrayAccess', 'Missing'));
     }
     
     /**
@@ -197,7 +197,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     public function testIsThrowsCorrectExceptionIfConstraintListContainsArrays()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $this->inspector->is('AnyName', array(array('An array instead of a type.')));
+        $this->inspector->is('stdClass', array(array('An array instead of a type.')));
     }
     
     /**
