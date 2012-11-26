@@ -126,8 +126,7 @@ class Mol_Util_ObjectBuilder
             $message = sprintf($format, $class, Mol_Util_Stringifier::stringify($this->typeConstraints));
             throw new InvalidArgumentException($message);
         }
-        $reflection = $this->toReflectionClass($class);
-        return $this->createInstance($reflection, $constructorArguments);
+        return $this->createInstance(new ReflectionClass($class), $constructorArguments);
     }
     
     /**
@@ -169,17 +168,6 @@ class Mol_Util_ObjectBuilder
         $invalidTypes = array_diff($listOfTypes, $validTypes);
         $message      = 'The following types are not valid: ' . Mol_Util_Stringifier::stringify($invalidTypes);
         throw new InvalidArgumentException($message);
-    }
-    
-    /**
-     * Creates a reflection object for the provided class.
-     *
-     * @param string $name The name of the class.
-     * @return ReflectionClass
-     */
-    protected function toReflectionClass($name)
-    {
-        return new ReflectionClass($name);
     }
     
     /**
