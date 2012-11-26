@@ -33,4 +33,59 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testIsThrowsExceptionIfProvidedConstraintIsNoType()
+    {
+        
+    }
+    
+    public function testIsThrowsExceptionIfAtLeastOneOfTheProvidedConstraintsIsNoType()
+    {
+        
+    }
+    
+    public function testIsReturnsBooleanIfProvidedConstraintIsType()
+    {
+        
+    }
+    
+    public function testIsReturnsBooleanIfConstraintListContainsOnlyValidTypes()
+    {
+        
+    }
+    
+    public function testIsReturnsFalseIfValueDoesNotFulfillTypeConstraint()
+    {
+        
+    }
+    
+    public function testIsReturnsFalseIfValueDoesNotFulfillAllGivenConstraints()
+    {
+        
+    }
+    
+    public function testIsReturnsTrueIfValueFulfillsTypeConstraint()
+    {
+        
+    }
+    
+    public function testIsReturnsTrueIfValueFulfillsAllGivenTypeConstraints()
+    {
+        
+    }
+    
+    public function testIsReturnsTrueIfValueIsExactlyOfRequestedType()
+    {
+        
+    }
+    
+    public function testIsReturnsTrueIfValueIsSubclassOfRequestedType()
+    {
+    
+    }
+    
+    public function testIsReturnsTrueIfValueImplementsRequestedTypeInterface()
+    {
+        
+    }
+    
 }
