@@ -34,12 +34,38 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Util_TypeInspector
+     */
+    protected $inspector = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->inspector = new Mol_Util_TypeInspector();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->inspector = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that isClass() throws an exception if the given argument
      * is not a string.
      */
     public function testIsClassThrowsExceptionIfNoStringIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->isClass(new stdClass());
     }
     
     /**
@@ -74,7 +100,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsInterfaceThrowsExceptionIfNoStringIsProvided()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->isInterface(new stdClass());
     }
     
     /**
@@ -109,7 +136,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsTypeThrowsExceptionIfGivenValueIsNoString()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->isType(new stdClass());
     }
     
     /**
@@ -143,7 +171,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsThrowsExceptionIfProvidedConstraintIsNoType()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->is('AnyName', 'Missing');
     }
     
     /**
@@ -152,7 +181,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsThrowsExceptionIfAtLeastOneOfTheProvidedConstraintsIsNoType()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->is('AnyName', array('ArrayAccess', 'Missing'));
     }
     
     /**
@@ -161,7 +191,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsThrowsExceptionIfProvidedValueIsNoString()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->is(new stdClass(), 'ArrayObject');
     }
     
     /**
