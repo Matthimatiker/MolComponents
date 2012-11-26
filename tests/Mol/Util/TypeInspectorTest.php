@@ -214,6 +214,15 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that is() returns false if the provided name is not
+     * a real class or interface.
+     */
+    public function testIsReturnsFalseIfProvidedNameIsNoType()
+    {
+        $this->assertFalse($this->inspector->is('Missing', 'stdClass'));
+    }
+    
+    /**
      * Ensures that is() returns true if the given list of constraints
      * is empty.
      */
