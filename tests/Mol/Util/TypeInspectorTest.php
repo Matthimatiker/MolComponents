@@ -201,7 +201,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsBooleanIfProvidedConstraintIsType()
     {
-        $this->assertInternalType('boolean', $this->inspector->is('AnyName', 'ArrayObject'));
+        $this->assertInternalType('boolean', $this->inspector->is('stdClass', 'ArrayObject'));
     }
     
     /**
@@ -210,7 +210,7 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReturnsBooleanIfConstraintListContainsOnlyValidTypes()
     {
-        $this->assertInternalType('boolean', $this->inspector->is('AnyName', array('ArrayObject', 'ArrayAccess')));
+        $this->assertInternalType('boolean', $this->inspector->is('stdClass', array('ArrayObject', 'ArrayAccess')));
     }
     
     /**
