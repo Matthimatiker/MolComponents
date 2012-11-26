@@ -18,6 +18,12 @@
  * This class operates on class and interface names, objects
  * do not have to be created to perform checks.
  *
+ * TODO: set assertContainsOnlyTypes() to public
+ * TODO: add assertClass()
+ * TODO: add assertInterface()
+ * TODO: add assertType()
+ * TODO: add assertFulfillsConstraints()
+ *
  * @category PHP
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
