@@ -134,22 +134,18 @@ class Mol_Util_ObjectBuilder
      *
      * @param string|array(mixed)|null $value
      * @return array(mixed)
-     * @throws InvalidArgumentException If the value cannot be converted into a list.
      */
     protected function toList($value)
     {
         if ($value === null) {
             return array();
         }
-        if (is_string($value)) {
-            // Single item provided.
-            return array($value);
+        if (is_array($value)) {
+            // List provided.
+            return $value;
         }
-        if (!is_array($value)) {
-            $message = 'Value must be null, a string or an array.';
-            throw new InvalidArgumentException($message);
-        }
-        return $value;
+        // Single item provided.
+        return array($value);
     }
     
     /**
