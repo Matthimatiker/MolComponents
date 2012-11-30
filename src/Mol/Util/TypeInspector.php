@@ -18,6 +18,52 @@
  * This class operates on class and interface names, objects
  * do not have to be created to perform checks.
  *
+ * = Usage =
+ *
+ * A new type inspector is simply created without any argument:
+ * <code>
+ * $inspector = new Mol_Util_TypeInspector();
+ * </code>
+ * Although there is currently no internal class state, an inspector
+ * object must be created to use the class.
+ * This is intended, as for example a cache for already checked types
+ * might be added in the future. Such a feature should not lead to
+ * global attributes later.
+ *
+ * == Checking types ==
+ *
+ * The TypeInspector provides several methods to check types by name.
+ *
+ * Simple checks test for classes and interfaces:
+ * <code>
+ * // Returns true.
+ * $isClass = $inspector->isClass('ArrayObject');
+ * // Returns false.
+ * $isInterface = $inspector->isInterface('ArrayObject');
+ * </code>
+ *
+ * The method isType() can be used if it is not important
+ * whether a class or interface name is provided:
+ * <code>
+ * $isClassOrInterface = $inspector->isType('ArrayObject');
+ * </code>
+ *
+ * The is() method can be used to perform complex type checks.
+ * It checks if a given type fulfills all provided type constraints:
+ * <code>
+ * // Returns true, as ArrayObject is Traversable as well as Countable.
+ * $constraintsFulfilled = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
+ * // Returns false, as ArrayObject is Countable, but it is not an instance of SplStack.
+ * $constraintsFulfilled = $inspector->is('ArrayObject', array('Countable', 'SplStack'));
+ * </code>
+ *
+ * For convenience, also a single type constraint can be passed to is().
+ * The following checks are equivalent:
+ * <code>
+ * $inspector->is('ArrayObject', array('Countable'));
+ * $inspector->is('ArrayObject', 'Countable');
+ * </code>
+ *
  * @category PHP
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
