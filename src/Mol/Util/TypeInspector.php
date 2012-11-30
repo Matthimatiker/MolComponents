@@ -149,8 +149,8 @@ class Mol_Util_TypeInspector
     /**
      * Asserts that the given type fulfills all provided type constraints.
      *
-     * @param string $name A type name.
-     * @param array(string) $typeConstraints List of type constraints.
+     * @param string|mixed $name A type name.
+     * @param array(string|mixed) $typeConstraints List of type constraints.
      * @throws InvalidArgumentException If at least one constraint is not fulfilled.
      */
     public function assertFulfills($name, array $typeConstraints)
@@ -167,7 +167,7 @@ class Mol_Util_TypeInspector
     /**
      * Asserts that all items in the given list are valid type names.
      *
-     * @param array(string) $types
+     * @param array(string|mixed) $types
      * @throws InvalidArgumentException If at least one entry is not a valid type.
      */
     public function assertTypes(array $types)
@@ -185,7 +185,7 @@ class Mol_Util_TypeInspector
     /**
      * Asserts that $name is a valid type (class or interface).
      *
-     * @param string $name
+     * @param string|mixed $name
      * @throws InvalidArgumentException If $name is not a valid type.
      */
     public function assertType($name)
@@ -200,7 +200,7 @@ class Mol_Util_TypeInspector
     /**
      * Asserts that a class with the provided name exists.
      *
-     * @param string $name
+     * @param string|mixed $name
      * @throws InvalidArgumentException If $name is not a valid class.
      */
     public function assertClass($name)
@@ -215,7 +215,7 @@ class Mol_Util_TypeInspector
     /**
      * Asserts that an interface with the provided name exists.
      *
-     * @param string $name
+     * @param string|mixed $name
      * @throws InvalidArgumentException If $name is not a valid interface.
      */
     public function assertInterface($name)
