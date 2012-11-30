@@ -111,10 +111,10 @@ class Mol_Util_TypeInspector
      * Asserts that the given type fulfills all provided type constraints.
      *
      * @param string $name A type name.
-     * @param array(string) $types List of type constraints.
+     * @param array(string) $typeConstraints List of type constraints.
      * @throws InvalidArgumentException If at least one constraint is not fulfilled.
      */
-    public function assertFulfillsConstraints($name, array $types)
+    public function assertFulfills($name, array $typeConstraints)
     {
     
     }

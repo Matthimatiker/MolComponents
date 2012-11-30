@@ -425,30 +425,30 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Ensures that assertFulfillsConstraints() throws an exception if the provided
+     * Ensures that assertFulfills() throws an exception if the provided
      * "name" is not a string.
      */
-    public function testAssertFulfillsConstraintsThrowsExceptionIfNoStringIsProvided()
+    public function testAssertFulfillsThrowsExceptionIfNoStringIsProvided()
     {
         
     }
     
-    public function testAssertFulfillsConstraintsThrowsExceptionIfAtLeastOneOfTheConstraintsIsNoValidType()
+    public function testAssertFulfillsThrowsExceptionIfAtLeastOneOfTheConstraintsIsNoValidType()
     {
         
     }
     
-    public function testAssertFulfillsConstraintsThrowsExceptionIfTypeDoesNotFulfillAtLeastOneConstraint()
+    public function testAssertFulfillsThrowsExceptionIfTypeDoesNotFulfillAtLeastOneConstraint()
     {
         
     }
     
-    public function testAssertFulfillsConstraintsAcceptsTypeThatFulfillsAllConstraints()
+    public function testAssertFulfillsAcceptsTypeThatFulfillsAllConstraints()
     {
         
     }
     
-    public function testAssertFulfillsConstraintsAcceptsTypeIfListOfConstraintsIsEmpty()
+    public function testAssertFulfillsAcceptsTypeIfListOfConstraintsIsEmpty()
     {
     
     }
