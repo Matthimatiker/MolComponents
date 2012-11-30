@@ -388,4 +388,49 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     
     }
     
+    public function testAssertTypesThrowsExceptionIfAtLeastOneItemIsNoString()
+    {
+        
+    }
+    
+    public function testAssertTypesThrowsExceptionIfAtLeastOneItemIsNoValidTypeName()
+    {
+        
+    }
+    
+    public function testAssertTypesAcceptsEmptyArray()
+    {
+        
+    }
+    
+    public function testAssertTypesAcceptsListOfValidTypes()
+    {
+        
+    }
+    
+    public function testAssertFulfillsConstraintsThrowsExceptionIfNoStringIsProvided()
+    {
+        
+    }
+    
+    public function testAssertFulfillsConstraintsThrowsExceptionIfAtLeastOneOfTheConstraintsIsNoValidType()
+    {
+        
+    }
+    
+    public function testAssertFulfillsConstraintsThrowsExceptionIfTypeDoesNotFulfillAtLeastOneConstraint()
+    {
+        
+    }
+    
+    public function testAssertFulfillsConstraintsAcceptsTypeThatFulfillsAllConstraints()
+    {
+        
+    }
+    
+    public function testAssertFulfillsConstraintsAcceptsTypeIfListOfConstraintsIsEmpty()
+    {
+    
+    }
+    
 }
