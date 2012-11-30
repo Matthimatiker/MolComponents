@@ -328,6 +328,10 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->inspector->is('ArrayObject', array('ArrayAccess', 'Countable')));
     }
     
+    /**
+     * Ensures that assertInterface() throws an exception if the provided
+     * "name" is not a string.
+     */
     public function testAssertInterfaceThrowsExceptionIfNoStringIsPassed()
     {
         
@@ -348,6 +352,10 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that assertClass() throws an exception if the provided
+     * "name" is not a string.
+     */
     public function testAssertClassThrowsExceptionIfNoStringIsPassed()
     {
     
@@ -368,6 +376,10 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     
     }
     
+    /**
+     * Ensures that assertType() throws an exception if the provided
+     * "name" is not a string.
+     */
     public function testAssertTypeThrowsExceptionIfNoStringIsPassed()
     {
     
@@ -388,6 +400,10 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     
     }
     
+    /**
+     * Ensures that assertTypes() throws an exception if at least one item
+     * in the list of names is not a string.
+     */
     public function testAssertTypesThrowsExceptionIfAtLeastOneItemIsNoString()
     {
         
@@ -408,6 +424,10 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that assertFulfillsConstraints() throws an exception if the provided
+     * "name" is not a string.
+     */
     public function testAssertFulfillsConstraintsThrowsExceptionIfNoStringIsProvided()
     {
         
