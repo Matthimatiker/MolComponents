@@ -107,6 +107,31 @@ class Mol_Util_TypeInspector
         return interface_exists($name, true);
     }
     
+    public function assertFulfillsConstraints($name, array $types)
+    {
+    
+    }
+    
+    public function assertTypes(array $types)
+    {
+        
+    }
+    
+    public function assertClass($name)
+    {
+        
+    }
+    
+    public function assertInterface($name)
+    {
+        
+    }
+    
+    public function assertType($name)
+    {
+        
+    }
+    
     /**
      * Checks if the provided type fulfills all given type constraints.
      *
