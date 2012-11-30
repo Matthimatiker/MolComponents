@@ -60,7 +60,7 @@ class Mol_Util_TypeInspector
     {
         $this->assertString($name);
         $listOfTypes = is_array($typeOrListOfTypes) ? $typeOrListOfTypes : array($typeOrListOfTypes);
-        $this->assertContainsOnlyTypes($listOfTypes);
+        $this->assertTypes($listOfTypes);
         if (!$this->isType($name)) {
             return false;
         }
@@ -245,17 +245,6 @@ class Mol_Util_TypeInspector
         $format  = 'String expected, but received: %s';
         $message = sprintf($format, Mol_Util_Stringifier::stringify($value));
         throw new InvalidArgumentException($message);
-    }
-    
-    /**
-     * Asserts that the given list contains only type names.
-     *
-     * @param array(string) $listOfTypes
-     * @throws InvalidArgumentException If one of the items is not a type.
-     */
-    protected function assertContainsOnlyTypes(array $listOfTypes)
-    {
-        $this->assertTypes($listOfTypes);
     }
     
 }
