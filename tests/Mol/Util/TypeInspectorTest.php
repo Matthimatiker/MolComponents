@@ -337,16 +337,27 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that assertInterface() throws an exception if the provided
+     * string is not a type name.
+     */
     public function testAssertInterfaceThrowsExceptionIfGivenStringIsNoType()
     {
         
     }
     
+    /**
+     * Ensures that assertInterface() throws an exception if a class name
+     * is passed.
+     */
     public function testAssertInterfaceThrowsExceptionIfGivenStringIsClassName()
     {
     
     }
     
+    /**
+     * Checks if assertInterface() accepts an interface name.
+     */
     public function testAssertInterfaceAcceptsInterfaceName()
     {
         
@@ -361,16 +372,27 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     
     }
     
+    /**
+     * Ensures that assertClass() throws an exception if the provided
+     * string is not a type name.
+     */
     public function testAssertClassThrowsExceptionIfGivenStringIsNoType()
     {
     
     }
     
+    /**
+     * Ensures that assertClass() throws an exception if an interface name
+     * is provided.
+     */
     public function testAssertClassThrowsExceptionIfGivenStringIsInterfaceName()
     {
     
     }
     
+    /**
+     * Checks if assertClass() accepts a class name.
+     */
     public function testAssertClassAcceptsClassName()
     {
     
@@ -385,16 +407,26 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
     
     }
     
+    /**
+     * Ensures that assertType() throws an exception if the provided
+     * string is not a type name.
+     */
     public function testAssertTypeThrowsExceptionIfGivenStringIsNoType()
     {
     
     }
     
+    /**
+     * Checks if assertType() accepts a class name.
+     */
     public function testAssertTypeAcceptsClassName()
     {
     
     }
     
+    /**
+     * Checks if assertType() accepts an interface name.
+     */
     public function testAssertTypeAcceptsInterfaceName()
     {
     
@@ -409,16 +441,26 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that assertTypes() throws an exception if at least one of the list
+     * items is not a type name.
+     */
     public function testAssertTypesThrowsExceptionIfAtLeastOneItemIsNoValidTypeName()
     {
         
     }
     
+    /**
+     * Checks if assertTypes() accepts an empty array.
+     */
     public function testAssertTypesAcceptsEmptyArray()
     {
         
     }
     
+    /**
+     * Checks if assertTypes() accepts a list of type names.
+     */
     public function testAssertTypesAcceptsListOfValidTypes()
     {
         
@@ -433,21 +475,45 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that assertFulfills() throws an exception if the provided
+     * string is not a type name.
+     */
+    public function testAssertFulfillsThrowsExceptionIfProvidedStringIsNoType()
+    {
+        
+    }
+    
+    /**
+     * Ensures that assertFulfills() throws an exception if at least one of the
+     * given constraints is not a valid type.
+     */
     public function testAssertFulfillsThrowsExceptionIfAtLeastOneOfTheConstraintsIsNoValidType()
     {
         
     }
     
+    /**
+     * Ensures that assertFulfills() throws an exception if at least one of the given
+     * type constraints is not fulfilled.
+     */
     public function testAssertFulfillsThrowsExceptionIfTypeDoesNotFulfillAtLeastOneConstraint()
     {
         
     }
     
+    /**
+     * Checks if assertFulfills() accepts a type that fulfills all given type constraints.
+     */
     public function testAssertFulfillsAcceptsTypeThatFulfillsAllConstraints()
     {
         
     }
     
+    /**
+     * Ensures that assertFulfills() accepts a type if the constraints list
+     * is empty.
+     */
     public function testAssertFulfillsAcceptsTypeIfListOfConstraintsIsEmpty()
     {
     
