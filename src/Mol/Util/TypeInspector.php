@@ -107,27 +107,58 @@ class Mol_Util_TypeInspector
         return interface_exists($name, true);
     }
     
+    /**
+     * Asserts that the given type fulfills all provided type constraints.
+     *
+     * @param string $name A type name.
+     * @param array(string) $types List of type constraints.
+     * @throws InvalidArgumentException If at least one constraint is not fulfilled.
+     */
     public function assertFulfillsConstraints($name, array $types)
     {
     
     }
     
+    /**
+     * Asserts that all items in the given list are valid type names.
+     *
+     * @param array(string) $types
+     * @throws InvalidArgumentException If at least one entry is not a valid type.
+     */
     public function assertTypes(array $types)
     {
         
     }
     
+    /**
+     * Asserts that $name is a valid type (class or interface).
+     *
+     * @param string $name
+     * @throws InvalidArgumentException If $name is not a valid type.
+     */
+    public function assertType($name)
+    {
+    
+    }
+    
+    /**
+     * Asserts that a class with the provided name exists.
+     *
+     * @param string $name
+     * @throws InvalidArgumentException If $name is not a valid class.
+     */
     public function assertClass($name)
     {
         
     }
     
+    /**
+     * Asserts that an interface with the provided name exists.
+     *
+     * @param string $name
+     * @throws InvalidArgumentException If $name is not a valid interface.
+     */
     public function assertInterface($name)
-    {
-        
-    }
-    
-    public function assertType($name)
     {
         
     }
