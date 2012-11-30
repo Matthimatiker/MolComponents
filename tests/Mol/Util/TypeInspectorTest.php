@@ -328,4 +328,64 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->inspector->is('ArrayObject', array('ArrayAccess', 'Countable')));
     }
     
+    public function testAssertInterfaceThrowsExceptionIfNoStringIsPassed()
+    {
+        
+    }
+    
+    public function testAssertInterfaceThrowsExceptionIfGivenStringIsNoType()
+    {
+        
+    }
+    
+    public function testAssertInterfaceThrowsExceptionIfGivenStringIsClassName()
+    {
+    
+    }
+    
+    public function testAssertInterfaceAcceptsInterfaceName()
+    {
+        
+    }
+    
+    public function testAssertClassThrowsExceptionIfNoStringIsPassed()
+    {
+    
+    }
+    
+    public function testAssertClassThrowsExceptionIfGivenStringIsNoType()
+    {
+    
+    }
+    
+    public function testAssertClassThrowsExceptionIfGivenStringIsInterfaceName()
+    {
+    
+    }
+    
+    public function testAssertClassAcceptsClassName()
+    {
+    
+    }
+    
+    public function testAssertTypeThrowsExceptionIfNoStringIsPassed()
+    {
+    
+    }
+    
+    public function testAssertTypeThrowsExceptionIfGivenStringIsNoType()
+    {
+    
+    }
+    
+    public function testAssertTypeAcceptsClassName()
+    {
+    
+    }
+    
+    public function testAssertTypeAcceptsInterfaceName()
+    {
+    
+    }
+    
 }
