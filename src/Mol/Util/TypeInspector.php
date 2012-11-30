@@ -116,7 +116,13 @@ class Mol_Util_TypeInspector
      */
     public function assertFulfills($name, array $typeConstraints)
     {
-    
+        if ($this->is($name, $typeConstraints)) {
+            return;
+        }
+        $format      = '%s does not fulfill all of the following type constraints: %s';
+        $constraints = Mol_Util_Stringifier::stringify($typeConstraints);
+        $message     = sprintf($format, Mol_Util_Stringifier::stringify($name), $constraints);
+        throw new InvalidArgumentException($message);
     }
     
     /**
@@ -127,7 +133,14 @@ class Mol_Util_TypeInspector
      */
     public function assertTypes(array $types)
     {
-        
+        $validTypes = array_filter($types, array($this, 'isType'));
+        if (count($validTypes) === count($types)) {
+            // All types in the given list are valid.
+            return;
+        }
+        $invalidTypes = array_diff($types, $validTypes);
+        $message      = 'The following entries are no type names: ' . Mol_Util_Stringifier::stringify($invalidTypes);
+        throw new InvalidArgumentException($message);
     }
     
     /**
@@ -138,7 +151,11 @@ class Mol_Util_TypeInspector
      */
     public function assertType($name)
     {
-    
+        if ($this->isType($name)) {
+            return;
+        }
+        $message = Mol_Util_Stringifier::stringify($name) . ' is not a valid type (class or interface) name.';
+        throw new InvalidArgumentException($message);
     }
     
     /**
@@ -149,7 +166,11 @@ class Mol_Util_TypeInspector
      */
     public function assertClass($name)
     {
-        
+        if ($this->isClass($name)) {
+            return;
+        }
+        $message = Mol_Util_Stringifier::stringify($name) . ' is not a valid class name.';
+        throw new InvalidArgumentException($message);
     }
     
     /**
@@ -160,7 +181,11 @@ class Mol_Util_TypeInspector
      */
     public function assertInterface($name)
     {
-        
+        if ($this->isInterface($name)) {
+            return;
+        }
+        $message = Mol_Util_Stringifier::stringify($name) . ' is not a valid interface name.';
+        throw new InvalidArgumentException($message);
     }
     
     /**
@@ -230,14 +255,7 @@ class Mol_Util_TypeInspector
      */
     protected function assertContainsOnlyTypes(array $listOfTypes)
     {
-        $validTypes = array_filter($listOfTypes, array($this, 'isType'));
-        if (count($validTypes) === count($listOfTypes)) {
-            // All types in the given list are valid.
-            return;
-        }
-        $invalidTypes = array_diff($listOfTypes, $validTypes);
-        $message      = 'The following types are not valid: ' . Mol_Util_Stringifier::stringify($invalidTypes);
-        throw new InvalidArgumentException($message);
+        $this->assertTypes($listOfTypes);
     }
     
 }
