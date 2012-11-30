@@ -334,7 +334,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertInterfaceThrowsExceptionIfNoStringIsPassed()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertInterface(new stdClass());
     }
     
     /**
@@ -343,7 +344,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertInterfaceThrowsExceptionIfGivenStringIsNoType()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertInterface('Missing');
     }
     
     /**
@@ -352,7 +354,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertInterfaceThrowsExceptionIfGivenStringIsClassName()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertInterface('ArrayObject');
     }
     
     /**
@@ -360,7 +363,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertInterfaceAcceptsInterfaceName()
     {
-        
+        $this->setExpectedException(null);
+        $this->inspector->assertInterface('ArrayAccess');
     }
     
     /**
@@ -369,7 +373,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertClassThrowsExceptionIfNoStringIsPassed()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertClass(new stdClass());
     }
     
     /**
@@ -378,7 +383,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertClassThrowsExceptionIfGivenStringIsNoType()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertClass('Missing');
     }
     
     /**
@@ -387,7 +393,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertClassThrowsExceptionIfGivenStringIsInterfaceName()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertClass('ArrayAccess');
     }
     
     /**
@@ -395,7 +402,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertClassAcceptsClassName()
     {
-    
+        $this->setExpectedException(null);
+        $this->inspector->assertClass('ArrayObject');
     }
     
     /**
@@ -404,7 +412,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypeThrowsExceptionIfNoStringIsPassed()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertType(new stdClass());
     }
     
     /**
@@ -413,7 +422,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypeThrowsExceptionIfGivenStringIsNoType()
     {
-    
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertType('Missing');
     }
     
     /**
@@ -421,7 +431,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypeAcceptsClassName()
     {
-    
+        $this->setExpectedException(null);
+        $this->inspector->assertType('ArrayObject');
     }
     
     /**
@@ -429,7 +440,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypeAcceptsInterfaceName()
     {
-    
+        $this->setExpectedException(null);
+        $this->inspector->assertType('ArrayAccess');
     }
     
     /**
@@ -438,7 +450,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypesThrowsExceptionIfAtLeastOneItemIsNoString()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertTypes(array('ArrayObject', new stdClass()));
     }
     
     /**
@@ -447,7 +460,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypesThrowsExceptionIfAtLeastOneItemIsNoValidTypeName()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertTypes(array('ArrayObject', 'Missing'));
     }
     
     /**
@@ -455,7 +469,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypesAcceptsEmptyArray()
     {
-        
+        $this->setExpectedException(null);
+        $this->inspector->assertTypes(array());
     }
     
     /**
@@ -463,7 +478,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertTypesAcceptsListOfValidTypes()
     {
-        
+        $this->setExpectedException(null);
+        $this->inspector->assertTypes(array('ArrayObject', 'ArrayAccess'));
     }
     
     /**
@@ -472,7 +488,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertFulfillsThrowsExceptionIfNoStringIsProvided()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertFulfills(new stdClass(), array('ArrayAccess'));
     }
     
     /**
@@ -481,7 +498,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertFulfillsThrowsExceptionIfProvidedStringIsNoType()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertFulfills('Missing', array('ArrayAccess'));
     }
     
     /**
@@ -490,7 +508,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertFulfillsThrowsExceptionIfAtLeastOneOfTheConstraintsIsNoValidType()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertFulfills('ArrayObject', array('ArrayAccess', 'Missing'));
     }
     
     /**
@@ -499,7 +518,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertFulfillsThrowsExceptionIfTypeDoesNotFulfillAtLeastOneConstraint()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        $this->inspector->assertFulfills('ArrayObject', array('ArrayAccess', 'SplQueue'));
     }
     
     /**
@@ -507,7 +527,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertFulfillsAcceptsTypeThatFulfillsAllConstraints()
     {
-        
+        $this->setExpectedException(null);
+        $this->inspector->assertFulfills('ArrayObject', array('ArrayAccess', 'Countable'));
     }
     
     /**
@@ -516,7 +537,8 @@ class Mol_Util_TypeInspectorTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertFulfillsAcceptsTypeIfListOfConstraintsIsEmpty()
     {
-    
+        $this->setExpectedException(null);
+        $this->inspector->assertFulfills('ArrayObject', array());
     }
     
 }
