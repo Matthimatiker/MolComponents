@@ -54,7 +54,7 @@
  * Have a look at {@link Mol_Mail_Factory} to learn about the possible
  * template settings.
  *
- * Assuming that the template "user-registration" is defined then the
+ * Assuming that the template "user-registration" is defined, then the
  * following code (in the context of an action controller) will create
  * a pre-configured mail object:
  * <code>
