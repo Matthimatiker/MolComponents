@@ -118,11 +118,11 @@ class Mol_Util_ObjectBuilder
      */
     public function create($class, array $constructorArguments = array())
     {
-        if (!$this->isClass($class)) {
+        if (!$this->typeInspector->isClass($class)) {
             $message = 'Valid class name expected. Received: ' . Mol_Util_Stringifier::stringify($class);
             throw new InvalidArgumentException($message);
         }
-        if (!$this->fulfillsTypeConstraints($class)) {
+        if (!$this->typeInspector->is($class, $this->typeConstraints)) {
             $format  = 'Class %s does not fulfill all type constraints: %s';
             $message = sprintf($format, $class, Mol_Util_Stringifier::stringify($this->typeConstraints));
             throw new InvalidArgumentException($message);
@@ -173,50 +173,6 @@ class Mol_Util_ObjectBuilder
             throw new BadMethodCallException($message);
         }
         return $class->newInstanceArgs($constructorArguments);
-    }
-    
-    /**
-     * Checks if the provided class fulfills the type requirements.
-     *
-     * @param string $class
-     * @return boolean True if all type requirements are fulfilled, false otherwise.
-     */
-    protected function fulfillsTypeConstraints($class)
-    {
-        return $this->typeInspector->is($class, $this->typeConstraints);
-    }
-    
-    /**
-     * Checks if $name is a valid type (class or interface).
-     *
-     * @param string $name
-     * @return boolean True if $name is a type, false otherwise.
-     */
-    protected function isType($name)
-    {
-        return $this->typeInspector->isType($name);
-    }
-    
-    /**
-     * Checks if the provided value is a valid class name.
-     *
-     * @param string $name
-     * @return boolean True if $name is a class, false otherwise.
-     */
-    protected function isClass($name)
-    {
-        return $this->typeInspector->isClass($name);
-    }
-    
-    /**
-     * Checks if the provided value is a valid interface name.
-     *
-     * @param string $name
-     * @return boolean True if $name is an interface, false otherwise.
-     */
-    protected function isInterface($name)
-    {
-        return $this->typeInspector->isInterface($name);
     }
     
 }
