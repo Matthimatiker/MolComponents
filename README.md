@@ -86,6 +86,62 @@ Keep in mind that some resources must be executed early, as they modify
 the global state of the application and will not be retrieved explicitly
 via getResource().
 
+### Configurable mail templates ###
+
+MolComponents provides a flexible mail configuration system.
+Instead of creating ``Zend_Mail`` objects manually, it is possible
+to pre-configure mail properties (default recipients, templates, 
+...) and retrieve mail objects by an alias.
+
+To use this system, the ``mailer`` resource must be activated and
+configured via ``application.ini``. A path to the mail configuration
+file as well as a view script path for the mail templates should be
+defined:
+
+    resources.mailer.templates[] = APPLICATION_PATH "/mails/mail-templates.ini"
+    resources.mailer.scripts[]   = APPLICATION_PATH "/mails/views"
+
+Any number of template configurations and script paths can be added.
+In case of conflict, the later defined template configurations will
+overwrite the settings of their predecessors.
+
+The ``mail-templates.ini`` contains a section for each mail template.
+Each template defines several mail properties:
+
+    [registration]
+    charset     = "UTF-8"
+    subject     = "Registration successful"
+    bcc[]       = "registration-log@my-domain.com"
+    replyTo     = "registration-support@my-domain.com"
+    from        = "no-reply@my-domain.com"
+    script.text = "registration.txt.phtml"
+    script.html = "registration.html.phtml"
+
+The translator of the view is used to automatically translate the subject.
+The named view templates are used to generate the text and html part of
+the mail.
+
+**Hint**: Section inheritance can be used to easily define default mail
+properties.
+
+Now the ``create()`` method of the bootstrapped mail factory can be used 
+to create ``Zend_Mail`` objects from a template:
+
+    public function myAction()
+    {
+        $factory    = $this->getInvokeArg('bootstrap')->getResource('mailer');
+        $parameters = array('userName', $name);
+        $mail       = $factory->create('registration', $parameters);
+    }
+
+The create() method receives a template name and (optionally) a list
+of parameters that is passed to the configured content view scripts.
+
+After creation it is possible to modify and send mails as usual:
+
+    $mail->addTo('recipient@user.com');
+    $mail->send();
+
 ### Simplified url generation ###
 
 The view helper *Mol_View_Helper_To* may be used as an alternative to 
