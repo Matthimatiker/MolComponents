@@ -156,14 +156,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function assertContainsOnlyTypes(array $listOfTypes)
     {
-        $validTypes = array_filter($listOfTypes, array($this, 'isType'));
-        if (count($validTypes) === count($listOfTypes)) {
-            // All types in the given list are valid.
-            return;
-        }
-        $invalidTypes = array_diff($listOfTypes, $validTypes);
-        $message      = 'The following types are not valid: ' . Mol_Util_Stringifier::stringify($invalidTypes);
-        throw new InvalidArgumentException($message);
+        $this->inspector()->assertTypes($listOfTypes);
     }
     
     /**
