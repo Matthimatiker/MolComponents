@@ -28,6 +28,7 @@ Install MolComponents via
 ## Features ##
 
 Here are some examples of the functionality that is provided by the library.
+The components follow a use-at-will design: All features are completely optional.
 
 Please refer to the documentation of the classes for more details.
 
