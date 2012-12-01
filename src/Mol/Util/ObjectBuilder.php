@@ -103,8 +103,9 @@ class Mol_Util_ObjectBuilder
      */
     public function __construct($typeConstraints = array())
     {
-        $typeConstraints = $this->toList($typeConstraints);
-        $this->assertContainsOnlyTypes($typeConstraints);
+        $typeConstraints     = $this->toList($typeConstraints);
+        $this->typeInspector = new Mol_Util_TypeInspector();
+        $this->typeInspector->assertTypes($typeConstraints);
         $this->typeConstraints = $typeConstraints;
     }
     
@@ -149,17 +150,6 @@ class Mol_Util_ObjectBuilder
     }
     
     /**
-     * Asserts that the given list contains only type names.
-     *
-     * @param array(string) $listOfTypes
-     * @throws InvalidArgumentException If one of the items is not a type.
-     */
-    protected function assertContainsOnlyTypes(array $listOfTypes)
-    {
-        $this->inspector()->assertTypes($listOfTypes);
-    }
-    
-    /**
      * Uses the provided constructor arguments to create a new instance
      * of the given class type.
      *
@@ -193,7 +183,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function fulfillsTypeConstraints($class)
     {
-        return $this->inspector()->is($class, $this->typeConstraints);
+        return $this->typeInspector->is($class, $this->typeConstraints);
     }
     
     /**
@@ -204,7 +194,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isType($name)
     {
-        return $this->inspector()->isType($name);
+        return $this->typeInspector->isType($name);
     }
     
     /**
@@ -215,7 +205,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isClass($name)
     {
-        return $this->inspector()->isClass($name);
+        return $this->typeInspector->isClass($name);
     }
     
     /**
@@ -226,22 +216,7 @@ class Mol_Util_ObjectBuilder
      */
     protected function isInterface($name)
     {
-        return $this->inspector()->isInterface($name);
-    }
-    
-    /**
-     * Returns a type inspector.
-     *
-     * The helper class is created if it does not already exist.
-     *
-     * @return Mol_Util_TypeInspector
-     */
-    protected function inspector()
-    {
-        if ($this->typeInspector === null) {
-            $this->typeInspector = new Mol_Util_TypeInspector();
-        }
-        return $this->typeInspector;
+        return $this->typeInspector->isInterface($name);
     }
     
 }
