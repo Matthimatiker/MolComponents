@@ -17,7 +17,7 @@ Just require *matthimatiker/molcomponents* in your composer config :
 
     {
         "require": {
-            "matthimatiker/molcomponents": "1.4.1"
+            "matthimatiker/molcomponents": ">=1.4.2"
         }
     }
     
