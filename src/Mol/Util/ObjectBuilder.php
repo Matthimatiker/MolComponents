@@ -118,15 +118,8 @@ class Mol_Util_ObjectBuilder
      */
     public function create($class, array $constructorArguments = array())
     {
-        if (!$this->typeInspector->isClass($class)) {
-            $message = 'Valid class name expected. Received: ' . Mol_Util_Stringifier::stringify($class);
-            throw new InvalidArgumentException($message);
-        }
-        if (!$this->typeInspector->is($class, $this->typeConstraints)) {
-            $format  = 'Class %s does not fulfill all type constraints: %s';
-            $message = sprintf($format, $class, Mol_Util_Stringifier::stringify($this->typeConstraints));
-            throw new InvalidArgumentException($message);
-        }
+        $this->typeInspector->assertClass($class);
+        $this->typeInspector->assertFulfills($class, $this->typeConstraints);
         return $this->createInstance(new ReflectionClass($class), $constructorArguments);
     }
     
