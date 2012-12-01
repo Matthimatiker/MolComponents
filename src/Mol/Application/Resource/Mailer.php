@@ -47,7 +47,7 @@
  * resources.mailer.scripts[]   = APPLICATION_PATH "/mails/views"
  * </code>
  * Any number of template configurations and script paths can be added.
- * In case of conflict the later defined template configurations will
+ * In case of conflict, the later defined template configurations will
  * overwrite the settings of their predecessors.
  * The script paths are searched for mail content templates that
  * are referenced by template configurations.
