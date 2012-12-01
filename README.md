@@ -6,8 +6,8 @@ Library that extends the capabilities of Zend Framework 1.
 
 ## Requirements ##
 
-MolComponents requires Zend Framework 1 (>=1.11.0 recommended, older versions should work as well) 
-and at least PHP 5.2 (5.3 recommended).
+MolComponents requires Zend Framework 1 (>=1.11.0 recommended, older versions should 
+work as well) and at least PHP 5.3.
 
 ## Installation ##
 
