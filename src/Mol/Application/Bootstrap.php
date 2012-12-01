@@ -50,7 +50,7 @@
  * controller:
  * <code>
  * $bootstrap = $this->getInvokeArg('bootstrap');
- * $logger $bootstrap->getResource('log');
+ * $logger = $bootstrap->getResource('log');
  * </code>
  *
  * Keep in mind that some resources must be executed early as they modify
