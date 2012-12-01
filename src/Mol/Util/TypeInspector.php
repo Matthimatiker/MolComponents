@@ -64,6 +64,38 @@
  * $inspector->is('ArrayObject', 'Countable');
  * </code>
  *
+ * == Asserting type rules ==
+ *
+ * Besides methods for type checks, there are also methods that can
+ * be used to assert certain type conditions.
+ *
+ * The assertion methods throw an InvalidArgumentException if the
+ * requested condition does not hold. Otherwise they will do
+ * nothing.
+ *
+ * There are several assertion methods to apply simple type rules:
+ * <code>
+ * // Throws an exception if ArrayObject is not a class.
+ * $inspector->assertClass('ArrayObject');
+ * // Throws an exception if ArrayAccess is not an interface.
+ * $inspector->assertInterface('ArrayAccess');
+ * // Throws an exception if SplStack is neither a class nor an interface.
+ * $inspector->assertType('SplStack');
+ * </code>
+ *
+ * The assertTypes() method can be used to check a list of types at once:
+ * <code>
+ * // Throws an exception if any of the entries is neither class nor interface.
+ * $inspector->assertTypes(array('ArrayObject', 'ArrayAccess', 'SplStack'));
+ * </code>
+ *
+ * Like is(), assertFulfills() can be used to check complex type rules:
+ * <code>
+ * // Throws an exception if ArrayObject does not fulfill all of the
+ * // provided type constraints.
+ * $this->assertFulfills('ArrayObject', array('Countable', 'Traversable'));
+ * </code>
+ *
  * @category PHP
  * @package Mol_Util
  * @author Matthias Molitor <matthias@matthimatiker.de>
