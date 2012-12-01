@@ -54,7 +54,7 @@
  * </code>
  *
  * Keep in mind that some resources must be executed early as they modify
- * the global state of the application and will not be retrieved explicitely
+ * the global state of the application and will not be retrieved explicitly
  * via getResource().
  *
  * @category PHP
