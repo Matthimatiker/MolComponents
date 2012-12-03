@@ -144,6 +144,17 @@ After creation it is possible to modify and send mails as usual:
 
 ### Advanced form creation ###
 
+Many forms share the same functionality. For example CSRF tokens are
+often required for security reasons. Although necessarry, these 
+additional elements make testing difficult as they often depend
+on global state and therefore need a special treatment in unit tests.
+
+To overcome these problems, MolComponents provides a configurable form 
+factory combined with a simple plugin system.
+The factory takes care of creating ``Zend_Form`` instances and plugins
+are used to deal with cross-cutting concerns.
+
+
 ### Validation of form element dependencies ###
 
 ### Simplified url generation ###
