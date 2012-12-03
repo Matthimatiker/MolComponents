@@ -142,6 +142,10 @@ After creation it is possible to modify and send mails as usual:
     $mail->addTo('recipient@user.com');
     $mail->send();
 
+### Advanced form creation ###
+
+### Validation of form element dependencies ###
+
 ### Simplified url generation ###
 
 The view helper *Mol_View_Helper_To* may be used as an alternative to 
