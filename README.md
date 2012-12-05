@@ -154,6 +154,23 @@ factory combined with a simple plugin system.
 The factory takes care of creating ``Zend_Form`` instances and plugins
 are used to deal with cross-cutting concerns.
 
+A simple use case is the creation of aliases for form classes:
+
+	resources.form.aliases.login        = "My_Login_Form"
+    resources.form.aliases.registration = "My_Registration_Form"
+
+Now it is possible to retrieve form instances by their alias:
+
+    public function myAction()
+    {
+        $factory = $this->getInvokeArg('bootstrap')->getResource('form');
+        // Creates an instance of My_Login_Form
+        $loginForm = $factory->create('login');
+    }
+
+From now on changing the type of a form is just a matter of configuration.
+
+
 
 ### Validation of form element dependencies ###
 
