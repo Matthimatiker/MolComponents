@@ -17,7 +17,7 @@
  *
  * == Usage ==
  *
- * The validator is can simply be added to a form element.
+ * The validator is simply added to a form element.
  * The relation and the compared element are passed to the
  * constructor of the validator.
  *
