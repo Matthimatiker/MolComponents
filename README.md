@@ -200,8 +200,8 @@ objects and applies all plugins to this instances:
 
 ### Simplified url generation ###
 
-The view helper *Mol_View_Helper_To* may be used as an alternative to 
-*Zend_View_Helper_Url* to generate urls in view scripts:
+The view helper ``Mol_View_Helper_To`` may be used as an alternative to 
+``Zend_View_Helper_Url`` to generate urls in view scripts:
 
     <?= $this->to('my-action', 'my-controller', 'my-module')->withParam('confirm', 1); ?>
     
