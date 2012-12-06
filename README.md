@@ -169,8 +169,32 @@ Now it is possible to retrieve form instances by their alias:
     }
 
 From now on changing the type of a form is just a matter of configuration.
+But the real advantage of the form factory is the ability to use plugins.
+Plugins receive every created form and have the ability to enhance these
+form instances.
 
+Plugins are simply added via configuration:
 
+    resources.form.plugins.autoComplete.class = "Mol_Form_Factory_Plugin_AutoCompleteOff"
+
+The AutoCompleteOff plugin adds ``autocomplete="off"`` attributes to each
+form and prevents browsers from caching input data.
+
+More complex plugins require additional options. The following plugin
+adds CSRF tokens to all forms:
+
+    resources.form.plugins.csrf.class = "Mol_Form_Factory_Plugin_Csrf"
+    resources.form.plugins.csrf.options.element.name    = "my_csrf_token"
+    resources.form.plugins.csrf.options.element.salt    = "secret-salt"
+    resources.form.plugins.csrf.options.element.timeout = 1800
+
+**Hint**: If the creation of a form instance is too complex to be handled 
+by the factory, then it is still possible to benefit from the plugin
+system. The ``create()`` method of the factory also accepts ``Zend_Form``
+objects and applies all plugins to this instances:
+
+    $form = new Zend_Form();
+    $enhancedForm = $factory->create($form);
 
 ### Validation of form element dependencies ###
 
