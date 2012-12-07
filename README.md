@@ -198,6 +198,13 @@ objects and applies all plugins to this instances:
 
 ### Validation of form element dependencies ###
 
+It is often necessary to validate relations between different form values:
+The password verification value must be equal to the original password, 
+an end date must be greater than the start date, and so on.
+
+MolComponents offers a mechanism that simplifies the validation of relations.
+Additionally, it provides some often needed relation validators.
+
 ### Simplified url generation ###
 
 The view helper ``Mol_View_Helper_To`` may be used as an alternative to 
