@@ -77,25 +77,6 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
     }
 
     /**
-     * Returns an array with information about all calls to $method.
-     *
-     * @param string $method
-     * @return array(stdClass)
-     */
-    protected function filterCallsByName($method)
-    {
-        $matches = array();
-        foreach($this->methodCalls as $call ) {
-            /* @var $call stdClass */
-            if($call->name !== $method ) {
-                continue;
-            }
-            $matches[] = $call;
-        }
-        return $matches;
-    }
-
-    /**
      * Action without parameters.
      */
     public function fooAction()
@@ -248,6 +229,25 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
         $call->name          = $method;
         $call->arguments     = $arguments;
         $this->methodCalls[] = $call;
+    }
+    
+    /**
+     * Returns an array with information about all calls to $method.
+     *
+     * @param string $method
+     * @return array(stdClass)
+     */
+    protected function filterCallsByName($method)
+    {
+        $matches = array();
+        foreach($this->methodCalls as $call ) {
+            /* @var $call stdClass */
+            if($call->name !== $method ) {
+                continue;
+            }
+            $matches[] = $call;
+        }
+        return $matches;
     }
 
 }
