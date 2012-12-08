@@ -16,7 +16,7 @@
  * Helper class that is able to inject a bootstrapper into
  * bootstrap aware objects.
  *
- * = Usage =
+ * # Usage #
  *
  * Create an injector:
  * <code>

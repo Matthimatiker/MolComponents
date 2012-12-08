@@ -15,7 +15,7 @@
 /**
  * Base class for web controller tests.
  *
- * == Requirements ==
+ * # Requirements #
  *
  * The WebControllerTestCase detects and loads the tested class automatically.
  * Therefore it is important to name and place the TestCase correctly.
@@ -30,8 +30,9 @@
  * Controller file: /application/controllers/IndexController.php
  * Test file: /tests/application/controllers/IndexControllerTest.php
  *
+ * # Usage #
  *
- * == Prepare the environment ==
+ * ## Prepare the environment ##
  *
  * Configuration options are simulated via simulateOption().
  * The following configuration...
@@ -52,7 +53,8 @@
  * </code>
  * The following resources are simulated per default to reduce
  * dependencies:
- * # Log
+ *
+ * * Log
  *
  * Front controller parameters and invoke args that are passed to
  * the constructor of the controller are simulated via setInvokeArgs():
@@ -82,7 +84,7 @@
  * Usually user parameters are passed via forwarding.
  *
  *
- * == Execute and test ==
+ * ## Execute and test ##
  *
  * For testing specific actions may be executed via dispatch():
  * <code>
@@ -103,7 +105,7 @@
  * </code>
  *
  *
- * == Modify class loading behavior ==
+ * ## Modify class loading behavior ##
  *
  * If the test class does not fulfill the requirements for autoloading
  * the tested controller, then the loading behavior may be modified

@@ -15,7 +15,7 @@
 /**
  * Validator that compares the values of two different form elements.
  *
- * == Usage ==
+ * # Usage #
  *
  * The validator is simply added to a form element.
  * The relation and the compared element are passed to the
@@ -39,18 +39,19 @@
  * As shown relation identifiers (strings) can be provided if built-in
  * relations are used.
  * The following relation identifiers are currently supported:
- * # ==
- * # !=
- * # <
- * # >
- * # <=
- * # >=
+ *
+ * * ==
+ * * !=
+ * * <
+ * * >
+ * * <=
+ * * >=
  *
  * More specific or custom relations can be provided as object instead
  * of the relation identifier.
  *
  *
- * == Custom relations ==
+ * # Custom relations #
  *
  * The relation validators that are used internally must implement
  * the Zend_Validate_Interface interface.
@@ -74,7 +75,7 @@
  * </code>
  *
  *
- * == Error messages ==
+ * # Error messages #
  *
  * The ElementRelation validator will pass through the messages that are provided
  * by the internal relation validator.
@@ -85,9 +86,10 @@
  * Furthermore the ElementRelation supports some additional placeholders in the
  * messages.
  * Currently the following additional placeholders are supported:
- * # %compareName%  - The name of the compared element
- * # %compareLabel% - The label of the compared element
- * # %compareValue% - The value that was compared
+ *
+ * * %compareName%  - The name of the compared element
+ * * %compareLabel% - The label of the compared element
+ * * %compareValue% - The value that was compared
  *
  * @category PHP
  * @package Mol_Validate

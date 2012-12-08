@@ -19,7 +19,7 @@
  * Have a closer look at Mol_Util_String if you are searching for
  * string methods that do not require knowledge about the charset.
  *
- * == Description ==
+ * # Description #
  *
  * Each string is represented by an object that encapsulates the
  * raw string value and the charset.
@@ -30,7 +30,7 @@
  * If necessary methods take the charset into account. Therefore it
  * is possible to compare string with different charsets and so on.
  *
- * == Usage ==
+ * # Usage #
  *
  * String objects are instantiated via create():
  * <code>

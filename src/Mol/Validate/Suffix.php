@@ -15,7 +15,7 @@
 /**
  * Validator that checks if a value ends with an accepted suffix.
  *
- * == Usage ==
+ * # Usage #
  *
  * Multiple allowed suffixes can be passed to the constructor:
  * <code>

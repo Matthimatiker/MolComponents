@@ -17,7 +17,7 @@
  * directly as action method arguments. The controller takes care of
  * parameter validation and casts them to the expected type.
  *
- * == Usage ==
+ * # Usage #
  *
  * To use the controllers functionality add the required request parameters
  * as method arguments to the action:
@@ -46,15 +46,16 @@
  * handled by the error controller.
  *
  * Currently the controller supports the following default types:
- * # integer
- * # double
- * # boolean
- * # string
- * # array (with supported types as content)
- * # mixed (avoids the arguments validation)
+ *
+ * * integer
+ * * double
+ * * boolean
+ * * string
+ * * array (with supported types as content)
+ * * mixed (avoids the arguments validation)
  *
  *
- * == Extension ==
+ * # Extension #
  *
  * If needed arbitrary types may be added to the controller.
  * Therefore a validator of the type Zend_Validate_Interface must be registered

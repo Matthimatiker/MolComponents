@@ -15,9 +15,9 @@
 /**
  * Factory that creates form instances.
  *
- * == Usage ==
+ * # Usage #
  *
- * === Creation ===
+ * ## Creation ##
  *
  * The form factory does not require any constructor arguments.
  * Therefore, the following line is enough to create a new factory:
@@ -25,7 +25,7 @@
  * $factory = new Mol_Form_Factory();
  * </code>
  *
- * === Creating forms ===
+ * ## Creating forms ##
  *
  * Without further configuration the factory is able to create forms
  * by class name:
@@ -37,7 +37,7 @@
  * Each call to create() instantiates a new form, created instances
  * are not cached.
  *
- * === Aliases ===
+ * ## Aliases ##
  *
  * The method addAlias() can be used to register a form alias.
  *
@@ -60,7 +60,7 @@
  * $form = $factory->create('My_Login_Form');
  * </code>
  *
- * === Plugins ===
+ * ## Plugins ##
  *
  * Plugins are used to improve just created forms.
  *

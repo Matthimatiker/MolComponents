@@ -15,9 +15,9 @@
 /**
  * Plugin that disables browser auto completion for all forms.
  *
- * = Usage =
+ * # Usage #
  *
- * == Configuration ==
+ * ## Configuration ##
  *
  * Activate Autocomplete plugin:
  * <code>

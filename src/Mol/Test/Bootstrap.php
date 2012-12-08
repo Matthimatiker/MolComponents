@@ -15,7 +15,7 @@
 /**
  * A bootstrapper that supports simulation of resources and is used for testing.
  *
- * == Usage ==
+ * # Usage #
  *
  * The static create() method may be used to instantiate a new bootstrapper:
  * <code>

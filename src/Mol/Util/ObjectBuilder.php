@@ -15,9 +15,9 @@
 /**
  * Creates instances of other classes.
  *
- * = Usage =
+ * # Usage #
  *
- * == Creating a builder ==
+ * ## Creating a builder ##
  *
  * The most simple builder can be created without any constructor argument:
  * <code>
@@ -42,7 +42,7 @@
  * In this case the builder will only instantiate classes that fulfill
  * *all* of the given type constraints.
  *
- * == Building objects ==
+ * ## Building objects ##
  *
  * The create() method is used to instantiate objects of a given class:
  * <code>

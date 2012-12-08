@@ -15,9 +15,9 @@
 /**
  * Bootstrapper that adds support for lazy loading.
  *
- * == Usage ==
+ * # Usage #
  *
- * == Bootstrapper configuration ==
+ * ## Bootstrapper configuration ##
  *
  * Use this bootstrapper as base class for your own bootstrap class:
  * <code>
@@ -34,7 +34,7 @@
  * </code>
  *
  *
- * == Lazy loading configuration ==
+ * ## Lazy loading configuration ##
  *
  * Now it is possible to activate lazy loading for any configured
  * resource by setting the lazyLoad option:

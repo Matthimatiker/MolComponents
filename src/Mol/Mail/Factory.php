@@ -15,7 +15,7 @@
 /**
  * Factory that uses template configurations to create pre-filled mail objects.
  *
- * == Configuration ==
+ * # Configuration #
  *
  * The factory expects a list of template configurations as first constructor
  * parameter:
@@ -34,15 +34,16 @@
  * this example). The template settings are assigned as value.
  *
  * Each template configuration may contain the following settings:
- * # charset     (string)               - Charset of the email.
- * # subject     (string)               - Subject line, will automatically be translated.
- * # to          (array(string)|string) - List of default "to" recipients
- * # cc          (array(string)|string) - List of default "cc" recipients
- * # bcc         (array(string)|string) - List of default "bcc" recipients
- * # replyTo     (string)               - A reply-to address
- * # from        (string)               - Sender address
- * # script.text (string)               - Template that renders the text part
- * # script.html (string)               - Template that renders the HTML part
+ *
+ * * charset     (string)               - Charset of the email.
+ * * subject     (string)               - Subject line, will automatically be translated.
+ * * to          (array(string)|string) - List of default "to" recipients
+ * * cc          (array(string)|string) - List of default "cc" recipients
+ * * bcc         (array(string)|string) - List of default "bcc" recipients
+ * * replyTo     (string)               - A reply-to address
+ * * from        (string)               - Sender address
+ * * script.text (string)               - Template that renders the text part
+ * * script.html (string)               - Template that renders the HTML part
  *
  * Template settings example:
  * <code>

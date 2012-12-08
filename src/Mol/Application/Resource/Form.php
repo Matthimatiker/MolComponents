@@ -18,16 +18,16 @@
  * This resource allows the configuration of aliases and
  * factory plugins.
  *
- * == Usage ==
+ * # Usage #
  *
- * === Activation ===
+ * ## Activation ##
  *
  * The following line is enough to activate the form factory:
  * <code>
  * resources.form = On
  * </code>
  *
- * === Adding aliases ===
+ * ## Adding aliases ##
  *
  * Additionally aliases can be configured:
  * <code>
@@ -37,7 +37,7 @@
  * The alias must be used as key, the form class that it
  * points to as value.
  *
- * === Configuring plugins ===
+ * ## Configuring plugins ##
  *
  * To enhance form that are created by the factory, plugins can
  * be used.
@@ -63,7 +63,7 @@
  * array of plugin options. These options will be directly
  * passed to the plugin constructor.
  *
- * == Bootstrapper injection into plugins ==
+ * ## Bootstrapper injection into plugins ##
  *
  * If the plugin class implements Mol_Application_Bootstrap_Aware,
  * then the resource will inject the bootstrapper into the created

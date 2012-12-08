@@ -15,9 +15,9 @@
 /**
  * Plugin that adds CSRF tokens to forms.
  *
- * = Usage =
+ * # Usage #
  *
- * == Configuration ==
+ * ## Configuration ##
  *
  * Activate CSRF plugin without further configuration:
  * <code>

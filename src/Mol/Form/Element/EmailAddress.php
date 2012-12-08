@@ -15,7 +15,7 @@
 /**
  * Pre-configured form element that accepts email addresses.
  *
- * == Usage ==
+ * # Usage #
  *
  * The element can simply be added to any Zend_Form, no further configuration
  * is required:

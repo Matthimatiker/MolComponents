@@ -18,7 +18,7 @@
  * This class operates on class and interface names, objects
  * do not have to be created to perform checks.
  *
- * = Usage =
+ * # Usage #
  *
  * A new type inspector is simply created without any argument:
  * <code>
@@ -30,7 +30,7 @@
  * might be added in the future. Such a feature should not lead to
  * global attributes later.
  *
- * == Checking types ==
+ * ## Checking types ##
  *
  * The TypeInspector provides several methods to check types by name.
  *
@@ -64,7 +64,7 @@
  * $inspector->is('ArrayObject', 'Countable');
  * </code>
  *
- * == Asserting type rules ==
+ * ## Asserting type rules ##
  *
  * Besides methods for type checks, there are also methods that can
  * be used to assert certain type conditions.

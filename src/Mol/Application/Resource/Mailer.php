@@ -16,11 +16,12 @@
  * Initializes a mail factory that is used to create mails by templates.
  *
  * This resource depends on the following resources:
- * # view - Used for rendering mail templates.
  *
- * == Usage ==
+ * * view - Used for rendering mail templates.
  *
- * === Simple mail creation ===
+ * # Usage #
+ *
+ * ## Simple mail creation ##
  *
  * To create a mail factory without templates it is enough
  * to just activate the resource:
@@ -37,7 +38,7 @@
  * </code>
  *
  *
- * === Configuration and usage of templates ===
+ * ## Configuration and usage of templates ##
  *
  * Advanced features can be used by configuring mail template configuration
  * files and paths to view scripts:
