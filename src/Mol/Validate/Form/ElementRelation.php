@@ -134,7 +134,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
     protected $relation = null;
     
     /**
-     * The element use value is compared.
+     * The element whose value is compared.
      *
      * @var Zend_Form_Element
      */
@@ -299,7 +299,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
     }
     
     /**
-     * Returns the name of the compoared element.
+     * Returns the name of the compared element.
      *
      * @return string
      */
@@ -309,7 +309,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
     }
     
     /**
-     * Returns the label if the compared element.
+     * Returns the label of the compared element.
      *
      * @return string
      */
