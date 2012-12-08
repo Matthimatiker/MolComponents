@@ -124,9 +124,10 @@ class Mol_Form_Factory
      * Creates the requested form.
      *
      * The provided argument can be...
-     * # an alias that points to a class name
-     * # a class name
-     * # a form instance
+     *
+     * * an alias that points to a class name
+     * * a class name
+     * * a form instance
      *
      * If a form instance is given then it will be passed
      * to all registered plugins and returned afterwards.

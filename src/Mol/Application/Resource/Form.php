@@ -168,10 +168,11 @@ class Mol_Application_Resource_Form extends Zend_Application_Resource_ResourceAb
      * Uses the given configuration to create a factory plugin.
      *
      * The configuration can be:
-     * # a string (plugin class, no options)
-     * # an array with the following keys:
-     *   # class (string, plugin class)
-     *   # options (array, plugin options, optional)
+     *
+     * * a string (plugin class, no options)
+     * * an array with the following keys:
+     *   * class (string, plugin class)
+     *   * options (array, plugin options, optional)
      *
      * @param string|array(string=>mixed) $config
      * @return Mol_Form_Factory_Plugin

@@ -45,14 +45,15 @@ class Mol_Filter_Cast implements Zend_Filter_Interface
      * The parameter $type is used to tell the filter to which type
      * it should cast given values.
      * The following types are supported:
-     * # boolean
-     * # integer
-     * # float
-     * # double
-     * # string
-     * # array
-     * # object
-     * # null
+     *
+     * * boolean
+     * * integer
+     * * float
+     * * double
+     * * string
+     * * array
+     * * object
+     * * null
      *
      * @param string $type
      */

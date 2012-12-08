@@ -38,6 +38,7 @@
  *
  * As shown relation identifiers (strings) can be provided if built-in
  * relations are used.
+ *
  * The following relation identifiers are currently supported:
  *
  * * ==

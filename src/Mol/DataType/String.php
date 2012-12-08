@@ -686,9 +686,10 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      * Compares this string with $other.
      *
      * Returns:
-     * # -1 if string is less than $other
-     * #  0 if string equals $other
-     * #  1 if string is greater than $other
+     *
+     * * -1 if string is less than $other
+     * *  0 if string equals $other
+     * *  1 if string is greater than $other
      *
      * The COMPARE_* constants may be used to check the result.
      *

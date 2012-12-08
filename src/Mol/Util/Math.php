@@ -30,9 +30,10 @@ class Mol_Util_Math
      * Returns the sign of the value.
      *
      * This method returns:
-     * # -1 if $value < 0
-     * #  0 if $value = 0
-     * #  1 if $value > 0
+     *
+     * * -1 if $value < 0
+     * *  0 if $value = 0
+     * *  1 if $value > 0
      *
      * @param integer|double $value
      * @return integer -1 if $value < 0, 0 if $value == 0 and 1 if $value > 0.
