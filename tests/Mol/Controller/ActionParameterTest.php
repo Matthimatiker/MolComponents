@@ -384,7 +384,7 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      */
     public function testRegisterFilterProvidesFluentInterface()
     {
-         $filter = new Mol_Filter_Null();
+        $filter = new Mol_Filter_Null();
         $this->assertSame($this->controller, $this->controller->registerFilter($filter, 'x'));
     }
     
