@@ -135,8 +135,13 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
         $this->notifyPreDispatch();
         $this->preDispatch();
         if ($this->getRequest()->isDispatched()) {
-            // preDispatch() didn't change the action, so we can continue
-            $this->processAction($action);
+            // preDispatch() didn't change the action, so we can continue.
+            if (!$this->getResponse()->isRedirect()) {
+                // Execute the action only if no redirect was scheduled
+                // during preDispatch(). This is a fix that was added to
+                // Zend_Controller_Action::dispatch() with ZF-7496.
+                $this->processAction($action);
+            }
             $this->postDispatch();
         }
         $this->notifyPostDispatch();
