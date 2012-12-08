@@ -205,6 +205,44 @@ an end date must be greater than the start date, and so on.
 MolComponents offers a mechanism that simplifies the validation of relations.
 Additionally, it provides some often needed relation validators.
 
+To validate a relation the ``Mol_Validate_Form_ElementRelation`` must be
+added to a form element:
+
+    $from = new Zend_Form_Element_Text('from);
+    $to = new Zend_Form_Element_Text('to');
+    // Ensure that the provided "to" date is only valid if it is
+    // beyond the "from" date:
+    $relation = new Mol_Validate_Form_Relation_GreaterThan();
+    $to->addValidator(new Mol_Validate_Form_ElementRelation($relation, $from));
+
+The relation above reads as follows: $to must be greater than $from.
+
+The ``ElementRelation`` expects an inner validator of type ``Zend_Validate_Interface`` 
+that is able to check the validity of two related values:
+
+    public function isValid($value, $other = null)
+    {
+    }
+
+Any validator that provides such an interface can be used to validate a relation.
+Therefore, extending the relation validation with custom logic is very easy.
+
+To make the creation of the relation validators even more readable, the 
+built-in validators can be addressed via string identifiers:
+
+    $to->addValidator(new Mol_Validate_Form_ElementRelation('>', $from));
+
+This creates the same validator as in the first example.
+
+Currently, the library provides the following relation validators (the corresponding identifiers are shown in braces):
+
+ * Equals (==)
+ * NotEquals (!=)
+ * LessThan (<)
+ * GreaterThan (>)
+ * LessThanOrEqual (<=)
+ * GreaterThanOrEqual (>=)
+
 ### Simplified url generation ###
 
 The view helper ``Mol_View_Helper_To`` may be used as an alternative to 
