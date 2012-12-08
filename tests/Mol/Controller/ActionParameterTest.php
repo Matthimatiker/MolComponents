@@ -388,11 +388,23 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
         $this->assertSame($this->controller, $this->controller->registerFilter($filter, 'x'));
     }
     
+    /**
+     * Ensures that the requested action is not called if the response
+     * object contains a redirect.
+     *
+     * This behavior was introduced with ZF-7496 {@link http://framework.zend.com/issues/browse/ZF-7496}.
+     */
     public function testActionIsNotCalledIfResponseContainsRedirect()
     {
         
     }
     
+    /**
+     * Ensures that the postDispatch() method of the controller is even called
+     * if the response object contains a redirect.
+     *
+     * This behavior was introduced with ZF-7496 {@link http://framework.zend.com/issues/browse/ZF-7496}.
+     */
     public function testPostDispatchIsCalledEvenOnRedirect()
     {
         
