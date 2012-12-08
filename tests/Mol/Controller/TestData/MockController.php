@@ -224,6 +224,17 @@ class Mol_Controller_ActionParameterTest_MockController extends Mol_Controller_A
     {
         $this->notifyMethodCall($name, $arguments);
     }
+    
+    /**
+     * Post dispatch hook method.
+     *
+     * @see Zend_Controller_Action::postDispatch()
+     */
+    public function postDispatch()
+    {
+        parent::postDispatch();
+        $this->notifyMethodCall(__FUNCTION__, array());
+    }
 
     /**
      * Logs the call to the method $method with the parameters $arguments.

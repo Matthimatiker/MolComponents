@@ -396,7 +396,9 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      */
     public function testActionIsNotCalledIfResponseContainsRedirect()
     {
-        
+        $this->response->setRedirect('http://example.com');
+        $this->dispatch('foo');
+        $this->assertFalse($this->controller->wasCalled('fooAction'), 'Action should not have been called.');
     }
     
     /**
@@ -407,7 +409,10 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
      */
     public function testPostDispatchIsCalledEvenOnRedirect()
     {
-        
+        $this->response->setRedirect('http://example.com');
+        $this->dispatch('foo');
+        $message = 'Post dispatch hook should have been called.';
+        $this->assertTrue($this->controller->wasCalled('postDispatch'), $message);
     }
 
     /**
