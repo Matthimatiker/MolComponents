@@ -387,6 +387,16 @@ class Mol_Controller_ActionParameterTest extends PHPUnit_Framework_TestCase
          $filter = new Mol_Filter_Null();
         $this->assertSame($this->controller, $this->controller->registerFilter($filter, 'x'));
     }
+    
+    public function testActionIsNotCalledIfResponseContainsRedirect()
+    {
+        
+    }
+    
+    public function testPostDispatchIsCalledEvenOnRedirect()
+    {
+        
+    }
 
     /**
      * Asserts that the action named $action was called.
