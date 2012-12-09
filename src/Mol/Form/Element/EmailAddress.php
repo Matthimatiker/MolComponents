@@ -19,37 +19,34 @@
  *
  * The element can simply be added to any Zend_Form, no further configuration
  * is required:
- * <code>
- * $email = new Mol_Form_Element_EmailAddress('email');
- * $email->setLabel('Email address');
- * $form->addElement($email);
- * </code>
+ *
+ *     $email = new Mol_Form_Element_EmailAddress('email');
+ *     $email->setLabel('Email address');
+ *     $form->addElement($email);
  *
  * Without further configuration the element will accept only
  * valid email addresses:
- * <code>
- * // Returns true:
- * $element->isValid('matthias@matthimatiker.de');
- * // Returns false:
- * $element->isValid('hello');
- * </code>
+ *
+ *     // Returns true:
+ *     $element->isValid('matthias@matthimatiker.de');
+ *     // Returns false:
+ *     $element->isValid('hello');
  *
  * Optionally the accepted hostnames can be restricted by providing
  * a whitelist:
- * <code>
- * $element->setAcceptedHostnames(array('matthimatiker.de'));
- * // Returns true:
- * $element->isValid('matthias@matthimatiker.de');
- * // Returns false:
- * $element->isValid('matthias@another-hostname.org');
- * </code>
+ *
+ *     $element->setAcceptedHostnames(array('matthimatiker.de'));
+ *     // Returns true:
+ *     $element->isValid('matthias@matthimatiker.de');
+ *     // Returns false:
+ *     $element->isValid('matthias@another-hostname.org');
  *
  * The rendered element contains a data attribute that holds a
  * comma-separated list of allowed hostnames (if at least one
  * hostname is available):
- * <code>
- * <input type="text" name="email" id="email" value="" data-allowed-hostnames="example.org,example.com" />"
- * </code>
+ *
+ *     <input type="text" name="email" id="email" value="" data-allowed-hostnames="example.org,example.com" />"
+ *
  * That information may be used for client-side validation via JavaScript.
  *
  * @category PHP
@@ -96,9 +93,8 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      * Sets the allowed hostnames.
      *
      * Example:
-     * <code>
-     * $element->setHostnames(array('example.com', 'example.org));
-     * </code>
+     *
+     *     $element->setHostnames(array('example.com', 'example.org));
      *
      * If an empty array is provided then the current hostname
      * restrictions are removed.

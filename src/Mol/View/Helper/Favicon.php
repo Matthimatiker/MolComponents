@@ -18,32 +18,28 @@
  * The following examples demonstrate the usage of this helper in views.
  *
  * The icon url is given to the entry method favicon():
- * <code>
- * <!-- Generates the markup for the icon "/favicon.ico" -->
- * <?= $this->favicon('/favicon.ico'); ?>
- * </code>
+ *
+ *     <!-- Generates the markup for the icon "/favicon.ico" -->
+ *     <?= $this->favicon('/favicon.ico'); ?>
  *
  * If the url is omitted the icon that was provided before will be used:
- * <code>
- * <?php $this->favicon('/favicon.ico'); ?>
- * <!-- Generates the markup for the icon "/favicon.ico" -->
- * <?= $this->favicon(); ?>
- * </code>
+ *
+ *     <?php $this->favicon('/favicon.ico'); ?>
+ *     <!-- Generates the markup for the icon "/favicon.ico" -->
+ *     <?= $this->favicon(); ?>
  *
  * If a icon url was provided multiple times the one that was given
  * last will be used:
- * <code>
- * <?php $this->favicon('/favicon.ico'); ?>
- * <?php $this->favicon('/another_favicon.ico'); ?>
- * <!-- Generates the markup for the icon "/another_favicon.ico" -->
- * <?= $this->favicon(); ?>
- * </code>
+ *
+ *     <?php $this->favicon('/favicon.ico'); ?>
+ *     <?php $this->favicon('/another_favicon.ico'); ?>
+ *     <!-- Generates the markup for the icon "/another_favicon.ico" -->
+ *     <?= $this->favicon(); ?>
  *
  * If no icon url is provided the helper will not  generate any markup:
- * <code>
- * <!-- Generates an empty string. -->
- * <?= $this->favicon(); ?>
- * </code>
+ *
+ *     <!-- Generates an empty string. -->
+ *     <?= $this->favicon(); ?>
  *
  * @category PHP
  * @package Mol_View

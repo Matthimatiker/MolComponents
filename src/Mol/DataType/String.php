@@ -33,29 +33,25 @@
  * # Usage #
  *
  * String objects are instantiated via create():
- * <code>
- * $stringObject = Mol_DataType_String::create('my string');
- * </code>
+ *
+ *     $stringObject = Mol_DataType_String::create('my string');
  *
  * If no charset is provided then UTF-8 is assumed, but you may
  * specify the charset of the provided string too:
- * <code>
- * $stringObject = Mol_DataType_String::create('my string', 'latin1');
- * </code>
+ *
+ *     $stringObject = Mol_DataType_String::create('my string', 'latin1');
  *
  * Once a string object is created you may use its methods to
  * inspect the string:
- * <code>
- * $stringObject->endsWith('Test');
- * </code>
+ *
+ *     $stringObject->endsWith('Test');
  *
  * All methods respect the charset if necessary, so multi-byte characters
  * are handled correctly:
- * <code>
- * $stringObject = Mol_DataType_String::create('äüö', 'UTF-8');
- * // Returns: array('ä', 'ü', 'ö')
- * $characters   = $stringObject->toCharacters();
- * </code>
+ *
+ *     $stringObject = Mol_DataType_String::create('äüö', 'UTF-8');
+ *     // Returns: array('ä', 'ü', 'ö')
+ *     $characters   = $stringObject->toCharacters();
  *
  * @category PHP
  * @package Mol_DataType
@@ -408,29 +404,29 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      * This method provides 3 signatures:
      *
      * replace(string, string):
-     * <code>
-     * $result = $myString->replace('search', 'replace');
-     * </code>
+     *
+     *     $result = $myString->replace('search', 'replace');
+     *
      * Replaces all occurrences of "search" by "replace".
      *
      * replace(array(string), string):
-     * <code>
-     * $needles = array(
-     *     'first',
-     *     'seconds'
-     * );
-     * $result = $myString->replace($needles, 'replace');
-     * </code>
+     *
+     *     $needles = array(
+     *         'first',
+     *         'seconds'
+     *     );
+     *     $result = $myString->replace($needles, 'replace');
+     *
      * Replaces all string that are contained in the $needles array by "replace".
      *
      * replace(array(string=>string)):
-     * <code>
-     * $mapping = array(
-     *     'first' => 'last',
-     *     'hello' => 'world'
-     * );
-     * $result = $myString->replace($mapping);
-     * </code>
+     *
+     *     $mapping = array(
+     *         'first' => 'last',
+     *         'hello' => 'world'
+     *     );
+     *     $result = $myString->replace($mapping);
+     *
      * Expects an associative array that represents a mapping of strings
      * as argument.
      * The keys are replaced by the assigned values.
@@ -659,9 +655,8 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      * Alias of length().
      *
      * Allows to obtain the string length by using count():
-     * <code>
-     * $length = count($myStringObject);
-     * </code>
+     *
+     *     $length = count($myStringObject);
      *
      * @return integer
      */
@@ -722,9 +717,8 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      * Alias of toString().
      *
      * Allows for outputting string objects directly:
-     * <code>
-     * echo $myStringObject;
-     * </code>
+     *
+     *     echo $myStringObject;
      *
      * @return string
      */
@@ -863,9 +857,8 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      * string value and returns the result.
      *
      * Example:
-     * <code>
-     * $trimFunction = $this->applyTrim('rtrim', 'a');
-     * </code>
+     *
+     *     $trimmed = $this->applyTrim('rtrim', 'a');
      *
      * If $characters is null then whitespace will be trimmed.
      *

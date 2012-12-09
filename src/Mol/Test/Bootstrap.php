@@ -18,22 +18,20 @@
  * # Usage #
  *
  * The static create() method may be used to instantiate a new bootstrapper:
- * <code>
- * $bootstrapper = Mol_Test_Bootstrap::create();
- * </code>
+ *
+ *     $bootstrapper = Mol_Test_Bootstrap::create();
+ *
  * This helper method automatically creates an Zend_Application object
  * that is required as constructor argument for bootstrappers.
  *
  * The method simulateResource() is used to simulated arbitrary resources:
- * <code>
- * $bootstrapper->simulateResource('view', new Zend_View());
- * </code>
+ *
+ *     $bootstrapper->simulateResource('view', new Zend_View());
  *
  * After resource injection the usual boostrapper methods may be used
  * to retrieve the simulated values:
- * <code>
- * $view = $bootstrapper->getResource('view');
- * </code>
+ *
+ *     $view = $bootstrapper->getResource('view');
  *
  * @category PHP
  * @package Mol_Test

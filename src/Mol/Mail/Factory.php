@@ -19,17 +19,17 @@
  *
  * The factory expects a list of template configurations as first constructor
  * parameter:
- * <code>
- * $settings = array(
- *     'invitation' => array(
- *         'subject' => 'Please visit our site'
- *     ),
- *     'registration' => array(
- *         'subject' => 'Thank you for registration'
- *     )
- * );
- * $factory = new Mol_Mail_Factory(new Zend_Config($settings), $view);
- * </code>
+ *
+ *     $settings = array(
+ *         'invitation' => array(
+ *             'subject' => 'Please visit our site'
+ *         ),
+ *         'registration' => array(
+ *             'subject' => 'Thank you for registration'
+ *         )
+ *     );
+ *     $factory = new Mol_Mail_Factory(new Zend_Config($settings), $view);
+ *
  * The key equals the name of the template ("invitation" and "registration"
  * this example). The template settings are assigned as value.
  *
@@ -46,27 +46,26 @@
  * * script.html (string)               - Template that renders the HTML part
  *
  * Template settings example:
- * <code>
- * $settings = array(
- *     'charset' => 'UTF-8',
- *     'subject' => 'Hello world!',
- *     'to' => array(
- *         'user@example.org',
- *         'second-user@example.org'
- *     ),
- *     'cc' => array(
- *         'another.user@example.org'
- *     ),
- *     'bcc' => array(
- *         'archive@example.com'
- *     ),
- *     'from'   => 'mailer@example.org',
- *     'script' => array(
- *         'text' => 'hello.text.phtml',
- *         'html' => 'hello.html.phtml'
- *     )
- * );
- * </code>
+ *
+ *     $settings = array(
+ *         'charset' => 'UTF-8',
+ *         'subject' => 'Hello world!',
+ *         'to' => array(
+ *             'user@example.org',
+ *             'second-user@example.org'
+ *         ),
+ *         'cc' => array(
+ *             'another.user@example.org'
+ *         ),
+ *         'bcc' => array(
+ *             'archive@example.com'
+ *         ),
+ *         'from'   => 'mailer@example.org',
+ *         'script' => array(
+ *             'text' => 'hello.text.phtml',
+ *             'html' => 'hello.html.phtml'
+ *         )
+ *     );
  *
  * @category PHP
  * @package Mol_Mail

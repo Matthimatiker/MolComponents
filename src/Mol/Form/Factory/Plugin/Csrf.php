@@ -20,17 +20,15 @@
  * ## Configuration ##
  *
  * Activate CSRF plugin without further configuration:
- * <code>
- * resources.form.plugins.csrf = "Mol_Form_Factory_Plugin_Csrf"
- * </code>
+ *
+ *     resources.form.plugins.csrf = "Mol_Form_Factory_Plugin_Csrf"
  *
  * Configure added element in detail:
- * <code>
- * resources.form.plugins.csrf.class = "Mol_Form_Factory_Plugin_Csrf"
- * resources.form.plugins.csrf.options.element.name    = "my_csrf_token"
- * resources.form.plugins.csrf.options.element.salt    = "secret-salt"
- * resources.form.plugins.csrf.options.element.timeout = 1800
- * </code>
+ *
+ *     resources.form.plugins.csrf.class = "Mol_Form_Factory_Plugin_Csrf"
+ *     resources.form.plugins.csrf.options.element.name    = "my_csrf_token"
+ *     resources.form.plugins.csrf.options.element.salt    = "secret-salt"
+ *     resources.form.plugins.csrf.options.element.timeout = 1800
  *
  * @category PHP
  * @package Mol_Form

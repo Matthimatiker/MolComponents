@@ -19,11 +19,10 @@
  * files only.
  *
  * Example:
- * <code>
- * $data = 'Hello World!';
- * // $content contains "Hello World!"
- * $content = file_get_contents(new Mol_Util_StringStream($data));
- * </code>
+ *
+ *     $data = 'Hello World!';
+ *     // $content contains "Hello World!"
+ *     $content = file_get_contents(new Mol_Util_StringStream($data));
  *
  * @category PHP
  * @package Mol_Util

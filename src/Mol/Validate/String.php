@@ -16,13 +16,12 @@
  * A validator that checks if a given value is a string.
  *
  * Example:
- * <code>
- * $validator = Mol_Validate_String();
- * // Returns false.
- * $validator->isValid(42);
- * // Returns true.
- * $validator->isValid('42');
- * </code>
+ *
+ *     $validator = Mol_Validate_String();
+ *     // Returns false.
+ *     $validator->isValid(42);
+ *     // Returns true.
+ *     $validator->isValid('42');
  *
  * @category PHP
  * @package Mol_Validate

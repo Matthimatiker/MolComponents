@@ -20,15 +20,15 @@
  * ## Creating a builder ##
  *
  * The most simple builder can be created without any constructor argument:
- * <code>
- * $builder = new Mol_Util_ObjectBuilder();
- * </code>
+ *
+ *     $builder = new Mol_Util_ObjectBuilder();
+ *
  * This builder does not enforce any type when creating objects.
  *
  * Optionally a type constraint can be passed:
- * <code>
- * $builder = new Mol_Util_ObjectBuilder('Countable');
- * </code>
+ *
+ *     $builder = new Mol_Util_ObjectBuilder('Countable');
+ *
  * This builder checks the type constraint *before* creating an object and
  * rejects instantiation requests for classes that do not fulfill the
  * type requirement.
@@ -36,31 +36,28 @@
  * and a common base class or interface is required.
  *
  * It is even possible to provide multiple type constraints:
- * <code>
- * $builder = new Mol_Util_ObjectBuilder(array('Traversable', 'Countable'));
- * </code>
+ *
+ *     $builder = new Mol_Util_ObjectBuilder(array('Traversable', 'Countable'));
+ *
  * In this case the builder will only instantiate classes that fulfill
  * *all* of the given type constraints.
  *
  * ## Building objects ##
  *
  * The create() method is used to instantiate objects of a given class:
- * <code>
- * $array = $builder->create('SplFixedArray');
- * </code>
+ *
+ *     $array = $builder->create('SplFixedArray');
  *
  * Constructor arguments can be passed as second argument:
- * <code>
- * $array = $builder->create('SplFixedArray', array(100));
- * </code>
+ *
+ *     $array = $builder->create('SplFixedArray', array(100));
  *
  * Object creation will fail with an InvalidArgumentException
  * if the type constraints are not fulfilled:
- * <code>
- * $builder = new Mol_Util_ObjectBuilder('ArrayObject');
- * // This creation will fail:
- * $array = $builder->create('SplFixedArray', array(100));
- * </code>
+ *
+ *     $builder = new Mol_Util_ObjectBuilder('ArrayObject');
+ *     // This creation will fail:
+ *     $array = $builder->create('SplFixedArray', array(100));
  *
  * @category PHP
  * @package Mol_Util

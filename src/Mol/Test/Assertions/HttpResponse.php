@@ -17,10 +17,9 @@
  *
  * Testcases may return an instance of Mol_Test_Assertions_HttpResponse to
  * support speaking method calls:
- * <code>
- * // assertResponse() returns an instance of Mol_Test_Assertions_Response
- * $this->assertResponse()->contains('Hello!');
- * </code>
+ *
+ *     // assertResponse() returns an instance of Mol_Test_Assertions_Response
+ *     $this->assertResponse()->contains('Hello!');
  *
  * @category PHP
  * @package Mol_Test
@@ -106,9 +105,8 @@ class Mol_Test_Assertions_HttpResponse
      * Returns all headers of type $name.
      *
      * Example:
-     * <code>
-     * $headers = $this->getHeaders('Content-Type');
-     * </code>
+     *
+     *     $headers = $this->getHeaders('Content-Type');
      *
      * @param string $name
      * @return array(string) All matching header values.

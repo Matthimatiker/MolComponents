@@ -25,28 +25,27 @@
  *
  * To create a mail factory without templates it is enough
  * to just activate the resource:
- * <code>
- * resources.mailer = On
- * </code>
+ *
+ *     resources.mailer = On
+ *
  * This configuration might be useful to avoid the manual creation
  * of mail objects.
  *
  * The following code can be used to create a mail object in the context
  * of an action controller:
- * <code>
- * $mail = $this->getInvokeArg('bootstrap')->getResource('mailer')->create();
- * </code>
+ *
+ *     $mail = $this->getInvokeArg('bootstrap')->getResource('mailer')->create();
  *
  *
  * ## Configuration and usage of templates ##
  *
  * Advanced features can be used by configuring mail template configuration
  * files and paths to view scripts:
- * <code>
- * resources.mailer.templates[] = APPLICATION_PATH "/mails/user-related.ini"
- * resources.mailer.templates[] = APPLICATION_PATH "/mails/notifications.ini"
- * resources.mailer.scripts[]   = APPLICATION_PATH "/mails/views"
- * </code>
+ *
+ *     resources.mailer.templates[] = APPLICATION_PATH "/mails/user-related.ini"
+ *     resources.mailer.templates[] = APPLICATION_PATH "/mails/notifications.ini"
+ *     resources.mailer.scripts[]   = APPLICATION_PATH "/mails/views"
+ *
  * Any number of template configurations and script paths can be added.
  * In case of conflict, the later defined template configurations will
  * overwrite the settings of their predecessors.
@@ -58,10 +57,10 @@
  * Assuming that the template "user-registration" is defined, then the
  * following code (in the context of an action controller) will create
  * a pre-configured mail object:
- * <code>
- * $parameters = array('userName', $name);
- * $mail       = $this->getInvokeArg('bootstrap')->getResource('mailer')->create('user-registration', $parameters);
- * </code>
+ *
+ *     $parameters = array('userName', $name);
+ *     $mail       = $this->getInvokeArg('bootstrap')->getResource('mailer')->create('user-registration', $parameters);
+ *
  * The create() method receives a template name and (optionally) a list
  * of parameters that is passed to the configured content view scripts.
  *

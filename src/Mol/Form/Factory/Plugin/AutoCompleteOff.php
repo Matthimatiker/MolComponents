@@ -20,9 +20,8 @@
  * ## Configuration ##
  *
  * Activate Autocomplete plugin:
- * <code>
- * resources.form.plugins.autoComplete = "Mol_Form_Factory_Plugin_AutoCompleteOff"
- * </code>
+ *
+ *     resources.form.plugins.autoComplete = "Mol_Form_Factory_Plugin_AutoCompleteOff"
  *
  * @category PHP
  * @package Mol_Form

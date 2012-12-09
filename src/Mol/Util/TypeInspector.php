@@ -21,9 +21,9 @@
  * # Usage #
  *
  * A new type inspector is simply created without any argument:
- * <code>
- * $inspector = new Mol_Util_TypeInspector();
- * </code>
+ *
+ *     $inspector = new Mol_Util_TypeInspector();
+ *
  * Although there is currently no internal class state, an inspector
  * object must be created to use the class.
  * This is intended, as for example a cache for already checked types
@@ -35,34 +35,30 @@
  * The TypeInspector provides several methods to check types by name.
  *
  * Simple checks test for classes and interfaces:
- * <code>
- * // Returns true.
- * $isClass = $inspector->isClass('ArrayObject');
- * // Returns false.
- * $isInterface = $inspector->isInterface('ArrayObject');
- * </code>
+ *
+ *     // Returns true.
+ *     $isClass = $inspector->isClass('ArrayObject');
+ *     // Returns false.
+ *     $isInterface = $inspector->isInterface('ArrayObject');
  *
  * The method isType() can be used if it is not important
  * whether a class or interface name is provided:
- * <code>
- * $isClassOrInterface = $inspector->isType('ArrayObject');
- * </code>
+ *
+ *     $isClassOrInterface = $inspector->isType('ArrayObject');
  *
  * The is() method can be used to perform complex type checks.
  * It checks if a given type fulfills all provided type constraints:
- * <code>
- * // Returns true, as ArrayObject is Traversable as well as Countable.
- * $constraintsFulfilled = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
- * // Returns false, as ArrayObject is Countable, but it is not an instance of SplStack.
- * $constraintsFulfilled = $inspector->is('ArrayObject', array('Countable', 'SplStack'));
- * </code>
+ *
+ *     // Returns true, as ArrayObject is Traversable as well as Countable.
+ *     $constraintsFulfilled = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
+ *     // Returns false, as ArrayObject is Countable, but it is not an instance of SplStack.
+ *     $constraintsFulfilled = $inspector->is('ArrayObject', array('Countable', 'SplStack'));
  *
  * For convenience, also a single type constraint can be passed to is().
  * The following checks are equivalent:
- * <code>
- * $inspector->is('ArrayObject', array('Countable'));
- * $inspector->is('ArrayObject', 'Countable');
- * </code>
+ *
+ *     $inspector->is('ArrayObject', array('Countable'));
+ *     $inspector->is('ArrayObject', 'Countable');
  *
  * ## Asserting type rules ##
  *
@@ -74,27 +70,24 @@
  * nothing.
  *
  * There are several assertion methods to apply simple type rules:
- * <code>
- * // Throws an exception if ArrayObject is not a class.
- * $inspector->assertClass('ArrayObject');
- * // Throws an exception if ArrayAccess is not an interface.
- * $inspector->assertInterface('ArrayAccess');
- * // Throws an exception if SplStack is neither a class nor an interface.
- * $inspector->assertType('SplStack');
- * </code>
+ *
+ *     // Throws an exception if ArrayObject is not a class.
+ *     $inspector->assertClass('ArrayObject');
+ *     // Throws an exception if ArrayAccess is not an interface.
+ *     $inspector->assertInterface('ArrayAccess');
+ *     // Throws an exception if SplStack is neither a class nor an interface.
+ *     $inspector->assertType('SplStack');
  *
  * The assertTypes() method can be used to check a list of types at once:
- * <code>
- * // Throws an exception if any of the entries is neither class nor interface.
- * $inspector->assertTypes(array('ArrayObject', 'ArrayAccess', 'SplStack'));
- * </code>
+ *
+ *     // Throws an exception if any of the entries is neither class nor interface.
+ *     $inspector->assertTypes(array('ArrayObject', 'ArrayAccess', 'SplStack'));
  *
  * Like is(), assertFulfills() can be used to check complex type rules:
- * <code>
- * // Throws an exception if ArrayObject does not fulfill all of the
- * // provided type constraints.
- * $this->assertFulfills('ArrayObject', array('Countable', 'Traversable'));
- * </code>
+ *
+ *     // Throws an exception if ArrayObject does not fulfill all of the
+ *     // provided type constraints.
+ *     $this->assertFulfills('ArrayObject', array('Countable', 'Traversable'));
  *
  * @category PHP
  * @package Mol_Util
@@ -111,16 +104,14 @@ class Mol_Util_TypeInspector
      * Checks if $name is fulfills all of the given type constraints.
      *
      * A single type can be provided as second argument:
-     * <code>
-     * // Checks if ArrayObject is of type Countable
-     * $result = $inspector->is('ArrayObject', 'Countable');
-     * </code>
+     *
+     *     // Checks if ArrayObject is of type Countable
+     *     $result = $inspector->is('ArrayObject', 'Countable');
      *
      * It is also possible to check multiple constraints at once:
-     * <code>
-     * // Checks if ArrayObject is of type Travaersable *and* Countable
-     * $result = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
-     * </code>
+     *
+     *     // Checks if ArrayObject is of type Travaersable *and* Countable
+     *     $result = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
      *
      * @param string $name The name of the type.
      * @param string|array(string) $typeOrListOfTypes

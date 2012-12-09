@@ -16,11 +16,10 @@
  * Filter that casts values to the type that was specified in the constructor.
  *
  * Example:
- * <code>
- * $filter = new Mol_Filter_Cast('integer');
- * // Returns the integer 42.
- * $filter->filter('42');
- * </code>
+ *
+ *     $filter = new Mol_Filter_Cast('integer');
+ *     // Returns the integer 42.
+ *     $filter->filter('42');
  *
  * @category PHP
  * @package Mol_Filter

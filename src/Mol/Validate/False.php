@@ -18,13 +18,12 @@
  * May be used as a null or special case object.
  *
  * The error message is customizable:
- * <code>
- * $validator = new Mol_Validate_False('Invalid');
- * // Returns false.
- * $validator->isValid('hello');
- * // Returns an array with the message "Invalid".
- * $validator->getMessages();
- * </code>
+ *
+ *     $validator = new Mol_Validate_False('Invalid');
+ *     // Returns false.
+ *     $validator->isValid('hello');
+ *     // Returns an array with the message "Invalid".
+ *     $validator->getMessages();
  *
  * @category PHP
  * @package Mol_Validate

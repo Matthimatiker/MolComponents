@@ -36,21 +36,20 @@
  *
  * Configuration options are simulated via simulateOption().
  * The following configuration...
- * <code>
- * $options = array('name' => 'Dori', 'mail' => 'dori@demo.com');
- * $this->simulateOption('demo' => $options);
- * </code>
+ *
+ *     $options = array('name' => 'Dori', 'mail' => 'dori@demo.com');
+ *     $this->simulateOption('demo' => $options);
+ *
  * ... equals this ini file configuration entries:
- * <code>
- * demo.name = "Dori"
- * demo.mail = "dori@demo.com"
- * </code>
+ *
+ *     demo.name = "Dori"
+ *     demo.mail = "dori@demo.com"
  *
  * Resources (for example database connections) may be simulated via
  * simulateResource():
- * <code>
- * $this->simulateResource('Locale', new Zend_Locale('en'));
- * </code>
+ *
+ *     $this->simulateResource('Locale', new Zend_Locale('en'));
+ *
  * The following resources are simulated per default to reduce
  * dependencies:
  *
@@ -58,38 +57,38 @@
  *
  * Front controller parameters and invoke args that are passed to
  * the constructor of the controller are simulated via setInvokeArgs():
- * <code>
- * $this->setInvokeArgs(array('displayExceptions' => true));
- * </code>
+ *
+ *     $this->setInvokeArgs(array('displayExceptions' => true));
+ *
  * A mocked bootstrapper is injected as invoke arg per default.
  *
  * The request parameters are simulated via setGet() and setPost():
- * <code>
- * $this->setGet(array('page' => '1'));
- * $this->setPost(array('search' => 'hello'));
- * </code>
+ *
+ *     $this->setGet(array('page' => '1'));
+ *     $this->setPost(array('search' => 'hello'));
+ *
  * Multiple calls to setGet() or setPost() will not clear parameters
  * that were provided previously:
- * <code>
- * $this->setGet(array('page' => '1'));
- * $this->setGet(array('name' => 'Al'));
- * </code>
+ *
+ *     $this->setGet(array('page' => '1'));
+ *     $this->setGet(array('name' => 'Al'));
+ *
  * In this example the controller will receive the GET parameters
  * "page" and "name".
  *
  * User parameters may be simulated via setUserParams():
- * <code>
- * $this->setUserParams(array('target' => 'stats'));
- * </code>
+ *
+ *     $this->setUserParams(array('target' => 'stats'));
+ *
  * Usually user parameters are passed via forwarding.
  *
  *
  * ## Execute and test ##
  *
  * For testing specific actions may be executed via dispatch():
- * <code>
- * $this->dispatch('my-action');
- * </code>
+ *
+ *     $this->dispatch('my-action');
+ *
  * The method dispatch() takes name of the action (not the name of
  * the action method) as argument.
  * During dispatching the environment is modified and another call to
@@ -100,9 +99,8 @@
  * check the results.
  * The assertions regarding the response object are accessed via
  * assertResponse():
- * <code>
- * $this->assertReponse()->contains('Test!');
- * </code>
+ *
+ *     $this->assertReponse()->contains('Test!');
  *
  *
  * ## Modify class loading behavior ##
@@ -112,21 +110,19 @@
  * via overridung getControllerClass() and/or getControllerPath().
  *
  * The method getControllerClass() returns the name of the tested controller:
- * <code>
- * protected function getControllerClass() {
- *     return 'MyController';
- * }
- * </code>
+ *
+ *     protected function getControllerClass() {
+ *         return 'MyController';
+ *     }
  *
  * The method getControllerPath() returns the path to the file that is loaded
  * if the controller class is not available yet. The file must contain the
  * controller class that is provided by getControllerClass(), otherwise an
  * exception will be thrown:
- * <code>
- * protected function getControllerPath() {
- *     return APPLICATION_PATH . '/My/Controllers/Controller.php';
- * }
- * </code>
+ *
+ *     protected function getControllerPath() {
+ *         return APPLICATION_PATH . '/My/Controllers/Controller.php';
+ *     }
  *
  * @category PHP
  * @package Mol_Test
@@ -284,16 +280,14 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Simulates POST parameters.
      *
      * The parameters may be passed as array...
-     * <code>
-     * $this->setPost(array('name' => 'Matthias'));
-     * </code>
+     *
+     *     $this->setPost(array('name' => 'Matthias'));
      *
      * ... or as Zend_Form object:
-     * <code>
-     * $form = new Zend_Form();
-     * $form->populate(array('name' => 'Matthias'));
-     * $this->setPost($form);
-     * </code>
+     *
+     *     $form = new Zend_Form();
+     *     $form->populate(array('name' => 'Matthias'));
+     *     $this->setPost($form);
      *
      * @param array(string=>string)|Zend_Form $arrayOrForm
      */
@@ -312,9 +306,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Simulates Query (GET) parameters.
      *
      * Example:
-     * <code>
-     * $this->setGet(array('page' => 1));
-     * </code>
+     *
+     *     $this->setGet(array('page' => 1));
      *
      * @param array(string=>string) $parameters
      */
@@ -329,9 +322,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Normally user parameters are passed per forwarding.
      *
      * Example:
-     * <code>
-     * $this->setUserParams(array('from' => 'previous-action'));
-     * </code>
+     *
+     *     $this->setUserParams(array('from' => 'previous-action'));
      *
      * @param array(string=>string) $parameters
      */
@@ -355,9 +347,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Simulates the named resource.
      *
      * Example:
-     * <code>
-     * $this->simulateResource('Locale', new Zend_Locale('de'));
-     * </code>
+     *
+     *     $this->simulateResource('Locale', new Zend_Locale('de'));
      *
      * @param string $name
      * @param mixed $resource
@@ -371,9 +362,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Simulates a configuration option.
      *
      * Example:
-     * <code>
-     * $this->simulateOption('app' => array('name' => 'TestApp));
-     * </code>
+     *
+     *     $this->simulateOption('app' => array('name' => 'TestApp));
      *
      * @param string $name
      * @param mixed $value
@@ -389,9 +379,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * The returned object is used to access all assertions regarding
      * the response object.
      * Example:
-     * <code>
-     * $this->assertResponse()->contains('test');
-     * </code>
+     *
+     *     $this->assertResponse()->contains('test');
      *
      * @return Mol_Test_Assertions_HttpResponse
      */
@@ -415,9 +404,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Dispatches the action with the given name:
      *
      * Example:
-     * <code>
-     * $this->dispatch('my-action');
-     * </code>
+     *
+     *     $this->dispatch('my-action');
      *
      * @param string $action
      */
@@ -437,10 +425,9 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * corresponding action method.
      *
      * Example:
-     * <code>
-     * // Returns "myTestAction".
-     * $method = $this->actioNameToMethod('my-test');
-     * </code>
+     *
+     *     // Returns "myTestAction".
+     *     $method = $this->actioNameToMethod('my-test');
      *
      * @param string $name
      * @return string

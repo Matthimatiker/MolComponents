@@ -154,29 +154,29 @@ class Mol_Util_String
      * This method provides 3 signatures:
      *
      * replace(string, string, string):
-     * <code>
-     * $result = Mol_Util_String::replace('my string', 'search', 'replace');
-     * </code>
+     *
+     *     $result = Mol_Util_String::replace('my string', 'search', 'replace');
+     *
      * Replaces all occurrences of "search" by "replace".
      *
      * replace(string, array(string), string):
-     * <code>
-     * $needles = array(
-     *     'first',
-     *     'seconds'
-     * );
-     * $result = Mol_Util_String::replace('my string', $needles, 'replace');
-     * </code>
+     *
+     *     $needles = array(
+     *         'first',
+     *         'seconds'
+     *     );
+     *     $result = Mol_Util_String::replace('my string', $needles, 'replace');
+     *
      * Replaces all string that are contained in the $needles array by "replace".
      *
      * replace(string, array(string=>string)):
-     * <code>
-     * $mapping = array(
-     *     'first' => 'last',
-     *     'hello' => 'world'
-     * );
-     * $result = Mol_Util_String::replace('my string', $mapping);
-     * </code>
+     *
+     *     $mapping = array(
+     *         'first' => 'last',
+     *         'hello' => 'world'
+     *     );
+     *     $result = Mol_Util_String::replace('my string', $mapping);
+     *
      * Expects an associative array that represents a mapping of strings
      * as argument.
      * The keys are replaced by the assigned values.

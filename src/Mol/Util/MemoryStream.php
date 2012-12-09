@@ -18,25 +18,23 @@
  * May be used with functions that usually write to files only.
  *
  * Example:
- * <code>
- * $stream = new Mol_Util_MemoryStream();
- * file_put_contents($stream, 'Hello World!');
- * </code>
+ *
+ *     $stream = new Mol_Util_MemoryStream();
+ *     file_put_contents($stream, 'Hello World!');
  *
  * In contrast to the PHP memory stream wrapper this stream allows
  * reading from the stream later, even if it was closed after
  * previous write operations:
- * <code>
- * $stream = new Mol_Util_MemoryStream();
- * $content = file_get_contents($stream);
- * </code>
+ *
+ *     $stream = new Mol_Util_MemoryStream();
+ *     $content = file_get_contents($stream);
+ *
  * The stream handle is not required.
  *
  * The stream content may be pre-filled by passing the initial data to
  * the constructor:
- * <code>
- * $stream = new Mol_Util_MemoryStream('Hello World!');
- * </code>
+ *
+ *     $stream = new Mol_Util_MemoryStream('Hello World!');
  *
  * @category PHP
  * @package Mol_Util

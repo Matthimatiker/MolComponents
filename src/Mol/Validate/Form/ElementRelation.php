@@ -22,14 +22,13 @@
  * constructor of the validator.
  *
  * Example:
- * <code>
- * // Create elements that expect date values in format yyyy-mm-dd:
- * $from = new Zend_Form_Element_Text('from);
- * $to = new Zend_Form_Element_Text('to');
- * // Ensure that the provided "to" date is only valid if it is
- * // beyond the "from" date:
- * $to->addValidator(new Mol_Validate_Form_ElementRelation('>', $from));
- * </code>
+ *
+ *     // Create elements that expect date values in format yyyy-mm-dd:
+ *     $from = new Zend_Form_Element_Text('from);
+ *     $to = new Zend_Form_Element_Text('to');
+ *     // Ensure that the provided "to" date is only valid if it is
+ *     // beyond the "from" date:
+ *     $to->addValidator(new Mol_Validate_Form_ElementRelation('>', $from));
  *
  * The constructor accepts the relation first, then the compared element.
  * That order makes it easy to read the relation rule. The example above
@@ -59,21 +58,19 @@
  *
  * The isValid() method should accept a second (for compability reasons
  * optional) value:
- * <code>
- * pblic function isValid($value, $other = null)
- * {
- * }
- * </code>
+ *
+ *     public function isValid($value, $other = null)
+ *     {
+ *     }
  *
  * The relation object is then passed to the constructor of the ElementRelation
  * validator.
  * For example we could use a custom relation validator that checks for a maximal
  * difference between two values.
  * Adding it could look like this:
- * <code>
- * $relation = new My_Custom_MaxDiffRelation(42);
- * $validator = new Mol_Validate_Form_ElementRelation($relation, $comparedElement);
- * </code>
+ *
+ *     $relation  = new My_Custom_MaxDiffRelation(42);
+ *     $validator = new Mol_Validate_Form_ElementRelation($relation, $comparedElement);
  *
  *
  * # Error messages #

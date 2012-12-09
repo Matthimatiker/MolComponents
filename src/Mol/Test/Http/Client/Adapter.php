@@ -21,21 +21,19 @@
  *
  * Per default a "400 Bad Request" response is registered. It may be
  * removed by using the following code:
- * <code>
- * $adapter->setResponse(array());
- * </code>
+ *
+ *     $adapter->setResponse(array());
  *
  * Specific responses can be registered for static urls:
- * <code>
- * $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/index.php');
- * </code>
+ *
+ *     $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/index.php');
  *
  * If multiple responses are registered for the same url then the adapter
  * will iterate over that response set as usual:
- * <code>
- * $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/index.php');
- * $adapter->addResponse($anotherResponse, 'http://www.matthimatiker.de/index.php');
- * </code>
+ *
+ *     $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/index.php');
+ *     $adapter->addResponse($anotherResponse, 'http://www.matthimatiker.de/index.php');
+ *
  * The first request for "http://www.matthimatiker.de/index.php" returns
  * $myResponse. The next request to the same url will return $anotherResponse.
  * For following requests the adapter will start from the beginning.
@@ -45,19 +43,19 @@
  * for multiple urls.
  * In the following exampple a response is registered for all html pages
  * at matthimatiker.de:
- * <code>
- * $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/*.html');
- * </code>
+ *
+ *     $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/*.html');
+ *
  * In this configuration the adapter will return $myResponse for
  * "http://www.matthimatiker.de/index.html" as well as for
  * "http://www.matthimatiker.de/login/start.html".
  *
  * If multiple url patterns match the same url the responses for the pattern
  * that was registered first will be returned:
- * <code>
- * $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/*.html');
- * $adapter->addResponse($anotherResponse, 'http://www.matthimatiker.de/demo.*');
- * </code>
+ *
+ *     $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/*.html');
+ *     $adapter->addResponse($anotherResponse, 'http://www.matthimatiker.de/demo.*');
+ *
  * Requesting "http://www.matthimatiker.de/demo.html" will return $myResponse
  * in this case.
  *

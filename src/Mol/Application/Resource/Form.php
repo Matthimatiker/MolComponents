@@ -23,17 +23,16 @@
  * ## Activation ##
  *
  * The following line is enough to activate the form factory:
- * <code>
- * resources.form = On
- * </code>
+ *
+ *     resources.form = On
  *
  * ## Adding aliases ##
  *
  * Additionally aliases can be configured:
- * <code>
- * resources.form.aliases.login        = "My_Login_Form"
- * resources.form.aliases.registration = "My_Registration_Form"
- * </code>
+ *
+ *     resources.form.aliases.login        = "My_Login_Form"
+ *     resources.form.aliases.registration = "My_Registration_Form"
+ *
  * The alias must be used as key, the form class that it
  * points to as value.
  *
@@ -44,20 +43,20 @@
  *
  * The following line activates a plugin without providing
  * further plugin options:
- * <code>
- * resources.form.plugins.myPlugin = "My_Form_Factory_Plugin"
- * </code>
+ *
+ *     resources.form.plugins.myPlugin = "My_Form_Factory_Plugin"
+ *
  * Any key can be used for plugin registration, but the value
  * must be the name of a class that implements the interface
  * Mol_Form_Factory_Plugin.
  *
  * To provide additional plugin options, the configuration
  * must use the "class" and "options" keys:
- * <code>
- * resources.form.plugins.myPlugin.class = "My_Form_Factory_Plugin"
- * resources.form.plugins.myPlugin.options.name   = "Earl"
- * resources.form.plugins.myPlugin.options.filter = On
- * </code>
+ *
+ *     resources.form.plugins.myPlugin.class = "My_Form_Factory_Plugin"
+ *     resources.form.plugins.myPlugin.options.name   = "Earl"
+ *     resources.form.plugins.myPlugin.options.filter = On
+ *
  * In this case the name of the plugin class is assigned to
  * the "class" key. The "options" key must be any map or
  * array of plugin options. These options will be directly

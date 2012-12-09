@@ -57,12 +57,11 @@ class Mol_Util_Math
      * Checks if the provided value is even.
      *
      * Example:
-     * <code>
-     * // Returns true:
-     * Mol_Util_Math::isEven(2);
-     * // Returns false:
-     * Mol_Util_Math::isEven(7);
-     * </code>
+     *
+     *     // Returns true:
+     *     Mol_Util_Math::isEven(2);
+     *     // Returns false:
+     *     Mol_Util_Math::isEven(7);
      *
      * @param integer $value
      * @return boolean True if $value is even, false otherwise.
@@ -81,12 +80,11 @@ class Mol_Util_Math
      * Checks if the provided value is odd.
      *
      * Example:
-     * <code>
-     * // Returns true:
-     * Mol_Util_Math::isOdd(3);
-     * // Returns false:
-     * Mol_Util_Math::isOdd(6);
-     * </code>
+     *
+     *     // Returns true:
+     *     Mol_Util_Math::isOdd(3);
+     *     // Returns false:
+     *     Mol_Util_Math::isOdd(6);
      *
      * @param integer $value
      * @return boolean True if $value is odd, false otherwise.

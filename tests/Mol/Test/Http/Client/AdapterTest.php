@@ -262,9 +262,8 @@ class Mol_Test_Http_Client_AdapterTest extends PHPUnit_Framework_TestCase
      * its response.
      *
      * Example:
-     * <code>
-     * $this->request('http://www.example.com/test.html');
-     * </code>
+     *
+     *     $this->request('http://www.example.com/test.html');
      *
      * @param string $url
      * @return Zend_Http_Response

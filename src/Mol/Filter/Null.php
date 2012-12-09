@@ -18,13 +18,12 @@
  * Returns the argument value without doing anything.
  *
  * Example:
- * <code>
- * $filter = new Mol_Filter_Null();
- * // Returns the integer 42.
- * $filter->filter(42);
- * // Returns the string "Hello!".
- * $filter->filter('Hello!');
- * </code>
+ *
+ *     $filter = new Mol_Filter_Null();
+ *     // Returns the integer 42.
+ *     $filter->filter(42);
+ *     // Returns the string "Hello!".
+ *     $filter->filter('Hello!');
  *
  * @category PHP
  * @package Mol_Filter

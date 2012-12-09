@@ -16,34 +16,28 @@
  * View helper that simplifies generating urls within the application.
  *
  * Create a url with the parameter "confirm" within a view:
- * <code>
- * <?= $this->to('my-action', 'my-controller', 'my-module')->withParam('confirm', 1); ?>
- * </code>
+ *
+ *     <?= $this->to('my-action', 'my-controller', 'my-module')->withParam('confirm', 1); ?>
  *
  * If the default module is addressed the module argument may be omitted:
- * <code>
- * <?= $this->to('my-action', 'my-controller'); ?>
- * </code>
+ *
+ *     <?= $this->to('my-action', 'my-controller'); ?>
  *
  * Multiple parameters may be added by using method chaining:
- * <code>
- * <?= $this->to('my-action', 'my-controller')->withParam('action', 'delete')->withParam('confirm', 1); ?>
- * </code>
+ *
+ *     <?= $this->to('my-action', 'my-controller')->withParam('action', 'delete')->withParam('confirm', 1); ?>
  *
  * Special routes may be used via withRoute():
- * <code>
- * <?= $this->to('my-action', 'my-controller')->withRoute('custom'); ?>
- * </code>
+ *
+ *     <?= $this->to('my-action', 'my-controller')->withRoute('custom'); ?>
  *
  * Add an anchor to the url:
- * <code>
- * <?= $this->to('my-action', 'my-controller')->withAnchor('info'); ?>
- * </code>
+ *
+ *     <?= $this->to('my-action', 'my-controller')->withAnchor('info'); ?>
  *
  * Append all parameters of the current request:
- * <code>
- * <?= $this->to('my-action', 'my-controller')->keepParams(); ?>
- * </code>
+ *
+ *     <?= $this->to('my-action', 'my-controller')->keepParams(); ?>
  *
  * @category PHP
  * @package Mol_View

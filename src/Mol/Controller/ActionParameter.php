@@ -21,22 +21,22 @@
  *
  * To use the controllers functionality add the required request parameters
  * as method arguments to the action:
- * <code>
- * public function myAction($page = 1 ) {
- *     // my code
- * }
- * </code>
+ *
+ *     public function myAction($page = 1 ) {
+ *         // my code
+ *     }
+ *
  * The defined default values are used if the request does not contain
  * a parameter that is named like the argument.
  *
  * To use the parameters they must be documented in the DocBlock
  * of the action method:
- * <code>
- * /**
- *  *
- *  * @param integer $page
- *  * /
- * </code>
+ *
+ *     /**
+ *      *
+ *      * @param integer $page
+ *      * /
+ *
  * The controller uses the DocBlock to determine the expected parameter
  * type and performs a validation. If the validation was succesful
  * the parameter is casted to the required type.
@@ -60,9 +60,9 @@
  * If needed arbitrary types may be added to the controller.
  * Therefore a validator of the type Zend_Validate_Interface must be registered
  * via registerValidator() for the new parameter type:
- * <code>
- * $controller->registerValidator(new MyDateValidator(), 'Datetime');
- * </code>
+ *
+ *     $controller->registerValidator(new MyDateValidator(), 'Datetime');
+ *
  * Thats enough to gain basic support for that type. If a action parameter
  * of the type "Datetime" is documented the controller will use the registered
  * validator to perform an argument check.
@@ -72,9 +72,9 @@
  *
  * If an automatic conversion is desired an additional filter of the type
  * Zend_Filter_Interface must be registered for the new type:
- * <code>
- * $controller->registerFilter(new MyDateFilter(), 'Datetime');
- * </code>
+ *
+ *     $controller->registerFilter(new MyDateFilter(), 'Datetime');
+ *
  * After successful validation the filter will be applied to the parameter.
  * For example our filter could convert the string to a real Datetime object
  * that will be passed to the action.
@@ -344,14 +344,12 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      * Registers a validator for the given parameter types.
      *
      * The validator may be registered either for a single type...
-     * <code>
-     * $controller->registerValidator($myValidator, 'myType');
-     * </code>
+     *
+     *     $controller->registerValidator($myValidator, 'myType');
      *
      * ... or for multiple types at once by passing an array:
-     * <code>
-     * $controller->registerValidator($myValidator, array('myType', 'anotherType'));
-     * </code>
+     *
+     *     $controller->registerValidator($myValidator, array('myType', 'anotherType'));
      *
      * @param Zend_Validate_Interface $validator
      * @param string|array(string) $typeOrTypeList
@@ -409,14 +407,12 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      * Registers a filter for the given parameter types.
      *
      * The filter may be registered either for a single type...
-     * <code>
-     * $controller->registerFilter($myFilter, 'myType');
-     * </code>
+     *
+     *     $controller->registerFilter($myFilter, 'myType');
      *
      * ... or for multiple types at once by passing an array:
-     * <code>
-     * $controller->registerValidator($myFilter, array('myType', 'anotherType'));
-     * </code>
+     *
+     *     $controller->registerValidator($myFilter, array('myType', 'anotherType'));
      *
      * @param Zend_Filter_Interface $filter
      * @param string|array(string) $typeOrTypeList

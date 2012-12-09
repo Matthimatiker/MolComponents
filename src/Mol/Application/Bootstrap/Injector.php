@@ -19,21 +19,20 @@
  * # Usage #
  *
  * Create an injector:
- * <code>
- * $injector = new Mol_Application_Bootstrap_Injector($myBootstrapper);
- * </code>
+ *
+ *     $injector = new Mol_Application_Bootstrap_Injector($myBootstrapper);
  *
  * Inject the bootstrapper into an object:
- * <code>
- * $injector->inject($object);
- * </code>
+ *
+ *     $injector->inject($object);
+ *
  * If the given value is not bootstrap aware, then the injector
  * will just ignore it.
  *
  * The injector will also ignore non-objects:
- * <code>
- * $value = $injector->inject(null);
- * </code>
+ *
+ *     $value = $injector->inject(null);
+ *
  * The method inject() returns the provided value afterwards.
  *
  * @category PHP
@@ -76,18 +75,17 @@ class Mol_Application_Bootstrap_Injector
      * The inject() method always returns the object that was provided as value.
      *
      * Examples:
-     * <code>
-     * // Does not try to inject and returns the object:
-     * $object = $injector->inject(new stdClass());
      *
-     * // Does not try to inject and returns the provided value.
-     * $value = $injector->inject(null);
+     *     // Does not try to inject and returns the object:
+     *     $object = $injector->inject(new stdClass());
      *
-     * // $bootstrapAwareObject implements Mol_Application_Bootstrap_Aware,
-     * // therefore the injector calls setBootstrap() to inject the
-     * // bootstrapper and returns the object.
-     * $object = $injector->inject($bootstrapAwareObject);
-     * </code>
+     *     // Does not try to inject and returns the provided value.
+     *     $value = $injector->inject(null);
+     *
+     *     // $bootstrapAwareObject implements Mol_Application_Bootstrap_Aware,
+     *     // therefore the injector calls setBootstrap() to inject the
+     *     // bootstrapper and returns the object.
+     *     $object = $injector->inject($bootstrapAwareObject);
      *
      * @param Mol_Application_Bootstrap_Aware|mixed $object
      * @return Mol_Application_Bootstrap_Aware|mixed The provided object.
