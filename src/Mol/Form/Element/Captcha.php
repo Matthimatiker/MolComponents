@@ -29,4 +29,22 @@
 class Mol_Form_Element_Captcha extends Zend_Form_Element_Captcha
 {
     
+    /**
+     * Checks if the captcha was already solved.
+     *
+     * @return boolean
+     */
+    protected function isSolved()
+    {
+        
+    }
+    
+    /**
+     * Marks the captcha as solved.
+     */
+    protected function markAsSolved()
+    {
+        
+    }
+    
 }
