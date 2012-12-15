@@ -33,4 +33,34 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Form_Element_CaptchaTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testCaptchaIsInitiallyNotMarkedAsSolved()
+    {
+        
+    }
+    
+    public function testCaptchaIsMarkedAsSolvedAfterSuccessfulValidation()
+    {
+        
+    }
+    
+    public function testCaptchaIsNotMarkedAsSolvedIfValidationFails()
+    {
+        
+    }
+    
+    public function testCaptchaIsMarkedAsSolvedIfSessionFromSuccessfullyValidatedElementIsUsed()
+    {
+        
+    }
+    
+    public function testElementRendersCaptchaIfItIsNotMarkedAsSolved()
+    {
+        
+    }
+    
+    public function testElementDoesNotRenderCaptchaIfIsAlreadyMarkedAsSolved()
+    {
+        
+    }
+    
 }
