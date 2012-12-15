@@ -34,7 +34,7 @@ class Mol_Form_Element_Captcha extends Zend_Form_Element_Captcha
      *
      * @return boolean
      */
-    protected function isSolved()
+    public function isSolved()
     {
         
     }
