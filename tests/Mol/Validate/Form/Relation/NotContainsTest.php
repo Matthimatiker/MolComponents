@@ -33,31 +33,55 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_Form_Relation_NotContainsTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Checks if the validator accepts a value that does not contain the
+     * compared value.
+     */
     public function testValidatorAcceptsValueThatDoesNotContainComparedValue()
     {
         
     }
     
+    /**
+     * Ensures that the validator rejects a value that starts with the
+     * compared value.
+     */
     public function testValidatorRejectsValueThatStartsWithComparedValue()
     {
         
     }
     
+    /**
+     * Ensures that the validator rejects a value that contains the
+     * compared value.
+     */
     public function testValidatorRejectsValueThatContainsComparedValue()
     {
     
     }
     
+    /**
+     * Ensures that the validator rejects a value that ends with the
+     * compared value.
+     */
     public function testValidatorRejectsValueThatEndsWithComparedValue()
     {
     
     }
     
+    /**
+     * Ensures that the validator rejects a value that equals the
+     * compared value.
+     */
     public function testValidatorRejectsValueThatEqualsComparedValue()
     {
     
     }
     
+    /**
+     * Ensures that the validator provides a failure message if the
+     * value is rejected.
+     */
     public function testValidatorProvidesFailureMessageIfValueIsRejected()
     {
         
