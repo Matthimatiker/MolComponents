@@ -15,7 +15,7 @@
 /**
  * Encapsulates assertions regarding the response object.
  *
- * Testcases may return an instance of Mol_Test_Assertions_HttpResponse to
+ * Test cases may return an instance of Mol_Test_Assertions_HttpResponse to
  * support speaking method calls:
  *
  *     // assertResponse() returns an instance of Mol_Test_Assertions_Response
