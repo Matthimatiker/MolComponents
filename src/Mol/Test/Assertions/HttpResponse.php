@@ -31,6 +31,7 @@
  */
 class Mol_Test_Assertions_HttpResponse
 {
+    
     /**
      * The tested response.
      *
