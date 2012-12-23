@@ -28,4 +28,16 @@
 class Mol_Validate_Form_Relation_NotContains extends Zend_Validate_Abstract
 {
     
+    /**
+     * Checks if $value does not contain $other.
+     *
+     * @param string $value
+     * @param string $other
+     * @return boolean True if $values does not contain $other, false otherwise.
+     */
+    public function isValid($value, $other = null)
+    {
+        
+    }
+    
 }
