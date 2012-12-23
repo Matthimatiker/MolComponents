@@ -29,7 +29,8 @@ class Mol_Validate_Form_Relation_NotContains extends Zend_Validate_Abstract
 {
     
     /**
-     * Identifier for failure message if values are equal.
+     * Identifier for failure message if value contains
+     * the compared value.
      *
      * @var string
      */
