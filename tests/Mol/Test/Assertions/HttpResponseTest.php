@@ -98,4 +98,59 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     
     }
     
+    public function testContainsFailsIfBodyDoesNotContainTheExpectedString()
+    {
+        
+    }
+    
+    public function testContainsSucceedsIfBodyContainsTheExpectedString()
+    {
+    
+    }
+    
+    public function testNotContainsFailsIfBodyContainsTheGivenString()
+    {
+        
+    }
+    
+    public function testNotContainsSucceedsIfBodyDoesNotContainTheGivenString()
+    {
+        
+    }
+    
+    public function testContainsImageFailsIfBodyDoesNotContainImage()
+    {
+        
+    }
+    
+    public function testContainsImageFailsIfImageContentTypeIsMissing()
+    {
+        
+    }
+    
+    public function testContainsImageFailsIfTypeOfImageAndContentTypeDoNotMatch()
+    {
+        
+    }
+    
+    public function testContainsImageSucceedsIfBodyContainsImageAndHeaderIsCorrect()
+    {
+    
+    }
+    
+    public function testContainsJsonFailsIfBodyDoesNotContainJsonData()
+    {
+        
+    }
+    
+    public function testContainsJsonFailsIfContentTypeDoesNotIndicateJsonFormat()
+    {
+        
+    }
+    
+    public function testContainsJsonSucceedsIfBodyContainsJsonAndContentTypeIndicatesFormat()
+    {
+        
+    }
+    
 }
