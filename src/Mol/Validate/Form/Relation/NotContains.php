@@ -29,6 +29,22 @@ class Mol_Validate_Form_Relation_NotContains extends Zend_Validate_Abstract
 {
     
     /**
+     * Identifier for failure message if values are equal.
+     *
+     * @var string
+     */
+    const CONTAINS = 'relationNotContainsValueContains';
+    
+    /**
+     * Failure message templates.
+     *
+     * @var array(string=>string)
+     */
+    protected $_messageTemplates = array(
+        self::CONTAINS => "Input must not contain '%compareLabel%'"
+    );
+    
+    /**
      * Checks if $value does not contain $other.
      *
      * @param string $value
@@ -37,7 +53,12 @@ class Mol_Validate_Form_Relation_NotContains extends Zend_Validate_Abstract
      */
     public function isValid($value, $other = null)
     {
-        
+        $this->_setValue($value);
+        if (strpos($value, $other) !== false) {
+            $this->_error(self::CONTAINS);
+            return false;
+        }
+        return true;
     }
     
 }
