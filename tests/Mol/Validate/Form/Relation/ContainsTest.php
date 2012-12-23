@@ -33,4 +33,35 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testValidatorRejectsValueThatDoesNotContainComparedValue()
+    {
+        
+    }
+    
+
+    public function testValidatorAcceptsValueThatStartsWithComparedValue()
+    {
+        
+    }
+    
+    public function testValidatorAcceptsValueThatContainsComparedValue()
+    {
+        
+    }
+    
+    public function testValidatorAcceptsValueThatEndsWithComparedValue()
+    {
+        
+    }
+    
+    public function testValidatorAcceptsValueThatEqualsComparedValue()
+    {
+        
+    }
+    
+    public function testValidatorProvidesFailureMessageIfValueIsRejected()
+    {
+        
+    }
+    
 }
