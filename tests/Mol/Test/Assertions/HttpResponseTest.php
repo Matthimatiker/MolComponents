@@ -33,16 +33,28 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Ensures that the creation of the assertion object fails if no
+     * valid HTTP response object is provided.
+     */
     public function testCreatingObjectForNonResponseFails()
     {
         
     }
     
+    /**
+     * Ensures that hasCode() fails if the status code of the response
+     * does not match the expected one.
+     */
     public function testHasCodeFailsIfCodeDiffers()
     {
         
     }
     
+    /**
+     * Ensures hasCode() succeeds if the response contains the expected
+     * status code.
+     */
     public function testHasCodeSucceedsIfExpectedCodeIsPresent()
     {
         
