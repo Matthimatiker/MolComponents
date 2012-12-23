@@ -64,7 +64,7 @@ class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsValueThatDoesNotContainComparedValue()
     {
-        
+        $this->assertFalse($this->validator->isValid('value', 'other'));
     }
 
     /**
@@ -73,7 +73,7 @@ class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsValueThatStartsWithComparedValue()
     {
-        
+        $this->assertTrue($this->validator->isValid('test value', 'test'));
     }
     
     /**
@@ -82,7 +82,7 @@ class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsValueThatContainsComparedValue()
     {
-        
+        $this->assertTrue($this->validator->isValid('test value', 'st va'));
     }
     
     /**
@@ -91,7 +91,7 @@ class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsValueThatEndsWithComparedValue()
     {
-        
+        $this->assertTrue($this->validator->isValid('test value', 'value'));
     }
     
     /**
@@ -100,7 +100,7 @@ class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsValueThatEqualsComparedValue()
     {
-        
+        $this->assertTrue($this->validator->isValid('test value', 'test value'));
     }
     
     /**
@@ -109,7 +109,10 @@ class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesFailureMessageIfValueIsRejected()
     {
-        
+        $this->validator->isValid('test value', 'other');
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
