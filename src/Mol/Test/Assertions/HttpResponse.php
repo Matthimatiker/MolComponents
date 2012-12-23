@@ -103,28 +103,6 @@ class Mol_Test_Assertions_HttpResponse
     }
 
     /**
-     * Returns all headers of type $name.
-     *
-     * Example:
-     *
-     *     $headers = $this->getHeaders('Content-Type');
-     *
-     * @param string $name
-     * @return array(string) All matching header values.
-     */
-    protected function getHeaders($name)
-    {
-        $headers = array();
-        foreach ($this->response->getHeaders() as $headerData) {
-            /* @var $headerData array */
-            if ($headerData['name'] === $name) {
-                $headers[] = $headerData['value'];
-            }
-        }
-        return $headers;
-    }
-
-    /**
      * Asserts that the reponse body contains the expected text.
      *
      * @param string $needle The text.
@@ -176,6 +154,28 @@ class Mol_Test_Assertions_HttpResponse
             PHPUnit_Framework_Assert::fail('Invalid JSON data found: ' . $e->getMessage());
         }
         $this->headerEquals('Content-Type', 'application/json');
+    }
+    
+    /**
+     * Returns all headers of type $name.
+     *
+     * Example:
+     *
+     *     $headers = $this->getHeaders('Content-Type');
+     *
+     * @param string $name
+     * @return array(string) All matching header values.
+     */
+    protected function getHeaders($name)
+    {
+        $headers = array();
+        foreach ($this->response->getHeaders() as $headerData) {
+            /* @var $headerData array */
+            if ($headerData['name'] === $name) {
+                $headers[] = $headerData['value'];
+            }
+        }
+        return $headers;
     }
 
 }
