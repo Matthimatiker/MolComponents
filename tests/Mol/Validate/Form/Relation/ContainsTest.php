@@ -34,6 +34,31 @@ class Mol_Validate_Form_Relation_ContainsTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Validate_Form_Relation_Contains
+     */
+    protected $validator = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->validator = new Mol_Validate_Form_Relation_Contains();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->validator = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that the validator rejects a value that does not contain the
      * compared value.
      */
