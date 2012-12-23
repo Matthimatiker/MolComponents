@@ -242,6 +242,8 @@ Currently, the library provides the following relation validators (the correspon
  * GreaterThan (>)
  * LessThanOrEqual (<=)
  * GreaterThanOrEqual (>=)
+ * Contains
+ * NotContains
 
 ### Simplified url generation ###
 
