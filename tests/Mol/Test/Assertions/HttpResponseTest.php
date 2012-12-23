@@ -14,6 +14,11 @@
  */
 
 /**
+ * Initializes the test environment.
+ */
+require_once(dirname(__FILE__) . '/bootstrap.php');
+
+/**
  * Tests the HttpResponse assertions.
  *
  * @category PHP
@@ -27,5 +32,70 @@
  */
 class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
 {
+    
+    public function testCreatingObjectForNonResponseFails()
+    {
+        
+    }
+    
+    public function testHasCodeFailsIfCodeDiffers()
+    {
+        
+    }
+    
+    public function testHasCodeSucceedsIfExpectedCodeIsPresent()
+    {
+        
+    }
+    
+    public function testHasHeaderSucceedsIfExpectedHeaderIsPresent()
+    {
+        
+    }
+    
+    public function testHasHeaderSucceedsIfExpectedHeaderIsPresentMultipleTimes()
+    {
+    
+    }
+    
+    public function testHasHeaderFailsIfHeaderIsMissing()
+    {
+        
+    }
+    
+    public function testNotHasHeaderSucceedsIfHeaderIsNotPresent()
+    {
+        
+    }
+    
+    public function testNotHasHeaderFailsIfHeaderIsPresentOnce()
+    {
+    
+    }
+    
+    public function testNotHasHeaderFailsIfHeaderIsPresentMultipleTimes()
+    {
+    
+    }
+    
+    public function testHeaderEqualsFailsIfHeaderIsNotPresent()
+    {
+        
+    }
+    
+    public function testHeaderEqualsFailsIfHeaderIsPresentMultipleTimes()
+    {
+    
+    }
+    
+    public function testHeaderEqualsFailsIfHeaderIsPresentButNotEqual()
+    {
+    
+    }
+    
+    public function testHeaderEqualsSucceedsIfHeaderIsPresentOnceAndEqual()
+    {
+    
+    }
     
 }
