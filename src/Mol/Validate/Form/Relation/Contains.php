@@ -54,7 +54,12 @@ class Mol_Validate_Form_Relation_Contains extends Zend_Validate_Abstract
      */
     public function isValid($value, $other = null)
     {
-        
+        $this->_setValue($value);
+        if (strpos($value, $other) === false) {
+            $this->_error(self::NOT_CONTAINS);
+            return false;
+        }
+        return true;
     }
     
 }
