@@ -83,7 +83,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHasCodeFailsIfCodeDiffers()
     {
-        
+        $this->assertFailure();
+        $this->assertions->hasCode(400);
     }
     
     /**
@@ -92,7 +93,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHasCodeSucceedsIfExpectedCodeIsPresent()
     {
-        
+        $this->assertSuccess();
+        $this->assertions->hasCode(200);
     }
     
     /**
@@ -101,7 +103,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHeaderSucceedsIfExpectedHeaderIsPresent()
     {
-        
+        $this->assertSuccess();
+        $this->assertions->hasHeader('Content-Type');
     }
     
     /**
@@ -110,7 +113,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHeaderSucceedsIfExpectedHeaderIsPresentMultipleTimes()
     {
-    
+        $this->assertSuccess();
+        $this->assertions->hasHeader('X-Multiple-Times');
     }
     
     /**
@@ -119,7 +123,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHeaderFailsIfHeaderIsMissing()
     {
-        
+        $this->assertFailure();
+        $this->assertions->hasHeader('X-Missing');
     }
     
     /**
@@ -128,7 +133,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testNotHasHeaderSucceedsIfHeaderIsNotPresent()
     {
-        
+        $this->assertSuccess();
+        $this->assertions->notHasHeader('X-Missing');
     }
     
     /**
@@ -137,7 +143,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testNotHasHeaderFailsIfHeaderIsPresentOnce()
     {
-    
+        $this->assertFailure();
+        $this->assertions->notHasHeader('Content-Type');
     }
     
     /**
@@ -146,7 +153,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testNotHasHeaderFailsIfHeaderIsPresentMultipleTimes()
     {
-    
+        $this->assertFailure();
+        $this->assertions->notHasHeader('X-Multiple-Times');
     }
     
     /**
@@ -155,7 +163,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHeaderEqualsFailsIfHeaderIsNotPresent()
     {
-        
+        $this->assertFailure();
+        $this->assertions->headerEquals('X-Missing', 'expected content');
     }
     
     /**
@@ -164,7 +173,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHeaderEqualsFailsIfHeaderIsPresentMultipleTimes()
     {
-    
+        $this->assertFailure();
+        $this->assertions->headerEquals('X-Multiple-Times', 'expected content');
     }
     
     /**
@@ -174,7 +184,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHeaderEqualsFailsIfHeaderIsPresentButNotEqual()
     {
-    
+        $this->assertFailure();
+        $this->assertions->headerEquals('Content-Type', 'text/xml');
     }
     
     /**
@@ -183,7 +194,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testHeaderEqualsSucceedsIfHeaderIsPresentOnceAndEqual()
     {
-    
+        $this->assertSuccess();
+        $this->assertions->headerEquals('Content-Type', 'text/html');
     }
     
     /**
@@ -192,7 +204,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsFailsIfBodyDoesNotContainTheExpectedString()
     {
-        
+        $this->assertFailure();
+        $this->assertions->contains('universe');
     }
     
     /**
@@ -201,7 +214,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsSucceedsIfBodyContainsTheExpectedString()
     {
-    
+        $this->assertSuccess();
+        $this->assertions->contains('world');
     }
     
     /**
@@ -210,7 +224,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testNotContainsFailsIfBodyContainsTheGivenString()
     {
-        
+        $this->assertFailure();
+        $this->assertions->notContains('world');
     }
     
     /**
@@ -219,7 +234,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testNotContainsSucceedsIfBodyDoesNotContainTheGivenString()
     {
-        
+        $this->assertSuccess();
+        $this->assertions->notContains('universe');
     }
     
     /**
@@ -228,7 +244,9 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsImageFailsIfBodyDoesNotContainImage()
     {
-        
+        $this->assertFailure();
+        $this->response->setHeader('Content-Type', 'image/png', true);
+        $this->assertions->containsImage();
     }
     
     /**
@@ -237,7 +255,9 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsImageFailsIfImageContentTypeIsMissing()
     {
-        
+        $this->assertFailure();
+        $this->insertImageInto($this->response);
+        $this->assertions->containsImage();
     }
     
     /**
@@ -246,7 +266,10 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsImageFailsIfTypeOfImageAndContentTypeDoNotMatch()
     {
-        
+        $this->assertFailure();
+        $this->response->setHeader('Content-Type', 'image/gif', true);
+        $this->insertImageInto($this->response);
+        $this->assertions->containsImage();
     }
     
     /**
@@ -255,7 +278,10 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsImageSucceedsIfBodyContainsImageAndHeaderIsCorrect()
     {
-    
+        $this->assertSuccess();
+        $this->response->setHeader('Content-Type', 'image/png', true);
+        $this->insertImageInto($this->response);
+        $this->assertions->containsImage();
     }
     
     /**
@@ -264,7 +290,9 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsJsonFailsIfBodyDoesNotContainJsonData()
     {
-        
+        $this->assertFailure();
+        $this->response->setHeader('Content-Type', 'application/json', true);
+        $this->assertions->containsJson();
     }
     
     /**
@@ -273,7 +301,9 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsJsonFailsIfContentTypeDoesNotIndicateJsonFormat()
     {
-        
+        $this->assertFailure();
+        $this->insertJsonInto($this->response);
+        $this->assertions->containsJson();
     }
     
     /**
@@ -282,7 +312,10 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsJsonSucceedsIfBodyContainsJsonAndContentTypeIndicatesFormat()
     {
-        
+        $this->assertSuccess();
+        $this->response->setHeader('Content-Type', 'application/json', true);
+        $this->insertJsonInto($this->response);
+        $this->assertions->containsJson();
     }
     
     /**
@@ -302,6 +335,31 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Inserts a PNG test image into the given response.
+     *
+     * @param Zend_Controller_Response_Http $response
+     */
+    protected function insertImageInto(Zend_Controller_Response_Http $response)
+    {
+        $path    = dirname(__FILE__) . '/TestData/test.png';
+        $content = file_get_contents($path);
+        $response->setBody($content);
+    }
+    
+    /**
+     * Inserts JSON data into the given response.
+     *
+     * @param Zend_Controller_Response_Http $response
+     */
+    protected function insertJsonInto(Zend_Controller_Response_Http $response)
+    {
+        $data = new stdClass();
+        $data->a = 'b';
+        $data->c = 'd';
+        $response->setBody(json_encode($data));
+    }
+    
+    /**
      * Creates a pre-configured response for testing.
      *
      * @return Zend_Controller_Response_HttpTestCase
@@ -309,6 +367,11 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     protected function createResponse()
     {
         $response = new Zend_Controller_Response_HttpTestCase();
+        $response->setHttpResponseCode(200);
+        $response->setHeader('Content-Type', 'text/html', true);
+        $response->setHeader('X-Multiple-Times', 'a', false);
+        $response->setHeader('X-Multiple-Times', 'b', false);
+        $response->setHeader('X-Multiple-Times', 'c', false);
         $response->setBody('Hello world!');
         return $response;
     }
