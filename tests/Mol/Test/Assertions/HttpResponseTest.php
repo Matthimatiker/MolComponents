@@ -294,6 +294,14 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Asserts that the current test will succeed.
+     */
+    protected function assertSuccess()
+    {
+        $this->setExpectedException(null);
+    }
+    
+    /**
      * Creates a pre-configured response for testing.
      *
      * @return Zend_Controller_Response_HttpTestCase
