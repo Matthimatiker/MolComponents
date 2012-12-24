@@ -151,56 +151,100 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     
     }
     
+    /**
+     * Ensures that contains() fails if the response body does not contain
+     * the expected string.
+     */
     public function testContainsFailsIfBodyDoesNotContainTheExpectedString()
     {
         
     }
     
+    /**
+     * Ensures that contains() succeeds if the response body contains the
+     * expected string.
+     */
     public function testContainsSucceedsIfBodyContainsTheExpectedString()
     {
     
     }
     
+    /**
+     * Ensures that notContains() fails if the response body contains
+     * the provided string.
+     */
     public function testNotContainsFailsIfBodyContainsTheGivenString()
     {
         
     }
     
+    /**
+     * Ensures that notContains() succeeds if the response body does not
+     * contain the provided string.
+     */
     public function testNotContainsSucceedsIfBodyDoesNotContainTheGivenString()
     {
         
     }
     
+    /**
+     * Ensures that containsImage() fails if the response body does not
+     * contain a valid image.
+     */
     public function testContainsImageFailsIfBodyDoesNotContainImage()
     {
         
     }
     
+    /**
+     * Ensures that containsImage() fails if no image content type
+     * is provided.
+     */
     public function testContainsImageFailsIfImageContentTypeIsMissing()
     {
         
     }
     
+    /**
+     * Ensures that containsImage() fails if the image type in the header and
+     * the image data in the response body do not fit together.
+     */
     public function testContainsImageFailsIfTypeOfImageAndContentTypeDoNotMatch()
     {
         
     }
     
+    /**
+     * Ensures that containsImage() succeeds if the response body contains image
+     * data and a matching image header is provided.
+     */
     public function testContainsImageSucceedsIfBodyContainsImageAndHeaderIsCorrect()
     {
     
     }
     
+    /**
+     * Ensures that containsJson() fails if the response body does not
+     * contain JSON data.
+     */
     public function testContainsJsonFailsIfBodyDoesNotContainJsonData()
     {
         
     }
     
+    /**
+     * Ensures that containsJson() fails if the response body contains JSON data,
+     * but the content type header does not indicate JSON.
+     */
     public function testContainsJsonFailsIfContentTypeDoesNotIndicateJsonFormat()
     {
         
     }
     
+    /**
+     * Ensures that containsJson() succeeds if the response body contains JSON data
+     * and a corresponding header is provided.
+     */
     public function testContainsJsonSucceedsIfBodyContainsJsonAndContentTypeIndicatesFormat()
     {
         
