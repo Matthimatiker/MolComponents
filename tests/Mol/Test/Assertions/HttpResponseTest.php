@@ -60,51 +60,92 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that hasHeader() succeeds if the response contains the
+     * expected header.
+     */
     public function testHasHeaderSucceedsIfExpectedHeaderIsPresent()
     {
         
     }
     
+    /**
+     * Ensures that hasHeader() succeeds if the response contains the
+     * expected header multiple times.
+     */
     public function testHasHeaderSucceedsIfExpectedHeaderIsPresentMultipleTimes()
     {
     
     }
     
+    /**
+     * Ensures that hasHeader() fails if the response does not contain
+     * the expected header.
+     */
     public function testHasHeaderFailsIfHeaderIsMissing()
     {
         
     }
     
+    /**
+     * Ensures that notHasHeader() succeeds if the given header is not
+     * present in the response.
+     */
     public function testNotHasHeaderSucceedsIfHeaderIsNotPresent()
     {
         
     }
     
+    /**
+     * Ensures that notHasHeader() fails if the response contains the
+     * provided header once.
+     */
     public function testNotHasHeaderFailsIfHeaderIsPresentOnce()
     {
     
     }
     
+    /**
+     * Ensures that notHasHeader() fails if the response contains the
+     * provided header multiple times.
+     */
     public function testNotHasHeaderFailsIfHeaderIsPresentMultipleTimes()
     {
     
     }
     
+    /**
+     * Ensures that headerEquals() fails if the response does not contain
+     * the expected header.
+     */
     public function testHeaderEqualsFailsIfHeaderIsNotPresent()
     {
         
     }
     
+    /**
+     * Ensures that headerEquals() fails if the response contains
+     * the provided header multiple times.
+     */
     public function testHeaderEqualsFailsIfHeaderIsPresentMultipleTimes()
     {
     
     }
     
+    /**
+     * Ensures that headerEquals() fails if the response contains the
+     * provided header once, but its content differs from the expected
+     * value.
+     */
     public function testHeaderEqualsFailsIfHeaderIsPresentButNotEqual()
     {
     
     }
     
+    /**
+     * Ensures that headerEquals() succeeds if the header is present exactly
+     * once and it has the expected content.
+     */
     public function testHeaderEqualsSucceedsIfHeaderIsPresentOnceAndEqual()
     {
     
