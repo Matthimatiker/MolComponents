@@ -34,6 +34,40 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Test_Assertions_HttpResponse
+     */
+    protected $assertions = null;
+    
+    /**
+     * The response that is used for testing.
+     *
+     * @var Zend_Controller_Response_HttpTestCase
+     */
+    protected $response = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->response   = new Zend_Controller_Response_HttpTestCase();
+        $this->assertions = new Mol_Test_Assertions_HttpResponseTest($this->response);
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->assertions = null;
+        $this->response   = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that the creation of the assertion object fails if no
      * valid HTTP response object is provided.
      */
