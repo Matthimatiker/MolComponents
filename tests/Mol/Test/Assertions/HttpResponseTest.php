@@ -54,7 +54,7 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->response   = $this->createResponse();
-        $this->assertions = new Mol_Test_Assertions_HttpResponseTest($this->response);
+        $this->assertions = new Mol_Test_Assertions_HttpResponse($this->response);
     }
     
     /**
