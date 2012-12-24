@@ -53,7 +53,7 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->response   = new Zend_Controller_Response_HttpTestCase();
+        $this->response   = $this->createResponse();
         $this->assertions = new Mol_Test_Assertions_HttpResponseTest($this->response);
     }
     
@@ -73,7 +73,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testCreatingObjectForNonResponseFails()
     {
-        
+        $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException');
+        new Mol_Test_Assertions_HttpResponse(new stdClass());
     }
     
     /**
@@ -282,6 +283,18 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     public function testContainsJsonSucceedsIfBodyContainsJsonAndContentTypeIndicatesFormat()
     {
         
+    }
+    
+    /**
+     * Creates a pre-configured response for testing.
+     *
+     * @return Zend_Controller_Response_HttpTestCase
+     */
+    protected function createResponse()
+    {
+        $response = new Zend_Controller_Response_HttpTestCase();
+        $response->setBody('Hello world!');
+        return $response;
     }
     
 }
