@@ -46,7 +46,7 @@ class Mol_Test_Assertions_HttpResponse
      */
     public function __construct($response)
     {
-        PHPUnit_Framework_Assert::assertType('Zend_Controller_Response_Http', $response);
+        PHPUnit_Framework_Assert::assertInstanceOf('Zend_Controller_Response_Http', $response);
         $this->response = $response;
     }
 
