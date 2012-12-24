@@ -323,7 +323,7 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     protected function assertFailure()
     {
-        $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException');
+        $this->setExpectedException('PHPUnit_Framework_AssertionFailedError');
     }
     
     /**
