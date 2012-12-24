@@ -73,7 +73,7 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testCreatingObjectForNonResponseFails()
     {
-        $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException');
+        $this->assertFailure();
         new Mol_Test_Assertions_HttpResponse(new stdClass());
     }
     
@@ -283,6 +283,14 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     public function testContainsJsonSucceedsIfBodyContainsJsonAndContentTypeIndicatesFormat()
     {
         
+    }
+    
+    /**
+     * Asserts that the current test will fail.
+     */
+    protected function assertFailure()
+    {
+        $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException');
     }
     
     /**
