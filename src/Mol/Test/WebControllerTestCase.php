@@ -169,7 +169,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * The simulated invoke args.
      *
      * @var array(string=>mixed)
-     * @deprecated Will not be supported anymore.
+     * @deprecated Will not be supported anymore. Alternatively an ArrayObject may
+     *             be used to manipulate the invoke args by reference.
      */
     private $invokeArgs = null;
 
