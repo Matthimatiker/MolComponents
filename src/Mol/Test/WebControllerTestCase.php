@@ -161,6 +161,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Simulated logger that is used for testing.
      *
      * @var Zend_Log_Writer_Mock
+     * @deprecated Will be accessible via bootstrapper.
      */
     protected $logger = null;
 
@@ -168,6 +169,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * The simulated invoke args.
      *
      * @var array(string=>mixed)
+     * @deprecated Will not be supported anymore.
      */
     private $invokeArgs = null;
 
@@ -178,6 +180,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * is the corresponding resource object.
      *
      * @var array(string=>mixed)
+     * @deprecated Will be configured via bootstrapper.
      */
     private $resources = null;
 
@@ -185,6 +188,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Contains configuration options that will be simulated.
      *
      * @var array(string=>mixed)
+     * @deprecated Will be configured via bootstrapper.
      */
     private $options = null;
 
