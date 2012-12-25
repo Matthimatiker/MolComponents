@@ -33,4 +33,93 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testGlobalsFromRequestAreRemoved()
+    {
+        
+    }
+    
+    public function testActionHelpersAreResetted()
+    {
+        
+    }
+    
+    public function testGetControllerClassReturnsCorrectValue()
+    {
+    
+    }
+    
+    public function testGetControllerNameReturnsCorrectValue()
+    {
+    
+    }
+    
+    public function testGetModuleNameReturnsCorrectValue()
+    {
+    
+    }
+    
+    public function testAssertResponseProvidesResponseAssertions()
+    {
+        
+    }
+    
+    public function testControllerIsCreatedDuringSetup()
+    
+    
+    
+    public function testBootstrapperIsInjectedIntoController()
+    {
+        
+    }
+    
+    public function testLoggerIsAvailableViaBootstrapper()
+    {
+        
+    }
+    
+    public function testRequestObjectIsInitiallyMarkedAsDispatched()
+    {
+        
+    }
+    
+    public function testRequestObjectContainsCorrectControllerName()
+    {
+        
+    }
+    
+    public function testRequestObjectContainsCorrectModuleName()
+    {
+    
+    }
+    
+    public function testSetPostChangesMethodInRequestObject()
+    {
+        
+    }
+    
+    public function testSetPostInjectsVariablesIntoRequestObject()
+    {
+        
+    }
+    
+    public function testSetPostInjectsFormVariablesIntoRequestObject()
+    {
+        
+    }
+    
+    public function testSetGetChangesMethodInRequestObject()
+    {
+    
+    }
+    
+    public function testSetGetInjectsVariablesIntoRequestObject()
+    {
+    
+    }
+    
+    public function testSetUserParamsInjectsVariablesIntoRequestObject()
+    {
+        
+    }
+    
 }
