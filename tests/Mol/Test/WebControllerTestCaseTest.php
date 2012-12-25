@@ -64,8 +64,9 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     }
     
     public function testControllerIsCreatedDuringSetup()
-    
-    
+    {
+        
+    }
     
     public function testBootstrapperIsInjectedIntoController()
     {
