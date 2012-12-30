@@ -80,6 +80,14 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that previously added action helpers are not removed.
+     */
+    public function testPreviousActionHelpersAreNotRemoved()
+    {
+        
+    }
+    
+    /**
      * Checks if getControllerClass() returns the correct value.
      */
     public function testGetControllerClassReturnsCorrectValue()
