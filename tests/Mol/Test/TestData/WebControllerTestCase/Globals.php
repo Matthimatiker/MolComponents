@@ -31,7 +31,7 @@ class Mol_Test_TestData_WebControllerTestCase_Globals extends Mol_Test_WebContro
     /**
      * Test that changes $_GET and $_POST values via request object.
      */
-    public function testManipulateGlobalState()
+    public function testManipulateGlobalVariables()
     {
         $this->request->setQuery('global_get_variable', 42);
         $this->request->setPost('global_post_variable', 42);

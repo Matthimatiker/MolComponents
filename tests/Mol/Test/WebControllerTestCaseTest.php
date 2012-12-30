@@ -56,7 +56,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testGlobalsFromRequestAreRemoved()
     {
-        $test   = new Mol_Test_TestData_WebControllerTestCase_Globals('testManipulateGlobalState');
+        $test   = new Mol_Test_TestData_WebControllerTestCase_Globals('testManipulateGlobalVariables');
         $result = $test->run();
         $this->assertSuccessful($result);
         $this->assertArrayNotHasKey('global_get_variable', $_GET);
