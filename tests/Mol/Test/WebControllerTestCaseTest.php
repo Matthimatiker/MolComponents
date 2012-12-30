@@ -34,11 +34,33 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->loadAllSampleTestCases();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        
+        parent::tearDown();
+    }
+    
+    /**
      * Ensures that global variables ($_POST, $_GET, ...) are resetted.
      */
     public function testGlobalsFromRequestAreRemoved()
     {
-        
+        $test   = new Mol_Test_TestData_WebControllerTestCase_ModifiedGlobals('testManipulateGlobalState');
+        $result = $test->run();
+        $this->assertSuccessful($result);
+        $this->assertArrayNotHasKey('global_get_variable', $_GET);
+        $this->assertArrayNotHasKey('global_post_variable', $_POST);
     }
     
     /**
@@ -180,6 +202,38 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     public function testSetUserParamsInjectsVariablesIntoRequestObject()
     {
         
+    }
+    
+    /**
+     * Asserts that the given result belongs to a test that was
+     * executed successfully.
+     *
+     * @param PHPUnit_Framework_TestResult $result
+     */
+    protected function assertSuccessful(PHPUnit_Framework_TestResult $result)
+    {
+        $message = '';
+        foreach ($result->errors() as $error) {
+            /* @var $error PHPUnit_Framework_TestFailure */
+            $message .= $error->getExceptionAsString() . PHP_EOL;
+        }
+        foreach ($result->failures() as $failure) {
+            /* @var $failure PHPUnit_Framework_TestFailure */
+            $message .= $failure->getExceptionAsString() . PHP_EOL;
+        }
+        $this->assertTrue($result->wasSuccessful(), $message);
+    }
+    
+    /**
+     * Loads all prepared test cases that are used to check the
+     * WebControllerTestCase class.
+     */
+    protected function loadAllSampleTestCases()
+    {
+        $path = dirname(__FILE__) . '/TestData/WebControllerTestCase';
+        foreach (glob($path . '/*.php') as $file) {
+            require_once($file);
+        }
     }
     
 }
