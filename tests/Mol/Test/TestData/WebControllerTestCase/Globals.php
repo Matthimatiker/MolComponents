@@ -37,4 +37,13 @@ class Mol_Test_TestData_WebControllerTestCase_Globals extends Mol_Test_WebContro
         $this->request->setPost('global_post_variable', 42);
     }
     
+    /**
+     * Test that adds another (global) action helper.
+     */
+    public function testAddActionHelper()
+    {
+        $helper = $this->getMock('Zend_Controller_Action_Helper_Abstract');
+        Zend_Controller_Action_HelperBroker::addHelper($helper);
+    }
+    
 }

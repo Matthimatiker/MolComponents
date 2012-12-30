@@ -69,7 +69,14 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testActionHelpersAreResetted()
     {
+        $previousHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
         
+        $test   = new Mol_Test_TestData_WebControllerTestCase_Globals('testAddActionHelper');
+        $result = $test->run();
+        $this->assertSuccessful($result);
+        
+        $currentHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
+        $this->assertEquals($previousHelpers, $currentHelpers);
     }
     
     /**
