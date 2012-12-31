@@ -46,4 +46,11 @@ class Mol_Test_TestData_WebControllerTestCase_Globals extends Mol_Test_WebContro
         Zend_Controller_Action_HelperBroker::addHelper($helper);
     }
     
+    /**
+     * A dummy test that does nothing.
+     */
+    public function testNothing()
+    {
+    }
+    
 }

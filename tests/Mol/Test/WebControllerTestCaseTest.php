@@ -34,6 +34,13 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * Names of helpers that must be removed in tear down.
+     *
+     * @var array(string)
+     */
+    protected $helpersToRemove = array();
+    
+    /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
      */
     protected function setUp()
@@ -47,7 +54,10 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
+        foreach ($this->helpersToRemove as $name) {
+            /* @var $name string */
+            Zend_Controller_Action_HelperBroker::removeHelper($name);
+        }
         parent::tearDown();
     }
     
@@ -84,7 +94,15 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testPreviousActionHelpersAreNotRemoved()
     {
+        $helper = $this->createActionHelper('TestHelper');
+        $this->addActionHelper($helper);
         
+        $test   = new Mol_Test_TestData_WebControllerTestCase_Globals('testNothing');
+        $result = $test->run();
+        $this->assertSuccessful($result);
+        
+        $message = 'Helper "' . $helper->getName() . '" was removed.';
+        $this->assertTrue(Zend_Controller_Action_HelperBroker::hasHelper($helper->getName()), $message);
     }
     
     /**
@@ -217,6 +235,34 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     public function testSetUserParamsInjectsVariablesIntoRequestObject()
     {
         
+    }
+    
+    /**
+     * Creates a mocked action helper with the provided name.
+     *
+     * @param string $name
+     * @return Zend_Controller_Action_Helper_Abstract
+     */
+    protected function createActionHelper($name)
+    {
+        $helper = $this->getMock('Zend_Controller_Action_Helper_Abstract', array('getName'));
+        $helper->expects($this->any())
+               ->method('getName')
+               ->will($this->returnValue($name));
+        return $helper;
+    }
+    
+    /**
+     * Adds the given action  helper to the broker.
+     *
+     * @param Zend_Controller_Action_Helper_Abstract $helper
+     */
+    protected function addActionHelper(Zend_Controller_Action_Helper_Abstract $helper)
+    {
+        $this->helpersToRemove[] = $helper->getName();
+        Zend_Controller_Action_HelperBroker::addHelper($helper);
+        $message = 'Helper "' . $helper->getName() . '" was not added.';
+        $this->assertTrue(Zend_Controller_Action_HelperBroker::hasHelper($helper->getName()), $message);
     }
     
     /**
