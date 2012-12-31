@@ -503,7 +503,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @return string
      */
-    protected function getControllerClass()
+    public function getControllerClass()
     {
         $class = get_class($this);
         return substr($class, 0, -strlen('Test'));
