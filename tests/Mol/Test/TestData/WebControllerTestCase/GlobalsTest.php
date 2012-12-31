@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Test_TestData_WebControllerTestCase_Globals
+ * Mol_Test_TestData_WebControllerTestCase_GlobalsTest
  *
  * @category PHP
  * @package Mol_Test
@@ -25,7 +25,7 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 30.12.2012
  */
-class Mol_Test_TestData_WebControllerTestCase_Globals extends Mol_Test_WebControllerTestCase
+class Mol_Test_TestData_WebControllerTestCase_GlobalsTest extends Mol_Test_WebControllerTestCase
 {
     
     /**

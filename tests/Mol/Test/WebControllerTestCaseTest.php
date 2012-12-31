@@ -66,7 +66,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testGlobalsFromRequestAreRemoved()
     {
-        $test   = new Mol_Test_TestData_WebControllerTestCase_Globals('testManipulateGlobalVariables');
+        $test   = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testManipulateGlobalVariables');
         $result = $test->run();
         $this->assertSuccessful($result);
         $this->assertArrayNotHasKey('global_get_variable', $_GET);
@@ -81,7 +81,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     {
         $previousHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
         
-        $test   = new Mol_Test_TestData_WebControllerTestCase_Globals('testAddActionHelper');
+        $test   = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testAddActionHelper');
         $result = $test->run();
         $this->assertSuccessful($result);
         
@@ -97,7 +97,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
         $helper = $this->createActionHelper('TestHelper');
         $this->addActionHelper($helper);
         
-        $test   = new Mol_Test_TestData_WebControllerTestCase_Globals('testNothing');
+        $test   = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testNothing');
         $result = $test->run();
         $this->assertSuccessful($result);
         
