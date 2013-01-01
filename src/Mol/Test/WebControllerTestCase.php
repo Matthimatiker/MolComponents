@@ -142,57 +142,35 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * @var boolean
      */
     protected $backupGlobals = true;
-
+    
+    /**
+     * System under test.
+     *
+     * @var Zend_Controller_Action
+     */
+    protected $controller = null;
+    
+    /**
+     * The bootstrapper that is injected into the controller.
+     *
+     * @var Mol_Test_BootstrapTest
+     */
+    protected $bootstrapper = null;
+    
     /**
      * The request that is used in the tests.
      *
      * @var Zend_Controller_Request_HttpTestCase
      */
     protected $request = null;
-
+    
     /**
      * The response that is used in the tests.
      *
      * @var Zend_Controller_Response_HttpTestCase
      */
     protected $response = null;
-
-    /**
-     * Simulated logger that is used for testing.
-     *
-     * @var Zend_Log_Writer_Mock
-     * @deprecated Will be accessible via bootstrapper.
-     */
-    protected $logger = null;
-
-    /**
-     * The simulated invoke args.
-     *
-     * @var array(string=>mixed)
-     * @deprecated Will not be supported anymore. Alternatively an ArrayObject may
-     *             be used to manipulate the invoke args by reference.
-     */
-    private $invokeArgs = null;
-
-    /**
-     * Contains resources that will be simulated.
-     *
-     * The key is the name of the resource, the value
-     * is the corresponding resource object.
-     *
-     * @var array(string=>mixed)
-     * @deprecated Will be configured via bootstrapper.
-     */
-    private $resources = null;
-
-    /**
-     * Contains configuration options that will be simulated.
-     *
-     * @var array(string=>mixed)
-     * @deprecated Will be configured via bootstrapper.
-     */
-    private $options = null;
-
+    
     /**
      * Contains the action helpers that were registered
      * before the test started.
@@ -210,13 +188,10 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->setUpHelpers();
-        $this->request    = $this->createRequest();
-        $this->response   = $this->createResponse();
-        $this->invokeArgs = array();
-        $this->resources  = array();
-        $this->options    = array();
-        $this->logger     = new Zend_Log_Writer_Mock();
-        $this->simulateResource('Log', new Zend_Log($this->logger));
+        $this->request      = $this->createRequest();
+        $this->response     = $this->createResponse();
+        $this->bootstrapper = $this->createBootstrapper();
+        $this->controller   = $this->createController();
     }
 
     /**
@@ -224,61 +199,12 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        $this->logger     = null;
-        $this->options    = null;
-        $this->resources  = null;
-        $this->invokeArgs = null;
-        $this->response   = null;
-        $this->request    = null;
+        $this->controller   = null;
+        $this->bootstrapper = null;
+        $this->response     = null;
+        $this->request      = null;
         $this->tearDownHelpers();
         parent::tearDown();
-    }
-
-    /**
-     * Sets up the action helpers.
-     */
-    private function setUpHelpers()
-    {
-        $this->previousActionHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
-        Zend_Controller_Action_HelperBroker::resetHelpers();
-        $this->initActionHelpers();
-    }
-
-    /**
-     * Initializes the action helpers for testing.
-     */
-    protected function initActionHelpers()
-    {
-        $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer($this->createView());
-        Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
-        $layout       = new Zend_Layout();
-        $layoutHelper = new Zend_Layout_Controller_Action_Helper_Layout($layout);
-        Zend_Controller_Action_HelperBroker::addHelper($layoutHelper);
-    }
-
-    /**
-     * Returns a view object that is used for testing.
-     *
-     * @return Zend_View
-     */
-    protected function createView()
-    {
-        $view = new Zend_View();
-        Zend_Dojo::enableView($view);
-        $view->registerHelper(new Mol_Test_View_Helper_Url(), 'url');
-        return $view;
-    }
-
-    /**
-     * Restores the previous action helpers.
-     */
-    private function tearDownHelpers()
-    {
-        Zend_Controller_Action_HelperBroker::resetHelpers();
-        foreach ($this->previousActionHelpers as $helper) {
-            /* @var $helper Zend_Controller_Action_Helper_Abstract */
-            Zend_Controller_Action_HelperBroker::addHelper($helper);
-        }
     }
 
     /**
@@ -406,6 +332,122 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Creates the request object that is used for testing.
+     *
+     * @return Zend_Controller_Request_HttpTestCase
+     */
+    protected function createRequest()
+    {
+        $request = new Zend_Controller_Request_HttpTestCase();
+        $request->setDispatched(true);
+        $request->setModuleName($this->getModuleName());
+        $request->setControllerName($this->getControllerName());
+        return $request;
+    }
+
+    /**
+     * Creates the response object that is used for testing.
+     *
+     * @return Zend_Controller_Response_HttpTestCase
+     */
+    protected function createResponse()
+    {
+        return new Zend_Controller_Response_HttpTestCase();
+    }
+
+    /**
+     * Creates the bootstrapper that will be injected into the controller.
+     *
+     * @return Mol_Test_Bootstrap
+     */
+    protected function createBootstrapper()
+    {
+        $bootstrapper = Mol_Test_Bootstrap::create();
+        $bootstrapper->simulateResource('log', new Zend_Log_Writer_Mock());
+        return $bootstrapper;
+    }
+
+    /**
+     * Creates the controller that is tested.
+     *
+     * @return Zend_Controller_Action
+     */
+    protected function createController()
+    {
+        $class = $this->getControllerClass();
+        if (!class_exists($class, true)) {
+            $this->loadController();
+        }
+        $builder   = new Mol_Util_ObjectBuilder('Zend_Controller_Action');
+        $arguments = array(
+                $this->request,
+                $this->response,
+                $this->createInvokeArgs()
+        );
+        return $builder->create($class, $arguments);
+    }
+    
+    /**
+     * Returns the arguments that are used to create the tested controller.
+     *
+     * @return array(string=>mixed)
+     */
+    protected function createInvokeArgs()
+    {
+        $args = array(
+            'bootstrap' => $this->bootstrapper
+        );
+        return $args;
+    }
+    
+    /**
+     * Sets up the action helpers.
+     */
+    protected function setUpHelpers()
+    {
+        $this->previousActionHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
+        Zend_Controller_Action_HelperBroker::resetHelpers();
+        $this->initActionHelpers();
+    }
+    
+    /**
+     * Restores the previous action helpers.
+     */
+    protected function tearDownHelpers()
+    {
+        Zend_Controller_Action_HelperBroker::resetHelpers();
+        foreach ($this->previousActionHelpers as $helper) {
+            /* @var $helper Zend_Controller_Action_Helper_Abstract */
+            Zend_Controller_Action_HelperBroker::addHelper($helper);
+        }
+    }
+    
+    /**
+     * Initializes the action helpers for testing.
+     */
+    protected function initActionHelpers()
+    {
+        $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer($this->createView());
+        Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
+        $layout       = new Zend_Layout();
+        $layoutHelper = new Zend_Layout_Controller_Action_Helper_Layout($layout);
+        Zend_Controller_Action_HelperBroker::addHelper($layoutHelper);
+    }
+    
+    /**
+     * Returns a view object that is used for testing.
+     *
+     * @return Zend_View
+     */
+    protected function createView()
+    {
+        $view = new Zend_View();
+        Zend_Dojo::enableView($view);
+        $view->registerHelper(new Mol_Test_View_Helper_Url(), 'url');
+        return $view;
+    }
+    
+    /**
      * Dispatches the action with the given name:
      *
      * Example:
@@ -420,11 +462,11 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $this->request->setActionName($action);
         $this->request->setControllerName($this->getControllerName());
         $this->request->setModuleName($this->getModuleName());
-
+    
         $controller = $this->createController();
         $controller->dispatch($this->actionNameToMethod($action));
     }
-
+    
     /**
      * Converts the given action name to the name of the
      * corresponding action method.
@@ -448,68 +490,6 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Creates the request object that is used for testing.
-     *
-     * @return Zend_Controller_Request_HttpTestCase
-     */
-    protected function createRequest()
-    {
-        return new Zend_Controller_Request_HttpTestCase();
-    }
-
-    /**
-     * Creates the response object that is used for testing.
-     *
-     * @return Zend_Controller_Response_HttpTestCase
-     */
-    protected function createResponse()
-    {
-        return new Zend_Controller_Response_HttpTestCase();
-    }
-
-    /**
-     * Creates the bootstrapper that will be injected into the controller.
-     *
-     * @return Mol_Test_Bootstrap_Mock
-     */
-    protected function createBootstrapper()
-    {
-        return new Mol_Test_Bootstrap_Mock($this->resources, $this->options);
-    }
-
-    /**
-     * Creates the controller that is tested.
-     *
-     * @return Zend_Controller_Action
-     */
-    protected function createController()
-    {
-        $class = $this->getControllerClass();
-        if (!class_exists($class, true)) {
-            $this->loadController();
-        }
-        $invokeArgs = array('bootstrap' => $this->createBootstrapper());
-        $invokeArgs = array_merge($invokeArgs, $this->invokeArgs);
-        return new $class($this->request, $this->response, $invokeArgs);
-    }
-
-    /**
-     * Returns the classname of the tested controller.
-     *
-     * The classname equals the classname of the testcase without
-     * the Test suffix.
-     * For example the name of the class that is tested by "ErrorControllerTest"
-     * is "ErrorController".
-     *
-     * @return string
-     */
-    public function getControllerClass()
-    {
-        $class = get_class($this);
-        return substr($class, 0, -strlen('Test'));
-    }
-
-    /**
      * Loads the controller class.
      *
      * @throws RuntimeException If the controller file does not exist or if the file does notr contain the class.
@@ -529,6 +509,22 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
             $message  = sprintf($template, $class, $pathToClass);
             throw new RuntimeException();
         }
+    }
+    
+    /**
+     * Returns the classname of the tested controller.
+     *
+     * The classname equals the classname of the testcase without
+     * the Test suffix.
+     * For example the name of the class that is tested by "ErrorControllerTest"
+     * is "ErrorController".
+     *
+     * @return string
+     */
+    public function getControllerClass()
+    {
+        $class = get_class($this);
+        return substr($class, 0, -strlen('Test'));
     }
 
     /**
