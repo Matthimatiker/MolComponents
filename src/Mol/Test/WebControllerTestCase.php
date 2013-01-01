@@ -399,7 +399,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function createViewRenderer()
     {
-        return new Zend_Controller_Action_Helper_ViewRenderer($this->createView());
+        return new Mol_Test_Controller_Action_Helper_ViewRenderer($this->createView());
     }
     
     /**
