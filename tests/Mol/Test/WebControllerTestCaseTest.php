@@ -149,7 +149,8 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testSetPostInjectsFormVariablesIntoRequestObject()
     {
-    
+        $this->setPost($this->createForm());
+        $this->assertEquals('value', $this->request->getPost('key'));
     }
     
     /**
@@ -172,12 +173,23 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Checks if setGet() extracts variables from a provided form and
+     * injects these values into the request.
+     */
+    public function testSetGetInjectsFormVariablesIntoRequestObject()
+    {
+        $this->setGet($this->createForm());
+        $this->assertEquals('value', $this->request->getQuery('key'));
+    }
+    
+    /**
      * Checks if setUserParams() injects the provided variables correctly
      * into the request.
      */
     public function testSetUserParamsInjectsVariablesIntoRequestObject()
     {
-    
+        $this->setUserParams(array('key' => 'value'));
+        $this->assertEquals('value', $this->request->getUserParam('key'));
     }
     
     /**
@@ -188,6 +200,23 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     public function getControllerClass()
     {
         return 'WebControllerTestCase_InternalController';
+    }
+    
+    /**
+     * Creates a form for testing.
+     *
+     * The form contains a text element named "key" whose
+     * value is set to "value".
+     *
+     * @return Zend_Form
+     */
+    protected function createForm()
+    {
+        $form = new Zend_Form();
+        $form->addElement('text', 'key');
+        $form->addElement('submit', 'send');
+        $form->setDefaults(array('key' => 'value'));
+        return $form;
     }
     
 }
