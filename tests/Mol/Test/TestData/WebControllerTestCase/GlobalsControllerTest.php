@@ -13,6 +13,9 @@
  * @since 30.12.2012
  */
 
+/** Controller class that is used in this test. */
+require_once(dirname(__FILE__) . '/GlobalsController.php');
+
 /**
  * Helper class that is used to check the WebControllerTestCase.
  *
