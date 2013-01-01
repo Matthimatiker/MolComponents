@@ -330,6 +330,26 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $message = 'Unexpected number of log entries.';
         $this->assertEquals($expectedNumber, count($this->logger->events), $message);
     }
+    
+    /**
+     * Creates the controller that is tested.
+     *
+     * @return Zend_Controller_Action
+     */
+    protected function createController()
+    {
+        $class = $this->getControllerClass();
+        if (!class_exists($class, true)) {
+            $this->loadController();
+        }
+        $builder   = new Mol_Util_ObjectBuilder('Zend_Controller_Action');
+        $arguments = array(
+                $this->request,
+                $this->response,
+                $this->createInvokeArgs()
+        );
+        return $builder->create($class, $arguments);
+    }
 
     /**
      * Creates the request object that is used for testing.
@@ -365,26 +385,6 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $bootstrapper = Mol_Test_Bootstrap::create();
         $bootstrapper->simulateResource('log', new Zend_Log_Writer_Mock());
         return $bootstrapper;
-    }
-
-    /**
-     * Creates the controller that is tested.
-     *
-     * @return Zend_Controller_Action
-     */
-    protected function createController()
-    {
-        $class = $this->getControllerClass();
-        if (!class_exists($class, true)) {
-            $this->loadController();
-        }
-        $builder   = new Mol_Util_ObjectBuilder('Zend_Controller_Action');
-        $arguments = array(
-                $this->request,
-                $this->response,
-                $this->createInvokeArgs()
-        );
-        return $builder->create($class, $arguments);
     }
     
     /**
