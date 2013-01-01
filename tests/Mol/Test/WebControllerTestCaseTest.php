@@ -44,7 +44,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testGetControllerNameReturnsCorrectValue()
     {
-    
+        $this->assertEquals('internal', $this->getControllerName());
     }
     
     /**
@@ -52,7 +52,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testGetModuleNameReturnsCorrectValue()
     {
-    
+        $this->assertEquals('web-controller-test-case', $this->getModuleName());
     }
     
     /**
@@ -61,7 +61,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testAssertResponseProvidesResponseAssertions()
     {
-    
+        $this->assertInstanceOf('Mol_Test_Assertions_HttpResponse', $this->assertResponse());
     }
     
     /**
@@ -70,7 +70,16 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testControllerIsCreatedDuringSetup()
     {
+        $this->assertNotNull($this->controller);
+    }
     
+    /**
+     * Checks if the test case creates a controller of the type that is
+     * provided via getControllerClass().
+     */
+    public function testTestCaseCreatesControllerOfCorrectType()
+    {
+        $this->assertInstanceOf($this->getControllerClass(), $this->controller);
     }
     
     /**

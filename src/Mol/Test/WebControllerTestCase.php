@@ -555,7 +555,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @return string
      */
-    private function getControllerName()
+    protected function getControllerName()
     {
         $parts = explode('_', $this->getControllerClass());
         $name  = array_pop($parts);
@@ -569,7 +569,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      * @return string
      */
-    private function getModuleName()
+    protected function getModuleName()
     {
         $parts = explode('_', $this->getControllerClass(), 2);
         if (count($parts) === 1) {
