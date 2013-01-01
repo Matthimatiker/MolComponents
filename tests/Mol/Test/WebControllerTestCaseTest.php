@@ -272,9 +272,10 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
         if ($controllerClass === null) {
             $test = new Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest($testName);
         } else {
+            $testClass     = 'Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest';
             $arguments     = array($testName);
             $mockedMethods = array('getControllerClass');
-            $test = $this->getMock('Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest', $mockedMethods, $arguments);
+            $test = $this->getMock($testClass, $mockedMethods, $arguments);
             $test->expects($this->any())
                  ->method('getControllerClass')
                  ->will($this->returnValue($controllerClass));
