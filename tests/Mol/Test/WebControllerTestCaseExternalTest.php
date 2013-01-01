@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Test_WebControllerTestCaseTest
+ * Mol_Test_WebControllerTestCaseExternalTest
  *
  * @category PHP
  * @package Mol_Test
@@ -19,7 +19,7 @@
 require_once(dirname(__FILE__) . '/bootstrap.php');
 
 /**
- * Tests the functionality of the WebControllerTestCase.
+ * Tests the functionality of the WebControllerTestCase externally.
  *
  * @category PHP
  * @package Mol_Test
@@ -30,7 +30,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 25.12.2012
  */
-class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
+class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestCase
 {
     
     /**
