@@ -110,6 +110,25 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testGetControllerClassReturnsCorrectValue()
     {
+        $test = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testNothing');
+        $this->assertEquals('Mol_Test_TestData_WebControllerTestCase_Globals', $test->getControllerClass());
+    }
+    
+    /**
+     * Ensures that the test initialization fails if the controller class does not exist
+     * and is not loadable.
+     */
+    public function testInitializationFailsIfControllerClassDoesNotExist()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the test initialization fails if the controller class does not extend
+     * Zend_Controller_Action.
+     */
+    public function testInitializationFailsIfControllerClassDoesExtendZendBaseClass()
+    {
     
     }
     
