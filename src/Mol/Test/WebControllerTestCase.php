@@ -386,11 +386,31 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function initActionHelpers()
     {
-        $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer($this->createView());
+        $viewRenderer = $this->createViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
-        $layout       = new Zend_Layout();
-        $layoutHelper = new Zend_Layout_Controller_Action_Helper_Layout($layout);
+        $layoutHelper = $this->createLayoutHelper();
         Zend_Controller_Action_HelperBroker::addHelper($layoutHelper);
+    }
+    
+    /**
+     * Creates the simulated view renderer action helper.
+     *
+     * @return Zend_Controller_Action_Helper_ViewRenderer
+     */
+    protected function createViewRenderer()
+    {
+        return new Zend_Controller_Action_Helper_ViewRenderer($this->createView());
+    }
+    
+    /**
+     * Creates the simulated layout action helper.
+     *
+     * @return Zend_Layout_Controller_Action_Helper_Layout
+     */
+    protected function createLayoutHelper()
+    {
+        $layout = new Zend_Layout();
+        return new Zend_Layout_Controller_Action_Helper_Layout($layout);
     }
     
     /**
