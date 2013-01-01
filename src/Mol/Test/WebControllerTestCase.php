@@ -264,47 +264,6 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Simulates invoke arguments that are passed to the controller
-     * during construction.
-     *
-     * @param array(string=>mixed) $arguments
-     */
-    protected function setInvokeArgs(array $arguments)
-    {
-        $this->invokeArgs = array_merge($this->invokeArgs, $arguments);
-    }
-
-    /**
-     * Simulates the named resource.
-     *
-     * Example:
-     *
-     *     $this->simulateResource('Locale', new Zend_Locale('de'));
-     *
-     * @param string $name
-     * @param mixed $resource
-     */
-    protected function simulateResource($name, $resource)
-    {
-        $this->resources[$name] = $resource;
-    }
-
-    /**
-     * Simulates a configuration option.
-     *
-     * Example:
-     *
-     *     $this->simulateOption('app' => array('name' => 'TestApp));
-     *
-     * @param string $name
-     * @param mixed $value
-     */
-    protected function simulateOption($name, $value)
-    {
-        $this->options[$name] = $value;
-    }
-
-    /**
      * Returns an accessor for response assertions.
      *
      * The returned object is used to access all assertions regarding
