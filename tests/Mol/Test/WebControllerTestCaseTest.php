@@ -9,7 +9,7 @@
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2013 Matthias Molitor
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
- * @link https://github.com/Matthimatiker/*
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.01.2013
  */
 
@@ -28,7 +28,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @author Matthias Molitor <matthias@matthimatiker.de>
  * @copyright 2013 Matthias Molitor
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
- * @link https://github.com/Matthimatiker/*
+ * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.01.2013
  */
 class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
