@@ -19,6 +19,11 @@
 require_once(dirname(__FILE__) . '/bootstrap.php');
 
 /**
+ * Loads the controller class that is used in this test case.
+ */
+require_once(dirname(__FILE__) . '/TestData/WebControllerTestCase/InternalController.php');
+
+/**
  * Extends the Mol_Test_WebControllerTestCase and checks its functionality
  * from an internal popint of view.
  *
@@ -156,6 +161,16 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     public function testSetUserParamsInjectsVariablesIntoRequestObject()
     {
     
+    }
+    
+    /**
+     * Defines the controller that is used in the tests.
+     *
+     * @return string
+     */
+    public function getControllerClass()
+    {
+        return 'WebControllerTestCase_InternalController';
     }
     
 }
