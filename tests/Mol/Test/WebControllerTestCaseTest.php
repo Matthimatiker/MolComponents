@@ -66,7 +66,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testGlobalsFromRequestAreRemoved()
     {
-        $test   = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testManipulateGlobalVariables');
+        $test   = $this->createTestCase('testManipulateGlobalVariables');
         $result = $test->run();
         $this->assertSuccessful($result);
         $this->assertArrayNotHasKey('global_get_variable', $_GET);
@@ -81,7 +81,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     {
         $previousHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
         
-        $test   = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testAddActionHelper');
+        $test   = $this->createTestCase('testAddActionHelper');
         $result = $test->run();
         $this->assertSuccessful($result);
         
@@ -97,7 +97,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
         $helper = $this->createActionHelper('TestHelper');
         $this->addActionHelper($helper);
         
-        $test   = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testNothing');
+        $test   = $this->createTestCase('testNothing');
         $result = $test->run();
         $this->assertSuccessful($result);
         
@@ -110,8 +110,8 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testGetControllerClassReturnsCorrectValue()
     {
-        $test = new Mol_Test_TestData_WebControllerTestCase_GlobalsTest('testNothing');
-        $this->assertEquals('Mol_Test_TestData_WebControllerTestCase_Globals', $test->getControllerClass());
+        $test = $this->createTestCase('testNothing');
+        $this->assertEquals('Mol_Test_TestData_WebControllerTestCase_GlobalsController', $test->getControllerClass());
     }
     
     /**
@@ -120,7 +120,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testInitializationFailsIfControllerClassDoesNotExist()
     {
-        $test   = $this->createTestCase('Missing_Controller_Class', 'testNothing');
+        $test   = $this->createTestCase('testNothing', 'Missing_Controller_Class');
         $result = $test->run();
         $this->assertFailed($result);
     }
@@ -131,7 +131,7 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testInitializationFailsIfControllerClassDoesNotExtendZendBaseClass()
     {
-        $test   = $this->createTestCase('stdClass', 'testNothing');
+        $test   = $this->createTestCase('testNothing', 'stdClass');
         $result = $test->run();
         $this->assertFailed($result);
     }
@@ -263,18 +263,22 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     /**
      * Creates a test case for the provided controller class.
      *
-     * @param string $controllerClass
      * @param string $testName The name of the test that will be executed.
-     * @return Mol_Test_TestData_WebControllerTestCase_GlobalsTest
+     * @param string|null $controllerClass
+     * @return Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest
      */
-    protected function createTestCase($controllerClass, $testName)
+    protected function createTestCase($testName, $controllerClass = null)
     {
-        $arguments     = array($testName);
-        $mockedMethods = array('getControllerClass');
-        $test = $this->getMock('Mol_Test_TestData_WebControllerTestCase_GlobalsTest', $mockedMethods, $arguments);
-        $test->expects($this->any())
-             ->method('getControllerClass')
-             ->will($this->returnValue($controllerClass));
+        if ($controllerClass === null) {
+            $test = new Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest($testName);
+        } else {
+            $arguments     = array($testName);
+            $mockedMethods = array('getControllerClass');
+            $test = $this->getMock('Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest', $mockedMethods, $arguments);
+            $test->expects($this->any())
+                 ->method('getControllerClass')
+                 ->will($this->returnValue($controllerClass));
+        }
         return $test;
     }
     
