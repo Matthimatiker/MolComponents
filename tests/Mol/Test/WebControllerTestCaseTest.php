@@ -129,7 +129,9 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testSetPostChangesMethodInRequestObject()
     {
-    
+        $this->request->setMethod('GET');
+        $this->setPost(array('key' => 'value'));
+        $this->assertTrue($this->request->isPost());
     }
     
     /**
@@ -137,7 +139,8 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testSetPostInjectsVariablesIntoRequestObject()
     {
-    
+        $this->setPost(array('key' => 'value'));
+        $this->assertEquals('value', $this->request->getPost('key'));
     }
     
     /**
@@ -154,7 +157,9 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testSetGetChangesMethodInRequestObject()
     {
-    
+        $this->request->setMethod('POST');
+        $this->setGet(array('key' => 'value'));
+        $this->assertTrue($this->request->isGet());
     }
     
     /**
@@ -162,7 +167,8 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testSetGetInjectsVariablesIntoRequestObject()
     {
-    
+        $this->setGet(array('key' => 'value'));
+        $this->assertEquals('value', $this->request->getQuery('key'));
     }
     
     /**
