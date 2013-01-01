@@ -120,16 +120,20 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
      */
     public function testInitializationFailsIfControllerClassDoesNotExist()
     {
-        
+        $test   = $this->createTestCase('Missing_Controller_Class', 'testNothing');
+        $result = $test->run();
+        $this->assertFailed($result);
     }
     
     /**
      * Ensures that the test initialization fails if the controller class does not extend
      * Zend_Controller_Action.
      */
-    public function testInitializationFailsIfControllerClassDoesExtendZendBaseClass()
+    public function testInitializationFailsIfControllerClassDoesNotExtendZendBaseClass()
     {
-    
+        $test   = $this->createTestCase('stdClass', 'testNothing');
+        $result = $test->run();
+        $this->assertFailed($result);
     }
     
     /**
@@ -257,6 +261,24 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Creates a test case for the provided controller class.
+     *
+     * @param string $controllerClass
+     * @param string $testName The name of the test that will be executed.
+     * @return Mol_Test_TestData_WebControllerTestCase_GlobalsTest
+     */
+    protected function createTestCase($controllerClass, $testName)
+    {
+        $arguments     = array($testName);
+        $mockedMethods = array('getControllerClass');
+        $test = $this->getMock('Mol_Test_TestData_WebControllerTestCase_GlobalsTest', $mockedMethods, $arguments);
+        $test->expects($this->any())
+             ->method('getControllerClass')
+             ->will($this->returnValue($controllerClass));
+        return $test;
+    }
+    
+    /**
      * Creates a mocked action helper with the provided name.
      *
      * @param string $name
@@ -302,6 +324,17 @@ class Mol_Test_WebControllerTestCaseTest extends PHPUnit_Framework_TestCase
             $message .= $failure->getExceptionAsString() . PHP_EOL;
         }
         $this->assertTrue($result->wasSuccessful(), $message);
+    }
+    
+    /**
+     * Asserts that the given result belongs to a test that failed.
+     *
+     * @param PHPUnit_Framework_TestResult $result
+     */
+    protected function assertFailed(PHPUnit_Framework_TestResult $result)
+    {
+        $message = 'Test was expected to fail, but it was executed successfully.';
+        $this->assertFalse($result->wasSuccessful(), $message);
     }
     
     /**
