@@ -26,4 +26,21 @@
 class Mol_Test_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_Helper_ViewRenderer
 {
     
+    /**
+     * Determines the module directory without accessing the front
+     * controller, which is a global dependency.
+     *
+     * @return string
+     */
+    public function getModuleDirectory()
+    {
+        $info = new ReflectionClass($this->getActionController());
+        $path = $info->getFileName();
+        // Controllers reside in the "controllers" directory which is located in
+        // the module directory. Therefore, the upper directory is defined as
+        // module directory by Zend convention.
+        $this->_moduleDir = realpath(dirname($path) . '/..');
+        return $this->_moduleDir;
+    }
+    
 }
