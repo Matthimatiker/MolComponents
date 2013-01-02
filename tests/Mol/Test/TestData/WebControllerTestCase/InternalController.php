@@ -28,4 +28,70 @@
 class WebControllerTestCase_InternalController extends Zend_Controller_Action
 {
     
+    /**
+     * A list of controller methods that were executed.
+     *
+     * @var array(string)
+     */
+    protected $calledMethods = array();
+    
+    /**
+     * Registers init() calls.
+     */
+    public function init()
+    {
+        parent::init();
+        $this->registerCall(__FUNCTION__);
+    }
+    
+    /**
+     * Registers calls to preDispatch().
+     */
+    public function preDispatch()
+    {
+        parent::preDispatch();
+        $this->registerCall(__FUNCTION__);
+    }
+    
+    /**
+     * Registers calls of action methods.
+     *
+     * @param string $name
+     * @param array(mixed) $args
+     */
+    public function __call($name, $args)
+    {
+        $this->registerCall($name);
+    }
+    
+    /**
+     * Registers calls to postDispatch().
+     */
+    public function postDispatch()
+    {
+        parent::postDispatch();
+        $this->registerCall(__FUNCTION__);
+    }
+    
+    /**
+     * Returns a list of called controller methods (ordered
+     * by time of execution).
+     *
+     * @return array(string)
+     */
+    public function getCalledMethods()
+    {
+        return $this->calledMethods;
+    }
+    
+    /**
+     * Registers a call to the provided method.
+     *
+     * @param string $methodName
+     */
+    protected function registerCall($methodName)
+    {
+        $this->calledMethods[] = $methodName;
+    }
+    
 }
