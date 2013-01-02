@@ -192,6 +192,16 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
         $this->assertEquals('value', $this->request->getUserParam('key'));
     }
     
+    public function testAssertNumberOfLogEntriesFailsIfUnexpectedNumberOfLogMessagesIsDetected()
+    {
+        
+    }
+    
+    public function testAssertNumberOfLogEntriesSucceedsIfNumberOfLogEntriesIsCorrect()
+    {
+        
+    }
+    
     /**
      * Defines the controller that is used in the tests.
      *
