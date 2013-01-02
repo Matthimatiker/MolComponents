@@ -192,14 +192,34 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
         $this->assertEquals('value', $this->request->getUserParam('key'));
     }
     
+    /**
+     * Ensures that assertNumberOfLogEntries() fails if the expected number of entries
+     * is not correct.
+     */
     public function testAssertNumberOfLogEntriesFailsIfUnexpectedNumberOfLogMessagesIsDetected()
     {
+        /* @var $logger Zend_Log */
+        $logger = $this->bootstrapper->getResource('log');
+        $this->assertInstanceOf('Zend_Log', $logger);
+        $logger->log('Test', Zend_Log::INFO);
         
+        $this->setExpectedException('PHPUnit_Framework_AssertionFailedError');
+        $this->assertNumberOfLogEntries(2);
     }
     
+    /**
+     * Ensures that assertNumberOfLogEntries() succeeds if the provided number of expected
+     * entries is correct.
+     */
     public function testAssertNumberOfLogEntriesSucceedsIfNumberOfLogEntriesIsCorrect()
     {
+        /* @var $logger Zend_Log */
+        $logger = $this->bootstrapper->getResource('log');
+        $this->assertInstanceOf('Zend_Log', $logger);
+        $logger->log('Test', Zend_Log::INFO);
         
+        $this->setExpectedException(null);
+        $this->assertNumberOfLogEntries(1);
     }
     
     /**
