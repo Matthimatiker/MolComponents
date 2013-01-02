@@ -450,7 +450,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function createView()
     {
-        $view = new Zend_View();
+        // Use a mocked view to ensure that the templates are not really rendered.
+        $view = $this->getMock('Zend_View', array('render'));
         $view->registerHelper(new Mol_Test_View_Helper_Url(), 'url');
         return $view;
     }
