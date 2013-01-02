@@ -553,10 +553,14 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function getControllerName()
     {
-        $parts = explode('_', $this->getControllerClass());
-        $name  = array_pop($parts);
-        $name  = substr($name, 0, -strlen('Controller'));
-        return $name;
+        $name = $this->getControllerClass();
+        $positionOfLastUnderscore = strrpos($name, '_');
+        if ($positionOfLastUnderscore !== false) {
+            $name = substr($name, $positionOfLastUnderscore + 1);
+        }
+        $name = Mol_Util_String::removeSuffix($name, 'Controller');
+        $name = Zend_Filter::filterStatic($name, 'Word_CamelCaseToDash');
+        return strtolower($name);
     }
 
     /**
@@ -567,12 +571,14 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function getModuleName()
     {
-        $parts = explode('_', $this->getControllerClass(), 2);
-        if (count($parts) === 1) {
-            // No module prefix found.
+        $positionOfLastUnderscore = strrpos($this->getControllerClass(), '_');
+        if ($positionOfLastUnderscore === false) {
             return 'default';
         }
-        return strtolower($parts[0]);
+        $module = substr($this->getControllerClass(), 0, $positionOfLastUnderscore);
+        $module = Zend_Filter::filterStatic($module, 'Word_UnderscoreToDash');
+        $module = Zend_Filter::filterStatic($module, 'Word_CamelCaseToDash');
+        return strtolower($module);
     }
 
 }
