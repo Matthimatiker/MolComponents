@@ -153,7 +153,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     /**
      * The bootstrapper that is injected into the controller.
      *
-     * @var Mol_Test_BootstrapTest
+     * @var Mol_Test_Bootstrap
      */
     protected $bootstrapper = null;
     
