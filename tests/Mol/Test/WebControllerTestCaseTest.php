@@ -223,6 +223,23 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Ensures that dispatch() simulates the whole controller life cycle.
+     */
+    public function testDispatchExecutesTheControllerLifeCycle()
+    {
+        $this->dispatch('edit-user');
+        $this->assertInstanceOf($this->getControllerClass(), $this->controller);
+        $expectedCalls = array(
+            'init',
+            'preDispatch',
+            'editUserAction',
+            'postDispatch'
+        );
+        $calledMethods = $this->controller->getCalledMethods();
+        $this->assertEquals($expectedCalls, $calledMethods);
+    }
+    
+    /**
      * Defines the controller that is used in the tests.
      *
      * @return string
