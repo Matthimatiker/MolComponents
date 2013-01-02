@@ -97,7 +97,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     public function testLoggerIsAvailableViaBootstrapper()
     {
         $this->assertNotNull($this->bootstrapper);
-        $this->assertInstanceOf('Zend_Log', $this->bootstrapper->getResource('logger'));
+        $this->assertInstanceOf('Zend_Log', $this->bootstrapper->getResource('log'));
     }
     
     /**
