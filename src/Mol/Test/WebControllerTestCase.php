@@ -224,13 +224,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function setPost($arrayOrForm)
     {
-        if ($arrayOrForm instanceof Zend_Form) {
-            /* @var $form Zend_Form */
-            $form        = $arrayOrForm;
-            $arrayOrForm = $form->getValues();
-        }
         $this->request->setMethod('POST');
-        $this->request->setPost($arrayOrForm);
+        $this->request->setPost($this->toValues($arrayOrForm));
     }
 
     /**
@@ -240,12 +235,38 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *
      *     $this->setGet(array('page' => 1));
      *
-     * @param array(string=>string) $parameters
+     * Additionally, it is possible to use a form instance
+     * as data source:
+     *
+     *     $form = new Zend_Form();
+     *     $form->populate(array('name' => 'Matthias'));
+     *     $this->setGet($form);
+     *
+     * @param array(string=>string)|Zend_Form $arrayOrForm
      */
-    protected function setGet(array $parameters)
+    protected function setGet($arrayOrForm)
     {
         $this->request->setMethod('GET');
-        $this->request->setQuery($parameters);
+        $this->request->setQuery($this->toValues($arrayOrForm));
+    }
+    
+    /**
+     * Returns the values from the given Zend_Form instance or array.
+     *
+     * If an array is provided then this method will do nothing as
+     * no conversion is needed.
+     *
+     * @param array(string=>string)|Zend_Form $arrayOrForm $arrayOrForm
+     * @return array(string=>string)
+     */
+    protected function toValues($arrayOrForm)
+    {
+        if ($arrayOrForm instanceof Zend_Form) {
+            /* @var $form Zend_Form */
+            $form = $arrayOrForm;
+            return $form->getValues();
+        }
+        return $arrayOrForm;
     }
 
     /**
