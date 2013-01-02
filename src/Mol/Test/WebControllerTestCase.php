@@ -172,6 +172,13 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected $response = null;
     
     /**
+     * The log writer that can be used to check the logging behavior.
+     *
+     * @var Zend_Log_Writer_Mock
+     */
+    protected $logWriter = null;
+    
+    /**
      * Contains the action helpers that were registered
      * before the test started.
      *
@@ -363,8 +370,9 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function createBootstrapper()
     {
-        $bootstrapper = Mol_Test_Bootstrap::create();
-        $bootstrapper->simulateResource('log', new Zend_Log_Writer_Mock());
+        $bootstrapper    = Mol_Test_Bootstrap::create();
+        $this->logWriter = new Zend_Log_Writer_Mock();
+        $bootstrapper->simulateResource('log', new Zend_Log($this->logWriter));
         return $bootstrapper;
     }
     
