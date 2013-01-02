@@ -316,7 +316,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function assertNumberOfLogEntries($expectedNumber)
     {
         $message = 'Unexpected number of log entries.';
-        $this->assertEquals($expectedNumber, count($this->logger->events), $message);
+        $this->assertEquals($expectedNumber, count($this->logWriter->events), $message);
     }
     
     /**
