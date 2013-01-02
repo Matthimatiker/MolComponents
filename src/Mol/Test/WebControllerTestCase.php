@@ -515,7 +515,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         if (!class_exists($class, false)) {
             $template = 'Controller class "%s" not found in "%s".';
             $message  = sprintf($template, $class, $pathToClass);
-            throw new RuntimeException();
+            throw new RuntimeException($message);
         }
     }
     
