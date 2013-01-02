@@ -131,7 +131,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     {
         $this->request->setMethod('GET');
         $this->setPost(array('key' => 'value'));
-        $this->assertTrue($this->request->isPost());
+        $this->assertEquals('POST', $this->request->getMethod());
     }
     
     /**
@@ -160,7 +160,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     {
         $this->request->setMethod('POST');
         $this->setGet(array('key' => 'value'));
-        $this->assertTrue($this->request->isGet());
+        $this->assertEquals('GET', $this->request->getMethod());
     }
     
     /**
