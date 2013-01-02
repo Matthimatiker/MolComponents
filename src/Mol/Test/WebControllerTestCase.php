@@ -244,6 +244,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function setGet(array $parameters)
     {
+        $this->request->setMethod('GET');
         $this->request->setQuery($parameters);
     }
 
