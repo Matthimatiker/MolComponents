@@ -17,6 +17,8 @@
  *
  * # Requirements #
  *
+ * ## Naming and path conventions ##
+ *
  * The WebControllerTestCase detects and loads the tested class automatically.
  * Therefore it is important to name and place the TestCase correctly.
  *
@@ -30,37 +32,75 @@
  * Controller file: /application/controllers/IndexController.php
  * Test file: /tests/application/controllers/IndexControllerTest.php
  *
+ * ## Customize controller loading behavior ##
+ *
+ * If the name of the test case and the name of the controller class
+ * do not fit together, then ``getControllerClass()`` must be overwritten
+ * by the subclass. The method should return the class name of the tested
+ * controller:
+ *
+ *     public function getControllerClass()
+ *     {
+ *         return 'My_Custom_Controller';
+ *     }
+ *
+ * Most probably the test case is not able to locate the controller
+ * if the naming conventions are not fulfilled. If the class loader
+ * is not able to load the tested controller, then the subclass also
+ * has to overwrite the method  ``getControllerPath()``. It must
+ * return the path to the controller file:
+ *
+ *     public function getControllerPath()
+ *     {
+ *         return APPLICATION_PATH . '/modules/custom/MyController.php';
+ *     }
+ *
+ * The file must contain the controller class that is provided by
+ * getControllerClass(), otherwise an exception will be thrown.
+ *
  * # Usage #
  *
  * ## Prepare the environment ##
  *
- * Configuration options are simulated via simulateOption().
+ * ### Simulate configuration options ###
+ *
+ * The prepared bootstrapper is used to simulate configuration options.
  * The following configuration...
  *
  *     $options = array('name' => 'Dori', 'mail' => 'dori@demo.com');
- *     $this->simulateOption('demo' => $options);
+ *     $this->bootstrapper->setOptions('demo' => $options);
  *
- * ... equals this ini file configuration entries:
+ * ... is equal to this ini file configuration entries:
  *
  *     demo.name = "Dori"
  *     demo.mail = "dori@demo.com"
  *
- * Resources (for example database connections) may be simulated via
- * simulateResource():
+ * ### Simulate resources ###
  *
- *     $this->simulateResource('Locale', new Zend_Locale('en'));
+ * Resources (for example database connections) may also be simulated
+ * via bootstrapper:
+ *
+ *     $this->bootstrapper->simulateResource('Locale', new Zend_Locale('en'));
  *
  * The following resources are simulated per default to reduce
- * dependencies:
+ * manual setup work:
  *
  * * Log
+ * * Layout
+ * * View
  *
+ * ### Invoke args ###
+ *
+ * ----invalid start
  * Front controller parameters and invoke args that are passed to
  * the constructor of the controller are simulated via setInvokeArgs():
  *
  *     $this->setInvokeArgs(array('displayExceptions' => true));
  *
  * A mocked bootstrapper is injected as invoke arg per default.
+ * ----invalid end
+ *
+ * ### Simulate parameters ###
  *
  * The request parameters are simulated via setGet() and setPost():
  *
@@ -68,7 +108,8 @@
  *     $this->setPost(array('search' => 'hello'));
  *
  * Multiple calls to setGet() or setPost() will not clear parameters
- * that were provided previously:
+ * that were provided previously, instead the new paramters will
+ * be added:
  *
  *     $this->setGet(array('page' => '1'));
  *     $this->setGet(array('name' => 'Al'));
@@ -82,8 +123,11 @@
  *
  * Usually user parameters are passed via forwarding.
  *
- *
  * ## Execute and test ##
+ *
+ * ### Single controller methods ###
+ *
+ * ### Action tests including lifecycle ###
  *
  * For testing specific actions may be executed via dispatch():
  *
@@ -102,27 +146,6 @@
  *
  *     $this->assertReponse()->contains('Test!');
  *
- *
- * ## Modify class loading behavior ##
- *
- * If the test class does not fulfill the requirements for autoloading
- * the tested controller, then the loading behavior may be modified
- * via overridung getControllerClass() and/or getControllerPath().
- *
- * The method getControllerClass() returns the name of the tested controller:
- *
- *     protected function getControllerClass() {
- *         return 'MyController';
- *     }
- *
- * The method getControllerPath() returns the path to the file that is loaded
- * if the controller class is not available yet. The file must contain the
- * controller class that is provided by getControllerClass(), otherwise an
- * exception will be thrown:
- *
- *     protected function getControllerPath() {
- *         return APPLICATION_PATH . '/My/Controllers/Controller.php';
- *     }
  *
  * @category PHP
  * @package Mol_Test
