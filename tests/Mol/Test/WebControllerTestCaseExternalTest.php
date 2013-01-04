@@ -142,7 +142,10 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
      */
     public function testInitializationFailsIfProvidedFileDoesNotContainExpectedControllerClass()
     {
-
+        $path   = dirname(__FILE__) . '/TestData/WebControllerTestCase/GlobalsController.php';
+        $test   = $this->createTestCase('testNothing', 'Missing_Controller_Class', $path);
+        $result = $test->run();
+        $this->assertFailed($result);
     }
     
     
@@ -162,7 +165,7 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
             $mockedMethods[] = 'getControllerClass';
         }
         if ($controllerPath !== null) {
-            $mockedMethods[] = $controllerPath;
+            $mockedMethods[] = 'getControllerPath';
         }
         
         // Finish early if no mock object is required.
