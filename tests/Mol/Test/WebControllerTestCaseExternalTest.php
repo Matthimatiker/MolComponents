@@ -148,7 +148,6 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
         $this->assertFailed($result);
     }
     
-    
     /**
      * Creates a test case for the provided controller class.
      *
