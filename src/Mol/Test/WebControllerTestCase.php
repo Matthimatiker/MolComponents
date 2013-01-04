@@ -226,7 +226,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $this->response     = $this->createResponse();
         $this->logWriter    = $this->createLogWriter();
         $this->bootstrapper = $this->createBootstrapper();
-        $this->controller   = $this->createController();
+        $this->initActionHelpers();
+        $this->controller = $this->createController();
     }
 
     /**
@@ -449,7 +450,6 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     {
         $this->previousActionHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
         Zend_Controller_Action_HelperBroker::resetHelpers();
-        $this->initActionHelpers();
     }
     
     /**
@@ -482,7 +482,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function createViewRenderer()
     {
-        return new Mol_Test_Controller_Action_Helper_ViewRenderer($this->createView());
+        return new Mol_Test_Controller_Action_Helper_ViewRenderer($this->bootstrapper->getResource('view'));
     }
     
     /**
@@ -492,8 +492,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function createLayoutHelper()
     {
-        $layout = new Zend_Layout();
-        return new Zend_Layout_Controller_Action_Helper_Layout($layout);
+        return new Zend_Layout_Controller_Action_Helper_Layout($this->bootstrapper->getResource('layout'));
     }
     
     /**
