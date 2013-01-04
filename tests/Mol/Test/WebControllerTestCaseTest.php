@@ -87,7 +87,6 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testBootstrapperIsInjectedIntoController()
     {
-        $this->assertNotNull($this->controller);
         $this->assertSame($this->bootstrapper, $this->controller->getInvokeArg('bootstrap'));
     }
     
@@ -96,7 +95,6 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testLoggerIsAvailableViaBootstrapper()
     {
-        $this->assertNotNull($this->bootstrapper);
         $this->assertInstanceOf('Zend_Log', $this->bootstrapper->getResource('log'));
     }
     
