@@ -154,6 +154,17 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Ensures that parameters that were passed to the request object via
+     * setPost() are not overwritten if setPost() is called again.
+     */
+    public function testParametersFromPreviousSetPostCallsAreNotOverwritten()
+    {
+        $this->setPost(array('first' => 'here'));
+        $this->setPost(array('second' => 'there'));
+        $this->assertEquals('here', $this->request->getPost('first'));
+    }
+    
+    /**
      * Ensures that setGet() changes the method in the request.
      */
     public function testSetGetChangesMethodInRequestObject()
@@ -180,6 +191,17 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     {
         $this->setGet($this->createForm());
         $this->assertEquals('value', $this->request->getQuery('key'));
+    }
+    
+    /**
+     * Ensures that parameters that were passed to the request object via
+     * setGet() are not overwritten if setGet() is called again.
+     */
+    public function testParametersFromPreviousSetGetCallsAreNotOverwritten()
+    {
+        $this->setGet(array('first' => 'here'));
+        $this->setGet(array('second' => 'there'));
+        $this->assertEquals('here', $this->request->getQuery('first'));
     }
     
     /**
