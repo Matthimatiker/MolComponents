@@ -142,8 +142,9 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
      */
     public function testInitializationFailsIfProvidedFileDoesNotContainExpectedControllerClass()
     {
-        
+
     }
+    
     
     /**
      * Creates a test case for the provided controller class.
@@ -154,17 +155,29 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
      */
     protected function createTestCase($testName, $controllerClass = null)
     {
-        if ($controllerClass === null) {
-            $test = new Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest($testName);
-        } else {
-            $testClass     = 'Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest';
-            $arguments     = array($testName);
-            $mockedMethods = array('getControllerClass');
-            $test = $this->getMock($testClass, $mockedMethods, $arguments);
+        // Determine methods that must be mocked.
+        $mockedMethods = array();
+        if ($controllerClass !== null) {
+            $mockedMethods[] = 'getControllerClass';
+        }
+        
+        // Finish early if no mock object is required.
+        if (count($mockedMethods) === 0) {
+            return new Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest($testName);
+        }
+        
+        // Create mocked test case.
+        $testClass = 'Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest';
+        $arguments = array($testName);
+        $test      = $this->getMock($testClass, $mockedMethods, $arguments);
+        
+        // Define behavior of mocked method.
+        if ($controllerClass !== null) {
             $test->expects($this->any())
                  ->method('getControllerClass')
                  ->will($this->returnValue($controllerClass));
         }
+        
         return $test;
     }
     
