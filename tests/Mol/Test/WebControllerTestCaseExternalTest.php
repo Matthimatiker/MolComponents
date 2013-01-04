@@ -160,34 +160,31 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
     protected function createTestCase($testName, $controllerClass = null, $controllerPath = null)
     {
         // Determine methods that must be mocked.
-        $mockedMethods = array();
+        $methodsToReturnValue = array();
         if ($controllerClass !== null) {
-            $mockedMethods[] = 'getControllerClass';
+            $methodsToReturnValue['getControllerClass'] = $controllerClass;
         }
         if ($controllerPath !== null) {
-            $mockedMethods[] = 'getControllerPath';
+            $methodsToReturnValue['getControllerPath'] = $controllerPath;
         }
         
         // Finish early if no mock object is required.
-        if (count($mockedMethods) === 0) {
+        if (count($methodsToReturnValue) === 0) {
             return new Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest($testName);
         }
         
         // Create mocked test case.
         $testClass = 'Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest';
         $arguments = array($testName);
-        $test      = $this->getMock($testClass, $mockedMethods, $arguments);
+        $test      = $this->getMock($testClass, array_keys($methodsToReturnValue), $arguments);
         
         // Define behavior of mocked method.
-        if ($controllerClass !== null) {
+        foreach ($methodsToReturnValue as $method => $returnValue) {
+            /* @var $method string */
+            /* @var $returnValue string */
             $test->expects($this->any())
-                 ->method('getControllerClass')
-                 ->will($this->returnValue($controllerClass));
-        }
-        if ($controllerPath !== null) {
-            $test->expects($this->any())
-                 ->method('getControllerPath')
-                 ->will($this->returnValue($controllerPath));
+                ->method($method)
+                ->will($this->returnValue($returnValue));
         }
         
         return $test;
