@@ -112,28 +112,44 @@
  *
  * Usually user parameters are passed via forwarding.
  *
- * ## Execute and test ##
+ * ## Testing ##
  *
  * ### Single controller methods ###
  *
+ * Single controller methods can be executed directly:
+ *
+ *     $this->controller->myAction();
+ *
+ * Afterwards, the for example the state of the response
+ * can be checked to verify the controller behavior:
+ *
+ *     $this->assertResponse()->hasHeader('Expires');
+ *
  * ### Action tests including lifecycle ###
  *
- * For testing specific actions may be executed via dispatch():
+ * More complex tests might rely on the controller lifecycle.
+ * The ``dispatch()`` method helps to to simulate the controller
+ * lifecycle as it occurs in the dispatch loop.
+ *
+ * The lifecycle includes:
+ *
+ * * calling pre-dispatch hooks of action helpers
+ * * calling controller preDispatch()
+ * * executing the requested action
+ * * calling controller postDispatch()
+ * * calling post-dispatch hooks of action helpers
+ *
+ * To execute an action its name (not the name of the action
+ * method) is passed to ``dispatch()``:
  *
  *     $this->dispatch('my-action');
  *
- * The method dispatch() takes name of the action (not the name of
- * the action method) as argument.
- * During dispatching the environment is modified and another call to
- * dispatch() will not re-initialize it, therefore dispatch() should
- * be called only once per test.
+ * Please note: During dispatching the environment is modified and another
+ * call to dispatch() will not re-initialize it properly, therefore dispatch()
+ * should be called only once per test.
  *
  * After executing an action the provided assertions are used to
- * check the results.
- * The assertions regarding the response object are accessed via
- * assertResponse():
- *
- *     $this->assertReponse()->contains('Test!');
+ * check the results just like in a single method test.
  *
  * @category PHP
  * @package Mol_Test
