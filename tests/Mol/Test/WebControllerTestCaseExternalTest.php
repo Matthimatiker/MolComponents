@@ -137,6 +137,15 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
     }
     
     /**
+     * Ensures that the test initialization fails if the file that is provided
+     * by getControllerPath() does not contain the expected controller class.
+     */
+    public function testInitializationFailsIfProvidedFileDoesNotContainExpectedControllerClass()
+    {
+        
+    }
+    
+    /**
      * Creates a test case for the provided controller class.
      *
      * @param string $testName The name of the test that will be executed.
