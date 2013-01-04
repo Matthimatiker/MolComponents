@@ -151,14 +151,18 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
      *
      * @param string $testName The name of the test that will be executed.
      * @param string|null $controllerClass
+     * @param string|null $controllerPath
      * @return Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest
      */
-    protected function createTestCase($testName, $controllerClass = null)
+    protected function createTestCase($testName, $controllerClass = null, $controllerPath = null)
     {
         // Determine methods that must be mocked.
         $mockedMethods = array();
         if ($controllerClass !== null) {
             $mockedMethods[] = 'getControllerClass';
+        }
+        if ($controllerPath !== null) {
+            $mockedMethods[] = $controllerPath;
         }
         
         // Finish early if no mock object is required.
@@ -176,6 +180,11 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
             $test->expects($this->any())
                  ->method('getControllerClass')
                  ->will($this->returnValue($controllerClass));
+        }
+        if ($controllerPath !== null) {
+            $test->expects($this->any())
+                 ->method('getControllerPath')
+                 ->will($this->returnValue($controllerPath));
         }
         
         return $test;
