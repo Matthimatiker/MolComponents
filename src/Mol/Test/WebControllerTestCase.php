@@ -224,6 +224,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $this->setUpHelpers();
         $this->request      = $this->createRequest();
         $this->response     = $this->createResponse();
+        $this->logWriter    = $this->createLogWriter();
         $this->bootstrapper = $this->createBootstrapper();
         $this->controller   = $this->createController();
     }
@@ -235,6 +236,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     {
         $this->controller   = null;
         $this->bootstrapper = null;
+        $this->logWriter    = null;
         $this->response     = null;
         $this->request      = null;
         $this->tearDownHelpers();
@@ -397,10 +399,34 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function createBootstrapper()
     {
-        $bootstrapper    = Mol_Test_Bootstrap::create();
-        $this->logWriter = new Zend_Log_Writer_Mock();
-        $bootstrapper->simulateResource('log', new Zend_Log($this->logWriter));
+        $bootstrapper = Mol_Test_Bootstrap::create();
+        $this->injectResources($bootstrapper);
         return $bootstrapper;
+    }
+    
+    /**
+     * Creates simulated resources and injects them into the given bootstrapper.
+     *
+     * @param Mol_Test_Bootstrap $bootstrapper
+     */
+    protected function injectResources(Mol_Test_Bootstrap $bootstrapper)
+    {
+        $bootstrapper->simulateResource('log', new Zend_Log($this->logWriter));
+        $view = new Zend_View();
+        $bootstrapper->simulateResource('view', $view);
+        $layout = new Zend_Layout();
+        $layout->setView($view);
+        $bootstrapper->simulateResource('layout', $layout);
+    }
+    
+    /**
+     * Creates a log writer mock.
+     *
+     * @return Zend_Log_Writer_Mock
+     */
+    protected function createLogWriter()
+    {
+        return new Zend_Log_Writer_Mock();
     }
     
     /**
