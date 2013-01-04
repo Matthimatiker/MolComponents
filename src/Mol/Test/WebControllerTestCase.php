@@ -226,6 +226,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $this->response     = $this->createResponse();
         $this->logWriter    = $this->createLogWriter();
         $this->bootstrapper = $this->createBootstrapper();
+        // Initialize the action helpers before creating the controller
+        // as its constructor accesses these helpers.
         $this->initActionHelpers();
         $this->controller = $this->createController();
     }
