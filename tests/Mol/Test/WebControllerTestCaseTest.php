@@ -101,6 +101,22 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Checks if the view is injected into the bootstrapper per default.
+     */
+    public function testViewIsAvailableViaBootstrapper()
+    {
+        $this->assertInstanceOf('Zend_View', $this->bootstrapper->getResource('view'));
+    }
+    
+    /**
+     * Checks if the layout is injected into the bootstrapper per default.
+     */
+    public function testLayoutIsAvailableViaBootstrapper()
+    {
+        $this->assertInstanceOf('Zend_Layout', $this->bootstrapper->getResource('layout'));
+    }
+    
+    /**
      * Ensures that the request object is initially marked as dispatched.
      */
     public function testRequestObjectIsInitiallyMarkedAsDispatched()
