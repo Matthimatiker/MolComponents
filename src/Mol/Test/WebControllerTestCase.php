@@ -89,17 +89,6 @@
  * * Layout
  * * View
  *
- * ### Invoke args ###
- *
- * ----invalid start
- * Front controller parameters and invoke args that are passed to
- * the constructor of the controller are simulated via setInvokeArgs():
- *
- *     $this->setInvokeArgs(array('displayExceptions' => true));
- *
- * A mocked bootstrapper is injected as invoke arg per default.
- * ----invalid end
- *
  * ### Simulate parameters ###
  *
  * The request parameters are simulated via setGet() and setPost():
@@ -145,7 +134,6 @@
  * assertResponse():
  *
  *     $this->assertReponse()->contains('Test!');
- *
  *
  * @category PHP
  * @package Mol_Test
