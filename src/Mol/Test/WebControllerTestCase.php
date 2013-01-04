@@ -494,9 +494,6 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     protected function dispatch($action)
     {
-        $this->request->setDispatched(true);
-        $this->request->setModuleName($this->getModuleName());
-        $this->request->setControllerName($this->getControllerName());
         $this->request->setActionName($action);
         
         $this->controller->dispatch($this->actionNameToMethod($action));
