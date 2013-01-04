@@ -513,11 +513,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      */
     private function actionNameToMethod($name)
     {
-        $method = str_replace('-', ' ', $name);
-        $method = ucwords($method);
-        $method = str_replace(' ', '', $method);
-        $method = strtolower(substr($method, 0, 1)) . substr($method, 1);
-        $method = $method . 'Action';
+        $method = Zend_Filter::filterStatic($name, 'Word_DashToCamelCase');
+        $method = lcfirst($method) . 'Action';
         return $method;
     }
 
