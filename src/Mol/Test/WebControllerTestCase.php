@@ -221,7 +221,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->setUpHelpers();
+        $this->storeActionHelpers();
         $this->request      = $this->createRequest();
         $this->response     = $this->createResponse();
         $this->logWriter    = $this->createLogWriter();
@@ -242,7 +242,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $this->logWriter    = null;
         $this->response     = null;
         $this->request      = null;
-        $this->tearDownHelpers();
+        $this->restoreActionHelpers();
         parent::tearDown();
     }
 
@@ -448,7 +448,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     /**
      * Sets up the action helpers.
      */
-    protected function setUpHelpers()
+    protected function storeActionHelpers()
     {
         $this->previousActionHelpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
         Zend_Controller_Action_HelperBroker::resetHelpers();
@@ -457,7 +457,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     /**
      * Restores the previous action helpers.
      */
-    protected function tearDownHelpers()
+    protected function restoreActionHelpers()
     {
         Zend_Controller_Action_HelperBroker::resetHelpers();
         foreach ($this->previousActionHelpers as $helper) {
