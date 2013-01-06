@@ -275,17 +275,36 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
         $this->assertEquals($expectedCalls, $calledMethods);
     }
     
+    /**
+     * Ensures that no identity is set per default.
+     */
     public function testIdentityIsNotSetPerDefault()
     {
         
     }
     
+    /**
+     * Checks if the getIdentity() method of the authentication class
+     * returns null per default.
+     */
     public function testIdentityIsNullPerDefault()
     {
         
     }
     
+    /**
+     * Checks if setIdentity() simulates the provided identity.
+     */
     public function testSetIdentitySimulatesIdentity()
+    {
+        
+    }
+    
+    /**
+     * Ensures that passing null to setIdentity() removes the previous
+     * identity.
+     */
+    public function testSetIdentityRemovesIdentityIfNullIsPassed()
     {
         
     }
