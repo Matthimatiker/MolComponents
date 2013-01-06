@@ -158,6 +158,7 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.06.2011
+ * @todo document identity simulation
  */
 abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
 {
