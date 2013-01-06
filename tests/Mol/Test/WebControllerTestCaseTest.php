@@ -275,6 +275,21 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
         $this->assertEquals($expectedCalls, $calledMethods);
     }
     
+    public function testIdentityIsNotSetPerDefault()
+    {
+        
+    }
+    
+    public function testIdentityIsNullPerDefault()
+    {
+        
+    }
+    
+    public function testSetIdentitySimulatesIdentity()
+    {
+        
+    }
+    
     /**
      * Defines the controller that is used in the tests.
      *
