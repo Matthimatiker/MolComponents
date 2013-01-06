@@ -280,7 +280,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testIdentityIsNotSetPerDefault()
     {
-        
+        $this->assertFalse(Zend_Auth::getInstance()->hasIdentity());
     }
     
     /**
@@ -289,7 +289,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testIdentityIsNullPerDefault()
     {
-        
+        $this->assertNull(Zend_Auth::getInstance()->getIdentity());
     }
     
     /**
@@ -297,7 +297,8 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testSetIdentitySimulatesIdentity()
     {
-        
+        $this->setIdentity('my identity');
+        $this->assertEquals('my identity', Zend_Auth::getInstance()->getIdentity());
     }
     
     /**
@@ -306,7 +307,9 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testSetIdentityRemovesIdentityIfNullIsPassed()
     {
-        
+        $this->setIdentity('first identity');
+        $this->setIdentity(null);
+        $this->assertFalse(Zend_Auth::getInstance()->hasIdentity());
     }
     
     /**
