@@ -115,6 +115,24 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Checks if the controller receives the view that is already
+     * used in the bootstrapper.
+     */
+    public function testControllerReceivesViewFromBootstrapper()
+    {
+        
+    }
+    
+    /**
+     * Checks if the view object is already available during execution
+     * of the controller's init() method.
+     */
+    public function testViewIsAlreadyAvailableDuringInit()
+    {
+    
+    }
+    
+    /**
      * Ensures that the request object is initially marked as dispatched.
      */
     public function testRequestObjectIsInitiallyMarkedAsDispatched()
