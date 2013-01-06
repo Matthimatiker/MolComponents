@@ -216,6 +216,14 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * @var array(string=>Zend_Controller_Action_Helper_Abstract)
      */
     private $previousActionHelpers = null;
+    
+    /**
+     * Contains the identity storage that was registered
+     * before the test started.
+     *
+     * @var Zend_Auth_Storage_Interface
+     */
+    private $previousIdentityStorage = null;
 
     /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
@@ -223,6 +231,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
+        $this->storeIdentity();
         $this->storeActionHelpers();
         $this->request      = $this->createRequest();
         $this->response     = $this->createResponse();
@@ -245,6 +254,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $this->response     = null;
         $this->request      = null;
         $this->restoreActionHelpers();
+        $this->restoreIdentity();
         parent::tearDown();
     }
 
@@ -445,6 +455,35 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
             'bootstrap' => $this->bootstrapper
         );
         return $args;
+    }
+    
+    /**
+     * Stores the current identity. Prepares a storage that does not depend
+     * on the session for testing.
+     */
+    protected function storeIdentity()
+    {
+        $auth = Zend_Auth::getInstance();
+        $storageProperty = new ReflectionProperty($auth, '_storage');
+        $storageProperty->setAccessible(true);
+        if ($storageProperty->getValue($auth) === null) {
+            // Storage was not created yet. Do not request it as a session
+            // storage will be created otherwise.
+            // Instead assume a non persistent storage as adding this one later
+            // should not have any side effect.
+            $this->previousIdentityStorage = new Zend_Auth_Storage_NonPersistent();
+        } else {
+            $this->previousIdentityStorage = $auth->getStorage();
+        }
+        Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_NonPersistent());
+    }
+    
+    /**
+     * Restores the previous identity.
+     */
+    protected function restoreIdentity()
+    {
+        Zend_Auth::getInstance()->setStorage($this->previousIdentityStorage);
     }
     
     /**
