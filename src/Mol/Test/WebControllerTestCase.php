@@ -484,6 +484,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function restoreIdentity()
     {
         Zend_Auth::getInstance()->setStorage($this->previousIdentityStorage);
+        $this->previousIdentityStorage = null;
     }
     
     /**
@@ -505,6 +506,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
             /* @var $helper Zend_Controller_Action_Helper_Abstract */
             Zend_Controller_Action_HelperBroker::addHelper($helper);
         }
+        $this->previousActionHelpers = null;
     }
     
     /**
