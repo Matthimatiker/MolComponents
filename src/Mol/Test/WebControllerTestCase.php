@@ -161,6 +161,7 @@
  */
 abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
 {
+    
     /**
      * Ensure that globals ($_GET, $_POST, ...) are stored.
      *
@@ -638,4 +639,3 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     }
 
 }
-
