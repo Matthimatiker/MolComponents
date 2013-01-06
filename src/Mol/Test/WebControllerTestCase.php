@@ -302,6 +302,18 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Simulates an identity.
+     *
+     * Set identity to null to simulate a guest.
+     *
+     * @param mixed|null $identity
+     */
+    protected function setIdentity($identity)
+    {
+        Zend_Auth::getInstance()->getStorage()->write($identity);
+    }
+    
+    /**
      * Returns the values from the given Zend_Form instance or array.
      *
      * If an array is provided then this method will do nothing as
