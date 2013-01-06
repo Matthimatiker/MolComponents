@@ -29,6 +29,14 @@ class WebControllerTestCase_InternalController extends Zend_Controller_Action
 {
     
     /**
+     * The view object as it was available during
+     * execution of the init() method.
+     *
+     * @var Zend_View|null
+     */
+    public $viewDuringInit = null;
+    
+    /**
      * A list of controller methods that were executed.
      *
      * @var array(string)
@@ -42,6 +50,7 @@ class WebControllerTestCase_InternalController extends Zend_Controller_Action
     {
         parent::init();
         $this->registerCall(__FUNCTION__);
+        $this->viewDuringInit = $this->view;
     }
     
     /**

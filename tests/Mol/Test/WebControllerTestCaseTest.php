@@ -120,7 +120,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testControllerReceivesViewFromBootstrapper()
     {
-        
+        $this->assertSame($this->bootstrapper->getResource('view'), $this->controller->view);
     }
     
     /**
@@ -129,7 +129,8 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testViewIsAlreadyAvailableDuringInit()
     {
-    
+        $this->assertNotNull($this->controller->viewDuringInit, 'No view available during execution of init().');
+        $this->assertSame($this->bootstrapper->getResource('view'), $this->controller->viewDuringInit);
     }
     
     /**
