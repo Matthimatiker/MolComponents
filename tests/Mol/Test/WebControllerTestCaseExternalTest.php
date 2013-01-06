@@ -149,6 +149,18 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
     }
     
     /**
+     * Ensures that the test case removes identities that were changed
+     * during test execution.
+     */
+    public function testChangedIdentityIsRemoved()
+    {
+        $test   = $this->createTestCase('testChangeIdentity');
+        $result = $test->run();
+        $this->assertSuccessful($result);
+        $this->assertNotEquals('another identity', Zend_Auth::getInstance()->getIdentity());
+    }
+    
+    /**
      * Creates a test case for the provided controller class.
      *
      * @param string $testName The name of the test that will be executed.

@@ -50,6 +50,14 @@ class Mol_Test_TestData_WebControllerTestCase_GlobalsControllerTest extends Mol_
     }
     
     /**
+     * A test that changes the identity of the logged in user.
+     */
+    public function testChangeIdentity()
+    {
+        Zend_Auth::getInstance()->getStorage()->write('another identity');
+    }
+    
+    /**
      * A dummy test that does nothing.
      */
     public function testNothing()
