@@ -112,6 +112,18 @@
  *
  * Usually user parameters are passed via forwarding.
  *
+ * ### Simulate Identity ###
+ *
+ * Use setIdentity() to simulate a logged in user:
+ *
+ *     $this->setIdentity('user@example.org');
+ *
+ * Pass null as argument to simulate a guest (not logged in):
+ *
+ *     $this->setIdentity(null);
+ *
+ * This is also the default state after initial setup.
+ *
  * ## Testing ##
  *
  * ### Single controller methods ###
@@ -158,7 +170,6 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.06.2011
- * @todo document identity simulation
  * @todo support changing invoke args
  * @todo add view assertions
  * @todo add redirect assertions for response
