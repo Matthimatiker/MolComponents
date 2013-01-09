@@ -114,7 +114,10 @@
  *
  * ### Simulate Identity ###
  *
- * Use setIdentity() to simulate a logged in user:
+ * The controller can use Zend_Auth to determine the currently
+ * logged in user.
+ *
+ * Use setIdentity() to simulate that user:
  *
  *     $this->setIdentity('user@example.org');
  *
