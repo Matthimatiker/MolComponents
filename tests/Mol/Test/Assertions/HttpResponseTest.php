@@ -318,26 +318,44 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
         $this->assertions->containsJson();
     }
     
+    /**
+     * Ensures that isRedirect() succeeds if the response redirects to an
+     * arbitrary url.
+     */
     public function testIsRedirectSucceedsIfResponseRedirectsToAnyUrl()
     {
         
     }
     
+    /**
+     * Ensures that isRedirect() fails if the response does not redirect.
+     */
     public function testIsRedirectFailsIfResponseDoesNotRedirect()
     {
         
     }
     
+    /**
+     * Ensures that redirectsTo() succeeds if the response redirects to the
+     * expected url.
+     */
     public function testRedirectsToSucceedsIfResponseRedirectsToProvidedUrl()
     {
         
     }
     
+    /**
+     * Ensures that redirectsTo() fails if the response does not redirect at all.
+     */
     public function testRedirectsToFailsIfResponseDoesNotRedirect()
     {
         
     }
     
+    /**
+     * Ensures that redirectsTo() fails if the response redirects to an
+     * unexpected url.
+     */
     public function testRedirectsToFailsIfResponseRedirectsToUnexpectedUrl()
     {
         
