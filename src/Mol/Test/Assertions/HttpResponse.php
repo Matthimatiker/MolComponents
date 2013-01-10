@@ -161,7 +161,8 @@ class Mol_Test_Assertions_HttpResponse
      */
     public function isRedirect()
     {
-        
+        $message = 'Response does not perform a redirect.';
+        PHPUnit_Framework_Assert::assertTrue($this->response->isRedirect(), $message);
     }
     
     /**
@@ -171,7 +172,8 @@ class Mol_Test_Assertions_HttpResponse
      */
     public function redirectsTo($url)
     {
-        
+        $this->isRedirect();
+        $this->headerEquals('Location', $url);
     }
     
     /**
