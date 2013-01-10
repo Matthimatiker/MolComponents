@@ -175,7 +175,6 @@
  * @since 21.06.2011
  * @todo support changing invoke args
  * @todo add view assertions
- * @todo add redirect assertions for response
  * @todo document customization of setup
  */
 abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
