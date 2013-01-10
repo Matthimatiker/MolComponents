@@ -324,7 +324,9 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testIsRedirectSucceedsIfResponseRedirectsToAnyUrl()
     {
-        
+        $this->assertSuccess();
+        $this->response->setRedirect('/test/url');
+        $this->assertions->isRedirect();
     }
     
     /**
@@ -332,7 +334,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testIsRedirectFailsIfResponseDoesNotRedirect()
     {
-        
+        $this->assertFailure();
+        $this->assertions->isRedirect();
     }
     
     /**
@@ -341,7 +344,9 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testRedirectsToSucceedsIfResponseRedirectsToProvidedUrl()
     {
-        
+        $this->assertSuccess();
+        $this->response->setRedirect('/test/url');
+        $this->assertions->redirectsTo('/test/url');
     }
     
     /**
@@ -349,7 +354,8 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testRedirectsToFailsIfResponseDoesNotRedirect()
     {
-        
+        $this->assertFailure();
+        $this->assertions->redirectsTo('/test/url');
     }
     
     /**
@@ -358,7 +364,9 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testRedirectsToFailsIfResponseRedirectsToUnexpectedUrl()
     {
-        
+        $this->assertFailure();
+        $this->response->setRedirect('/test/url');
+        $this->assertions->redirectsTo('/another/url');
     }
     
     /**
