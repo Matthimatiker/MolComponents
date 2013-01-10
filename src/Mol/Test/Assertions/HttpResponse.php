@@ -157,6 +157,24 @@ class Mol_Test_Assertions_HttpResponse
     }
     
     /**
+     * Asserts that the response is a redirect.
+     */
+    public function isRedirect()
+    {
+        
+    }
+    
+    /**
+     * Asserts that the response is a redirect and points to the given url.
+     *
+     * @param string $url
+     */
+    public function redirectsTo($url)
+    {
+        
+    }
+    
+    /**
      * Returns all headers of type $name.
      *
      * Example:
