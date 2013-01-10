@@ -319,23 +319,23 @@ class Mol_Test_Assertions_HttpResponseTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Ensures that isRedirect() succeeds if the response redirects to an
+     * Ensures that redirects() succeeds if the response redirects to an
      * arbitrary url.
      */
-    public function testIsRedirectSucceedsIfResponseRedirectsToAnyUrl()
+    public function testRedirectsSucceedsIfResponseRedirectsToAnyUrl()
     {
         $this->assertSuccess();
         $this->response->setRedirect('/test/url');
-        $this->assertions->isRedirect();
+        $this->assertions->redirects();
     }
     
     /**
-     * Ensures that isRedirect() fails if the response does not redirect.
+     * Ensures that redirects() fails if the response does not redirect.
      */
-    public function testIsRedirectFailsIfResponseDoesNotRedirect()
+    public function testRedirectsFailsIfResponseDoesNotRedirect()
     {
         $this->assertFailure();
-        $this->assertions->isRedirect();
+        $this->assertions->redirects();
     }
     
     /**
