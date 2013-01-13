@@ -37,4 +37,29 @@ class Mol_Test_Controller_Action_Helper_Redirector extends Zend_Controller_Actio
      */
     protected $_exit = false;
     
+    
+    /**
+     * Sets a redirect URL of the form /module/controller/action/params.
+     *
+     * In contrast to setGotoSimple() of the parent class, this method
+     * does not use the router to avoid the dependencies to front controller,
+     * dispatcher and router.
+     *
+     * @param string $action
+     * @param string $controller
+     * @param string $module
+     * @param array(string=>string)  $params
+     */
+    public function setGotoSimple($action, $controller = null, $module = null, array $params = array())
+    {
+        // TODO add params, sort params by key to create same output if params are equal (but order differs)
+        $url = '/' . $module . '/' . $controller . '/' . $action;
+        foreach ($params as $key => $value) {
+            /* @var $key string */
+            /* @var $value string */
+            $url .= '/' . $key . '/' . $value;
+        }
+        $this->_redirect($url);
+    }
+    
 }
