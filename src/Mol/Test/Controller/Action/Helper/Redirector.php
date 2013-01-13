@@ -35,6 +35,6 @@ class Mol_Test_Controller_Action_Helper_Redirector extends Zend_Controller_Actio
      *
      * @var boolean
      */
-    protected $exit = false;
+    protected $_exit = false;
     
 }
