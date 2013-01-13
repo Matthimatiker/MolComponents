@@ -25,7 +25,7 @@ require_once(dirname(__FILE__) . '/TestData/WebControllerTestCase/InternalContro
 
 /**
  * Extends the Mol_Test_WebControllerTestCase and checks its functionality
- * from an internal popint of view.
+ * from an internal point of view.
  *
  * @category PHP
  * @package Mol_Test
@@ -38,6 +38,15 @@ require_once(dirname(__FILE__) . '/TestData/WebControllerTestCase/InternalContro
  */
 class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
 {
+    
+    /**
+     * System under test.
+     *
+     * Re-declared variable to provide a more specific type hint.
+     *
+     * @var WebControllerTestCase_InternalController
+     */
+    protected $controller = null;
     
     /**
      * Checks if getControllerName() returns the correct value.
@@ -318,6 +327,15 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     {
         $this->setIdentity('my identity');
         $this->assertEquals('my identity', Zend_Auth::getInstance()->getIdentity());
+    }
+    
+    /**
+     * Checks if the redirector action helper is simulated correctly.
+     */
+    public function testRedirectorIsSimulated()
+    {
+        $this->controller->redirectorAction();
+        $this->assertResponse()->redirectsTo('/my-module/my-controller/my-action/my-param/my-value');
     }
     
     /**
