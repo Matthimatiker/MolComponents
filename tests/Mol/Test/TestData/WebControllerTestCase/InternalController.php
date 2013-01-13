@@ -87,6 +87,7 @@ class WebControllerTestCase_InternalController extends Zend_Controller_Action
      */
     public function redirectAction()
     {
+        $this->registerCall(__FUNCTION__);
         $this->redirect('/redirect/url');
     }
     
