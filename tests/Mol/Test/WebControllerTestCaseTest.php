@@ -321,14 +321,6 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
-     * Checks if the redirector action helper is simulated correctly.
-     */
-    public function testRedirectorIsSimulated()
-    {
-        
-    }
-    
-    /**
      * Ensures that passing null to setIdentity() removes the previous
      * identity.
      */

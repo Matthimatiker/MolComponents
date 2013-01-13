@@ -74,6 +74,15 @@ class WebControllerTestCase_InternalController extends Zend_Controller_Action
     }
     
     /**
+     * Action that is used to test the interaction with the redirector action helper.
+     */
+    public function redirectorAction()
+    {
+        $this->registerCall(__FUNCTION__);
+        $this->_helper->redirector('my-action', 'my-controller', 'my-module', array('my-param' => 'my-value'));
+    }
+    
+    /**
      * Registers calls to postDispatch().
      */
     public function postDispatch()
