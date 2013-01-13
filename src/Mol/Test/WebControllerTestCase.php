@@ -548,6 +548,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
         $layoutHelper = $this->createLayoutHelper();
         Zend_Controller_Action_HelperBroker::addHelper($layoutHelper);
+        $redirector = new Mol_Test_Controller_Action_Helper_Redirector();
+        Zend_Controller_Action_HelperBroker::addHelper($redirector);
     }
     
     /**
