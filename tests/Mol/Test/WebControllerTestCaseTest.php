@@ -339,6 +339,15 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Checks if the controller method redirect() is usable.
+     */
+    public function testRedirectMethodIsUsable()
+    {
+        $this->controller->redirectAction();
+        $this->assertResponse()->redirectsTo('/redirect/url');
+    }
+    
+    /**
      * Ensures that passing null to setIdentity() removes the previous
      * identity.
      */

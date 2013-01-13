@@ -83,6 +83,14 @@ class WebControllerTestCase_InternalController extends Zend_Controller_Action
     }
     
     /**
+     * Action that is used to check the usability of the redirect() method.
+     */
+    public function redirectAction()
+    {
+        $this->redirect('/redirect/url');
+    }
+    
+    /**
      * Registers calls to postDispatch().
      */
     public function postDispatch()
