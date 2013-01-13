@@ -330,6 +330,17 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Ensures that passing null to setIdentity() removes the previous
+     * identity.
+     */
+    public function testSetIdentityRemovesIdentityIfNullIsPassed()
+    {
+        $this->setIdentity('first identity');
+        $this->setIdentity(null);
+        $this->assertFalse(Zend_Auth::getInstance()->hasIdentity());
+    }
+    
+    /**
      * Checks if the redirector action helper is simulated correctly.
      */
     public function testRedirectorIsSimulated()
@@ -345,17 +356,6 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     {
         $this->controller->redirectAction();
         $this->assertResponse()->redirectsTo('/redirect/url');
-    }
-    
-    /**
-     * Ensures that passing null to setIdentity() removes the previous
-     * identity.
-     */
-    public function testSetIdentityRemovesIdentityIfNullIsPassed()
-    {
-        $this->setIdentity('first identity');
-        $this->setIdentity(null);
-        $this->assertFalse(Zend_Auth::getInstance()->hasIdentity());
     }
     
     /**
