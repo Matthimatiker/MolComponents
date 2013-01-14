@@ -52,6 +52,7 @@ class Mol_Test_Controller_Action_Helper_Redirector extends Zend_Controller_Actio
      */
     public function setGotoSimple($action, $controller = null, $module = null, array $params = array())
     {
+        // TODO Use controller/module from request if null
         // TODO add params, sort params by key to create same output if params are equal (but order differs)
         $url = '/' . $module . '/' . $controller . '/' . $action;
         foreach ($params as $key => $value) {
