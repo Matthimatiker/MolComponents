@@ -33,4 +33,54 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testGetNameReturnsCorrectValue()
+    {
+        
+    }
+    
+    public function testExitIsDisabledPerDefault()
+    {
+        
+    }
+    
+    public function testExitCannotBeEnabled()
+    {
+        
+    }
+    
+    public function testSetGotoSimpleUsesControllerFromRequestIfNotProvided()
+    {
+        
+    }
+    
+    public function testSetGotoSimpleUsesModuleFromRequestIfNotProvided()
+    {
+    
+    }
+    
+    public function testSetGotSimpleGeneratesSimpleUrl()
+    {
+        
+    }
+    
+    public function testSetGotoSimpleOrdersParametersInUrlByKey()
+    {
+        
+    }
+    
+    public function testSetGotoRouteGeneratesSimpleUrl()
+    {
+        
+    }
+    
+    public function testHelperDoesNotAllowAccessToFrontController()
+    {
+        
+    }
+    
+    public function testHelperDoesNotAllowCallsToRedirectAndExit()
+    {
+        
+    }
+    
 }
