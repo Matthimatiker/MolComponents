@@ -81,7 +81,7 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testExitIsDisabledPerDefault()
     {
-        
+        $this->assertFalse($this->redirector->getExit());
     }
     
     /**
@@ -89,7 +89,8 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testExitCannotBeEnabled()
     {
-        
+        $this->setExpectedException('Mol_Test_Exception');
+        $this->redirector->setExit(true);
     }
     
     /**
@@ -98,7 +99,9 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testSetGotoSimpleUsesControllerFromRequestIfNotProvided()
     {
-        
+        $this->redirector->setGotoSimple('target-action');
+        $url = $this->redirector->getRedirectUrl();
+        $this->assertContains('my-controller', $url);
     }
     
     /**
@@ -107,7 +110,9 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testSetGotoSimpleUsesModuleFromRequestIfNotProvided()
     {
-    
+        $this->redirector->setGotoSimple('target-action');
+        $url = $this->redirector->getRedirectUrl();
+        $this->assertContains('my-module', $url);
     }
     
     /**
@@ -115,7 +120,10 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testSetGotSimpleGeneratesSimpleUrl()
     {
-        
+        $params = array('key' => 'value');
+        $this->redirector->setGotoSimple('target-action', 'target-controller', 'target-module', $params);
+        $url = $this->redirector->getRedirectUrl();
+        $this->assertEquals('target-module/target-controller/target-action/key/value', $url);
     }
     
     /**
@@ -126,7 +134,12 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testSetGotoSimpleOrdersParametersInUrlByKey()
     {
-        
+        $params = array('key-beta' => 'x', 'key-alpha' => 'y');
+        $this->redirector->setGotoSimple('target-action', 'target-controller', 'target-module', $params);
+        $url = $this->redirector->getRedirectUrl();
+        $keyAlphaPosition = strpos($url, 'key-alpha');
+        $keyBetaPosition  = strpos($url, 'key-beta');
+        $this->assertGreaterThan($keyAlphaPosition, $keyBetaPosition, 'Key beta found before key alpha.');
     }
     
     /**
@@ -134,7 +147,15 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testSetGotoRouteGeneratesSimpleUrl()
     {
-        
+        $params = array(
+            'module'     => 'target-module',
+            'controller' => 'target-controller',
+            'action'     => 'target-action',
+            'key'        => 'value'
+        );
+        $this->redirector->setGotoRoute($params);
+        $url = $this->redirector->getRedirectUrl();
+        $this->assertEquals('target-module/target-controller/target-action/key/value', $url);
     }
     
     /**
@@ -143,7 +164,8 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testHelperDoesNotAllowAccessToFrontController()
     {
-        
+        $this->setExpectedException('Mol_Test_Exception');
+        $this->redirector->getFrontController();
     }
     
     /**
@@ -152,7 +174,8 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     public function testHelperDoesNotAllowCallsToRedirectAndExit()
     {
-        
+        $this->setExpectedException('Mol_Test_Exception');
+        $this->redirector->redirectAndExit();
     }
     
     /**
@@ -162,7 +185,10 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
      */
     protected function createController()
     {
-        $request  = new Zend_Controller_Request_HttpTestCase();
+        $request = new Zend_Controller_Request_HttpTestCase();
+        $request->setModuleName('my-module');
+        $request->setControllerName('my-controller');
+        $request->setActionName('my-action');
         $response = new Zend_Controller_Response_HttpTestCase();
         return $this->getMock('Zend_Controller_Action', null, array($request, $response));
     }
