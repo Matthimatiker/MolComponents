@@ -32,13 +32,47 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  */
 class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework_TestCase
 {
+
+    /**
+     * Backup globals as these might be changed by the used
+     * request and response objects.
+     *
+     * @var boolean
+     */
+    protected $backupGlobals = true;
+    
+    /**
+     * System under test.
+     *
+     * @var Mol_Test_Controller_Action_Helper_Redirector
+     */
+    protected $redirector = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->redirector = new Mol_Test_Controller_Action_Helper_Redirector();
+        $this->redirector->setActionController($this->createController());
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->redirector = null;
+        parent::tearDown();
+    }
     
     /**
      * Checks if getName() returns the expected value.
      */
     public function testGetNameReturnsCorrectValue()
     {
-        
+        $this->assertEquals('Redirector', $this->redirector->getName());
     }
     
     /**
@@ -119,6 +153,18 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
     public function testHelperDoesNotAllowCallsToRedirectAndExit()
     {
         
+    }
+    
+    /**
+     * Creates a controller for testing.
+     *
+     * @return Zend_Controller_Action
+     */
+    protected function createController()
+    {
+        $request  = new Zend_Controller_Request_HttpTestCase();
+        $response = new Zend_Controller_Response_HttpTestCase();
+        return $this->getMock('Zend_Controller_Action', null, array($request, $response));
     }
     
 }
