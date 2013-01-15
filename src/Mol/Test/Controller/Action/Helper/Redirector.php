@@ -37,7 +37,6 @@ class Mol_Test_Controller_Action_Helper_Redirector extends Zend_Controller_Actio
      */
     protected $_exit = false;
     
-    
     /**
      * Sets a redirect URL of the form /module/controller/action/params.
      *
@@ -48,7 +47,7 @@ class Mol_Test_Controller_Action_Helper_Redirector extends Zend_Controller_Actio
      * @param string $action
      * @param string $controller
      * @param string $module
-     * @param array(string=>string)  $params
+     * @param array(string=>string) $params
      */
     public function setGotoSimple($action, $controller = null, $module = null, array $params = array())
     {
