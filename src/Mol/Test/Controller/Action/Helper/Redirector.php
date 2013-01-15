@@ -63,4 +63,17 @@ class Mol_Test_Controller_Action_Helper_Redirector extends Zend_Controller_Actio
         $this->_redirect($url);
     }
     
+    /**
+     * Restrict access to redirectAndExit() as it leads to untestable code.
+     *
+     * @see Zend_Controller_Action_Helper_Redirector::redirectAndExit()
+     * @throws Mol_Test_Exception Always thrown as access to this method is restricted.
+     */
+    public function redirectAndExit()
+    {
+        $message = __METHOD__ . '(): Do not force calls to exit() as these will terminate '
+                 . 'the whole test run and therefore make the code untestable.';
+        throw new Mol_Test_Exception($message);
+    }
+    
 }
