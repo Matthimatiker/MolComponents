@@ -173,7 +173,6 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.06.2011
- * @todo mock redirect action helper
  * @todo support changing invoke args
  * @todo add view assertions
  * @todo document customization of setup
