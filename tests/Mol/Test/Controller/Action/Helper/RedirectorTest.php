@@ -123,7 +123,7 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
         $params = array('key' => 'value');
         $this->redirector->setGotoSimple('target-action', 'target-controller', 'target-module', $params);
         $url = $this->redirector->getRedirectUrl();
-        $this->assertEquals('target-module/target-controller/target-action/key/value', $url);
+        $this->assertEquals('/target-module/target-controller/target-action/key/value', $url);
     }
     
     /**
@@ -155,7 +155,7 @@ class Mol_Test_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework
         );
         $this->redirector->setGotoRoute($params);
         $url = $this->redirector->getRedirectUrl();
-        $this->assertEquals('target-module/target-controller/target-action/key/value', $url);
+        $this->assertEquals('/target-module/target-controller/target-action/key/value', $url);
     }
     
     /**
