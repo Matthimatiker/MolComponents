@@ -68,4 +68,15 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
         $this->viewRenderer->getFrontController();
     }
     
+    /**
+     * Ensures that init() does not rely on the front controller.
+     */
+    public function testInitDoesNotRelyOnFrontController()
+    {
+        $this->setExpectedException(null);
+        // If init() tries to access the front controller,
+        // then an exception will be thrown.
+        $this->viewRenderer->init();
+    }
+    
 }
