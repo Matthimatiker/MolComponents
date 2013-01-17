@@ -96,4 +96,14 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
         $this->viewRenderer->init();
     }
     
+    public function testGetModuleReturnsNameFromRequest()
+    {
+        
+    }
+    
+    public function getModuleReturnsDefaultIfRequestDoesNotProvideModuleName()
+    {
+        
+    }
+    
 }
