@@ -133,6 +133,8 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
         $view->expects($this->once())
              ->method('render');
         $this->viewRenderer->setView($view);
+        $this->viewRenderer->setActionController($this->createController());
+        
         $this->viewRenderer->postDispatch();
     }
     
@@ -147,6 +149,7 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
         $request->setModuleName('my-module');
         $request->setControllerName('my-controller');
         $request->setActionName('my-action');
+        $request->setDispatched(true);
         
         $arguments = array(
             $request,
