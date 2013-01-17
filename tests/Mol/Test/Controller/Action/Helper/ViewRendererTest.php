@@ -84,9 +84,12 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
      */
     public function testInitWorksIfControllerIsAvailable()
     {
-        $controller = $this->getMockBuilder('Zend_Controller_Action')
-                           ->disableOriginalConstructor()
-                           ->getMock();
+        $arguments  = array(
+            new Zend_Controller_Request_HttpTestCase(),
+            new Zend_Controller_Response_HttpTestCase(),
+            array()
+        );
+        $controller = $this->getMock('Zend_Controller_Action', null, $arguments);
         $this->viewRenderer->setActionController($controller);
         
         $this->setExpectedException(null);
