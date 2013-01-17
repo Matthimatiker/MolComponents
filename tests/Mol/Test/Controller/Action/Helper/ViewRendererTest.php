@@ -34,6 +34,14 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
 {
     
     /**
+     * Backup globals as these might be changed by the used
+     * request and response objects.
+     *
+     * @var boolean
+     */
+    protected $backupGlobals = true;
+    
+    /**
      * System under test.
      *
      * @var Mol_Test_Controller_Action_Helper_ViewRenderer
@@ -84,13 +92,7 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
      */
     public function testInitWorksIfControllerIsAvailable()
     {
-        $arguments  = array(
-            new Zend_Controller_Request_HttpTestCase(),
-            new Zend_Controller_Response_HttpTestCase(),
-            array()
-        );
-        $controller = $this->getMock('Zend_Controller_Action', null, $arguments);
-        $this->viewRenderer->setActionController($controller);
+        $this->viewRenderer->setActionController($this->createController());
         
         $this->setExpectedException(null);
         $this->viewRenderer->init();
@@ -104,6 +106,26 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
     public function getModuleReturnsDefaultIfRequestDoesNotProvideModuleName()
     {
         
+    }
+    
+    /**
+     * Creates a controller for testing.
+     *
+     * @return Zend_Controller_Action
+     */
+    protected function createController()
+    {
+        $request = new Zend_Controller_Request_HttpTestCase();
+        $request->setModuleName('my-module');
+        $request->setControllerName('my-controller');
+        $request->setActionName('my-action');
+        
+        $arguments = array(
+            $request,
+            new Zend_Controller_Response_HttpTestCase(),
+            array()
+        );
+        return $this->getMock('Zend_Controller_Action', null, $arguments);
     }
     
 }
