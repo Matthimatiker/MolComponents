@@ -43,4 +43,17 @@ class Mol_Test_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Act
         return $this->_moduleDir;
     }
     
+    /**
+     * Rejects access to front controller as it is a global dependency.
+     *
+     * @return Zend_Controller_Front
+     * @throws Mol_Test_Exception Always thrown as this method rejects front controller access.
+     */
+    public function getFrontController()
+    {
+        $message = __METHOD__ . '(): Do not rely on the front controller as it is a '
+                 . 'global dependency that may cause side effects.';
+        throw new Mol_Test_Exception($message);
+    }
+    
 }
