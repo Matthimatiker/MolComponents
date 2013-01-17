@@ -116,6 +116,27 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
     }
     
     /**
+     * Ensures that postDispatch() does not use the front controller.
+     */
+    public function testPostDispatchDoesNotRelyOnFrontController()
+    {
+        $this->setExpectedException(null);
+        $this->viewRenderer->postDispatch();
+    }
+    
+    /**
+     * Ensures that postDispatch() calls render on the view object.
+     */
+    public function testPostDispatchCallsRender()
+    {
+        $view = $this->getMock('Zend_View', array('render'));
+        $view->expects($this->once())
+             ->method('render');
+        $this->viewRenderer->setView($view);
+        $this->viewRenderer->postDispatch();
+    }
+    
+    /**
      * Creates a controller for testing.
      *
      * @return Zend_Controller_Action
