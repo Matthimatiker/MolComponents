@@ -103,7 +103,8 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
      */
     public function testGetModuleReturnsNameFromRequest()
     {
-        
+        $this->viewRenderer->setActionController($this->createController());
+        $this->assertEquals('my-module', $this->viewRenderer->getModule());
     }
     
     /**
@@ -111,7 +112,7 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
      */
     public function getModuleReturnsDefaultIfRequestDoesNotProvideModuleName()
     {
-        
+        $this->assertEquals('default', $this->viewRenderer->getModule());
     }
     
     /**
