@@ -64,4 +64,14 @@ class Mol_Test_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Act
         throw new Mol_Test_Exception($message);
     }
     
+    /**
+     * Retrieve base path.
+     *
+     * @return string
+     */
+    protected function _getBasePath()
+    {
+        return './views';
+    }
+    
 }
