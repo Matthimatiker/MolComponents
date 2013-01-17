@@ -74,4 +74,21 @@ class Mol_Test_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Act
         return './views';
     }
     
+    
+    /**
+     * Determine if a view script should be rendered without using
+     * the front controller.
+     *
+     * @return boolean
+     */
+    protected function _shouldRender()
+    {
+        return (!$this->_neverRender
+                && !$this->_noRender
+                && (null !== $this->_actionController)
+                && $this->getRequest()->isDispatched()
+                && !$this->getResponse()->isRedirect()
+        );
+    }
+    
 }
