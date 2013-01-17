@@ -98,11 +98,17 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
         $this->viewRenderer->init();
     }
     
+    /**
+     * Ensures that getModule() retrieves the module nam from the request if available.
+     */
     public function testGetModuleReturnsNameFromRequest()
     {
         
     }
     
+    /**
+     * Ensures that the module "default" is used if no request is available.
+     */
     public function getModuleReturnsDefaultIfRequestDoesNotProvideModuleName()
     {
         
