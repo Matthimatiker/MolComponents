@@ -79,4 +79,18 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
         $this->viewRenderer->init();
     }
     
+    /**
+     * Ensures that init() works if a controller is available.
+     */
+    public function testInitWorksIfControllerIsAvailable()
+    {
+        $controller = $this->getMockBuilder('Zend_Controller_Action')
+                           ->disableOriginalConstructor()
+                           ->getMock();
+        $this->viewRenderer->setActionController($controller);
+        
+        $this->setExpectedException(null);
+        $this->viewRenderer->init();
+    }
+    
 }
