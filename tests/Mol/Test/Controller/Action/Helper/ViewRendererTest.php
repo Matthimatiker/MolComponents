@@ -36,7 +36,7 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
     /**
      * System under test.
      *
-     * @var Mol_Test_Controller_Action_Helper_ViewRendererer
+     * @var Mol_Test_Controller_Action_Helper_ViewRenderer
      */
     protected $viewRenderer = null;
     
@@ -64,7 +64,8 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
      */
     public function testHelperDoesNotAllowAccessToFrontController()
     {
-        
+        $this->setExpectedException('Mol_Test_Exception');
+        $this->viewRenderer->getFrontController();
     }
     
 }
