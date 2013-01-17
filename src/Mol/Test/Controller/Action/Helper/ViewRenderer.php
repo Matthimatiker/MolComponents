@@ -27,6 +27,14 @@ class Mol_Test_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Act
 {
     
     /**
+     * Initializes the view renderer, but does not use the front controller.
+     */
+    public function init()
+    {
+        $this->initView();
+    }
+    
+    /**
      * Determines the module directory without accessing the front
      * controller, which is a global dependency.
      *
