@@ -139,6 +139,21 @@ class Mol_Test_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framewo
     }
     
     /**
+     * Checks if postDispatch() renders the correct view.
+     */
+    public function testPostDispatchRendersCorrectView()
+    {
+        $view = $this->getMock('Zend_View', array('render'));
+        $view->expects($this->once())
+             ->method('render')
+             ->with('my-controller/my-action.phtml');
+        $this->viewRenderer->setView($view);
+        $this->viewRenderer->setActionController($this->createController());
+        
+        $this->viewRenderer->postDispatch();
+    }
+    
+    /**
      * Creates a controller for testing.
      *
      * @return Zend_Controller_Action

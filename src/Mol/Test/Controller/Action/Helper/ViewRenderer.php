@@ -65,6 +65,22 @@ class Mol_Test_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Act
     }
     
     /**
+     * Generates the path to a view script.
+     *
+     * Simple implementation that does not rely on the front controller.
+     *
+     * @param array(string=>string) $vars
+     * @return string
+     */
+    protected function _translateSpec(array $vars = array())
+    {
+        $controller = isset($vars['controller']) ? $vars['controller'] : $this->getRequest()->getControllerName();
+        $action     = isset($vars['action']) ? $vars['action'] : $this->getRequest()->getActionName();
+        $suffix     = isset($vars['suffix']) ? $vars['suffix'] : $this->getViewSuffix();
+        return $controller . '/' . $action . '.' . $suffix;
+    }
+    
+    /**
      * Retrieve base path.
      *
      * @return string
