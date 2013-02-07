@@ -257,7 +257,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         // Initialize the action helpers before creating the controller
         // as its constructor accesses these helpers.
         $this->initActionHelpers();
-        $this->controller = $this->createController();
+        $this->controller = $this->createController($this->createInvokeArgs());
     }
 
     /**
@@ -408,7 +408,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
         $arguments = array(
                 $this->request,
                 $this->response,
-                $this->createInvokeArgs()
+                $invokeArgs
         );
         return $builder->create($class, $arguments);
     }
