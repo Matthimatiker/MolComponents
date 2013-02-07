@@ -368,6 +368,16 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Ensures that createController() does not inject a bootstrapper if it is
+     * not provided as invoke arg.
+     */
+    public function testCreateControllerDoesNotInjectBootstrapperIfNotProvided()
+    {
+        $this->controller = $this->createController();
+        $this->assertNull($this->controller->getInvokeArg('bootstrap'));
+    }
+    
+    /**
      * Defines the controller that is used in the tests.
      *
      * @return string
