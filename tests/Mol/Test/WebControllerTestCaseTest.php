@@ -359,6 +359,15 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Checks if createController() injects the provided invoke args.
+     */
+    public function testCreateControllerInjectsProvidedInvokeArgs()
+    {
+        $this->controller = $this->createController(array('test-key' => 'test-value'));
+        $this->assertEquals('test-value', $this->controller->getInvokeArg('test-key'));
+    }
+    
+    /**
      * Defines the controller that is used in the tests.
      *
      * @return string

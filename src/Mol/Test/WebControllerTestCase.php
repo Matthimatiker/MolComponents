@@ -395,9 +395,10 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     /**
      * Creates the controller that is tested.
      *
+     * @param array(string=>mixed) $invokeArgs
      * @return Zend_Controller_Action
      */
-    protected function createController()
+    protected function createController(array $invokeArgs = array())
     {
         $class = $this->getControllerClass();
         if (!class_exists($class, true)) {
