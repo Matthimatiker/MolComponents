@@ -333,13 +333,18 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     /**
      * Returns the current identity.
      *
+     * Returns null if no identity is available.
      * The identity can also be simulated via setIdentity().
      *
      * @return mixed|null
      */
     protected function getIdentity()
     {
-        
+        $auth = Zend_Auth::getInstance();
+        if (!$auth->hasIdentity()) {
+            return null;
+        }
+        return $auth->getIdentity();
     }
     
     /**
