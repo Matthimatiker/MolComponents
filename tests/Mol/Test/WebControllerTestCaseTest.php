@@ -346,7 +346,7 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testGetIdentityReturnsNullIfNoIdentityIsAvailable()
     {
-        
+        $this->assertNull($this->getIdentity());
     }
     
     /**
@@ -354,7 +354,8 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
      */
     public function testGetIdentityReturnsCurrentIdentity()
     {
-        
+        $this->setIdentity('my identity');
+        $this->assertEquals('my identity', $this->getIdentity());
     }
     
     /**
