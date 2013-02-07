@@ -331,6 +331,18 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Returns the current identity.
+     *
+     * The identity can also be simulated via setIdentity().
+     *
+     * @return mixed|null
+     */
+    protected function getIdentity()
+    {
+        
+    }
+    
+    /**
      * Returns the values from the given Zend_Form instance or array.
      *
      * If an array is provided then this method will do nothing as

@@ -341,6 +341,23 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Ensures that getIdentity() returns null if currently no identity
+     * is available.
+     */
+    public function testGetIdentityReturnsNullIfNoIdentityIsAvailable()
+    {
+        
+    }
+    
+    /**
+     * Checks if getIdentity() returns the correct value.
+     */
+    public function testGetIdentityReturnsCurrentIdentity()
+    {
+        
+    }
+    
+    /**
      * Checks if the redirector action helper is simulated correctly.
      */
     public function testRedirectorIsSimulated()
