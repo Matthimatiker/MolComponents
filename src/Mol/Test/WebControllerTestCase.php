@@ -112,7 +112,7 @@
  *
  * Usually user parameters are passed via forwarding.
  *
- * ### Simulate Identity ###
+ * ### Simulate identity ###
  *
  * The controller can use Zend_Auth to determine the currently
  * logged in user.
@@ -126,6 +126,28 @@
  *     $this->setIdentity(null);
  *
  * This is also the default state after initial setup.
+ *
+ * ### Simulate invoke args ###
+ *
+ * The controller is created in the set up phase, therefore changing the
+ * invoke args afterwards is not possible.
+ *
+ * There are several ways to overcome this issue. To change the invoke args
+ * for all created controllers, the createInvokeArgs() method can be overwritten:
+ *
+ *     protected function createInvokeArgs()
+ *     {
+ *         // Create and returns customized invoke args here.
+ *         return array();
+ *     }
+ *
+ * To test a specific invoke arg combination there is also the possibility
+ * to re-create the controller within a test method:
+ *
+ *     $invokeArgs = array();
+ *     $this->controller = $this->createController($invokeArgs);
+ *
+ * Afterwards the new controller can be tested as usual.
  *
  * ## Testing ##
  *
