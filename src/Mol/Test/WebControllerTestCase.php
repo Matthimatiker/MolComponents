@@ -127,6 +127,10 @@
  *
  * This is also the default state after initial setup.
  *
+ * Use getIdentity() as a shortcut to retrieve the current identity:
+ *
+ *     $currentIdentity = $this->getIdentity();
+ *
  * ### Simulate invoke args ###
  *
  * The controller is created in the set up phase, therefore changing the
