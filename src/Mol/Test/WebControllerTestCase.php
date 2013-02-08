@@ -200,7 +200,6 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 21.06.2011
  * @todo add view assertions
- * @todo document customization of setup
  */
 abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
 {
