@@ -194,8 +194,8 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
             /* @var $method string */
             /* @var $returnValue string */
             $test->expects($this->any())
-                ->method($method)
-                ->will($this->returnValue($returnValue));
+                 ->method($method)
+                 ->will($this->returnValue($returnValue));
         }
         
         return $test;
