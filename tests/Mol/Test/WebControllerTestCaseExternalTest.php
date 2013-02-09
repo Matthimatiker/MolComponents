@@ -46,6 +46,9 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
     protected function setUp()
     {
         parent::setUp();
+        // The test cases must be loaded during setup, otherwise the Test
+        // classes seem to interfere with PHPUnit's test runner, leading
+        // to a "Class could not be found" error without line specified.
         $this->loadAllSampleTestCases();
     }
     
@@ -267,9 +270,7 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
     protected function loadAllSampleTestCases()
     {
         $path = dirname(__FILE__) . '/TestData/WebControllerTestCase';
-        foreach (glob($path . '/*.php') as $file) {
-            require_once($file);
-        }
+        require_once($path . '/GlobalsControllerTest.php');
     }
     
 }
