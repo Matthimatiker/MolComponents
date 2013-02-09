@@ -212,6 +212,21 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the resource creates the mail factory even if no templates
+     * are configured.
+     *
+     * In this case, the mail factory can be used to create empty mail objects.
+     */
+    public function testResourceCreatesFactoryEvenIfNoTemplatesAreConfigured()
+    {
+        $options = $this->createOptions();
+        unset($options['templates']);
+        $this->resource->setOptions($options);
+        $factory = $this->resource->init();
+        $this->assertInstanceOf('Mol_Mail_Factory', $factory);
+    }
+    
+    /**
      * Creates a bootstrapper for testing.
      *
      * @return Mol_Test_Bootstrap
