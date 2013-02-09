@@ -219,9 +219,9 @@ class Mol_Application_Resource_MailerTest extends PHPUnit_Framework_TestCase
      */
     public function testResourceCreatesFactoryEvenIfNoTemplatesAreConfigured()
     {
-        $options = $this->createOptions();
-        unset($options['templates']);
-        $this->resource->setOptions($options);
+        // Set templates to null as setOptions() just merges the new
+        // options, but it does not discard the old ones.
+        $this->resource->setOptions(array('templates' => null));
         $factory = $this->resource->init();
         $this->assertInstanceOf('Mol_Mail_Factory', $factory);
     }
