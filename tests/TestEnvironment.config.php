@@ -15,3 +15,8 @@
 
 /** Initialize autoloader. */
 require_once(dirname(__FILE__) . '/../vendor/autoload.php');
+
+// Disable circular reference garbage collection as this
+// sometimes leads to crashes (noticed on Windows as well
+// as on Ubuntu systems).
+gc_disable();
