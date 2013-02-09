@@ -152,6 +152,19 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
     }
     
     /**
+     * Ensures that the test case loads the controller file from the path specified by
+     * getControllerPath() if necessary.
+     */
+    public function testTestCaseLoadsControllerClassIfNecessary()
+    {
+        $controllerClass = 'Mol_Test_TestData_WebControllerTestCase_AutoloadController';
+        $controllerPath  = $this->getTestDataPath() . '/AutoloadController.php';
+        $test            = $this->createTestCase('testNothing', $controllerClass, $controllerPath);
+        $result          = $test->run();
+        $this->assertSuccessful($result);
+    }
+    
+    /**
      * Ensures that the test case removes identities that were changed
      * during test execution.
      */
@@ -269,8 +282,17 @@ class Mol_Test_WebControllerTestCaseExternalTest extends PHPUnit_Framework_TestC
      */
     protected function loadAllSampleTestCases()
     {
-        $path = dirname(__FILE__) . '/TestData/WebControllerTestCase';
-        require_once($path . '/GlobalsControllerTest.php');
+        require_once($this->getTestDataPath() . '/GlobalsControllerTest.php');
+    }
+    
+    /**
+     * Returns the path to the directory that contains the test data files.
+     *
+     * @return string
+     */
+    protected function getTestDataPath()
+    {
+        return dirname(__FILE__) . '/TestData/WebControllerTestCase';
     }
     
 }
