@@ -26,4 +26,26 @@
 abstract class Mol_Form_Factory_Plugin_AbstractPlugin
 {
     
+    /**
+     * Returns the injected bootstrapper.
+     *
+     * @return Zend_Application_Bootstrap_BootstrapAbstract
+     * @throws RuntimeException If the bootstrapper was not injected yet.
+     */
+    protected function getBootstrap()
+    {
+        
+    }
+    
+    /**
+     * Returns the resource with the provided name.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    protected function getResource($name)
+    {
+        
+    }
+    
 }
