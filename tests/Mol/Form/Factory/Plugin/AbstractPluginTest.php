@@ -33,4 +33,9 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
 {
     
+    // throws exception if no bootstrapper
+    // returns bootstrapper
+    // returns resource
+    // returns resource if null
+    
 }
