@@ -39,7 +39,7 @@ class Mol_Form_Factory_Plugin_TestData_Base extends Mol_Form_Factory_Plugin_Abst
      * @param array(mixed) $args
      * @return mixed
      */
-    public function execute($method, array $args)
+    public function execute($method, array $args = array())
     {
         return call_user_func_array(array($this, $method), $args);
     }

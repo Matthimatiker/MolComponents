@@ -58,7 +58,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->bootstrapper = Mol_Test_Bootstrap::create();
+        $this->bootstrapper = $this->createBootstrapper();
         $this->plugin       = new Mol_Form_Factory_Plugin_TestData_Base();
     }
     
@@ -77,7 +77,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginIsBootstrapAware()
     {
-        
+        $this->assertInstanceOf('Mol_Application_Bootstrap_Aware', $this->plugin);
     }
     
     /**
@@ -86,7 +86,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testImplementsPluginInterface()
     {
-        
+        $this->assertInstanceOf('Mol_Form_Factory_Plugin', $this->plugin);
     }
     
     /**
@@ -95,7 +95,8 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetBootstrapThrowsExceptionIfBootstrapperIsNotAvailable()
     {
-        
+        $this->setExpectedException('RuntimException');
+        $this->plugin->execute('getBootstrap');
     }
     
     /**
@@ -103,7 +104,8 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetBootstrapReturnsInjectedBootstrapper()
     {
-        
+        $this->injectBootstrapper();
+        $this->assertSame($this->bootstrapper, $this->plugin->execute('getBootstrap'));
     }
 
     /**
@@ -112,7 +114,10 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetResourceThrowsExceptionIfResourceDoesNotExist()
     {
+        $this->injectBootstrapper();
         
+        $this->setExpectedException('Zend_Application_Bootstrap_Exception');
+        $this->plugin->execute('getResource', array('missingResource'));
     }
     
     /**
@@ -120,7 +125,9 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetResourceReturnsBootstrappedResource()
     {
-        
+        $this->injectBootstrapper();
+        $resource = $this->plugin->execute('getResource', array('objectResource'));
+        $this->assertSame($this->bootstrapper->getResource('objectResource'), $resource);
     }
     
     /**
@@ -132,7 +139,21 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetResourceReturnsNullIfResourceWasBootstrappedButNoValueIsProvided()
     {
-        
+        $this->injectBootstrapper();
+        $this->assertNull($this->plugin->execute('getResource', array('nullResource')));
+    }
+    
+    /**
+     * Creates a bootstrapper and simulates some resources for testing.
+     *
+     * @return Mol_Test_Bootstrap
+     */
+    protected function createBootstrapper()
+    {
+        $bootstrapper = Mol_Test_Bootstrap::create();
+        $bootstrapper->simulateResource('nullResourcce', null);
+        $bootstrapper->simulateResource('objectResource', new stdClass());
+        return $bootstrapper;
     }
     
     /**
