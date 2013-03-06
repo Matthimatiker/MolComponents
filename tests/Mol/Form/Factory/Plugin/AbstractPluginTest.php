@@ -59,7 +59,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->bootstrapper = $this->createBootstrapper();
-        $this->plugin       = new Mol_Form_Factory_Plugin_TestData_Base();
+        $this->plugin       = $this->getMockForAbstractClass('Mol_Form_Factory_Plugin_TestData_Base');
     }
     
     /**
@@ -95,7 +95,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetBootstrapThrowsExceptionIfBootstrapperIsNotAvailable()
     {
-        $this->setExpectedException('RuntimException');
+        $this->setExpectedException('RuntimeException');
         $this->plugin->execute('getBootstrap');
     }
     

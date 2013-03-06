@@ -26,7 +26,7 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 05.03.2013
  */
-class Mol_Form_Factory_Plugin_TestData_Base extends Mol_Form_Factory_Plugin_AbstractPlugin
+abstract class Mol_Form_Factory_Plugin_TestData_Base extends Mol_Form_Factory_Plugin_AbstractPlugin
 {
     
     /**
