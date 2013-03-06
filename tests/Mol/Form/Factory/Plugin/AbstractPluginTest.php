@@ -143,6 +143,26 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->plugin->execute('getResource', array('nullResource')));
     }
     
+    public function testPluginStoresPassedOptions()
+    {
+        
+    }
+    
+    public function testGetOptionReturnsRequestedOption()
+    {
+        
+    }
+    
+    public function testGetOptionReturnsDefaultValueIfOptionDoesNotExist()
+    {
+        
+    }
+    
+    public function testGetOptionReturnsCorrectValueIfOptionIsNull()
+    {
+        
+    }
+    
     /**
      * Creates a bootstrapper and simulates some resources for testing.
      *
