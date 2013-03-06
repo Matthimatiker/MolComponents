@@ -151,7 +151,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
     protected function createBootstrapper()
     {
         $bootstrapper = Mol_Test_Bootstrap::create();
-        $bootstrapper->simulateResource('nullResourcce', null);
+        $bootstrapper->simulateResource('nullResource', null);
         $bootstrapper->simulateResource('objectResource', new stdClass());
         return $bootstrapper;
     }
