@@ -29,6 +29,13 @@ abstract class Mol_Form_Factory_Plugin_AbstractPlugin implements
 {
     
     /**
+     * Options that were passed to the plugin.
+     *
+     * @var array(string=>mixed)
+     */
+    protected $options = null;
+    
+    /**
      * The injected bootstrapper.
      *
      * Null if the bootstrapper was not injected yet.
@@ -72,6 +79,20 @@ abstract class Mol_Form_Factory_Plugin_AbstractPlugin implements
     {
         $this->getBootstrap()->bootstrap($name);
         return $this->getBootstrap()->getResource($name);
+    }
+    
+    /**
+     * Returns the value of the provided option.
+     *
+     * Returns $default if the option does not exist.
+     *
+     * @param string $name
+     * @param mixed $default
+     * @return mixed
+     */
+    protected function getOption($name, $default = null)
+    {
+        
     }
     
 }
