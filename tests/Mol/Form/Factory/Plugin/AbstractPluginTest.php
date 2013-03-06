@@ -143,21 +143,35 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->plugin->execute('getResource', array('nullResource')));
     }
     
+    /**
+     * Checks if the plugin stores the options that are passed to the constructor.
+     */
     public function testPluginStoresPassedOptions()
     {
         
     }
     
+    /**
+     * Checks if getOption() returns the value of the requested option.
+     */
     public function testGetOptionReturnsRequestedOption()
     {
         
     }
     
+    /**
+     * Ensures that getOption() returns the provided default value if
+     * the option does not exist.
+     */
     public function testGetOptionReturnsDefaultValueIfOptionDoesNotExist()
     {
         
     }
     
+    /**
+     * Ensures that getOption() returns the option value and not the default
+     * value if the option exists and its value is null.
+     */
     public function testGetOptionReturnsCorrectValueIfOptionIsNull()
     {
         
