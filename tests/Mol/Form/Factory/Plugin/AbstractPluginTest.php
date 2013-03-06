@@ -59,7 +59,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->bootstrapper = $this->createBootstrapper();
-        $this->plugin       = $this->getMockForAbstractClass('Mol_Form_Factory_Plugin_TestData_Base');
+        $this->plugin       = $this->createPlugin();
     }
     
     /**
@@ -175,6 +175,20 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
     public function testGetOptionReturnsCorrectValueIfOptionIsNull()
     {
         
+    }
+    
+    /**
+     * Creates a plugin instance that can be used for testing.
+     *
+     * @return Mol_Form_Factory_Plugin_TestData_Base
+     */
+    protected function createPlugin()
+    {
+        $options = array(
+            'a' => 'b',
+            'c' => 'd'
+        );
+        return $this->getMockForAbstractClass('Mol_Form_Factory_Plugin_TestData_Base', array($options));
     }
     
     /**
