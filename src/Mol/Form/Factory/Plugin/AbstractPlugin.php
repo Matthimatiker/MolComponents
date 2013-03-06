@@ -23,8 +23,29 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 10.02.2013
  */
-abstract class Mol_Form_Factory_Plugin_AbstractPlugin
+abstract class Mol_Form_Factory_Plugin_AbstractPlugin implements
+    Mol_Form_Factory_Plugin,
+    Mol_Application_Bootstrap_Aware
 {
+    
+    /**
+     * The injected bootstrapper.
+     *
+     * Null if the bootstrapper was not injected yet.
+     *
+     * @var Zend_Application_Bootstrap_BootstrapAbstract|null
+     */
+    private $bootstrapper = null;
+    
+    /**
+     * See {@link Mol_Application_Bootstrap_Aware::setBootstrap()} for details.
+     *
+     * @param Zend_Application_Bootstrap_BootstrapAbstract $bootstrapper
+     */
+    public function setBootstrap(Zend_Application_Bootstrap_BootstrapAbstract $bootstrapper)
+    {
+        $this->bootstrapper = $bootstrapper;
+    }
     
     /**
      * Returns the injected bootstrapper.
@@ -34,7 +55,11 @@ abstract class Mol_Form_Factory_Plugin_AbstractPlugin
      */
     protected function getBootstrap()
     {
-        
+        if ($this->bootstrapper === null) {
+            $message = 'Bootstrapper was not injected yet. Use setBootstrap() to inject a bootstrapper.';
+            throw new RuntimeException($message);
+        }
+        return $this->bootstrapper;
     }
     
     /**
@@ -45,7 +70,8 @@ abstract class Mol_Form_Factory_Plugin_AbstractPlugin
      */
     protected function getResource($name)
     {
-        
+        $this->getBootstrap()->bootstrap($name);
+        return $this->getBootstrap()->getResource($name);
     }
     
 }
