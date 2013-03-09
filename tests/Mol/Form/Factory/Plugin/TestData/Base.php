@@ -44,4 +44,14 @@ abstract class Mol_Form_Factory_Plugin_TestData_Base extends Mol_Form_Factory_Pl
         return call_user_func_array(array($this, $method), $args);
     }
     
+    /**
+     * Returns the available options.
+     *
+     * @return array(string=>mixed)
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+    
 }

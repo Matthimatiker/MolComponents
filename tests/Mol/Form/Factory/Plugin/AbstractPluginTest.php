@@ -148,7 +148,12 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginStoresPassedOptions()
     {
-        
+        $expected = array(
+            'a' => 'b',
+            'c' => 'd',
+            'e' => null
+        );
+        $this->assertEquals($expected, $this->plugin->getOptions());
     }
     
     /**
@@ -156,7 +161,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetOptionReturnsRequestedOption()
     {
-        
+        $this->assertEquals('b', $this->plugin->execute('getOption', array('a')));
     }
     
     /**
@@ -165,7 +170,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetOptionReturnsDefaultValueIfOptionDoesNotExist()
     {
-        
+        $this->assertEquals('x', $this->plugin->execute('getOption', array('y', 'x')));
     }
     
     /**
@@ -174,7 +179,7 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
      */
     public function testGetOptionReturnsCorrectValueIfOptionIsNull()
     {
-        
+        $this->assertNull($this->plugin->execute('getOption', array('e', 'x')));
     }
     
     /**
@@ -186,7 +191,8 @@ class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
     {
         $options = array(
             'a' => 'b',
-            'c' => 'd'
+            'c' => 'd',
+            'e' => null
         );
         return $this->getMockForAbstractClass('Mol_Form_Factory_Plugin_TestData_Base', array($options));
     }
