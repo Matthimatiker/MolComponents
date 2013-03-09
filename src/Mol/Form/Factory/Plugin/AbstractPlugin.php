@@ -45,6 +45,16 @@ abstract class Mol_Form_Factory_Plugin_AbstractPlugin implements
     private $bootstrapper = null;
     
     /**
+     * See {@link Mol_Form_Factory_Plugin::__construct()} for details.
+     *
+     * @param array(string=>mixed) $options
+     */
+    public function __construct(array $options = array())
+    {
+        $this->options = $options;
+    }
+    
+    /**
      * See {@link Mol_Application_Bootstrap_Aware::setBootstrap()} for details.
      *
      * @param Zend_Application_Bootstrap_BootstrapAbstract $bootstrapper
@@ -92,7 +102,10 @@ abstract class Mol_Form_Factory_Plugin_AbstractPlugin implements
      */
     protected function getOption($name, $default = null)
     {
-        
+        if (!array_key_exists($name, $this->options)) {
+            return $default;
+        }
+        return $this->options[$name];
     }
     
 }
