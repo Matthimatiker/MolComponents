@@ -63,7 +63,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsNonStringValue()
     {
-        
+        $this->assertFalse($this->validator->isValid(new stdClass()));
     }
     
     /**
@@ -72,7 +72,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsNonUrlString()
     {
-        
+        $this->assertFalse($this->validator->isValid('Hello world!'));
     }
     
     /**
@@ -80,7 +80,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsRelativeUrl()
     {
-        
+        $this->assertFalse($this->validator->isValid('/relative/path'));
     }
     
     /**
@@ -88,7 +88,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsAbsoluteUrl()
     {
-        
+        $this->assertTrue($this->validator->isValid('http://www.example.org/path/'));
     }
     
     /**
@@ -97,7 +97,10 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageAfterValidationOfNonUrlString()
     {
-        
+        $this->validator->isValid('Hello world!');
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
 }
