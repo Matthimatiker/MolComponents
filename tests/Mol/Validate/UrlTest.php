@@ -33,4 +33,29 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testValidatorRejectsNonStringValue()
+    {
+        
+    }
+    
+    public function testValidatorRejectsNonUrlString()
+    {
+        
+    }
+    
+    public function testValidatorRejectsRelativeUrl()
+    {
+        
+    }
+    
+    public function testValidatorAcceptsAbsoluteUrl()
+    {
+        
+    }
+    
+    public function testValidatorProvidesMessageAfterValidationOfNonUrlString()
+    {
+        
+    }
+    
 }
