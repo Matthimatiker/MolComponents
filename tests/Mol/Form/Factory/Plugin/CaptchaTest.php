@@ -87,9 +87,18 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Ensures that the captcha element is added in front of the button.
+     * Ensures that the captcha element is added in front of the submit button.
      */
-    public function testPluginAddsElementBeforeButton()
+    public function testPluginAddsCaptchaInFrontOfButton()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the captcha is added at the end of the form element
+     * list if the form does not contain any button.
+     */
+    public function testPluginAddsCaptchaElementAtTheEndIfFormDoesNotContainButtons()
     {
         
     }
