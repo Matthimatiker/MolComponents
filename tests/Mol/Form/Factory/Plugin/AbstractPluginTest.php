@@ -35,7 +35,7 @@ require_once(dirname(__FILE__) . '/TestData/Base.php');
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 04.03.2013
  */
-class Mol_Form_Factory_AbstractPluginTest extends PHPUnit_Framework_TestCase
+class Mol_Form_Factory_Plugin_AbstractPluginTest extends PHPUnit_Framework_TestCase
 {
     
     /**
