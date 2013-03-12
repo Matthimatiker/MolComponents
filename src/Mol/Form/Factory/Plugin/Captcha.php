@@ -26,4 +26,18 @@
 class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPlugin
 {
     
+    /**
+     * Adds a captcha element to the given form if the for attribute
+     * "data-captcha" equals true or "yes".
+     *
+     * The "data-captcha" attribute is removed after processing to
+     * ensure that it is not rendered by the form.
+     *
+     * @param Zend_Form $form
+     */
+    public function enhance(Zend_Form $form)
+    {
+        
+    }
+    
 }
