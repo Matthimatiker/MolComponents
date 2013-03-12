@@ -58,31 +58,55 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Ensures that the plugin does not add a captcha element if the
+     * "data-captcha" form attribute does not exist.
+     */
     public function testPluginDoesNotAddElementIfCaptchaAttributeIsMissing()
     {
         
     }
     
+    /**
+     * Ensures that the plugin does not add a captcha element if the
+     * "data-captcha" form attribute exists, but it is neither equal
+     * to "yes" nor to true.
+     */
     public function testPluginDoesNotAddElementIfFormAttributeExistsButDoesNotActivateCaptcha()
     {
         
     }
     
+    /**
+     * Ensures that the plugin adds a captcha element if the "data-captcha"
+     * form attribute equals "yes".
+     */
     public function testPluginAddsElementIfFormAttributeRequestsCaptcha()
     {
         
     }
     
+    /**
+     * Ensures that the captcha element is added in front of the button.
+     */
     public function testPluginAddsElementBeforeButton()
     {
         
     }
     
+    /**
+     * Checks if a "data-captcha" form attribute that does not request
+     * a captcha is removed.
+     */
     public function testPluginRemovesFormAttributeIfCaptchaIsInactive()
     {
         
     }
     
+    /**
+     * Checks if a "data-captcha" form attribute that requests a
+     * captcha is removed.
+     */
     public function testPluginRemovesFormAttributeIfCaptchaIsActive()
     {
         
