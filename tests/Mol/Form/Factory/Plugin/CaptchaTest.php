@@ -58,6 +58,34 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    public function testPluginDoesNotAddElementIfCaptchaAttributeIsMissing()
+    {
+        
+    }
     
+    public function testPluginDoesNotAddElementIfFormAttributeExistsButDoesNotActivateCaptcha()
+    {
+        
+    }
+    
+    public function testPluginAddsElementIfFormAttributeRequestsCaptcha()
+    {
+        
+    }
+    
+    public function testPluginAddsElementBeforeButton()
+    {
+        
+    }
+    
+    public function testPluginRemovesFormAttributeIfCaptchaIsInactive()
+    {
+        
+    }
+    
+    public function testPluginRemovesFormAttributeIfCaptchaIsActive()
+    {
+        
+    }
     
 }
