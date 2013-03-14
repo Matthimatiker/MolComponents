@@ -27,6 +27,32 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
 {
     
     /**
+     * The default nam of the added captcha element.
+     *
+     * @var string
+     */
+    const DEFAULT_CAPTCHA_NAME = 'captcha';
+    
+    /**
+     * The options that are used to create the captcha.
+     *
+     * @var array(string=>mixed)
+     */
+    protected $captchaOptions = null;
+    
+    /**
+     * See {@link Mol_Form_Factory_Plugin::__construct()} for details.
+     *
+     * @param array(string=>mixed) $options
+     */
+    public function __construct(array $options = array())
+    {
+        parent::__construct($options);
+        $elementOptions = $this->getOption('element', array());
+        $this->captchaOptions = $this->mergeWithDefaults($elementOptions);
+    }
+    
+    /**
      * Adds a captcha element to the given form if the for attribute
      * "data-captcha" equals true or "yes".
      *
@@ -37,7 +63,121 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
      */
     public function enhance(Zend_Form $form)
     {
-        
+        $activate = $form->getAttrib('data-captcha');
+        if ($activate === null) {
+            // Form does not define instructions regarding captcha usage.
+            return;
+        }
+        // Remove the attribute to ensure that the instruction is not rendered.
+        $form->removeAttrib('data-captcha');
+        if ($activate !== 'yes') {
+            return;
+        }
+        $this->addCaptcha($form);
+    }
+    
+    /**
+     * Adds a captcha to the given form.
+     *
+     * @param Zend_Form $form
+     */
+    protected function addCaptcha(Zend_Form $form)
+    {
+        $captcha = $this->createCaptcha();
+        $button  = $this->getLastButton($form);
+        if ($button !== null) {
+            $this->insertBefore($form, $button, $captcha);
+        } else {
+            $form->addElement($captcha);
+        }
+    }
+    
+    /**
+     * Inserts $newElement right before $reference.
+     *
+     * @param Zend_Form $form
+     * @param Zend_Form_Element|Zend_Form $reference
+     * @param Zend_Form_Element $newElement
+     */
+    protected function insertBefore(Zend_Form $form, $reference, Zend_Form_Element $newElement)
+    {
+        $elements = $form->getElementsAndSubFormsOrdered();
+        $order    = 0;
+        foreach ($elements as $element) {
+            /* @var $element Zend_Form_Element|Zend_Form */
+            if ($element === $reference) {
+                $newElement->setOrder($order);
+                $order++;
+            }
+            $element->setOrder($order);
+            $order++;
+        }
+        $form->addElement($newElement);
+    }
+    
+    /**
+     * Returns the last button in the given form.
+     *
+     * Returns null if the form does not contain any button.
+     *
+     * @param Zend_Form $form
+     * @return Zend_Form_Element_Submit|null
+     */
+    protected function getLastButton(Zend_Form $form)
+    {
+        $elements = $form->getElementsAndSubFormsOrdered();
+        foreach (array_reverse($elements) as $element) {
+            /* @var $element Zend_Form|Zend_Form_Element */
+            if ($element instanceof Zend_Form_Element_Submit) {
+                // Button found.
+                return $element;
+            }
+        }
+        // Form does not contain any button.
+        return null;
+    }
+    
+    /**
+     * Merges defaults into the given options where necessary.
+     *
+     * @param array(string=>mixed) $options
+     * @return array(string=>mixed) The merged options.
+     */
+    protected function mergeWithDefaults(array $options)
+    {
+        $defaults = $this->getDefaultOptions();
+        $options  = $options + $defaults;
+        // Ensure that captcha adapter options are merged too.
+        $options['captcha'] = $options['captcha'] + $defaults['captcha'];
+        return $options;
+    }
+    
+    /**
+     * Returns the default options that are used to create the captcha.
+     *
+     * @return array(string=>mixed)
+     */
+    protected function getDefaultOptions()
+    {
+        return array(
+            'name'  =>  self::DEFAULT_CAPTCHA_NAME,
+            'label' => 'Please enter the code',
+            'captcha' => array(
+                'captcha' => 'Figlet',
+                'wordLen' => 6,
+                'timeout' => 900
+            )
+        );
+    }
+    
+    /**
+     * Creates the captcha element.
+     *
+     * @return Zend_Form_Element
+     */
+    protected function createCaptcha()
+    {
+        return new Zend_Form_Element_Captcha($this->captchaOptions);
     }
     
 }
