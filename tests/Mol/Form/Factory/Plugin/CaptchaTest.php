@@ -64,7 +64,11 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginDoesNotAddElementIfCaptchaAttributeIsMissing()
     {
+        $form = $this->createForm();
         
+        $this->plugin->enhance($form);
+        
+        $this->assertCount(2, $form->getElements());
     }
     
     /**
@@ -74,7 +78,12 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginDoesNotAddElementIfFormAttributeExistsButDoesNotActivateCaptcha()
     {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'no');
         
+        $this->plugin->enhance($form);
+        
+        $this->assertCount(2, $form->getElements());
     }
     
     /**
@@ -83,7 +92,12 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginAddsElementIfFormAttributeRequestsCaptcha()
     {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'yes');
         
+        $this->plugin->enhance($form);
+        
+        $this->assertCount(3, $form->getElements());
     }
     
     /**
@@ -91,7 +105,16 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginAddsCaptchaInFrontOfButton()
     {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'yes');
         
+        $this->plugin->enhance($form);
+        
+        $elements = $form->getElementsAndSubFormsOrdered();
+        // Last element should be the button, therefore remove it first.
+        array_pop($elements);
+        $captcha = array_pop($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha);
     }
     
     /**
@@ -100,7 +123,15 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginAddsCaptchaElementAtTheEndIfFormDoesNotContainButtons()
     {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'yes');
+        $form->removeElement('send');
         
+        $this->plugin->enhance($form);
+        
+        $elements = $form->getElementsAndSubFormsOrdered();
+        $captcha  = array_pop($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha);
     }
     
     /**
@@ -109,7 +140,12 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginRemovesFormAttributeIfCaptchaIsInactive()
     {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'no');
         
+        $this->plugin->enhance($form);
+        
+        $this->assertNull($form->getAttrib('data-captcha'));
     }
     
     /**
@@ -118,7 +154,25 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginRemovesFormAttributeIfCaptchaIsActive()
     {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'yes');
         
+        $this->plugin->enhance($form);
+        
+        $this->assertNull($form->getAttrib('data-captcha'));
+    }
+    
+    /**
+     * Creates a form for testing.
+     *
+     * @return Zend_Form
+     */
+    protected function createForm()
+    {
+        $form = new Zend_Form();
+        $form->addElement(new Zend_Form_Element_Text('content'));
+        $form->addElement(new Zend_Form_Element_Submit('send'));
+        return $form;
     }
     
 }
