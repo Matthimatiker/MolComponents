@@ -15,6 +15,31 @@
 /**
  * Plugin that is able to add captchas to forms.
  *
+ * # Usage #
+ *
+ * ## Configuration ##
+ *
+ * The plugin can be activated via form factory configuration:
+ *
+ *     resources.form.plugins.csrf.class = "Mol_Form_Factory_Plugin_Captcha"
+ *     resources.form.plugins.csrf.options.element.name = "my_captcha"
+ *     resources.form.plugins.csrf.options.element.captcha.captcha    = "Image"
+ *     resources.form.plugins.csrf.options.element.captcha.imgDir     = "/path/to/generated/captchas"
+ *     resources.form.plugins.csrf.options.element.captcha.imgUrl     = "/url/to/captchas"
+ *     resources.form.plugins.csrf.options.element.captcha.imgAlt     = "Alternative text"
+ *     resources.form.plugins.csrf.options.element.captcha.font       = "/path/to/font/file"
+ *     resources.form.plugins.csrf.options.element.captcha.wordlen    = 5
+ *     resources.form.plugins.csrf.options.element.captcha.width      = 200
+ *     resources.form.plugins.csrf.options.element.captcha.height     = 100
+ *     resources.form.plugins.csrf.options.element.captcha.expiration = 600
+ *
+ * ## Captcha activation ##
+ *
+ * To ensure that a captcha is injected the form must set the attribute
+ * "data-captcha" to "yes":
+ *
+ *     $form->setAttrib('data-captcha', 'yes');
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
