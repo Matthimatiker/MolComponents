@@ -88,6 +88,23 @@ class Mol_View_Helper_Value_Url
         $this->params[$name] = (string)$value;
         return $this;
     }
+    
+    /**
+     * Adds a query parameter to this url.
+     *
+     * Query parameters are not encoded in the url path, instead
+     * these parameters are appended via "?" and "&":
+     *
+     *     /url/path?first=query-param&second=query-param
+     *
+     * @param string $name
+     * @param string $value
+     * @return Mol_View_Helper_Value_Url Provides a fluent interface.
+     */
+    public function withQuery($name, $value)
+    {
+        
+    }
 
     /**
      * Ensures that the route $name is used.
