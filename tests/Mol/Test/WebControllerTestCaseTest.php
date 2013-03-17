@@ -143,6 +143,16 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Ensures that the layouts which are used in the layout view helper and
+     * in the bootstrapper are consistent. Therefore only one layout instance
+     * must exist in the test.
+     */
+    public function testViewHelperAndBootstrapperProvideSameLayoutInstance()
+    {
+        $this->assertSame($this->bootstrapper->getResource('layout'), $this->controller->view->layout());
+    }
+    
+    /**
      * Ensures that the request object is initially marked as dispatched.
      */
     public function testRequestObjectIsInitiallyMarkedAsDispatched()
