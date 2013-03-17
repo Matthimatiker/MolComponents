@@ -17,6 +17,13 @@
  *
  * # Usage #
  *
+ * ## Overview ##
+ *
+ * The captcha plugin checks during creation if the form requests captcha
+ * protection.
+ * If required a captcha element will be added right in front of the last
+ * button in the form.
+ *
  * ## Plugin Configuration ##
  *
  * The plugin can be activated via form factory configuration:
