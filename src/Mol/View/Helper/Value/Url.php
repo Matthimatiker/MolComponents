@@ -40,6 +40,15 @@ class Mol_View_Helper_Value_Url
      * @var array(string=>string)
      */
     protected $params = array();
+    
+    /**
+     * Additional query parameters.
+     *
+     * The name is used as key, the value contains the parameter.
+     *
+     * @var array(string=>string)
+     */
+    protected $queryParams = array();
 
     /**
      * The name of the route that is used.
@@ -103,7 +112,8 @@ class Mol_View_Helper_Value_Url
      */
     public function withQuery($name, $value)
     {
-        
+        $this->queryParams[$name] = $value;
+        return $this;
     }
 
     /**
@@ -151,8 +161,9 @@ class Mol_View_Helper_Value_Url
      */
     public function __toString()
     {
+        $query  = (count($this->queryParams) !== 0) ? ('?' . http_build_query($this->queryParams)) : '';
         $anchor = ($this->anchor === null) ? '' : '#' . $this->anchor;
-        return $this->view->url($this->params, $this->route, $this->resetParams) . $anchor;
+        return $this->view->url($this->params, $this->route, $this->resetParams) . $query . $anchor;
     }
 
 }
