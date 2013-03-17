@@ -337,6 +337,17 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Ensures that setUserParams() does not convert provided values into strings
+     * as these params are set internally during request and therefore are not
+     * restricted to the type string.
+     */
+    public function testSetUserParamsDoesNotConvertParametersToString()
+    {
+        $this->setUserParams(array('key' => 42));
+        $this->assertSame(42, $this->controller->getRequest()->getUserParam('key'));
+    }
+    
+    /**
      * Ensures that assertNumberOfLogEntries() fails if the expected number of entries
      * is not correct.
      */
