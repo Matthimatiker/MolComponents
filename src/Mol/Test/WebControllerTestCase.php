@@ -312,7 +312,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *     $form->populate(array('name' => 'Matthias'));
      *     $this->setPost($form);
      *
-     * @param array(string=>string)|Zend_Form $arrayOrForm
+     * @param array(string=>mixed)|Zend_Form $arrayOrForm
      */
     protected function setPost($arrayOrForm)
     {
@@ -334,7 +334,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      *     $form->populate(array('name' => 'Matthias'));
      *     $this->setGet($form);
      *
-     * @param array(string=>string)|Zend_Form $arrayOrForm
+     * @param array(string=>mixed)|Zend_Form $arrayOrForm
      */
     protected function setGet($arrayOrForm)
     {
@@ -377,8 +377,8 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * If an array is provided then this method will do nothing as
      * no conversion is needed.
      *
-     * @param array(string=>string)|Zend_Form $arrayOrForm $arrayOrForm
-     * @return array(string=>string)
+     * @param array(string=>mixed)|Zend_Form $arrayOrForm $arrayOrForm
+     * @return array(string=>mixed)
      */
     protected function toValues($arrayOrForm)
     {
