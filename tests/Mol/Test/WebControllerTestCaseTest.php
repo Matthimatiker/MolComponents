@@ -206,6 +206,41 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     }
     
     /**
+     * Checks if setPost() can cope with null values.
+     */
+    public function testSetPostCanHandleNullValues()
+    {
+        $this->setExpectedException(null);
+        $this->setPost(array('key' => null));
+    }
+    
+    /**
+     * Ensures that setPost() converts provided values into strings
+     * as this is the way the data is transferred.
+     */
+    public function testSetPostConvertsValuesToString()
+    {
+        $this->setPost(array('key' => 42));
+        $this->assertSame('42', $this->controller->getRequest()->getParam('key'));
+    }
+    
+    /**
+     * Checks if setPost() can handle nested arrays.
+     */
+    public function testSetPostCanHandleNestedArrays()
+    {
+        $params = array(
+            'nested' => array(
+                'key' => 'value'
+            )
+        );
+        $this->setPost($params);
+        $params = $this->controller->getRequest()->getParams();
+        $this->assertInternalType('array', $params['nested']);
+        $this->assertEquals('value', $params['nested']['key']);
+    }
+    
+    /**
      * Ensures that parameters that were passed to the request object via
      * setPost() are not overwritten if setPost() is called again.
      */
@@ -243,6 +278,41 @@ class Mol_Test_WebControllerTestCaseTest extends Mol_Test_WebControllerTestCase
     {
         $this->setGet($this->createForm());
         $this->assertEquals('value', $this->request->getQuery('key'));
+    }
+    
+    /**
+     * Checks if setGet() can cope with null values.
+     */
+    public function testSetGetCanHandleNullValues()
+    {
+        $this->setExpectedException(null);
+        $this->setGet(array('key' => null));
+    }
+    
+    /**
+     * Ensures that setGet() converts provided values into strings
+     * as this is the way the data is transferred.
+     */
+    public function testSetGetConvertsValuesToString()
+    {
+        $this->setGet(array('key' => 42));
+        $this->assertSame('42', $this->controller->getRequest()->getParam('key'));
+    }
+    
+    /**
+     * Checks if setGet() can handle nested arrays.
+     */
+    public function testSetGetCanHandleNestedArrays()
+    {
+        $params = array(
+            'nested' => array(
+                'key' => 'value'
+            )
+        );
+        $this->setGet($params);
+        $params = $this->controller->getRequest()->getParams();
+        $this->assertInternalType('array', $params['nested']);
+        $this->assertEquals('value', $params['nested']['key']);
     }
     
     /**
