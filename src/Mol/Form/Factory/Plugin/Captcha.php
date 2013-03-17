@@ -17,23 +17,23 @@
  *
  * # Usage #
  *
- * ## Configuration ##
+ * ## Plugin Configuration ##
  *
  * The plugin can be activated via form factory configuration:
  *
- *     resources.form.plugins.csrf.class = "Mol_Form_Factory_Plugin_Captcha"
- *     resources.form.plugins.csrf.options.element.name = "my_captcha"
- *     resources.form.plugins.csrf.options.element.captcha.captcha    = "Image"
- *     resources.form.plugins.csrf.options.element.captcha.imgDir     = "/path/to/generated/captchas"
- *     resources.form.plugins.csrf.options.element.captcha.imgUrl     = "/url/to/captchas"
- *     resources.form.plugins.csrf.options.element.captcha.imgAlt     = "Alternative text"
- *     resources.form.plugins.csrf.options.element.captcha.font       = "/path/to/font/file"
- *     resources.form.plugins.csrf.options.element.captcha.wordlen    = 5
- *     resources.form.plugins.csrf.options.element.captcha.width      = 200
- *     resources.form.plugins.csrf.options.element.captcha.height     = 100
- *     resources.form.plugins.csrf.options.element.captcha.expiration = 600
+ *     resources.form.plugins.captcha.class = "Mol_Form_Factory_Plugin_Captcha"
+ *     resources.form.plugins.captcha.options.element.name = "my_captcha"
+ *     resources.form.plugins.captcha.options.element.captcha.captcha    = "Image"
+ *     resources.form.plugins.captcha.options.element.captcha.imgDir     = "/path/to/generated/captchas"
+ *     resources.form.plugins.captcha.options.element.captcha.imgUrl     = "/url/to/captchas"
+ *     resources.form.plugins.captcha.options.element.captcha.imgAlt     = "Alternative text"
+ *     resources.form.plugins.captcha.options.element.captcha.font       = "/path/to/font/file"
+ *     resources.form.plugins.captcha.options.element.captcha.wordlen    = 5
+ *     resources.form.plugins.captcha.options.element.captcha.width      = 200
+ *     resources.form.plugins.captcha.options.element.captcha.height     = 100
+ *     resources.form.plugins.captcha.options.element.captcha.expiration = 600
  *
- * ## Captcha activation ##
+ * ## Captcha Activation ##
  *
  * To ensure that a captcha is injected the form must set the attribute
  * "data-captcha" to "yes":
