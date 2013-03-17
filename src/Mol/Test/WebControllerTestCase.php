@@ -317,7 +317,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function setPost($arrayOrForm)
     {
         $this->request->setMethod('POST');
-        $this->request->setPost($this->toValues($arrayOrForm));
+        $this->request->setPost($this->toStrings($this->toValues($arrayOrForm)));
     }
 
     /**
@@ -339,7 +339,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function setGet($arrayOrForm)
     {
         $this->request->setMethod('GET');
-        $this->request->setQuery($this->toValues($arrayOrForm));
+        $this->request->setQuery($this->toStrings($this->toValues($arrayOrForm)));
     }
     
     /**
@@ -388,6 +388,26 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
             return $form->getValues();
         }
         return $arrayOrForm;
+    }
+    
+    /**
+     * Converts all values in the given list to string.
+     *
+     * Nested arrays will be handled recursively.
+     * String conversion is useful to simulate GET or
+     * POST parameters.
+     *
+     * @param array(string=>mixed) $values
+     * @return array(string=>string|array)
+     */
+    protected function toStrings(array $values)
+    {
+        foreach ($values as $key => $value) {
+            /* @var $key string */
+            /* @var $value mixed */
+            $values[$key] = is_array($value) ? $this->toStrings($value) : (string)$value;
+        }
+        return $values;
     }
 
     /**
