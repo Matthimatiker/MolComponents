@@ -221,6 +221,47 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
         $params = $this->getParamsOfLastHelperCall();
         $this->assertFalse($params['reset']);
     }
+    
+    /**
+     * Checks if withQuery() provides a fluent interface.
+     */
+    public function testWithQueryProvidesFluentInterface()
+    {
+        
+    }
+    
+    /**
+     * Checks if withQuery() adds the given parameter to the url.
+     */
+    public function testWithQueryAddsParameterToUrl()
+    {
+        
+    }
+    
+    /**
+     * Checks if query parameters are url encoded.
+     */
+    public function testWithQueryEncodesValue()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the anchor is added after the query parameters.
+     */
+    public function testAnchorIsAddedAfterQuery()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the query part is omitted if no query parameters
+     * were provided.
+     */
+    public function testQueryPartIsOmittedIfNoQueryParamsWereProvided()
+    {
+        
+    }
 
     /**
      * Returns the mocked url helper.
