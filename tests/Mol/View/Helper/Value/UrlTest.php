@@ -227,15 +227,19 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testWithQueryProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->url, $this->url->withQuery('key', 'value'));
     }
     
     /**
-     * Checks if withQuery() adds the given parameter to the url.
+     * Checks if withQuery() adds the given parameters to the url.
      */
-    public function testWithQueryAddsParameterToUrl()
+    public function testWithQueryAddsParametersToUrl()
     {
-        
+        $this->url->withQuery('first', 'alpha');
+        $this->url->withQuery('second', 'beta');
+        $url = (string)$this->url;
+        $this->assertContains('first=alpha', $url);
+        $this->assertContains('second=beta', $url);
     }
     
     /**
@@ -243,7 +247,8 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testWithQueryEncodesValue()
     {
-        
+        $this->url->withQuery('greeting', 'hello world');
+        $this->assertContains(urlencode('hello world'), (string)$this->url);
     }
     
     /**
@@ -251,7 +256,10 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testAnchorIsAddedAfterQuery()
     {
-        
+        $this->url->withQuery('key', 'value');
+        $this->url->withAnchor('test');
+        $url = (string)$this->url;
+        $this->assertGreaterThan(strpos($url, '?'), strpos($url, '#'));
     }
     
     /**
@@ -260,7 +268,7 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testQueryPartIsOmittedIfNoQueryParamsWereProvided()
     {
-        
+        $this->assertNotContains('?', (string)$this->url);
     }
 
     /**
