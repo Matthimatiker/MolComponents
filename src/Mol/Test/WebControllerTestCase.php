@@ -498,10 +498,13 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     protected function injectResources(Mol_Test_Bootstrap $bootstrapper)
     {
         $bootstrapper->simulateResource('log', new Zend_Log($this->logWriter));
+        
         $view = $this->createView();
         $bootstrapper->simulateResource('view', $view);
+        
         $layout = new Zend_Layout();
         $layout->setView($view);
+        $view->getHelper('layout')->setLAyout($layout);
         $bootstrapper->simulateResource('layout', $layout);
     }
     
