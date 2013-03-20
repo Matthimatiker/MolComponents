@@ -159,9 +159,21 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
     public function __get($property)
     {
         if ($property === 'acceptedHostnames') {
-            return implode(', ', $this->acceptedHostnames);
+            return $this->getAcceptedHostnamesAsString();
         }
         return parent::__get($property);
+    }
+    
+    /**
+     * Returns a list of accepted hostnames as string.
+     *
+     * This hostname list can be used in failure messages.
+     *
+     * @return string
+     */
+    protected function getAcceptedHostnamesAsString()
+    {
+        return implode(', ', $this->acceptedHostnames);
     }
     
     /**
