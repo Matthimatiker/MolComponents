@@ -163,6 +163,27 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the captcha elements get different IDs if they are added
+     * to multiple forms.
+     */
+    public function testAddedCaptchaElementsGetDifferentIds()
+    {
+        $first = $this->createForm();
+        $first->setAttrib('data-captcha', 'yes');
+        $second = $this->createForm();
+        $second->setAttrib('data-captcha', 'yes');
+        
+        $this->plugin->enhance($first);
+        $this->plugin->enhance($second);
+        
+        $firstCaptcha  = $first->getElement(Mol_Form_Factory_Plugin_Captcha::DEFAULT_CAPTCHA_NAME);
+        $secondCaptcha = $second->getElement(Mol_Form_Factory_Plugin_Captcha::DEFAULT_CAPTCHA_NAME);
+        $this->assertInstanceOf('Zend_Form_Element', $firstCaptcha);
+        $this->assertInstanceOf('Zend_Form_Element', $secondCaptcha);
+        $this->assertNotEquals($firstCaptcha->getId(), $secondCaptcha->getId());
+    }
+    
+    /**
      * Creates a form for testing.
      *
      * @return Zend_Form
