@@ -87,6 +87,10 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
             $this->_error(self::FAILURE_NO_URL);
             return false;
         }
+        if (!$this->hasAcceptedHostname($value)) {
+            $this->_error(self::FAILURE_HOSTNAME_NOT_ACCEPTED);
+            return false;
+        }
         return true;
     }
     
@@ -110,7 +114,8 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      */
     public function setAcceptedHostnames(array $hostnames)
     {
-        
+        $this->acceptedHostnames = $hostnames;
+        return $this;
     }
     
     /**
@@ -122,7 +127,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      */
     public function getAcceptedHostnames()
     {
-        
+        return $this->acceptedHostnames;
     }
     
     /**
@@ -132,7 +137,31 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      */
     public function hasHostnameRestrictions()
     {
-        
+        return count($this->acceptedHostnames) > 0;
+    }
+    
+    /**
+     * Checks if the given URL has an accepted hostname.
+     *
+     * @param string $url
+     * @return boolean
+     */
+    protected function hasAcceptedHostname($url)
+    {
+        if (!$this->hasHostnameRestrictions()) {
+            return true;
+        }
+        $hostname = Zend_Uri_Http::fromString($url)->getHost();
+        // Transform the hostname to be able to use fnmatch() and to
+        // ensure that the wildcard "*" does not match dots (".").
+        $hostname = str_replace('.', '/', $hostname);
+        foreach ($this->acceptedHostnames as $acceptedHostname) {
+            /* @var $acceptedHostname string */
+            if (fnmatch(str_replace('.', '/', $acceptedHostname), $hostname, FNM_PATHNAME)) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }
