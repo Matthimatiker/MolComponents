@@ -71,6 +71,15 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
     );
     
     /**
+     * Maps variables that can be used in failure messages.
+     *
+     * @var array(string=>string)
+     */
+    protected $_messageVariables = array(
+        'acceptedHostnames' => 'acceptedHostnames'
+    );
+    
+    /**
      * Checks if $value is an absolute URL.
      *
      * @param mixed $value
@@ -138,6 +147,21 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
     public function hasHostnameRestrictions()
     {
         return count($this->acceptedHostnames) > 0;
+    }
+    
+    /**
+     * Provides access to additional properties that can be used in
+     * failure messages.
+     *
+     * @param string $property
+     * @return mixed
+     */
+    public function __get($property)
+    {
+        if ($property === 'acceptedHostnames') {
+            return implode(', ', $this->acceptedHostnames);
+        }
+        return parent::__get($property);
     }
     
     /**
