@@ -103,4 +103,49 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
         $this->assertGreaterThan(0, count($messages));
     }
     
+    public function testSetAcceptedHostnamesProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testValidatorRejectsWithNotAcceptedHostname()
+    {
+        
+    }
+    
+    public function testValidatorRejectsUrlWhoseHostnameEndsWithAllowedHostname()
+    {
+        
+    }
+    
+    public function testValidatorRejectsUrlWhoseHostnameStartsWithAllowedHostname()
+    {
+    
+    }
+    
+    public function testValidatorRejectsUrlWhoseHostnameContainsAllowedHostname()
+    {
+    
+    }
+    
+    public function testValidatorAcceptsUrlWithAcceptedHostname()
+    {
+    
+    }
+    
+    public function testValidatorProvidesMessageIfUrlIsRejectedBecausOfItsHostname()
+    {
+        
+    }
+    
+    public function testAcceptedHostnamesAttributeProvidesListOfHostnamesAsString()
+    {
+        
+    }
+    
+    public function testValueAttributeReturnsTheCheckedValue()
+    {
+        
+    }
+    
 }
