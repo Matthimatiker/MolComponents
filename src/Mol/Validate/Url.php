@@ -72,4 +72,39 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
         return true;
     }
     
+    /**
+     * Sets a list of accepted hostnames.
+     *
+     * The url is only valid if its hostname is listed in this whitelist.
+     * The "*" character can be used as wildcard:
+     *
+     *     $validHostnames = array(
+     *         'github.com',
+     *         'gist.github.com',
+     *         '*.matthimatiker.de'
+     *     );
+     *     $validator->setAcceptedHostnames($validHostnames).
+     *
+     * Per default every hostnam is accepted.
+     *
+     * @param array(string) $hostnames
+     * @return Mol_Validate_Url Provides a fluent interface.
+     */
+    public function setAcceptedHostnames(array $hostnames)
+    {
+        
+    }
+    
+    /**
+     * Returns a list of accepted hostnames.
+     *
+     * Hostnames may contain wildcards ("*").
+     *
+     * @return array(string)
+     */
+    public function getAcceptedHostnames()
+    {
+        
+    }
+    
 }
