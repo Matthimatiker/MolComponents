@@ -134,9 +134,28 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that hasHostnameRestrictions() returns false if no hostname whitelist
+     * was provided.
+     */
+    public function testHasHostnameRestrictionsReturnsFalseIfNoHostnamesAreWhitelisted()
+    {
+        $this->assertFalse($this->validator->hasHostnameRestrictions());
+    }
+    
+    /**
+     * Ensures that hasHostnameRestrictions() returns true if a whitelist of hostnames
+     * was passed to the validator.
+     */
+    public function testHasHostnameRestrictionsReturnsTrueIfHostnamesAreWhitelisted()
+    {
+        $this->validator->setAcceptedHostnames(array('google.de'));
+        $this->assertTrue($this->validator->hasHostnameRestrictions());
+    }
+    
+    /**
      * Ensures that the validator rejects a URL with not accepted hostname.
      */
-    public function testValidatorRejectsWithNotAcceptedHostname()
+    public function testValidatorRejectsUrlWithNotAcceptedHostname()
     {
         $this->validator->setAcceptedHostnames(array('github.com'));
         $this->assertFalse($this->validator->isValid('http://google.com'));
