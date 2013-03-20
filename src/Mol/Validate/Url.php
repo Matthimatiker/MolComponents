@@ -36,11 +36,28 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
     
     /**
      * Key for failure message which indicates that the validated
-     * value is no absolute url.
+     * value is no absolute URL.
      *
      * @var string
      */
     const FAILURE_NO_URL = 'urlNoUrl';
+    
+    /**
+     * Key for failure message which indicates that the hostname
+     * of the validated URL was not accepted.
+     *
+     * @var string
+     */
+    const FAILURE_HOSTNAME_NOT_ACCEPTED = 'urlHostnameNotAccepted';
+    
+    /**
+     * A list of expected hostnames.
+     *
+     * The listed hostnams may contain wildcards ("*").
+     *
+     * @var array(string)
+     */
+    protected $acceptedHostnames = array();
     
     /**
      * Default failure messages.
@@ -48,8 +65,9 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      * @var array(string)
      */
     protected $_messageTemplates = array(
-        self::FAILURE_INVALID => "Invalid type given. String expected, but received %value%",
-        self::FAILURE_NO_URL  => "'%value%' is no absolute URL"
+        self::FAILURE_INVALID               => "Invalid type given. String expected, but received %value%",
+        self::FAILURE_NO_URL                => "'%value%' is no absolute URL",
+        self::FAILURE_HOSTNAME_NOT_ACCEPTED => "'%value%' must use an accepted hostname: %acceptedHostnames%"
     );
     
     /**
@@ -103,6 +121,16 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      * @return array(string)
      */
     public function getAcceptedHostnames()
+    {
+        
+    }
+    
+    /**
+     * Checks if hostname restrictions are active.
+     *
+     * @return boolean True if there are restrictions, false otherwise.
+     */
+    public function hasHostnameRestrictions()
     {
         
     }
