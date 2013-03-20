@@ -108,7 +108,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testSetAcceptedHostnamesProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->validator, $this->validator->setAcceptedHostnames(array('github.com')));
     }
     
     /**
@@ -117,7 +117,9 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testGetAcceptedHostnamesReturnsProvidedHostnames()
     {
-        
+        $hostnames = array('github.com', 'google.de');
+        $this->validator->setAcceptedHostnames($hostnames);
+        $this->assertEquals($hostnames, $this->validator->getAcceptedHostnames());
     }
     
     /**
@@ -126,7 +128,9 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testSetAcceptedHostnamesOverwritesPreviousHostnames()
     {
-        
+        $this->validator->setAcceptedHostnames(array('github.com'));
+        $this->validator->setAcceptedHostnames(array('google.de'));
+        $this->assertEquals(array('google.de'), $this->validator->getAcceptedHostnames());
     }
     
     /**
@@ -134,7 +138,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsWithNotAcceptedHostname()
     {
-        
+        $this->validator->setAcceptedHostnames(array('github.com'));
+        $this->assertFalse($this->validator->isValid('http://google.com'));
     }
     
     /**
@@ -143,7 +148,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsUrlWhoseHostnameEndsWithAllowedHostname()
     {
-        
+        $this->validator->setAcceptedHostnames(array('github.com'));
+        $this->assertFalse($this->validator->isValid('http://not-github.com'));
     }
     
     /**
@@ -152,7 +158,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsUrlWhoseHostnameStartsWithAllowedHostname()
     {
-    
+        $this->validator->setAcceptedHostnames(array('github.com'));
+        $this->assertFalse($this->validator->isValid('http://github.com.another-host.org'));
     }
     
     /**
@@ -161,7 +168,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorRejectsUrlWhoseHostnameContainsAllowedHostname()
     {
-    
+        $this->validator->setAcceptedHostnames(array('github.com'));
+        $this->assertFalse($this->validator->isValid('http://not.github.com.host.org'));
     }
     
     /**
@@ -169,7 +177,18 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsUrlWithAcceptedHostname()
     {
+        $this->validator->setAcceptedHostnames(array('github.com'));
+        $this->assertTrue($this->validator->isValid('http://github.com/matthimatiker/molcomponents'));
+    }
     
+    /**
+     * Ensures that the validator accepts a URL if multiple accepted hostnames were
+     * provided and the url's hostname matches any of these.
+     */
+    public function testValidatorAcceptsUrlWhoseHostnameMatchesAnyOfTheAcceptedHostnames()
+    {
+        $this->validator->setAcceptedHostnames(array('github.com', 'google.de'));
+        $this->assertTrue($this->validator->isValid('http://google.de'));
     }
     
     /**
@@ -178,7 +197,18 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorAcceptsUrlWhoseHostnameMatchesWildcardPattern()
     {
-        
+        $this->validator->setAcceptedHostnames(array('*.github.com'));
+        $this->assertTrue($this->validator->isValid('http://blog.github.com'));
+    }
+    
+    /**
+     * Ensures that the validator rejects a URL whose hostname does not match
+     * the provided wildcard pattern.
+     */
+    public function testValidatorRejectsUrlWhoseHostnameDoesNotMatchWildcard()
+    {
+        $this->validator->setAcceptedHostnames(array('*.github.com'));
+        $this->assertFalse($this->validator->isValid('http://blog.google.com'));
     }
     
     /**
@@ -186,7 +216,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testWildcardInHostnameDoesNotMatchDot()
     {
-        
+        $this->validator->setAcceptedHostnames(array('*.github.com'));
+        $this->assertFalse($this->validator->isValid('http://sub.blog.github.com'));
     }
     
     /**
@@ -195,7 +226,11 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValidatorProvidesMessageIfUrlIsRejectedBecauseOfItsHostname()
     {
-        
+        $this->validator->setAcceptedHostnames(array('github.com'));
+        $this->validator->isValid('http://google.com');
+        $messages = $this->validator->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertGreaterThan(0, count($messages));
     }
     
     /**
@@ -206,7 +241,11 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testAcceptedHostnamesAttributeProvidesListOfHostnamesAsString()
     {
-        
+        $this->validator->setAcceptedHostnames(array('github.com', 'google.de'));
+        $list = $this->validator->acceptedHostnames;
+        $this->assertInternalType('string', $list);
+        $this->assertContains('github.com', $list);
+        $this->assertContains('google.de', $list);
     }
     
     /**
@@ -214,7 +253,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testValueAttributeReturnsTheCheckedValue()
     {
-        
+        $this->validator->isValid('test');
+        $this->assertEquals('test', $this->validator->value);
     }
     
 }
