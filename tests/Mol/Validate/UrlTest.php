@@ -103,46 +103,115 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
         $this->assertGreaterThan(0, count($messages));
     }
     
+    /**
+     * Checks if setAcceptedHostnames() provides a fluent interface.
+     */
     public function testSetAcceptedHostnamesProvidesFluentInterface()
     {
         
     }
     
+    /**
+     * Checks if getAcceptedHostnames() returns the list of hostnames
+     * that was provided before.
+     */
+    public function testGetAcceptedHostnamesReturnsProvidedHostnames()
+    {
+        
+    }
+    
+    /**
+     * Checks if setAcceptedHostnames() overwrites the previously provided
+     * list of hostnames.
+     */
+    public function testSetAcceptedHostnamesOverwritesPreviousHostnames()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the validator rejects a URL with not accepted hostname.
+     */
     public function testValidatorRejectsWithNotAcceptedHostname()
     {
         
     }
     
+    /**
+     * Checks if the validator rejects a URL whose hostname ends with an
+     * allowed hostname.
+     */
     public function testValidatorRejectsUrlWhoseHostnameEndsWithAllowedHostname()
     {
         
     }
     
+    /**
+     * Checks if the validator rejects a URL whose hostname starts with an
+     * allowed hostname.
+     */
     public function testValidatorRejectsUrlWhoseHostnameStartsWithAllowedHostname()
     {
     
     }
     
+    /**
+     * Checks if the validator rejects a URL whose hostname contains an
+     * allowed hostname.
+     */
     public function testValidatorRejectsUrlWhoseHostnameContainsAllowedHostname()
     {
     
     }
     
+    /**
+     * Ensures that the validator accepts an URL with a whitelisted hostname.
+     */
     public function testValidatorAcceptsUrlWithAcceptedHostname()
     {
     
     }
     
-    public function testValidatorProvidesMessageIfUrlIsRejectedBecausOfItsHostname()
+    /**
+     * Ensures that the validator accepts a URL whose hostname matches a
+     * provided hostname pattern.
+     */
+    public function testValidatorAcceptsUrlWhoseHostnameMatchesWildcardPattern()
     {
         
     }
     
+    /**
+     * Ensures that the wildcard in a hostname pattern does not match a dot.
+     */
+    public function testWildcardInHostnameDoesNotMatchDot()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the validator provides a failure message if an url is rejected
+     * because of its hostname.
+     */
+    public function testValidatorProvidesMessageIfUrlIsRejectedBecauseOfItsHostname()
+    {
+        
+    }
+    
+    /**
+     * Checks if the acceptedHostnames attribute contains a string with the
+     * whitelisted hostnames.
+     *
+     * This attribute can be referenced in failure messages.
+     */
     public function testAcceptedHostnamesAttributeProvidesListOfHostnamesAsString()
     {
         
     }
     
+    /**
+     * Checks if the default value attribute is still working.
+     */
     public function testValueAttributeReturnsTheCheckedValue()
     {
         
