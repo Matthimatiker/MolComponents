@@ -209,7 +209,9 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
      */
     protected function createCaptcha()
     {
-        return new Zend_Form_Element_Captcha($this->captchaOptions);
+        $captcha = new Zend_Form_Element_Captcha($this->captchaOptions);
+        $captcha->setAttrib('id', $captcha->getName() . '-' . uniqid());
+        return $captcha;
     }
     
 }
