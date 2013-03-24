@@ -143,4 +143,24 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->element->getAttrib('urlValidator'));
     }
     
+    public function testHostnamesAttributeIsInitiallyNotDefined()
+    {
+        
+    }
+    
+    public function testHostnamesAttributeIsNotAvailableIfRestrictionsHaveBeenRemoved()
+    {
+        
+    }
+    
+    public function testHostnamesAttributeContainsAllowedHostnames()
+    {
+        
+    }
+    
+    public function testElementIsRenderable()
+    {
+        
+    }
+    
 }
