@@ -66,6 +66,7 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
     public function setAllowedHostnames(array $hostnames)
     {
         $this->_urlValidator->setAcceptedHostnames($hostnames);
+        $this->setAttrib(self::HOSTNAMES_ATTRIBUTE, $this->toHostnamesAttribute($hostnames));
         return $this;
     }
     
@@ -87,6 +88,22 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
     public function hasHostnameRestrictions()
     {
         return $this->_urlValidator->hasHostnameRestrictions();
+    }
+    
+    /**
+     * Uses the given list of hostnames to create the value
+     * of the hostnames attribute.
+     *
+     * @param array(string) $hostnames
+     * @return string|null
+     */
+    protected function toHostnamesAttribute(array $hostnames)
+    {
+        if (count($hostnames) === 0) {
+            // No hostnames available, therefore no attribute is required.
+            return null;
+        }
+        return implode(',', $hostnames);
     }
     
 }
