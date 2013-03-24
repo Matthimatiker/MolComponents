@@ -48,7 +48,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      *
      * @var string
      */
-    const FAILURE_HOSTNAME_NOT_ACCEPTED = 'urlHostnameNotAccepted';
+    const FAILURE_HOSTNAME_NOT_ALLOWED = 'urlHostnameNotAccepted';
     
     /**
      * A list of expected hostnames.
@@ -65,9 +65,9 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      * @var array(string)
      */
     protected $_messageTemplates = array(
-        self::FAILURE_INVALID               => "Invalid type given. String expected, but received %value%",
-        self::FAILURE_NO_URL                => "'%value%' is no absolute URL",
-        self::FAILURE_HOSTNAME_NOT_ACCEPTED => "'%value%' must use an accepted hostname: %allowedHostnames%"
+        self::FAILURE_INVALID              => "Invalid type given. String expected, but received %value%",
+        self::FAILURE_NO_URL               => "'%value%' is no absolute URL",
+        self::FAILURE_HOSTNAME_NOT_ALLOWED => "'%value%' must use an accepted hostname: %allowedHostnames%"
     );
     
     /**
@@ -97,7 +97,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
             return false;
         }
         if (!$this->hasAllowedHostname($value)) {
-            $this->_error(self::FAILURE_HOSTNAME_NOT_ACCEPTED);
+            $this->_error(self::FAILURE_HOSTNAME_NOT_ALLOWED);
             return false;
         }
         return true;
