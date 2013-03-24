@@ -57,7 +57,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      *
      * @var array(string)
      */
-    protected $acceptedHostnames = array();
+    protected $allowedHostnames = array();
     
     /**
      * Default failure messages.
@@ -67,7 +67,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
     protected $_messageTemplates = array(
         self::FAILURE_INVALID               => "Invalid type given. String expected, but received %value%",
         self::FAILURE_NO_URL                => "'%value%' is no absolute URL",
-        self::FAILURE_HOSTNAME_NOT_ACCEPTED => "'%value%' must use an accepted hostname: %acceptedHostnames%"
+        self::FAILURE_HOSTNAME_NOT_ACCEPTED => "'%value%' must use an accepted hostname: %allowedHostnames%"
     );
     
     /**
@@ -76,7 +76,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageVariables = array(
-        'acceptedHostnames' => 'acceptedHostnames'
+        'allowedHostnames' => 'allowedHostnames'
     );
     
     /**
@@ -96,7 +96,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
             $this->_error(self::FAILURE_NO_URL);
             return false;
         }
-        if (!$this->hasAcceptedHostname($value)) {
+        if (!$this->hasAllowedHostname($value)) {
             $this->_error(self::FAILURE_HOSTNAME_NOT_ACCEPTED);
             return false;
         }
@@ -114,16 +114,16 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      *         'gist.github.com',
      *         '*.matthimatiker.de'
      *     );
-     *     $validator->setAcceptedHostnames($validHostnames).
+     *     $validator->setAllowedHostnames($validHostnames).
      *
      * Per default every hostnam is accepted.
      *
      * @param array(string) $hostnames
      * @return Mol_Validate_Url Provides a fluent interface.
      */
-    public function setAcceptedHostnames(array $hostnames)
+    public function setAllowedHostnames(array $hostnames)
     {
-        $this->acceptedHostnames = $hostnames;
+        $this->allowedHostnames = $hostnames;
         return $this;
     }
     
@@ -134,9 +134,9 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      *
      * @return array(string)
      */
-    public function getAcceptedHostnames()
+    public function getAllowedHostnames()
     {
-        return $this->acceptedHostnames;
+        return $this->allowedHostnames;
     }
     
     /**
@@ -146,7 +146,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      */
     public function hasHostnameRestrictions()
     {
-        return count($this->acceptedHostnames) > 0;
+        return count($this->allowedHostnames) > 0;
     }
     
     /**
@@ -158,8 +158,8 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      */
     public function __get($property)
     {
-        if ($property === 'acceptedHostnames') {
-            return $this->getAcceptedHostnamesAsString();
+        if ($property === 'allowedHostnames') {
+            return $this->getAllowedHostnamesAsString();
         }
         return parent::__get($property);
     }
@@ -171,9 +171,9 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      *
      * @return string
      */
-    protected function getAcceptedHostnamesAsString()
+    protected function getAllowedHostnamesAsString()
     {
-        return implode(', ', $this->acceptedHostnames);
+        return implode(', ', $this->allowedHostnames);
     }
     
     /**
@@ -182,7 +182,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      * @param string $url
      * @return boolean
      */
-    protected function hasAcceptedHostname($url)
+    protected function hasAllowedHostname($url)
     {
         if (!$this->hasHostnameRestrictions()) {
             return true;
@@ -191,7 +191,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
         // Transform the hostname to be able to use fnmatch() and to
         // ensure that the wildcard "*" does not match dots (".").
         $hostname = str_replace('.', '/', $hostname);
-        foreach ($this->acceptedHostnames as $acceptedHostname) {
+        foreach ($this->allowedHostnames as $acceptedHostname) {
             /* @var $acceptedHostname string */
             if (fnmatch(str_replace('.', '/', $acceptedHostname), $hostname, FNM_PATHNAME)) {
                 return true;

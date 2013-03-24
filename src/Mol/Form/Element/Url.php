@@ -65,7 +65,7 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
      */
     public function setAllowedHostnames(array $hostnames)
     {
-        $this->_urlValidator->setAcceptedHostnames($hostnames);
+        $this->_urlValidator->setAllowedHostnames($hostnames);
         $this->setAttrib(self::HOSTNAMES_ATTRIBUTE, $this->toHostnamesAttribute($hostnames));
         return $this;
     }
@@ -77,7 +77,7 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
      */
     public function getAllowedHostnames()
     {
-        return $this->_urlValidator->getAcceptedHostnames();
+        return $this->_urlValidator->getAllowedHostnames();
     }
     
     /**
