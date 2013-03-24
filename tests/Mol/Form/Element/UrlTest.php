@@ -143,21 +143,34 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->element->getAttrib('urlValidator'));
     }
     
+    /**
+     * Ensures thatr the hostnames attribute is initially not defined.
+     */
     public function testHostnamesAttributeIsInitiallyNotDefined()
     {
         
     }
     
+    /**
+     * Ensures that the hostnames attribute is not defined if the hostname
+     * restrictions have been removed.
+     */
     public function testHostnamesAttributeIsNotAvailableIfRestrictionsHaveBeenRemoved()
     {
         
     }
     
+    /**
+     * Checks if the hostnames attribute contains all allowed hostnames.
+     */
     public function testHostnamesAttributeContainsAllowedHostnames()
     {
         
     }
     
+    /**
+     * Checks if it is possible to render the element.
+     */
     public function testElementIsRenderable()
     {
         
