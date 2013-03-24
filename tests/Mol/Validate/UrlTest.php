@@ -276,4 +276,19 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('test', $this->validator->value);
     }
     
+    public function testHostnameAttributeIsNullIfNoValueWasValidatedYet()
+    {
+        
+    }
+    
+    public function testHostnameAttributeIsNullIfValidatedValueWasNoUrl()
+    {
+        
+    }
+    
+    public function testHostnameAttributeContainsHostnameOfValidatedUrl()
+    {
+        
+    }
+    
 }
