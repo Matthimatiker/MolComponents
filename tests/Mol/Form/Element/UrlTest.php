@@ -63,7 +63,7 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testElementAcceptsUrl()
     {
-        
+        $this->assertTrue($this->element->isValid('http://www.google.com'));
     }
     
     /**
@@ -71,7 +71,7 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testElementRejectsNonUrl()
     {
-        
+        $this->assertFalse($this->element->isValid('hello world'));
     }
     
     /**
@@ -80,7 +80,7 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHostnameRestrictionsReturnsFalseIfNoConstraintsWereDefined()
     {
-        
+        $this->assertFalse($this->element->hasHostnameRestrictions());
     }
     
     /**
@@ -89,7 +89,8 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHasHostnameRestrictionsReturnsTrueIfConstraintsWereProvided()
     {
-        
+        $this->element->setAllowedHostnames(array('google.com', 'github.com'));
+        $this->assertTrue($this->element->hasHostnameRestrictions());
     }
     
     /**
@@ -97,7 +98,7 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testSetAllowedHostnamesProvidesFluentInterface()
     {
-        
+        $this->assertSame($this->element, $this->element->setAllowedHostnames(array('github.com')));
     }
     
     /**
@@ -106,7 +107,13 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testGetAllowedHostnamesReturnsProvidedHostnameConstraints()
     {
+        $this->element->setAllowedHostnames(array('google.com', 'github.com'));
+        $allowedHostnames = $this->element->getAllowedHostnames();
         
+        $this->assertInternalType('array', $allowedHostnames);
+        $this->assertContains('google.com', $allowedHostnames);
+        $this->assertContains('github.com', $allowedHostnames);
+        $this->assertCount(2, $allowedHostnames);
     }
     
     /**
@@ -114,7 +121,8 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testElementAcceptsUrlWithAllowedHostname()
     {
-        
+        $this->element->setAllowedHostnames(array('google.com', 'github.com'));
+        $this->assertTrue($this->element->isValid('http://google.com?q=test'));
     }
     
     /**
@@ -123,7 +131,8 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testElementRejectsUrlWithNotAcceptedHostname()
     {
-        
+        $this->element->setAllowedHostnames(array('google.com', 'github.com'));
+        $this->assertFalse($this->element->isValid('http://google.de?q=test'));
     }
     
 }
