@@ -27,31 +27,6 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
 {
     
     /**
-     * System under test.
-     *
-     * @var Mol_Form_Element_Url
-     */
-    protected $element = null;
-    
-    /**
-     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->element = new Mol_Form_Element_Url('url');
-    }
-    
-    /**
-     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
-     */
-    protected function tearDown()
-    {
-        $this->element = null;
-        parent::tearDown();
-    }
-    
-    /**
      * Sets hostnames that are allowed in the url.
      *
      * @param array(string) $hostnames
