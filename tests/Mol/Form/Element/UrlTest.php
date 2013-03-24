@@ -33,4 +33,44 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testElementAcceptsUrl()
+    {
+        
+    }
+    
+    public function testElementRejectsNonUrl()
+    {
+        
+    }
+    
+    public function testHasHostnameRestrictionsReturnsFalseIfNoConstraintsWereDefined()
+    {
+        
+    }
+    
+    public function testHasHostnameRestrictionsReturnsTrueIfConstraintsWereProvided()
+    {
+        
+    }
+    
+    public function testSetAllowedHostnamesProvidesFluentInterface()
+    {
+        
+    }
+    
+    public function testGetAllowedHostnamsReturnsProvidedHostnameConstraints()
+    {
+        
+    }
+    
+    public function testElementAcceptsUrlWithAllowedHostname()
+    {
+        
+    }
+    
+    public function testElementRejectsUrlWithNotAcceptedHostname()
+    {
+        
+    }
+    
 }
