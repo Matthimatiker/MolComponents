@@ -29,9 +29,12 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
     /**
      * The validator that is used to check URLs.
      *
+     * An underscore for variable declaration must be used to avoid collisions
+     * with the getAttribs() method of Zend_Form_Element.
+     *
      * @var Mol_Validate_Url
      */
-    protected $urlValidator = null;
+    protected $_urlValidator = null;
     
     /**
      * Initializes filters and validators for this element.
@@ -42,8 +45,8 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
         
         $this->addFilter('StringTrim');
         
-        $this->urlValidator = new Mol_Validate_Url();
-        $this->addValidator($this->urlValidator, true);
+        $this->_urlValidator = new Mol_Validate_Url();
+        $this->addValidator($this->_urlValidator, true);
     }
     
     /**
@@ -54,7 +57,7 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
      */
     public function setAllowedHostnames(array $hostnames)
     {
-        $this->urlValidator->setAcceptedHostnames($hostnames);
+        $this->_urlValidator->setAcceptedHostnames($hostnames);
         return $this;
     }
     
@@ -65,7 +68,7 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
      */
     public function getAllowedHostnames()
     {
-        return $this->urlValidator->getAcceptedHostnames();
+        return $this->_urlValidator->getAcceptedHostnames();
     }
     
     /**
@@ -75,7 +78,7 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
      */
     public function hasHostnameRestrictions()
     {
-        return $this->urlValidator->hasHostnameRestrictions();
+        return $this->_urlValidator->hasHostnameRestrictions();
     }
     
 }
