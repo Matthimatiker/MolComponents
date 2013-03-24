@@ -58,41 +58,69 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Checks if teh element accepts a URL.
+     */
     public function testElementAcceptsUrl()
     {
         
     }
     
+    /**
+     * Ensures that the element rejects non-URL values.
+     */
     public function testElementRejectsNonUrl()
     {
         
     }
     
+    /**
+     * Ensures that hasHostnameRestrictions() returns false if no constraints
+     * regarding hostnames were provided.
+     */
     public function testHasHostnameRestrictionsReturnsFalseIfNoConstraintsWereDefined()
     {
         
     }
     
+    /**
+     * Ensures that hasHostnameRestrictions() returns true if hostname constraints
+     * were passed to the element.
+     */
     public function testHasHostnameRestrictionsReturnsTrueIfConstraintsWereProvided()
     {
         
     }
     
+    /**
+     * Checks if setAllowedHostnames() provides a fluent interface.
+     */
     public function testSetAllowedHostnamesProvidesFluentInterface()
     {
         
     }
     
-    public function testGetAllowedHostnamsReturnsProvidedHostnameConstraints()
+    /**
+     * Checks if getAllowedHostnames() returns the previously provided
+     * hostname constraints.
+     */
+    public function testGetAllowedHostnamesReturnsProvidedHostnameConstraints()
     {
         
     }
     
+    /**
+     * Ensures that the element accepts a URL with an allowed hostname.
+     */
     public function testElementAcceptsUrlWithAllowedHostname()
     {
         
     }
     
+    /**
+     * Ensures that the element rejects URLs with hostnames that are
+     * not allowed.
+     */
     public function testElementRejectsUrlWithNotAcceptedHostname()
     {
         
