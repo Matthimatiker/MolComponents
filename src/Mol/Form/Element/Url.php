@@ -27,6 +27,14 @@ class Mol_Form_Element_Url extends Zend_Form_Element_Text
 {
     
     /**
+     * Names of the attribute that contains a list of allowed
+     * hostnames if available.
+     *
+     * @var string
+     */
+    const HOSTNAMES_ATTRIBUTE = 'data-allowed-hostnames';
+    
+    /**
      * The validator that is used to check URLs.
      *
      * An underscore for variable declaration must be used to avoid collisions
