@@ -83,7 +83,10 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
      */
     public function init()
     {
+        parent::init();
+        
         $this->addFilter('StringTrim');
+        
         $this->addValidator('EmailAddress', true);
         $this->_hostnameValidator = new Mol_Validate_Suffix();
         $this->addValidator($this->_hostnameValidator, true);
