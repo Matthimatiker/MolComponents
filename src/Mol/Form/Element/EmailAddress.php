@@ -71,7 +71,7 @@ class Mol_Form_Element_EmailAddress extends Zend_Form_Element_Text
     /**
      * Validator that is used to check against a list of allowed hostnames.
      *
-     * We have to use a underscore for variable declaration to avoid collisions
+     * An underscore for variable declaration must be used to avoid collisions
      * with the getAttribs() method of Zend_Form_Element.
      *
      * @var Mol_Validate_Suffix
