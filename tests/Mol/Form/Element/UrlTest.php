@@ -148,7 +148,7 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHostnamesAttributeIsInitiallyNotDefined()
     {
-        
+        $this->assertNull($this->element->getAttrib(Mol_Form_Element_Url::HOSTNAMES_ATTRIBUTE));
     }
     
     /**
@@ -157,7 +157,9 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHostnamesAttributeIsNotAvailableIfRestrictionsHaveBeenRemoved()
     {
-        
+        $this->element->setAllowedHostnames(array('google.com'));
+        $this->element->setAllowedHostnames(array());
+        $this->assertNull($this->element->getAttrib(Mol_Form_Element_Url::HOSTNAMES_ATTRIBUTE));
     }
     
     /**
@@ -165,7 +167,11 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHostnamesAttributeContainsAllowedHostnames()
     {
-        
+        $this->element->setAllowedHostnames(array('google.com', 'github.com'));
+        $hostnamesList = $this->element->getAttrib(Mol_Form_Element_Url::HOSTNAMES_ATTRIBUTE);
+        $this->assertInternalType('string', $hostnamesList);
+        $this->assertContains('google.com', $hostnamesList);
+        $this->assertContains('github.com', $hostnamesList);
     }
     
     /**
@@ -173,7 +179,10 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testElementIsRenderable()
     {
-        
+        $this->element->setAllowedHostnames(array('google.com', 'github.com'));
+        $markup = $this->element->render(new Zend_View());
+        $this->assertInternalType('string', $markup);
+        $this->assertNotEmpty($markup);
     }
     
 }
