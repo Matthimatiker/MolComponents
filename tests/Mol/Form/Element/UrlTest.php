@@ -135,4 +135,12 @@ class Mol_Form_Element_UrlTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->element->isValid('http://google.de?q=test'));
     }
     
+    /**
+     * Ensures that the internal URL validator cannot be accessed as attribute.
+     */
+    public function testInternalValidatorIsNotExposedViaAttribute()
+    {
+        $this->assertNull($this->element->getAttrib('urlValidator'));
+    }
+    
 }
