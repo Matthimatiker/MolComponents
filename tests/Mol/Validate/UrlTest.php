@@ -302,7 +302,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
     public function testHostnameAttributeContainsHostnameOfValidatedUrl()
     {
         $this->validator->isValid('http://www.google.com/ig?q=test');
-        $this->assertEquals('www.google.de', $this->validator->hostname);
+        $this->assertEquals('www.google.com', $this->validator->hostname);
     }
     
 }
