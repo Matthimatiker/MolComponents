@@ -67,7 +67,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
     protected $_messageTemplates = array(
         self::FAILURE_INVALID              => "Invalid type given. String expected, but received %value%",
         self::FAILURE_NO_URL               => "'%value%' is no absolute URL",
-        self::FAILURE_HOSTNAME_NOT_ALLOWED => "'%value%' must use an accepted hostname: %allowedHostnames%"
+        self::FAILURE_HOSTNAME_NOT_ALLOWED => "'%hostname%' is not in the list of allowed hostnames: %allowedHostnames%"
     );
     
     /**
