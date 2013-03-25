@@ -76,7 +76,8 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageVariables = array(
-        'allowedHostnames' => 'allowedHostnames'
+        'allowedHostnames' => 'allowedHostnames',
+        'hostname'         => 'hostname'
     );
     
     /**
@@ -92,7 +93,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
             $this->_error(self::FAILURE_INVALID, Mol_Util_Stringifier::stringify($value));
             return false;
         }
-        if (!Zend_Uri_Http::check($value)) {
+        if (!$this->isUrl($value)) {
             $this->_error(self::FAILURE_NO_URL);
             return false;
         }
@@ -161,7 +162,36 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
         if ($property === 'allowedHostnames') {
             return $this->getAllowedHostnamesAsString();
         }
+        if ($property === 'hostname') {
+            return $this->getHostname();
+        }
         return parent::__get($property);
+    }
+    
+    /**
+     * Checks if the given value is a valid URL.
+     *
+     * @param string $value
+     * @return boolean True if a valid URL was passed, false otherwise.
+     */
+    protected function isUrl($value)
+    {
+        return Zend_Uri_Http::check($value);
+    }
+    
+    /**
+     * Returns the hostname of the last validated URL.
+     *
+     * If the last validated value was no valid URL then null is returned.
+     *
+     * @return string|null
+     */
+    protected function getHostname()
+    {
+        if (!$this->isUrl($this->value)) {
+            return null;
+        }
+        return Zend_Uri_Http::fromString($this->value)->getHost();
     }
     
     /**
