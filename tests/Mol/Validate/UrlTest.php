@@ -282,7 +282,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHostnameAttributeIsNullIfNoValueWasValidatedYet()
     {
-        
+        $this->assertNull($this->validator->hostname);
     }
     
     /**
@@ -291,7 +291,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHostnameAttributeIsNullIfValidatedValueWasNoUrl()
     {
-        
+        $this->validator->isValid('hello world');
+        $this->assertNull($this->validator->hostname);
     }
     
     /**
@@ -300,7 +301,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
      */
     public function testHostnameAttributeContainsHostnameOfValidatedUrl()
     {
-        
+        $this->validator->isValid('http://www.google.com/ig?q=test');
+        $this->assertEquals('www.google.de', $this->validator->hostname);
     }
     
 }
