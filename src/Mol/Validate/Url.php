@@ -22,6 +22,8 @@
  * @license http://www.opensource.org/licenses/BSD-3-Clause BSD License
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 11.03.2013
+ * @property string|null $hostname Hostname of the last validated URL.
+ * @property string allowedHostnames Comma-seprated list of accepted hostnames.
  */
 class Mol_Validate_Url extends Zend_Validate_Abstract
 {
