@@ -58,6 +58,14 @@
  *
  *     $element->setAllowedHostnames(array('*.*.google.com'));
  *
+ * If at least one hostname constraint is defined, then the rendered element
+ * contains a data attribute that holds a comma-separated list of the allowed
+ * hostnames:
+ *
+ *     <input type="text" name="url" id="url" value="" data-allowed-hostnames="www.github.com,*.google.com" />"
+ *
+ * This information may be used for additional client-side validation via JavaScript.
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
