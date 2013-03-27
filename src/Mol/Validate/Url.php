@@ -53,6 +53,15 @@
  *
  *     $validator->setAllowedHostnames(array('*.*.google.com'));
  *
+ * ## Custom Messages ##
+ *
+ * The following placeholders are supported  in the failure messages
+ * of this validator:
+ *
+ * * %value%             - The checked value.
+ * * %hostname%          - The hostname of the checked URL
+ * * %acceptedHostnames% - Comma-separated list of allowed hostnames.
+ *
  * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
@@ -61,7 +70,7 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 11.03.2013
  * @property string|null $hostname Hostname of the last validated URL.
- * @property string allowedHostnames Comma-seprated list of accepted hostnames.
+ * @property string allowedHostnames Comma-separated list of accepted hostnames.
  */
 class Mol_Validate_Url extends Zend_Validate_Abstract
 {
