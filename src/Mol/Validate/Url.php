@@ -15,6 +15,44 @@
 /**
  * Validator that checks URLs.
  *
+ * # Basic Usage #
+ *
+ * Per default this validator accepts all absolute URLs:
+ *
+ *     // Returns true:
+ *     $validator->isValid('https://github.com/Matthimatiker/MolComponents');
+ *     // Returns false:
+ *     $validator->isValid('/Matthimatiker/MolComponents');
+ *     $validator->isValid(42);
+ *     $validator->isValid(new stdClass());
+ *
+ * ## Hostname Restrictions ##
+ *
+ * Optionally the accepted hostnames can be restricted via setAllowedHostnames():
+ *
+ *     $validator->setAllowedHostnames(array('github.com'));
+ *     // Returns true:
+ *     $validator->isValid('https://github.com/Matthimatiker/MolComponents');
+ *     // Returns false:
+ *     $validator->isValid('http://google.de?q=demo');
+ *
+ * Subdomains are not automatically accepted. Therefore, subdomains must be
+ * whitelisted explicitly. Alternatively "*" can be used as wildcard:
+ *
+ *     $validator->setAllowedHostnames(array('github.com', 'www.github.com', '*.google.com'));
+ *     // Accepted:
+ *     $validator->isValid('https://www.github.com');
+ *     $validator->isValid('https://www.google.com');
+ *     // Rejected:
+ *     $validator->isValid('https://blog.github.com');
+ *     $validator->isValid('https://google.com');
+ *     $validator->isValid('https://my.personal.google.com');
+ *
+ * As seen above the wildcard does not match dots, therefore deeper subdomain
+ * levels must be listed explicitly:
+ *
+ *     $validator->setAllowedHostnames(array('*.*.google.com'));
+ *
  * @category PHP
  * @package Mol_Validate
  * @author Matthias Molitor <matthias@matthimatiker.de>
