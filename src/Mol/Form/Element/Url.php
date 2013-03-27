@@ -41,22 +41,9 @@
  *     // Returns false:
  *     $element->isValid('http://google.de?q=demo');
  *
- * Subdomains are not automatically accepted. Therefore, subdomains must be
- * whitelisted explicitly. Alternatively "*" can be used as wildcard:
- *
- *     $element->setAllowedHostnames(array('github.com', 'www.github.com', '*.google.com'));
- *     // Accepted:
- *     $element->isValid('https://www.github.com');
- *     $element->isValid('https://www.google.com');
- *     // Rejected:
- *     $element->isValid('https://blog.github.com');
- *     $element->isValid('https://google.com');
- *     $element->isValid('https://my.personal.google.com');
- *
- * As seen above the wilcard does not match dots, therefore deeper subdomain
- * levels must be listed explicitly:
- *
- *     $element->setAllowedHostnames(array('*.*.google.com'));
+ * Advanced hostname constraints include the usage of "*" as wildcard.
+ * Please refer to the documentation of {@link Mol_Validate_Url} to learn
+ * more about more complex hostname restrictions.
  *
  * If at least one hostname constraint is defined, then the rendered element
  * contains a data attribute that holds a comma-separated list of the allowed
