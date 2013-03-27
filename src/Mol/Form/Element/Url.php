@@ -31,6 +31,8 @@
  *     // Returns false:
  *     $element->isValid('/Matthimatiker/MolComponents');
  *
+ * ## Hostname Restrictions ##
+ *
  * Optionally the accepted hostnames can be restricted via setAllowedHostnames():
  *
  *     $element->setAllowedHostnames(array('github.com'));
