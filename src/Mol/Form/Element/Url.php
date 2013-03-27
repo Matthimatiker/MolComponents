@@ -15,6 +15,47 @@
 /**
  * Form element that accepts a URL as input.
  *
+ * # Usage #
+ *
+ * This element can be added to any Zend_Form instance without further
+ * configuration:
+ *
+ *     $url = new Mol_Form_Element_Url('website');
+ *     $url->setLabel('Website');
+ *     $form->addElement($url);
+ *
+ * The element accepts only absolute URLs:
+ *
+ *     // Returns true:
+ *     $element->isValid('https://github.com/Matthimatiker/MolComponents');
+ *     // Returns false:
+ *     $element->isValid('/Matthimatiker/MolComponents');
+ *
+ * Optionally the accepted hostnames can be restricted via setAllowedHostnames():
+ *
+ *     $element->setAllowedHostnames(array('github.com'));
+ *     // Returns true:
+ *     $element->isValid('https://github.com/Matthimatiker/MolComponents');
+ *     // Returns false:
+ *     $element->isValid('http://google.de?q=demo');
+ *
+ * Subdomains are not automatically accepted. Therefore, subdomains must be
+ * whitelisted explicitly. Alternatively "*" can be used as wildcard:
+ *
+ *     $element->setAllowedHostnames(array('github.com', 'www.github.com', '*.google.com'));
+ *     // Accepted:
+ *     $element->isValid('https://www.github.com');
+ *     $element->isValid('https://www.google.com');
+ *     // Rejected:
+ *     $element->isValid('https://blog.github.com');
+ *     $element->isValid('https://google.com');
+ *     $element->isValid('https://my.personal.google.com');
+ *
+ * As seen above the wilcard does not match dots, therefore deeper subdomain
+ * levels must be listed explicitly:
+ *
+ *     $element->setAllowedHostnames(array('*.*.google.com'));
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
