@@ -46,7 +46,12 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->plugin = new Mol_Form_Factory_Plugin_Captcha();
+        $options = array(
+            'element' => array(
+                'id'   => 'test-id'
+            )
+        );
+        $this->plugin = new Mol_Form_Factory_Plugin_Captcha($options);
     }
     
     /**
@@ -181,6 +186,21 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Zend_Form_Element', $firstCaptcha);
         $this->assertInstanceOf('Zend_Form_Element', $secondCaptcha);
         $this->assertNotEquals($firstCaptcha->getId(), $secondCaptcha->getId());
+    }
+    
+    /**
+     * Ensures that the generated captcha ID depends on the ID that was explicitly provided.
+     */
+    public function testGeneratedIdDependsOnOriginalId()
+    {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'yes');
+        
+        $this->plugin->enhance($form);
+        
+        $captcha = $form->getElement(Mol_Form_Factory_Plugin_Captcha::DEFAULT_CAPTCHA_NAME);
+        $this->assertInstanceOf('Zend_Form_Element', $captcha);
+        $this->assertContains('test-id', $captcha->getId());
     }
     
     /**
