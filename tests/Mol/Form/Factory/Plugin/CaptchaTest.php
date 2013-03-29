@@ -47,8 +47,9 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $options = array(
+            'generateId' => true,
             'element' => array(
-                'id'   => 'test-id'
+                'id' => 'test-id'
             )
         );
         $this->plugin = new Mol_Form_Factory_Plugin_Captcha($options);
@@ -201,6 +202,29 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $captcha = $form->getElement(Mol_Form_Factory_Plugin_Captcha::DEFAULT_CAPTCHA_NAME);
         $this->assertInstanceOf('Zend_Form_Element', $captcha);
         $this->assertContains('test-id', $captcha->getId());
+    }
+    
+    /**
+     * Ensures that the plugin does not generate unique captcha element IDs
+     * if that behavior was not activated via "generateId" option.
+     */
+    public function testPluginDoesNotGenerateUniqueIdsIfBehaviorIsNotEnabled()
+    {
+        $options = array(
+            'element' => array(
+                'id' => 'test-id'
+            )
+        );
+        $this->plugin = new Mol_Form_Factory_Plugin_Captcha($options);
+        
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'yes');
+        
+        $this->plugin->enhance($form);
+        
+        $captcha = $form->getElement(Mol_Form_Factory_Plugin_Captcha::DEFAULT_CAPTCHA_NAME);
+        $this->assertInstanceOf('Zend_Form_Element', $captcha);
+        $this->assertEquals('test-id', $captcha->getId());
     }
     
     /**
