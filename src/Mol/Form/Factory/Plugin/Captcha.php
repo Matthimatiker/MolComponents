@@ -47,6 +47,17 @@
  *
  *     $form->setAttrib('data-captcha', 'yes');
  *
+ * ## ID generation ##
+ *
+ * To avoid ID clashes whenever two captchas are rendered on the same page
+ * the plugin can generate unique IDs for each added captcha.
+ *
+ * This behavior can be activated via option:
+ *
+ *     ; [...]
+ *     resources.form.plugins.captcha.options.generateId = On
+ *     ; [...]
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
