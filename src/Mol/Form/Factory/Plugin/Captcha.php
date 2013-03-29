@@ -221,7 +221,11 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
     protected function createCaptcha()
     {
         $captcha = new Zend_Form_Element_Captcha($this->captchaOptions);
-        $captcha->setAttrib('id', $captcha->getId() . '-' . uniqid());
+        if ($this->getOption('generateId', false)) {
+            // Generate a unique element ID to avoid clashes if two
+            // captchas are rendered on the same page.
+            $captcha->setAttrib('id', $captcha->getId() . '-' . uniqid());
+        }
         return $captcha;
     }
     
