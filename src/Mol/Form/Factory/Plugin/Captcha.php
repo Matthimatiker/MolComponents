@@ -144,18 +144,22 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
      */
     protected function insertBefore(Zend_Form $form, $reference, Zend_Form_Element $newElement)
     {
-        $elements = $form->getElementsAndSubFormsOrdered();
-        $order    = 0;
-        foreach ($elements as $element) {
+        $orderedElements = iterator_to_array($form);
+        // Explicitly remove and re-add elements to ensure that the form
+        // notices the new order.
+        $form->clearElements();
+        $order = 0;
+        foreach ($orderedElements as $element) {
             /* @var $element Zend_Form_Element|Zend_Form */
             if ($element === $reference) {
                 $newElement->setOrder($order);
+                $form->addElement($newElement);
                 $order++;
             }
             $element->setOrder($order);
+            $form->addElement($element);
             $order++;
         }
-        $form->addElement($newElement);
     }
     
     /**
