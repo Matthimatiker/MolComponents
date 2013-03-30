@@ -130,6 +130,24 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the captcha iss added in front of the button if the form elements
+     * have order values.
+     */
+    public function testPluginAddsCaptchaInFrontOfButtonIfElementsHaveOrderValues()
+    {
+        $form = $this->createFormWithOrderedElements(array(0, 10, 20, 30, 40));
+        
+        $this->plugin->enhance($form);
+        
+        $elements = $this->getOrderedElements($form);
+        // Last element should be the button, therefore remove it first.
+        $button = array_pop($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Submit', $button);
+        $captcha = array_pop($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha);
+    }
+    
+    /**
      * Ensures that the captcha is added at the end of the form element
      * list if the form does not contain any button.
      */
@@ -265,6 +283,34 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $form = new Zend_Form();
         $form->addElement(new Zend_Form_Element_Text('content'));
         $form->addElement(new Zend_Form_Element_Submit('send'));
+        return $form;
+    }
+    
+    /**
+     * Creates a form that requests a captcha and whose elements use
+     * order values.
+     *
+     * This method uses the provided order values for the added elements.
+     * The last value is used for the button element.
+     * The elements are named by their order: "element-$order"
+     *
+     * @param array(integer) $orderValues
+     * @return Zend_Form
+     */
+    protected function createFormWithOrderedElements(array $orderValues)
+    {
+        $buttonOrder = array_pop($orderValues);
+        $form = new Zend_Form();
+        $form->setAttrib('data-captcha', 'yes');
+        foreach ($orderValues as $order) {
+            /* @var $order integer */
+            $inputElement = new Zend_Form_Element_Text('element-' . $order);
+            $inputElement->setOrder($order);
+            $form->addElement($inputElement);
+        }
+        $button = new Zend_Form_Element_Submit('element-' . $order);
+        $button->setOrder($buttonOrder);
+        $form->addElement($button);
         return $form;
     }
     
