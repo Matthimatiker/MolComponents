@@ -121,12 +121,7 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         
         $this->plugin->enhance($form);
         
-        $elements = $this->getOrderedElements($form);
-        // Last element should be the button, therefore remove it first.
-        $button = array_pop($elements);
-        $this->assertInstanceOf('Zend_Form_Element_Submit', $button);
-        $captcha = array_pop($elements);
-        $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha);
+        $this->assertCaptchaInFrontOfLastButton($form);
     }
     
     /**
@@ -139,12 +134,7 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         
         $this->plugin->enhance($form);
         
-        $elements = $this->getOrderedElements($form);
-        // Last element should be the button, therefore remove it first.
-        $button = array_pop($elements);
-        $this->assertInstanceOf('Zend_Form_Element_Submit', $button);
-        $captcha = array_pop($elements);
-        $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha);
+        $this->assertCaptchaInFrontOfLastButton($form);
     }
     
     /**
@@ -252,6 +242,29 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Asserts that the captcha element is located in front of the last button
+     * in the given form.
+     *
+     * @param Zend_Form $form
+     */
+    protected function assertCaptchaInFrontOfLastButton(Zend_Form $form)
+    {
+        $elements = $this->getOrderedElements($form);
+        
+        $elementToName = function (Zend_Form_Element $element) {
+            return $element->getName();
+        };
+        $names   = array_map($elementToName, $elements);
+        $message = 'Invalid element order detected. Current order: ' . implode(', ', $names);
+        
+        // Last element should be the button, therefore remove it first.
+        $button = array_pop($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Submit', $button, $message);
+        $captcha = array_pop($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha, $message);
+    }
+    
+    /**
      * Returns the elements of the given form in rendering order.
      *
      * @param Zend_Form $form
@@ -292,7 +305,7 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      *
      * This method uses the provided order values for the added elements.
      * The last value is used for the button element.
-     * The elements are named by their order: "element-$order"
+     * The elements are named by their order: "element_$order"
      *
      * @param array(integer) $orderValues
      * @return Zend_Form
@@ -304,11 +317,11 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $form->setAttrib('data-captcha', 'yes');
         foreach ($orderValues as $order) {
             /* @var $order integer */
-            $inputElement = new Zend_Form_Element_Text('element-' . $order);
+            $inputElement = new Zend_Form_Element_Text('element_' . $order);
             $inputElement->setOrder($order);
             $form->addElement($inputElement);
         }
-        $button = new Zend_Form_Element_Submit('element-' . $order);
+        $button = new Zend_Form_Element_Submit('element_' . $order);
         $button->setOrder($buttonOrder);
         $form->addElement($button);
         return $form;
