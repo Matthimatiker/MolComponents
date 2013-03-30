@@ -46,10 +46,15 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
+        // Create a duck-typed session class to ensure that real session is started.
+        $sessionClass = $this->getMockClass('stdClass', array('setExpirationHops', 'setExpirationSeconds'));
         $options = array(
             'generateId' => true,
             'element' => array(
-                'id' => 'test-id'
+                'id' => 'test-id',
+                'captcha' => array(
+                    'sessionClass' => $sessionClass
+                )
             )
         );
         $this->plugin = new Mol_Form_Factory_Plugin_Captcha($options);
@@ -116,9 +121,10 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         
         $this->plugin->enhance($form);
         
-        $elements = $form->getElementsAndSubFormsOrdered();
+        $elements = $this->getOrderedElements($form);
         // Last element should be the button, therefore remove it first.
-        array_pop($elements);
+        $button = array_pop($elements);
+        $this->assertInstanceOf('Zend_Form_Element_Submit', $button);
         $captcha = array_pop($elements);
         $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha);
     }
@@ -135,7 +141,7 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         
         $this->plugin->enhance($form);
         
-        $elements = $form->getElementsAndSubFormsOrdered();
+        $elements = $this->getOrderedElements($form);
         $captcha  = array_pop($elements);
         $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha);
     }
@@ -225,6 +231,28 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $captcha = $form->getElement(Mol_Form_Factory_Plugin_Captcha::DEFAULT_CAPTCHA_NAME);
         $this->assertInstanceOf('Zend_Form_Element', $captcha);
         $this->assertEquals('test-id', $captcha->getId());
+    }
+    
+    /**
+     * Returns the elements of the given form in rendering order.
+     *
+     * @param Zend_Form $form
+     * @return array(Zend_Form_Element)
+     */
+    protected function getOrderedElements(Zend_Form $form)
+    {
+        $markup = $form->render(new Zend_View());
+        // Find the 'name="*"' substrings to determine the real element order.
+        $nameAttributes = array();
+        preg_match_all('/name="(.*?)(\[.*?\])?"/', $markup, $nameAttributes, PREG_PATTERN_ORDER);
+        $names = $nameAttributes[1];
+        // Remove duplicates. These can occur if braces notation is used:
+        // captcha[id], captcha[input]
+        $names = array_unique($names);
+        $elements = array_map(array($form, 'getElement'), $names);
+        $message  = 'Cannot find one of the following elements in form: ' . implode(', ', $names);
+        $this->assertNotContains(null, $elements, $message);
+        return $elements;
     }
     
     /**
