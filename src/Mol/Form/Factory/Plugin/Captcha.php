@@ -157,7 +157,11 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
                 $order++;
             }
             $element->setOrder($order);
-            $form->addElement($element);
+            if ($element instanceof Zend_Form) {
+                $form->addSubForm($element, $element->getName());
+            } else {
+                $form->addElement($element);
+            }
             $order++;
         }
     }
