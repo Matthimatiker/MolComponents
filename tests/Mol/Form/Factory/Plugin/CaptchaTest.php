@@ -336,8 +336,15 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     protected function assertOrderValue(Zend_Form $form, $elementName, $order)
     {
         $element = $form->getElement($elementName);
-        $this->assertInstanceOf('Zend_Form_Element', $element);
-        $this->assertSame($order, $element->getOrder());
+        $this->assertInstanceOf('Zend_Form_Element', $element, 'Element "' . $elementName . '" does not exist.');
+        
+        $elements = $this->getOrderedElements($form);
+        $getOrder = function ($element) {
+            return $element->getOrder();
+        };
+        $orderValues = array_map($getOrder, $elements);
+        $message     = 'Unexpected order value. Order values in form: ' . implode(', ', $orderValues);
+        $this->assertSame($order, $element->getOrder(), $message);
     }
     
     /**
