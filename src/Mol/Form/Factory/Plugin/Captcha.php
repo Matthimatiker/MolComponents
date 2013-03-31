@@ -188,22 +188,7 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
      */
     protected function reAssignElements(Zend_Form $form, array $elements)
     {
-        $elementsByType = array(
-            'elements'      => array(),
-            'subForms'      => array(),
-            'displayGroups' => array()
-        );
-        $categorize = function (array $elementsByType, $element) {
-            if ($element instanceof Zend_Form_Element) {
-                $elementsByType['elements'][] = $element;
-            } else if ($element instanceof Zend_Form) {
-                $elementsByType['subForms'][] = $element;
-            } else if ($element instanceof Zend_Form_DisplayGroup) {
-                $elementsByType['displayGroups'][] = $element;
-            }
-            return $elementsByType;
-        };
-        $elementsByType = array_reduce($elements, $categorize, $elementsByType);
+        $elementsByType = $this->categorizeElements($elements);
         
         foreach ($elementsByType['elements'] as $element) {
             /* @var $element Zend_Form_Element */
@@ -220,6 +205,39 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
             $form->removeDisplayGroup($displayGroup->getName());
             $form->addDisplayGroup($displayGroup->getElements(), $displayGroup->getName());
         }
+    }
+    
+    /**
+     * Categorizes the given form elements.
+     *
+     * Returns an associative array that contains one entry for each
+     * category:
+     *
+     * # elements      - The Zend_Form_Element instances.
+     * # subForms      - The sub forms.
+     * # displayGroups - The display groups.
+     *
+     * @param array(Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup) $elements
+     * @return array(string=>array(Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup))
+     */
+    protected function categorizeElements(array $elements)
+    {
+        $elementsByType = array(
+            'elements'      => array(),
+            'subForms'      => array(),
+            'displayGroups' => array()
+        );
+        $categorize = function (array $elementsByType, $element) {
+            if ($element instanceof Zend_Form_Element) {
+                $elementsByType['elements'][] = $element;
+            } else if ($element instanceof Zend_Form) {
+                $elementsByType['subForms'][] = $element;
+            } else if ($element instanceof Zend_Form_DisplayGroup) {
+                $elementsByType['displayGroups'][] = $element;
+            }
+            return $elementsByType;
+        };
+        return array_reduce($elements, $categorize, $elementsByType);
     }
     
     /**
