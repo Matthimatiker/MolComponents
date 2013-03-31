@@ -222,10 +222,12 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     {
         $form = $this->createForm();
         $form->setAttrib('data-captcha', 'yes');
-        $form->addSubForm(new Zend_Form(), 'sub_form', -10);
+        $subForm = new Zend_Form();
+        $form->addSubForm($subForm, 'sub_form', -10);
         
-        $this->setExpectedException(null);
         $this->plugin->enhance($form);
+        
+        $this->assertSame($subForm, $form->getSubForm('sub_form'));
     }
     
     /**
