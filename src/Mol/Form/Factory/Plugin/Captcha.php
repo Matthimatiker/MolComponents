@@ -172,12 +172,24 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
             $this->assignOrderValues($elementsFromCaptcha);
         }
         
-        // Explicitly remove and re-add elements to ensure that the form
-        // notices the new order.
-        // This is a bug, mentioned here:
-        // http://framework.zend.com/issues/browse/ZF-9946
+        $this->reAssignElements($form, $orderedElements);
+    }
+    
+    /**
+     * Explicitly removes and re-adds elements to the provided form to
+     * ensure that the form re-builds the element order.
+     *
+     * Due to a bug this is required if the order of an element is
+     * changed after the internal form index was created:
+     * {@link http://framework.zend.com/issues/browse/ZF-9946}
+     *
+     * @param Zend_Form $form
+     * @param array $elements
+     */
+    protected function reAssignElements(Zend_Form $form, array $elements)
+    {
         $form->clearElements();
-        $form->addElements($orderedElements);
+        $form->addElements($elements);
     }
     
     /**
