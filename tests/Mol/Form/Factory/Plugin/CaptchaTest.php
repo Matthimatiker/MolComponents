@@ -150,6 +150,22 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $this->assertCaptchaInFrontOfLastButton($form);
     }
     
+    
+    /**
+     * Ensures that the plugin adds the captcha in front of the button if that
+     * is the only element in the form.
+     */
+    public function testPluginAddsCaptchaInFrontOfButtonIfFormContainsOnlyButton()
+    {
+        $form = $this->createForm();
+        $form->removeElement('content');
+        $form->setAttrib('data-captcha', 'yes');
+        
+        $this->plugin->enhance($form);
+        
+        $this->assertCaptchaInFrontOfLastButton($form);
+    }
+    
     /**
      * Ensures that the order value of the original form elements is not changed
      * if that is not necessary to insert the captcha.
