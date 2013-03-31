@@ -137,6 +137,26 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $this->assertCaptchaInFrontOfLastButton($form);
     }
     
+    public function testPluginDoesNotChangeOrderValuesOfElementsIfNotNecessary()
+    {
+        
+    }
+    
+    public function testPluginChangesOrderValuesOnlyPartiallyIfRequired()
+    {
+        
+    }
+    
+    public function testPluginChoosesMedianOrderValueOfSurroundingElementsForCaptcha()
+    {
+        
+    }
+    
+    public function testPluginWorksWithFormThatContainsSubForm()
+    {
+        
+    }
+    
     /**
      * Ensures that the captcha is added at the end of the form element
      * list if the form does not contain any button.
