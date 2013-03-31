@@ -137,21 +137,39 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $this->assertCaptchaInFrontOfLastButton($form);
     }
     
+    /**
+     * Ensures that the order value of the original form elements is not changed
+     * if that is not necessary to insert the captcha.
+     */
     public function testPluginDoesNotChangeOrderValuesOfElementsIfNotNecessary()
     {
         
     }
     
+    /**
+     * Ensures that the plugin leaves as much order values as possible
+     * untouched even if it is required to change the ordering at least
+     * partially to insert the captcha.
+     */
     public function testPluginChangesOrderValuesOnlyPartiallyIfRequired()
     {
         
     }
     
+    /**
+     * Checks if the plugin chooses a median order value to insert the captcha element.
+     *
+     * This ensures that additional elements can be inserted before nd after the captcha
+     * without further order changes.
+     */
     public function testPluginChoosesMedianOrderValueOfSurroundingElementsForCaptcha()
     {
         
     }
     
+    /**
+     * Checks if the plugin can handle a form that contains sub forms.
+     */
     public function testPluginWorksWithFormThatContainsSubForm()
     {
         
