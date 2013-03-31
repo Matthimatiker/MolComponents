@@ -144,25 +144,64 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
      */
     protected function insertBefore(Zend_Form $form, Zend_Form_Element $reference, Zend_Form_Element $newElement)
     {
-        $orderedElements = iterator_to_array($form);
+        /* @var $orderedElements array(Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup) */
+        $orderedElements = array_values(iterator_to_array($form));
+        // Ensure that each element has a numerical order value.
+        $this->assignOrderValues($orderedElements);
+        
+        $buttonIndex = array_search($reference, $orderedElements, true);
+        $buttonOrder = $orderedElements[$buttonIndex]->getOrder();
+        if ($buttonIndex === 0) {
+            // Button is the first element, therefore no previous element
+            // whose order could be used for calculation exists.
+            // Choose a constant value which ensures that the calculated
+            // order value for the new element avoids re-ordering.
+            $previousElementOrder = $buttonOrder - 2;
+        } else {
+            $previousElementOrder = $orderedElements[$buttonIndex - 1]->getOrder();
+        }
+        // Try to assign an order value between previous element and button order value.
+        $newElementOrder = (int)round(($previousElementOrder + $buttonOrder) / 2);
+        $newElement->setOrder($newElementOrder);
+        // Insert $newElement at the position of the button.
+        array_splice($orderedElements, $buttonIndex, 0, array($newElement));
+        if ($newElementOrder === $buttonOrder) {
+            // Order values clash, therefore a re-ordering of the elements
+            // starting with the captcha is required.
+            $elementsFromCaptcha = array_slice($orderedElements, $buttonIndex);
+            $this->assignOrderValues($elementsFromCaptcha);
+        }
+        
         // Explicitly remove and re-add elements to ensure that the form
         // notices the new order.
         $form->clearElements();
-        $order = 0;
-        foreach ($orderedElements as $element) {
+        $form->addElements($orderedElements);
+    }
+    
+    /**
+     * Assigns numerical order values to the provided form elements
+     * in such a way that the array order is preserved.
+     *
+     * If possible existing order values will be preserved.
+     *
+     * @param array(Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup) $elements Non-empty list of elements.
+     */
+    protected function assignOrderValues(array $elements)
+    {
+        // Initialize order value of first element if necessary.
+        if ($elements[0]->getOrder() === null) {
+            $elements[0]->setOrder(0);
+        }
+        $numberOfElements = count($elements);
+        for ($i = 1; $i < $numberOfElements; $i++) {
             /* @var $element Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup */
-            if ($element === $reference) {
-                $newElement->setOrder($order);
-                $form->addElement($newElement);
-                $order++;
+            $element = $elements[$i];
+            /* @var $previousElement Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup */
+            $previousElement = $elements[$i - 1];
+            if ($element->getOrder() === null || $element->getOrder() <= $previousElement->getOrder()) {
+                // Preserve the current element order.
+                $element->setOrder($previousElement->getOrder() + 1);
             }
-            $element->setOrder($order);
-            if ($element instanceof Zend_Form) {
-                $form->addSubForm($element, $element->getName());
-            } else {
-                $form->addElement($element);
-            }
-            $order++;
         }
     }
     
