@@ -143,7 +143,15 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginDoesNotChangeOrderValuesOfElementsIfNotNecessary()
     {
+        $form = $this->createFormWithOrderedElements(array(0, 10, 20, 30, 40));
         
+        $this->plugin->enhance($form);
+        
+        $this->assertOrderValue($form, 'element_0', 0);
+        $this->assertOrderValue($form, 'element_10', 10);
+        $this->assertOrderValue($form, 'element_20', 20);
+        $this->assertOrderValue($form, 'element_30', 30);
+        $this->assertOrderValue($form, 'element_40', 40);
     }
     
     /**
@@ -153,7 +161,14 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginChangesOrderValuesOnlyPartiallyIfRequired()
     {
+        $form = $this->createFormWithOrderedElements(array(0, 10, 20, 30, 31));
         
+        $this->plugin->enhance($form);
+        
+        $this->assertOrderValue($form, 'element_0', 0);
+        $this->assertOrderValue($form, 'element_10', 10);
+        $this->assertOrderValue($form, 'element_20', 20);
+        $this->assertOrderValue($form, 'element_30', 30);
     }
     
     /**
@@ -164,7 +179,11 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginChoosesMedianOrderValueOfSurroundingElementsForCaptcha()
     {
+        $form = $this->createFormWithOrderedElements(array(0, 10, 20, 30, 40));
         
+        $this->plugin->enhance($form);
+        
+        $this->assertOrderValue($form, Mol_Form_Factory_Plugin_Captcha::DEFAULT_CAPTCHA_NAME, 35);
     }
     
     /**
@@ -172,7 +191,12 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginWorksWithFormThatContainsSubForm()
     {
+        $form = $this->createForm();
+        $form->setAttrib('data-captcha', 'yes');
+        $form->addSubForm(new Zend_Form(), 'sub_form', -10);
         
+        $this->setExpectedException(null);
+        $this->plugin->enhance($form);
     }
     
     /**
@@ -300,6 +324,20 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Zend_Form_Element_Submit', $button, $message);
         $captcha = array_pop($elements);
         $this->assertInstanceOf('Zend_Form_Element_Captcha', $captcha, $message);
+    }
+    
+    /**
+     * Asserts that the element with the provided name has the given order value.
+     *
+     * @param Zend_Form $form
+     * @param string $elementName
+     * @param integer $order
+     */
+    protected function assertOrderValue(Zend_Form $form, $elementName, $order)
+    {
+        $element = $form->getElement($elementName);
+        $this->assertInstanceOf('Zend_Form_Element', $element);
+        $this->assertSame($order, $element->getOrder());
     }
     
     /**
