@@ -174,6 +174,8 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
         
         // Explicitly remove and re-add elements to ensure that the form
         // notices the new order.
+        // This is a bug, mentioned here:
+        // http://framework.zend.com/issues/browse/ZF-9946
         $form->clearElements();
         $form->addElements($orderedElements);
     }
