@@ -433,7 +433,7 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
             $inputElement->setOrder($order);
             $form->addElement($inputElement);
         }
-        $button = new Zend_Form_Element_Submit('element_' . $order);
+        $button = new Zend_Form_Element_Submit('element_' . $buttonOrder);
         $button->setOrder($buttonOrder);
         $form->addElement($button);
         return $form;
