@@ -125,12 +125,25 @@ class Mol_Form_Factory_Plugin_CaptchaTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Ensures that the captcha iss added in front of the button if the form elements
+     * Ensures that the captcha is added in front of the button if the form elements
      * have order values.
      */
     public function testPluginAddsCaptchaInFrontOfButtonIfElementsHaveOrderValues()
     {
         $form = $this->createFormWithOrderedElements(array(0, 10, 20, 30, 40));
+        
+        $this->plugin->enhance($form);
+        
+        $this->assertCaptchaInFrontOfLastButton($form);
+    }
+    
+    /**
+     * Ensures that the captcha is added in front of the button if the form elements
+     * have negative order values.
+     */
+    public function testPluginAddsCaptchaInFrontOfButtonIfElementsHaveNegativeOrderValues()
+    {
+        $form = $this->createFormWithOrderedElements(array(-40, -30, -20, -10));
         
         $this->plugin->enhance($form);
         
