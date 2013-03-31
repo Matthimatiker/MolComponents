@@ -184,12 +184,42 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
      * {@link http://framework.zend.com/issues/browse/ZF-9946}
      *
      * @param Zend_Form $form
-     * @param array $elements
+     * @param array(Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup) $elements
      */
     protected function reAssignElements(Zend_Form $form, array $elements)
     {
-        $form->clearElements();
-        $form->addElements($elements);
+        $elementsByType = array(
+            'elements'      => array(),
+            'subForms'      => array(),
+            'displayGroups' => array()
+        );
+        $categorize = function (array $elementsByType, $element) {
+            if ($element instanceof Zend_Form_Element) {
+                $elementsByType['elements'][] = $element;
+            } else if ($element instanceof Zend_Form) {
+                $elementsByType['subForms'][] = $element;
+            } else if ($element instanceof Zend_Form_DisplayGroup) {
+                $elementsByType['displayGroups'][] = $element;
+            }
+            return $elementsByType;
+        };
+        $elementsByType = array_reduce($elements, $categorize, $elementsByType);
+        
+        foreach ($elementsByType['elements'] as $element) {
+            /* @var $element Zend_Form_Element */
+            $form->removeElement($element->getName());
+            $form->addElement($element);
+        }
+        foreach ($elementsByType['subForms'] as $subForm) {
+            /* @var $subForm Zend_Form */
+            $form->removeSubForm($subForm->getName());
+            $form->addSubForm($subForm, $subForm->getName());
+        }
+        foreach ($elementsByType['displayGroups'] as $displayGroup) {
+            /* @var $displayGroup Zend_Form_DisplayGroup */
+            $form->removeDisplayGroup($displayGroup->getName());
+            $form->addDisplayGroup($displayGroup->getElements(), $displayGroup->getName());
+        }
     }
     
     /**
