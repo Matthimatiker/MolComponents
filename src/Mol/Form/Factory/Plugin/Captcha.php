@@ -139,10 +139,10 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
      * Inserts $newElement right before $reference.
      *
      * @param Zend_Form $form
-     * @param Zend_Form_Element|Zend_Form $reference
+     * @param Zend_Form_Element $reference
      * @param Zend_Form_Element $newElement
      */
-    protected function insertBefore(Zend_Form $form, $reference, Zend_Form_Element $newElement)
+    protected function insertBefore(Zend_Form $form, Zend_Form_Element $reference, Zend_Form_Element $newElement)
     {
         $orderedElements = iterator_to_array($form);
         // Explicitly remove and re-add elements to ensure that the form
@@ -150,7 +150,7 @@ class Mol_Form_Factory_Plugin_Captcha extends Mol_Form_Factory_Plugin_AbstractPl
         $form->clearElements();
         $order = 0;
         foreach ($orderedElements as $element) {
-            /* @var $element Zend_Form_Element|Zend_Form */
+            /* @var $element Zend_Form_Element|Zend_Form|Zend_Form_DisplayGroup */
             if ($element === $reference) {
                 $newElement->setOrder($order);
                 $form->addElement($newElement);
