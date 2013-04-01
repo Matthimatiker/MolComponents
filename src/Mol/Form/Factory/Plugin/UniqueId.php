@@ -30,4 +30,14 @@
 class Mol_Form_Factory_Plugin_UniqueId extends Mol_Form_Factory_Plugin_AbstractPlugin
 {
     
+    /**
+     * Adds unique IDs to all elements in the given form.
+     *
+     * @param Zend_Form $form
+     */
+    public function enhance(Zend_Form $form)
+    {
+        
+    }
+    
 }
