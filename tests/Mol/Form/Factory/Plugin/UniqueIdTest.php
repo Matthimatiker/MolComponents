@@ -63,7 +63,12 @@ class Mol_Form_Factory_Plugin_UniqueIdTest extends PHPUnit_Framework_TestCase
      */
     public function testGeneratedIdStartsWithOriginalId()
     {
+        $form = $this->createForm();
+        $form->getElement('content')->setAttrib('id', 'custom');
         
+        $this->plugin->enhance($form);
+        
+        $this->assertStringStartsWith('custom', $form->getElement('content')->getId());
     }
     
     /**
@@ -71,7 +76,13 @@ class Mol_Form_Factory_Plugin_UniqueIdTest extends PHPUnit_Framework_TestCase
      */
     public function testElementsWithSameNameReceiveDifferentIds()
     {
+        $first  = $this->createForm();
+        $second = $this->createForm();
         
+        $this->plugin->enhance($first);
+        $this->plugin->enhance($second);
+        
+        $this->assertNotEquals($first->getElement('content')->getId(), $second->getElement('content')->getId());
     }
     
     /**
@@ -79,7 +90,14 @@ class Mol_Form_Factory_Plugin_UniqueIdTest extends PHPUnit_Framework_TestCase
      */
     public function testElementsInSubFormsReceiveUniqueIds()
     {
+        $form = $this->createForm();
+        $subForm = $this->createForm('test');
+        $form->addSubForm($subForm, 'testForm');
+        $previousId = $subForm->getElement('test')->getId();
         
+        $this->plugin->enhance($form);
+        
+        $this->assertNotEquals($previousId, $subForm->getElement('test')->getId());
     }
     
     /**
@@ -88,7 +106,27 @@ class Mol_Form_Factory_Plugin_UniqueIdTest extends PHPUnit_Framework_TestCase
      */
     public function testIdsOfElementsWithSameNameInFormAndSubFormDoNotClash()
     {
+        $form = $this->createForm();
+        $subForm = $this->createForm();
+        $form->addSubForm($subForm, 'testForm');
         
+        $this->plugin->enhance($form);
+        
+        $this->assertNotEquals($form->getElement('content')->getId(), $subForm->getElement('content')->getId());
+    }
+    
+    /**
+     * Creates a form that contains an element with the provided name.
+     *
+     * @param string $elementName
+     * @return Zend_Form
+     */
+    protected function createForm($elementName = 'content')
+    {
+        $form    = new Zend_Form();
+        $element = new Zend_Form_Element_Text($elementName);
+        $form->addElement($element);
+        return $form;
     }
     
 }
