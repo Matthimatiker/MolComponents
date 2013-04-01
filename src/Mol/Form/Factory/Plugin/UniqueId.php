@@ -37,7 +37,26 @@ class Mol_Form_Factory_Plugin_UniqueId extends Mol_Form_Factory_Plugin_AbstractP
      */
     public function enhance(Zend_Form $form)
     {
-        
+        foreach ($form->getSubForms() as $subForm) {
+            /* @var $subForm Zend_Form */
+            $this->enhance($subForm);
+        }
+        foreach ($form->getElements() as $element) {
+            /* @var $element Zend_Form_Element */
+            $this->updateId($element);
+        }
+    }
+    
+    /**
+     * Updates the ID of the given element.
+     *
+     * @param Zend_Form_Element $element
+     */
+    protected function updateId(Zend_Form_Element $element)
+    {
+        $currentId = $element->getId();
+        $newId     = $currentId . '-' . uniqid();
+        $element->setAttrib('id', $newId);
     }
     
 }
