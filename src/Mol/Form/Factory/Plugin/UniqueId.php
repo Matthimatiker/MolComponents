@@ -19,6 +19,13 @@
  * twice on the same page or if different forms contain elements
  * with the same name.
  *
+ * # Usage #
+ *
+ * The plugin does not require any options. Add the following configuration
+ * line to activate the plugin via form resource:
+ *
+ *     resources.form.plugins.uniqueIds = "Mol_Form_Factory_Plugin_UniqueId"
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
