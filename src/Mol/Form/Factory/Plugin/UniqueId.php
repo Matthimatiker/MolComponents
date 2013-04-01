@@ -16,7 +16,7 @@
  * Plugins that sets unique IDs for each form elements.
  *
  * Assigning unique IDs avoids clashes if the same form is rendered
- * twice on the same page or if different forms ccontain elements
+ * twice on the same page or if different forms contain elements
  * with the same name.
  *
  * @category PHP
