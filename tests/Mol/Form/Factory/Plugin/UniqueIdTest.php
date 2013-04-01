@@ -58,4 +58,28 @@ class Mol_Form_Factory_Plugin_UniqueIdTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
     
+    /**
+     * Ensures that the generated ID starts with the original ID.
+     */
+    public function testGeneratedIdStartsWithOriginalId()
+    {
+        
+    }
+    
+    /**
+     * Ensures that elements with the same name get different IDs.
+     */
+    public function testElementsWithSameNameReceiveDifferentIds()
+    {
+        
+    }
+    
+    /**
+     * Ensures that elements in sub forms also get unique IDs.
+     */
+    public function testElementsInSubFormsReceiveUniqueIds()
+    {
+        
+    }
+    
 }
