@@ -82,4 +82,13 @@ class Mol_Form_Factory_Plugin_UniqueIdTest extends PHPUnit_Framework_TestCase
         
     }
     
+    /**
+     * Ensures that elements with the same name which are located in form
+     * and sub form do not get the same ID.
+     */
+    public function testIdsOfElementsWithSameNameInFormAndSubFormDoNotClash()
+    {
+        
+    }
+    
 }
