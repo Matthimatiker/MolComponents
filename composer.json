@@ -16,7 +16,11 @@
         "php": ">=5.3.0"
     },
     "require-dev": {
-    	"zendframework/zendframework1": ">=1.11.0"
+    	"zendframework/zendframework1": ">=1.11.0",
+    	"doctrine/cache": ">=1.0.0"
+    },
+    "suggest": {
+    	"doctrine/cache": "Allows the usage of Doctrine2 caches."
     },
     "autoload": {
         "psr-0": { 
