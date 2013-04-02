@@ -33,4 +33,34 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
 {
     
+    public function testAdapterImplementsZendCacheInterface()
+    {
+        
+    }
+    
+    public function testLoadDelegatesToFetch()
+    {
+        
+    }
+    
+    public function testTestDelegatesToContains()
+    {
+        
+    }
+    
+    public function testSaveDelegatesToInnerCache()
+    {
+        
+    }
+    
+    public function testRemoveDelegatesToDelete()
+    {
+        
+    }
+    
+    public function testCleanReturnsFalseAsItIsNotSupported()
+    {
+        
+    }
+    
 }
