@@ -127,11 +127,18 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
         $this->adapter->test('test');
     }
     
+    /**
+     * Ensures that test() returns false if the cache item does not exist.
+     */
     public function testTestReturnsFalseIfItemDoesNotExist()
     {
         
     }
     
+    /**
+     * Ensures that test() returns the modification timestamp if the
+     * cache item exists.
+     */
     public function testTestReturnsModificationTimestampIfItemExists()
     {
         
