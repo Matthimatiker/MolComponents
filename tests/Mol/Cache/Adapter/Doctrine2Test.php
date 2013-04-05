@@ -100,6 +100,16 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
         $this->adapter->test('test');
     }
     
+    public function testTestReturnsFalseIfItemDoesNotExist()
+    {
+        
+    }
+    
+    public function testReturnsModificationTimestampIfItemExists()
+    {
+        
+    }
+    
     /**
      * Checks if the save() method delegates to the save() method
      * of the inner Doctrine cache.
@@ -110,6 +120,21 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
                          ->method('save')
                          ->with('test', 'hello world');
         $this->adapter->save('hello world', 'test');
+    }
+    
+    public function testSaveUsesConfiguredLifetimePerDefault()
+    {
+        
+    }
+    
+    public function testSaveSavesPassesSpecificLifetime()
+    {
+        
+    }
+    
+    public function testSaveTranslatesInfiniteLifetimeCorrectly()
+    {
+        
     }
     
     /**
