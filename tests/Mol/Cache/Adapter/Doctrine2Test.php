@@ -34,12 +34,46 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Cache_Adapter_Doctrine2
+     */
+    protected $adapter = null;
+    
+    /**
+     * The mocked inner cache.
+     *
+     * @var PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $innerCache = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->innerCache = $this->getMock('\Doctrine\Common\Cache\Cache');
+        $this->adapter    = new Mol_Cache_Adapter_Doctrine2($this->innerCache);
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->adapter    = null;
+        $this->innerCache = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Checks if the adapter implements the Zend cache backend
      * interface.
      */
     public function testAdapterImplementsZendCacheInterface()
     {
-        
+        $this->assertInstanceOf('Zend_Cache_Backend_Interface', $this->adapter);
     }
     
     /**
@@ -48,7 +82,10 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testLoadDelegatesToFetch()
     {
-        
+        $this->innerCache->expects($this->once())
+                         ->method('fetch')
+                         ->with('test');
+        $this->adapter->load('test');
     }
     
     /**
@@ -57,7 +94,10 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testTestDelegatesToContains()
     {
-        
+        $this->innerCache->expects($this->once())
+                         ->method('contains')
+                         ->with('test');
+        $this->adapter->test('test');
     }
     
     /**
@@ -66,7 +106,10 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testSaveDelegatesToInnerCache()
     {
-        
+        $this->innerCache->expects($this->once())
+                         ->method('save')
+                         ->with('test', 'hello world');
+        $this->adapter->save('hello world', 'test');
     }
     
     /**
@@ -75,7 +118,10 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testRemoveDelegatesToDelete()
     {
-        
+        $this->innerCache->expects($this->once())
+                         ->method('delete')
+                         ->with('test');
+        $this->adapter->remove('test');
     }
     
     /**
@@ -84,7 +130,7 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testCleanReturnsFalseAsItIsNotSupported()
     {
-        
+        $this->assertFalse($this->adapter->clean());
     }
     
 }
