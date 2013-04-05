@@ -88,16 +88,26 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
         $this->adapter->save('hello world', 'test');
     }
     
+    /**
+     * Checks if the cache uses the configured lifetime per default.
+     */
     public function testSaveUsesConfiguredLifetimePerDefault()
     {
         
     }
     
+    /**
+     * Checks if save() passes a specific lifetime to the inner cache.
+     */
     public function testSaveSavesPassesSpecificLifetime()
     {
         
     }
     
+    /**
+     * Ensures that the infinite lifetime (value null) is translated
+     * into 0, which is assumed infinite by the inner cache.
+     */
     public function testSaveTranslatesInfiniteLifetimeCorrectly()
     {
         
