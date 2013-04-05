@@ -87,7 +87,7 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
     {
         $this->innerCache->expects($this->once())
                          ->method('save')
-                         ->with('test', $this->contains('hello world'));
+                         ->with('test', $this->stringContains('hello world'));
         $this->adapter->save('hello world', 'test');
     }
     
