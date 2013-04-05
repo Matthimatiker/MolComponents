@@ -116,18 +116,6 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if the test() method delegates to the contains() method
-     * of the inner Doctrine cache.
-     */
-    public function testTestDelegatesToContains()
-    {
-        $this->innerCache->expects($this->once())
-                         ->method('contains')
-                         ->with('test');
-        $this->adapter->test('test');
-    }
-    
-    /**
      * Ensures that test() returns false if the cache item does not exist.
      */
     public function testTestReturnsFalseIfItemDoesNotExist()
