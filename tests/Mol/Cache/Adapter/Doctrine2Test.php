@@ -77,6 +77,33 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if the save() method delegates to the save() method
+     * of the inner Doctrine cache.
+     */
+    public function testSaveDelegatesToInnerCache()
+    {
+        $this->innerCache->expects($this->once())
+                         ->method('save')
+                         ->with('test', $this->contains('hello world'));
+        $this->adapter->save('hello world', 'test');
+    }
+    
+    public function testSaveUsesConfiguredLifetimePerDefault()
+    {
+        
+    }
+    
+    public function testSaveSavesPassesSpecificLifetime()
+    {
+        
+    }
+    
+    public function testSaveTranslatesInfiniteLifetimeCorrectly()
+    {
+        
+    }
+    
+    /**
      * Checks if the load() method delegates to the fetch() method
      * of the inner Doctrine cache.
      */
@@ -105,34 +132,7 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
         
     }
     
-    public function testReturnsModificationTimestampIfItemExists()
-    {
-        
-    }
-    
-    /**
-     * Checks if the save() method delegates to the save() method
-     * of the inner Doctrine cache.
-     */
-    public function testSaveDelegatesToInnerCache()
-    {
-        $this->innerCache->expects($this->once())
-                         ->method('save')
-                         ->with('test', $this->contains('hello world'));
-        $this->adapter->save('hello world', 'test');
-    }
-    
-    public function testSaveUsesConfiguredLifetimePerDefault()
-    {
-        
-    }
-    
-    public function testSaveSavesPassesSpecificLifetime()
-    {
-        
-    }
-    
-    public function testSaveTranslatesInfiniteLifetimeCorrectly()
+    public function testTestReturnsModificationTimestampIfItemExists()
     {
         
     }
