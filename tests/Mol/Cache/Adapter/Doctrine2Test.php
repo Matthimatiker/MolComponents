@@ -13,7 +13,8 @@
  * @since 01.04.2013
  */
 
-use \Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\ArrayCache;
 
 /**
  * Initializes the test environment.
@@ -95,7 +96,10 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testSaveUsesConfiguredLifetimePerDefault()
     {
-        
+        $this->innerCache->expects($this->once())
+                         ->method('save')
+                         ->with($this->anything(), $this->anything(), 42);
+        $this->adapter->save('hello world', 'test');
     }
     
     /**
@@ -103,7 +107,10 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testSaveSavesPassesSpecificLifetime()
     {
-        
+        $this->innerCache->expects($this->once())
+                         ->method('save')
+                         ->with($this->anything(), $this->anything(), 7);
+        $this->adapter->save('hello world', 'test', array(), 7);
     }
     
     /**
@@ -112,7 +119,10 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testSaveTranslatesInfiniteLifetimeCorrectly()
     {
-        
+        $this->innerCache->expects($this->once())
+                         ->method('save')
+                         ->with($this->anything(), $this->anything(), 0);
+        $this->adapter->save('hello world', 'test', array(), null);
     }
     
     /**
@@ -133,7 +143,8 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testLoadReturnsFalseIfItemDoesNotExist()
     {
-        
+        $this->adapter = $this->createAdapter(new ArrayCache());
+        $this->assertFalse($this->adapter->load('missing'));
     }
     
     /**
@@ -141,7 +152,9 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testLoadReturnsCorrectValue()
     {
-        
+        $this->adapter = $this->createAdapter(new ArrayCache());
+        $this->adapter->save('hello world', 'test');
+        $this->assertEquals('hello world', $this->adapter->load('test'));
     }
     
     /**
@@ -149,7 +162,8 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testTestReturnsFalseIfItemDoesNotExist()
     {
-        
+        $this->adapter = $this->createAdapter(new ArrayCache());
+        $this->assertFalse($this->adapter->test('missing'));
     }
     
     /**
@@ -158,7 +172,9 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     public function testTestReturnsModificationTimestampIfItemExists()
     {
-        
+        $this->adapter = $this->createAdapter(new ArrayCache());
+        $this->adapter->save('hello world', 'test');
+        $this->assertInternalType('integer', $this->adapter->test('test'));
     }
     
     /**
@@ -190,7 +206,9 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     protected function createAdapter(Cache $innerCache)
     {
-        return new Mol_Cache_Adapter_Doctrine2($innerCache);
+        $adapter = new Mol_Cache_Adapter_Doctrine2($innerCache);
+        $adapter->setDirectives(array('lifetime' => 42));
+        return $adapter;
     }
     
 }
