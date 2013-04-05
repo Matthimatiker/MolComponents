@@ -116,6 +116,23 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that load() returns false if the requested cache item
+     * does not exist.
+     */
+    public function testLoadReturnsFalseIfItemDoesNotExist()
+    {
+        
+    }
+    
+    /**
+     * Checks if load() returns the expected value.
+     */
+    public function testLoadReturnsCorrectValue()
+    {
+        
+    }
+    
+    /**
      * Ensures that test() returns false if the cache item does not exist.
      */
     public function testTestReturnsFalseIfItemDoesNotExist()
