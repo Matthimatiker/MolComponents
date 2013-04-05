@@ -13,6 +13,8 @@
  * @since 01.04.2013
  */
 
+use \Doctrine\Common\Cache\Cache;
+
 /**
  * Initializes the test environment.
  */
@@ -54,7 +56,7 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->innerCache = $this->getMock('\Doctrine\Common\Cache\Cache');
-        $this->adapter    = new Mol_Cache_Adapter_Doctrine2($this->innerCache);
+        $this->adapter    = $this->createAdapter($this->innerCache);
     }
     
     /**
@@ -178,6 +180,17 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
     public function testCleanReturnsFalseAsItIsNotSupported()
     {
         $this->assertFalse($this->adapter->clean());
+    }
+    
+    /**
+     * Creates an adapter for the provided cache.
+     *
+     * @param \Doctrine\Common\Cache\Cache $innerCache
+     * @return Mol_Cache_Adapter_Doctrine2
+     */
+    protected function createAdapter(Cache $innerCache)
+    {
+        return new Mol_Cache_Adapter_Doctrine2($innerCache);
     }
     
 }
