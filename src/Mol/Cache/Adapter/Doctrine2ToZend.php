@@ -63,6 +63,16 @@ use Doctrine\Common\Cache\Cache;
  *     );
  *     $adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
  *
+ * The options feature also allows this adapter to be configured via cache manager resource:
+ *
+ *     resources.cachemanager.doctrineAdapter.frontend.name                 = "Core"
+ *     resources.cachemanager.doctrineAdapter.frontend.customFrontendNaming = false
+ *     resources.cachemanager.doctrineAdapter.frontend.options.lifetime     = 7200
+ *     resources.cachemanager.doctrineAdapter.backend.name                  = "Mol_Cache_Adapter_Doctrine2ToZend"
+ *     resources.cachemanager.doctrineAdapter.backend.customBackendNaming   = true
+ *     resources.cachemanager.doctrineAdapter.backend.options.cache.class   = "Doctrine\Common\Cache\ArrayCache"
+ *     resources.cachemanager.doctrineAdapter.frontendBackendAutoload       = true
+ *
  * @category PHP
  * @package Mol_Cache
  * @author Matthias Molitor <matthias@matthimatiker.de>
