@@ -209,6 +209,40 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the constructor throws an exception if an invalid
+     * argument is passed.
+     */
+    public function testConstructorThrowsExceptionIfInvalidArgumentIsPassed()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the constructor throws an exception if the configured inner cache
+     * class is not valid.
+     */
+    public function testConstructorThrowsExceptionIfInvalidCacheClassIsMentionedInOptions()
+    {
+        
+    }
+    
+    /**
+     * Checks if the cache that is specified by the options is created.
+     */
+    public function testConstructorCreatesConfiguredCache()
+    {
+        
+    }
+    
+    /**
+     * Checks if the configured arguments are passed to the cache.
+     */
+    public function testConstructorPassesConfiguredArgumentsToCacheConstructor()
+    {
+        
+    }
+    
+    /**
      * Creates an adapter for the provided cache.
      *
      * @param \Doctrine\Common\Cache\Cache $innerCache
