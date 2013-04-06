@@ -80,6 +80,18 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if the adapter extends the Zend_Cache_Backend class.
+     *
+     * Although the adapter implements the backend interface it must also
+     * extends the base backend class, otherwise it cannot be used with
+     * Zend_Cache_Core.
+     */
+    public function testAdapterExtendsCacheBackend()
+    {
+        $this->assertInstanceOf('Zend_Cache_Backend', $this->adapter);
+    }
+    
+    /**
      * Checks if getInnerCache() returns the cache instance that was passed
      * to the adapter's constructor.
      */
