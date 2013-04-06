@@ -235,6 +235,31 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the constructor throws an exception if the cache section does
+     * not exist in the passed options.
+     */
+    public function testConstructorThrowsExceptionIfCacheSectionInOptionsIsMissing()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Cache_Adapter_Doctrine2ToZend(array());
+    }
+    
+    /**
+     * Ensures that the constructor throws an exception if the cache section in the
+     * options is available, but no cache class is defined.
+     */
+    public function testConstructorThrowsExceptionIfCacheClassIsNotDefinedInOptions()
+    {
+        $options = array(
+            'cache' => array(
+            )
+        );
+        
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Cache_Adapter_Doctrine2ToZend($options);
+    }
+    
+    /**
      * Checks if the cache that is specified by the options is created.
      */
     public function testConstructorCreatesConfiguredCache()
