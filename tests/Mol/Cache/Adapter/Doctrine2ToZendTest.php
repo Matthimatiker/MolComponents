@@ -214,7 +214,8 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorThrowsExceptionIfInvalidArgumentIsPassed()
     {
-        
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Cache_Adapter_Doctrine2ToZend(new stdClass());
     }
     
     /**
@@ -223,7 +224,14 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorThrowsExceptionIfInvalidCacheClassIsMentionedInOptions()
     {
+        $options = array(
+            'cache' => array(
+                'class' => 'stdClass'
+            )
+        );
         
+        $this->setExpectedException('InvalidArgumentException');
+        new Mol_Cache_Adapter_Doctrine2ToZend($options);
     }
     
     /**
@@ -231,7 +239,13 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorCreatesConfiguredCache()
     {
-        
+        $options = array(
+            'cache' => array(
+                'class' => 'Doctrine\Common\Cache\ArrayCache'
+            )
+        );
+        $this->adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
+        $this->assertInstanceOf('Doctrine\Common\Cache\ArrayCache', $this->adapter->getInnerCache());
     }
     
     /**
@@ -239,7 +253,22 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorPassesConfiguredArgumentsToCacheConstructor()
     {
-        
+        $cacheDir = realpath(dirname(__FILE__) . '/TestData/Doctrine2ToZend');
+        $options = array(
+            'cache' => array(
+                'class'     => 'Doctrine\Common\Cache\FilesystemCache',
+                'arguments' => array(
+                    $cacheDir,
+                    '.test'
+                )
+            )
+        );
+        $this->adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
+        /* @var $innerCache Doctrine\Common\Cache\FilesystemCache */
+        $innerCache = $this->adapter->getInnerCache();
+        $this->assertInstanceOf('Doctrine\Common\Cache\FilesystemCache', $innerCache);
+        $this->assertEquals($cacheDir, $innerCache->getDirectory());
+        $this->assertEquals('.test', $innerCache->getExtension());
     }
     
     /**
