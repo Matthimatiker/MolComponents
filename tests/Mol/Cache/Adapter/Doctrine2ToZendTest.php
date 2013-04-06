@@ -297,6 +297,44 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the Zend cache manager is able to create a
+     * configured adapter.
+     */
+    public function testAdapterCanBeCreatedByCacheManager()
+    {
+        $template = array(
+            'frontend' => array(
+                'name'                 => 'Core',
+                'customFrontendNaming' => false,
+                'options' => array(
+                    'lifetime' => 7200
+                )
+            ),
+            'backend' => array(
+                'name'                => 'Mol_Cache_Adapter_Doctrine2ToZend',
+                'customBackendNaming' => true,
+                'options' => array(
+                    'cache' => array(
+                        'class' => 'Doctrine\Common\Cache\ArrayCache'
+                    )
+                )
+            ),
+            'frontendBackendAutoload' => true
+        );
+        $cacheManager = new Zend_Cache_Manager();
+        $cacheManager->setCacheTemplate('doctrineAdapter', $template);
+        
+        $cache = $cacheManager->getCache('doctrineAdapter');
+        $this->assertInstanceOf('Zend_Cache_Core', $cache);
+        /* @var $backend Mol_Cache_Adapter_Doctrine2ToZend */
+        $backend = $cache->getBackend();
+        $this->assertInstanceOf('Mol_Cache_Adapter_Doctrine2ToZend', $backend);
+        /* @var $innerCache \Doctrine\Common\Cache\ArrayCache */
+        $innerCache = $backend->getInnerCache();
+        $this->assertInstanceOf('Doctrine\Common\Cache\ArrayCache', $innerCache);
+    }
+    
+    /**
      * Creates an adapter for the provided cache.
      *
      * @param \Doctrine\Common\Cache\Cache $innerCache
