@@ -81,8 +81,27 @@ use Doctrine\Common\Cache\Cache;
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.04.2013
  */
-class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
+class Mol_Cache_Adapter_Doctrine2ToZend extends Zend_Cache_Backend implements Zend_Cache_Backend_Interface
 {
+    
+    /**
+     * List of available options.
+     *
+     * The "cache" option can be used to define the inner cache that
+     * will be created. It must be an array with the following keys:
+     *
+     * * class (string, required)           - Fully qualified class name of the cache.
+     * * arguments (array(mixed), optional) - Arguments that will be passed to the constructor of the inner cache.
+     *
+     * The options are just declared for documentation purposes, consistency and
+     * optional (external) retrieval via getOption(). The adapter itself accesses
+     * the configuration already during construction.
+     *
+     * @var array(string=>mixed)
+     */
+    protected $_options = array(
+        'cache' => null,
+    );
     
     /**
      * The inner cache.
@@ -92,13 +111,6 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
     protected $cache = null;
     
     /**
-     * Options that were passed to this cache.
-     *
-     * @var array(string=>mixed)
-     */
-    protected $directives = array();
-    
-    /**
      * Creates an adapter for the provided cache.
      *
      * @param \Doctrine\Common\Cache\Cache|array(string=>mixed) $cacheOrOptions
@@ -106,7 +118,14 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
      */
     public function __construct($cacheOrOptions)
     {
-        $cache = (is_array($cacheOrOptions)) ? $this->buildCache($cacheOrOptions) : $cacheOrOptions;
+        if (is_array($cacheOrOptions)) {
+            $cache   = $this->buildCache($cacheOrOptions);
+            $options = $cacheOrOptions;
+        } else {
+            $cache   = $cacheOrOptions;
+            $options = array();
+        }
+        parent::__construct($options);
         if (!($cache instanceof Cache)) {
             $message = 'Expected Doctrine 2 cache instance or configuration, but received '
                      . Mol_Util_Stringifier::stringify($cacheOrOptions) . '.';
@@ -126,16 +145,6 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
     public function getInnerCache()
     {
         return $this->cache;
-    }
-    
-    /**
-     * Sets the frontend directives.
-     *
-     * @param array(string=>mixed) $directives assoc of directives
-     */
-    public function setDirectives($directives)
-    {
-        $this->directives = $directives;
     }
 
     /**
@@ -189,7 +198,7 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
      */
     public function save($data, $id, $tags = array(), $specificLifetime = false)
     {
-        $lifetime = ($specificLifetime === false) ? $this->getDefaultLifetime() : $specificLifetime;
+        $lifetime = $this->getLifetime($specificLifetime);
         if ($lifetime === null) {
             // Zend interprets null as infinite lifetime, whereas
             // Doctrine assumes that 0 means infinite lifetime.
@@ -279,16 +288,6 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
     protected function decodeItem($encodedItem)
     {
         return json_decode($encodedItem);
-    }
-    
-    /**
-     * Returns the configured default lifetime.
-     *
-     * @return integer|null
-     */
-    protected function getDefaultLifetime()
-    {
-        return isset($this->directives['lifetime']) ? $this->directives['lifetime'] : null;
     }
     
     /**
