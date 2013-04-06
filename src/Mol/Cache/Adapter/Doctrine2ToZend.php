@@ -61,11 +61,11 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
     /**
      * Creates an adapter for the provided cache.
      *
-     * @param \Doctrine\Common\Cache\Cache $innerCache
+     * @param \Doctrine\Common\Cache\Cache|array(string=>mixed) $cacheOrOptions
      */
-    public function __construct(Cache $innerCache)
+    public function __construct($cacheOrOptions)
     {
-        $this->cache = $innerCache;
+        $this->cache = $cacheOrOptions;
     }
     
     /**
