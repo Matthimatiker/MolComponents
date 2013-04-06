@@ -19,6 +19,8 @@ use Doctrine\Common\Cache\Cache;
  *
  * # Usage #
  *
+ * ## Basics ##
+ *
  * To create an adapter it is enough to pass the inner Doctrine 2 cache instance
  * to the constructor:
  *
@@ -32,6 +34,34 @@ use Doctrine\Common\Cache\Cache;
  * Please note that the adapter is *not* compatible to the extended cache backend interface
  * (``Zend_Cache_Backend_ExtendedInterface``) as the required operations are not supported
  * by the inner Doctrine 2 cache.
+ *
+ * ## Advanced Features ##
+ *
+ * It is also possible to pass a configuration that specifies the inner cache that
+ * will be used:
+ *
+ *     $options = array(
+ *         'cache' => array(
+ *             'class' => 'Doctrine\Common\Cache\ArrayCache'
+ *         );
+ *     );
+ *     $adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
+ *
+ * The options must contain a "cache" section that contains the fully qualified class
+ * name of the inner cache.
+ *
+ * Optionally constructor arguments for the cache can be added:
+ *
+ *     $options = array(
+ *         'cache' => array(
+ *             'class'     => 'Doctrine\Common\Cache\FilesystemCache'
+ *             'arguments' => array(
+ *                 '/path/to/cache/directory',
+ *                 '.cache.extension'
+ *             )
+ *         );
+ *     );
+ *     $adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
  *
  * @category PHP
  * @package Mol_Cache
