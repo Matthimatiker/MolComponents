@@ -133,7 +133,8 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
     {
         $this->innerCache->expects($this->once())
                          ->method('fetch')
-                         ->with('test');
+                         ->with('test')
+                         ->will($this->returnValue(false));
         $this->adapter->load('test');
     }
     
