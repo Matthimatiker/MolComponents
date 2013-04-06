@@ -62,10 +62,17 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
      * Creates an adapter for the provided cache.
      *
      * @param \Doctrine\Common\Cache\Cache|array(string=>mixed) $cacheOrOptions
+     * @throws InvalidArgumentException If neither cache nor valid options are passed.
      */
     public function __construct($cacheOrOptions)
     {
-        $this->cache = $cacheOrOptions;
+        $cache = (is_array($cacheOrOptions)) ? $this->buildCache($cacheOrOptions) : $cacheOrOptions;
+        if (!($cache instanceof Cache)) {
+            $message = 'Expected Doctrine 2 cache instance or configuration, but received '
+                     . Mol_Util_Stringifier::stringify($cacheOrOptions) . '.';
+            throw new InvalidArgumentException($message);
+        }
+        $this->cache = $cache;
     }
     
     /**
@@ -242,6 +249,31 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
     protected function getDefaultLifetime()
     {
         return isset($this->directives['lifetime']) ? $this->directives['lifetime'] : null;
+    }
+    
+    /**
+     * Uses the provided options to create a Doctrine 2 cache instance.
+     *
+     * @param array(string=>mixed) $options
+     * @return \Doctrine\Common\Cache\Cache
+     * @throws InvalidArgumentException If required option parts are missing.
+     */
+    protected function buildCache(array $options)
+    {
+        if (!isset($options['cache'])) {
+            $message = 'Expected "cache" section in options. Received options: '
+                     . Mol_Util_Stringifier::stringify($options);
+            throw new InvalidArgumentException($message);
+        }
+        if (!isset($options['cache']['class'])) {
+            $message = 'Expected "class" option in "cache" section in options. Received options: '
+                     . Mol_Util_Stringifier::stringify($options);
+            throw new InvalidArgumentException($message);
+        }
+        $class     = $options['cache']['class'];
+        $arguments = isset( $options['cache']['arguments']) ?  $options['cache']['arguments'] : array();
+        $builder   = new Mol_Util_ObjectBuilder('Doctrine\Common\Cache\Cache');
+        return $builder->create($class, $arguments);
     }
     
 }
