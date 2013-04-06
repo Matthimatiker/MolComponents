@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Cache_Adapter_Doctrine2
+ * Mol_Cache_Adapter_Doctrine2ToZendTest
  *
  * @category PHP
  * @package Mol_Cache
@@ -33,13 +33,13 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.04.2013
  */
-class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
+class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
 {
     
     /**
      * System under test.
      *
-     * @var Mol_Cache_Adapter_Doctrine2
+     * @var Mol_Cache_Adapter_Doctrine2ToZend
      */
     protected $adapter = null;
     
@@ -207,7 +207,7 @@ class Mol_Cache_Adapter_Doctrine2Test extends PHPUnit_Framework_TestCase
      */
     protected function createAdapter(Cache $innerCache)
     {
-        $adapter = new Mol_Cache_Adapter_Doctrine2($innerCache);
+        $adapter = new Mol_Cache_Adapter_Doctrine2ToZend($innerCache);
         $adapter->setDirectives(array('lifetime' => 42));
         return $adapter;
     }

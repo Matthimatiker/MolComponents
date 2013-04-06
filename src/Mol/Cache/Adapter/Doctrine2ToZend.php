@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Cache_Adapter_Doctrine2
+ * Mol_Cache_Adapter_Doctrine2ToZend
  *
  * @category PHP
  * @package Mol_Cache
@@ -25,7 +25,7 @@ use Doctrine\Common\Cache\Cache;
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.04.2013
  */
-class Mol_Cache_Adapter_Doctrine2 implements Zend_Cache_Backend_Interface
+class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
 {
     
     /**
