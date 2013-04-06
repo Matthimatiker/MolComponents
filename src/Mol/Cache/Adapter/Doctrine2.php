@@ -74,7 +74,11 @@ class Mol_Cache_Adapter_Doctrine2 implements Zend_Cache_Backend_Interface
      */
     public function load($id, $doNotTestCacheValidity = false)
     {
-        return $this->cache->fetch($id);
+        $item = $this->loadItem($id);
+        if ($item === false) {
+            return false;
+        }
+        return $item->data;
     }
 
     /**
@@ -87,7 +91,11 @@ class Mol_Cache_Adapter_Doctrine2 implements Zend_Cache_Backend_Interface
      */
     public function test($id)
     {
-        return $this->cache->contains($id);
+        $item = $this->loadItem($id);
+        if ($item === false) {
+            return false;
+        }
+        return $item->modified;
     }
 
     /**
@@ -111,7 +119,7 @@ class Mol_Cache_Adapter_Doctrine2 implements Zend_Cache_Backend_Interface
             // Doctrine assumes that 0 means infinite lifetime.
             $lifetime = 0;
         }
-        return $this->cache->save($id, $data, $lifetime);
+        return $this->cache->save($id, $this->encodeItem($this->toItem($data)), $lifetime);
     }
 
     /**
@@ -135,6 +143,66 @@ class Mol_Cache_Adapter_Doctrine2 implements Zend_Cache_Backend_Interface
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
         return false;
+    }
+    
+    /**
+     * Converts the cache data into a cache item with
+     * additional metadata.
+     *
+     * @param string $data
+     * @return stdClass
+     */
+    protected function toItem($data)
+    {
+        $item = new stdClass();
+        $item->data     = $data;
+        $item->modified = time();
+        return $item;
+    }
+    
+    /**
+     * Returns a decoded cache item or false if the requested
+     * item does not exist.
+     *
+     * A cache item contains the cached payload as well as metadata.
+     *
+     * An item offers the following properties:
+     *
+     * * data     (string)  - The cached payload.
+     * * modified (integer) - Timestamp when the item was stored.
+     *
+     * @param string $id
+     * @return stdClass|false
+     */
+    protected function loadItem($id)
+    {
+        $encodedItem = $this->cache->fetch($id);
+        if ($encodedItem === false) {
+            return false;
+        }
+        return $this->decodeItem($encodedItem);
+    }
+    
+    /**
+     * Converts the given cache item into a string.
+     *
+     * @param stdClass $item
+     * @return string
+     */
+    protected function encodeItem(stdClass $item)
+    {
+        return json_encode($item);
+    }
+    
+    /**
+     * Restores the original cache item from the encoded value.
+     *
+     * @param string $encodedItem
+     * @return stdClass
+     */
+    protected function decodeItem($encodedItem)
+    {
+        return json_decode($encodedItem);
     }
     
     /**
