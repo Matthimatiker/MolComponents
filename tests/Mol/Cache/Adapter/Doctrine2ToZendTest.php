@@ -80,6 +80,15 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if getInnerCache() returns the cache instance that was passed
+     * to the adapter's constructor.
+     */
+    public function testGetInnerCacheReturnsInjectedCache()
+    {
+        $this->assertSame($this->innerCache, $this->adapter->getInnerCache());
+    }
+    
+    /**
      * Checks if the save() method delegates to the save() method
      * of the inner Doctrine cache.
      */

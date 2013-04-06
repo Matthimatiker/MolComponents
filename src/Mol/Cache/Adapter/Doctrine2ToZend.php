@@ -69,6 +69,19 @@ class Mol_Cache_Adapter_Doctrine2ToZend implements Zend_Cache_Backend_Interface
     }
     
     /**
+     * Returns the inner cache instance.
+     *
+     * This method is useful to change the configuration of
+     * the inner cache after construction.
+     *
+     * @return \Doctrine\Common\Cache\Cache
+     */
+    public function getInnerCache()
+    {
+        return $this->cache;
+    }
+    
+    /**
      * Sets the frontend directives.
      *
      * @param array(string=>mixed) $directives assoc of directives
