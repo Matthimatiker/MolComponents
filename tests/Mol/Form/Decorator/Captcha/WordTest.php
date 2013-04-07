@@ -33,4 +33,34 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testDecoratorAssignsCorrectIdToLabelDecorator()
+    {
+        
+    }
+    
+    public function testDecoratorWorksIfElementHasNoLabelDecorator()
+    {
+        
+    }
+    
+    public function testDecoratorDoesNotAssignSameIdToHiddenAndTextField()
+    {
+        
+    }
+    
+    public function testDecoratorAssignsIdWithInputSuffixToTextField()
+    {
+        
+    }
+    
+    public function testDecoratorDoesNotDestroyInitialContentIfItContainsIdAsString()
+    {
+        
+    }
+    
+    public function testDecoratorWorksIfElementDoesNotProvideIdExplicitly()
+    {
+        
+    }
+    
 }
