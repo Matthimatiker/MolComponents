@@ -33,11 +33,19 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Checks if the correct ID is passed to the label decorator
+     * of the rendered element.
+     */
     public function testDecoratorAssignsCorrectIdToLabelDecorator()
     {
         
     }
     
+    /**
+     * Ensures that the decorator works if the element does not use
+     * a label decorator.
+     */
     public function testDecoratorWorksIfElementHasNoLabelDecorator()
     {
         
