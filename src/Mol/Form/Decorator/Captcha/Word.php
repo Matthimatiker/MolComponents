@@ -27,6 +27,20 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
 {
     
     /**
+     * Placeholder that is temporarily used for the content.
+     *
+     * @var string
+     */
+    const PLACEHOLDER_CONTENT = '__CONTENT__';
+    
+    /**
+     * Placeholder that is temporarily used for the ID.
+     *
+     * @var string
+     */
+    const PLACEHOLDER_ID = '__ID__';
+    
+    /**
      * Suffix for the ID that is assigned to the hidden field.
      *
      * @var string
@@ -52,10 +66,10 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         // after ID correction.
         $element         = $this->getElement();
         $previousIdValue = $element->getAttrib('id');
-        $element->setAttrib('id', '__ID__');
+        $element->setAttrib('id', self::PLACEHOLDER_ID);
         
         // Use the original decorator to create the markup.
-        $markup = parent::render('__CONTENT__');
+        $markup = parent::render(self::PLACEHOLDER_CONTENT);
         
         // Restore the original ID.
         $element->setAttrib('id', $previousIdValue);
@@ -64,7 +78,7 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         $markup = $this->fixIds($markup);
         
         // Insert the original content.
-        $markup = str_replace('__CONTENT__', $content, $markup);
+        $markup = str_replace(self::PLACEHOLDER_CONTENT, $content, $markup);
         
         return $markup;
     }
@@ -79,7 +93,7 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
     {
         $id = $this->getElement()->getId();
         // It is assumed that the hidden field is rendered first.
-        $parts  = explode('__ID__', $markup, 3);
+        $parts  = explode(self::PLACEHOLDER_ID, $markup, 3);
         $markup = $parts[0] . $id . self::HIDDEN_FIELD_ID_SUFFIX
                 . $parts[1] . $id . self::TEXT_FIELD_ID_SUFFIX
                 . $parts[2];
