@@ -229,6 +229,19 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('custom-id', $this->decorator->getElement()->getDecorator('HtmlTag')->getOption('id'));
     }
     
+
+    /**
+     * Ensures that the decorator works if the element does not use
+     * a HtmlTag decorator.
+     */
+    public function testDecoratorWorksIfElementHasNoHtmlTagDecorator()
+    {
+        $this->decorator->getElement()->removeDecorator('HtmlTag');
+        
+        $this->setExpectedException(null);
+        $this->render();
+    }
+    
     /**
      * Returns the expected name if the rendered hidden field.
      *
