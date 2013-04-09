@@ -46,11 +46,7 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         
         // Restore the original ID.
         $element->setAttrib('id', $previousIdValue);
-        // Assign correct ID to Label decorator if necessary.
-        $labelDecorator = $element->getDecorator('Label');
-        if ($labelDecorator !== false) {
-            $labelDecorator->setOption('id', $previousId . '-input');
-        }
+        $this->assignIdToLabelDecorator();
         
         // Insert correct ID values. It is assumed that the hidden field is rendered first.
         $parts  = explode('__ID__', $markup, 3);
@@ -59,6 +55,18 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         $markup = str_replace('__CONTENT__', $content, $markup);
         
         return $markup;
+    }
+    
+    /**
+     * Assign the correct ID to the Label decorator if necessary.
+     */
+    protected function assignIdToLabelDecorator()
+    {
+        $element        = $this->getElement();
+        $labelDecorator = $element->getDecorator('Label');
+        if ($labelDecorator !== false) {
+            $labelDecorator->setOption('id', $element->getId() . '-input');
+        }
     }
     
 }
