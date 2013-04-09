@@ -73,14 +73,24 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         
         // Restore the original ID.
         $element->setAttrib('id', $previousIdValue);
+        
         $this->assignIdToLabelDecorator();
         
         $markup = $this->fixIds($markup);
         
-        // Insert the original content.
-        $markup = str_replace(self::PLACEHOLDER_CONTENT, $content, $markup);
-        
-        return $markup;
+        return $this->restoreContent($markup, $content);
+    }
+    
+    /**
+     * Restores the original content in the given markup.
+     *
+     * @param string $markup
+     * @param string $content
+     * @return string
+     */
+    protected function restoreContent($markup, $content)
+    {
+        return str_replace(self::PLACEHOLDER_CONTENT, $content, $markup);
     }
     
     /**
