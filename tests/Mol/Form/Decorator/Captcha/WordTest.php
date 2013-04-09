@@ -116,6 +116,19 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the sam ID is assigned to the label and the text field.
+     */
+    public function testDecoratorAssignsSameIdToLabelAndTextField()
+    {
+        $markup = $this->render();
+        $ids    = $this->getIdsByElementName($markup);
+        
+        $labelId = $this->decorator->getElement()->getDecorator('Label')->getOption('id');
+        $this->assertArrayHasKey($this->getTextFieldName(), $ids);
+        $this->assertEquals($labelId, $ids[$this->getTextFieldName()]);
+    }
+    
+    /**
      * Ensures that the decorator does not break the provided content string if it contains
      * the element ID.
      */
@@ -137,6 +150,26 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
         
         $this->setExpectedException(null);
         $this->render();
+    }
+    
+    /**
+     * Ensures that the decorator assigns valid IDs to the different parts if
+     * the element does not provide an ID explicitly.
+     */
+    public function testDecoratorAssignsValidIdsIfElementDoesNotProvideIdExplicitly()
+    {
+        $this->decorator->getElement()->setAttrib('id', null);
+        
+        $markup = $this->render();
+        $ids    = $this->getIdsByElementName($markup);
+        
+        $this->assertArrayHasKey($this->getHiddenFieldName(), $ids);
+        $this->assertArrayHasKey($this->getTextFieldName(), $ids);
+        // IDs of text and hidden field must differ.
+        $this->assertNotEquals($ids[$this->getHiddenFieldName()], $ids[$this->getTextFieldName()]);
+        // ID of label and text field must be equal.
+        $labelId = $this->decorator->getElement()->getDecorator('Label')->getOption('id');
+        $this->assertEquals($labelId, $ids[$this->getTextFieldName()]);
     }
     
     /**
