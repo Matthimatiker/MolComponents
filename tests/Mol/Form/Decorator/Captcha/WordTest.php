@@ -193,6 +193,15 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the element still has the correct ID after rendering.
+     */
+    public function testElementHasCorrectIdAfterRendering()
+    {
+        $this->render();
+        $this->assertEquals('my-id', $this->decorator->getElement()->getId());
+    }
+    
+    /**
      * Returns the expected name if the rendered hidden field.
      *
      * @return string
