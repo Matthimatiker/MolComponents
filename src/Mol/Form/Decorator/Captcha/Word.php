@@ -62,12 +62,28 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         $element->setAttrib('id', $previousIdValue);
         $this->assignIdToLabelDecorator();
         
-        // Insert correct ID values. It is assumed that the hidden field is rendered first.
-        $parts  = explode('__ID__', $markup, 3);
-        $markup = $parts[0] . $previousId . self::HIDDEN_FIELD_ID_SUFFIX . $parts[1] . $previousId . self::TEXT_FIELD_ID_SUFFIX . $parts[2];
+        $markup = $this->fixIds($markup);
+        
         // Insert the original content.
         $markup = str_replace('__CONTENT__', $content, $markup);
         
+        return $markup;
+    }
+    
+    /**
+     * Inserts correct ID values.
+     *
+     * @param string $markup
+     * @return string The fixed markup.
+     */
+    protected function fixIds($markup)
+    {
+        $id = $this->getElement()->getId();
+        // It is assumed that the hidden field is rendered first.
+        $parts  = explode('__ID__', $markup, 3);
+        $markup = $parts[0] . $id . self::HIDDEN_FIELD_ID_SUFFIX
+                . $parts[1] . $id . self::TEXT_FIELD_ID_SUFFIX
+                . $parts[2];
         return $markup;
     }
     
