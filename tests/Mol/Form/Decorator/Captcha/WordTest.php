@@ -173,6 +173,26 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the decorator assigns correct IDs if the name and the ID of
+     * the rendered element are equal.
+     */
+    public function testDecoratorAssignsCorrectIdsIfElementNameAndIdAreEqual()
+    {
+        $this->decorator->getElement()->setAttrib('id', 'my_captcha');
+        
+        $markup = $this->render();
+        $ids    = $this->getIdsByElementName($markup);
+        
+        $this->assertArrayHasKey($this->getHiddenFieldName(), $ids);
+        $this->assertArrayHasKey($this->getTextFieldName(), $ids);
+        // IDs of text and hidden field must differ.
+        $this->assertNotEquals($ids[$this->getHiddenFieldName()], $ids[$this->getTextFieldName()]);
+        // ID of label and text field must be equal.
+        $labelId = $this->decorator->getElement()->getDecorator('Label')->getOption('id');
+        $this->assertEquals($labelId, $ids[$this->getTextFieldName()]);
+    }
+    
+    /**
      * Returns the expected name if the rendered hidden field.
      *
      * @return string
