@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Form_Decorator_Captcha_Word
+ * Mol_Form_Decorator_Captcha_WordTest
  *
  * @category PHP
  * @package Mol_Form
@@ -34,12 +34,47 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Form_Decorator_Captcha_Word
+     */
+    protected $decorator = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        // Usually a captcha element is rendered by the decorator,
+        // but for testing a text field is just as well.
+        // Using a text field avoids a dependency to the session.
+        $element = new Zend_Form_Element_Text('my_captcha');
+        $element->setAttrib('id', 'my-id');
+        $element->setView(new Zend_View());
+        $this->decorator = new Mol_Form_Decorator_Captcha_Word();
+        $this->decorator->setElement($element);
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->decorator = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Checks if the correct ID is passed to the label decorator
      * of the rendered element.
      */
     public function testDecoratorAssignsCorrectIdToLabelDecorator()
     {
+        $this->render();
         
+        $assignedId = $this->decorator->getElement()->getDecorator('Label')->getOption('id');
+        $this->assertEquals('my-id-input', $assignedId);
     }
     
     /**
@@ -48,7 +83,10 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
      */
     public function testDecoratorWorksIfElementHasNoLabelDecorator()
     {
+        $this->decorator->getElement()->removeDecorator('Label');
         
+        $this->setExpectedException(null);
+        $this->render();
     }
     
     /**
@@ -57,7 +95,12 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
      */
     public function testDecoratorDoesNotAssignSameIdToHiddenAndTextField()
     {
+        $markup = $this->render();
+        $ids    = $this->getIdsByElementName($markup);
         
+        $this->assertArrayHasKey($this->getHiddenFieldName(), $ids);
+        $this->assertArrayHasKey($this->getTextFieldName(), $ids);
+        $this->assertNotEquals($ids[$this->getHiddenFieldName()], $ids[$this->getTextFieldName()]);
     }
     
     /**
@@ -65,7 +108,11 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
      */
     public function testDecoratorAssignsIdWithInputSuffixToTextField()
     {
+        $markup = $this->render();
+        $ids    = $this->getIdsByElementName($markup);
         
+        $this->assertArrayHasKey($this->getTextFieldName(), $ids);
+        $this->assertStringEndsWith('-input', $ids[$this->getTextFieldName()]);
     }
     
     /**
@@ -74,7 +121,10 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
      */
     public function testDecoratorDoesNotDestroyInitialContentIfItContainsIdAsString()
     {
+        $content = '<img src="/captchas/my-id/images" />';
+        $markup  = $this->render($content);
         
+        $this->assertContains($content, $markup);
     }
     
     /**
@@ -83,7 +133,62 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
      */
     public function testDecoratorWorksIfElementDoesNotProvideIdExplicitly()
     {
+        $this->decorator->getElement()->setAttrib('id', null);
         
+        $this->setExpectedException(null);
+        $this->render();
+    }
+    
+    /**
+     * Returns the expected name if the rendered hidden field.
+     *
+     * @return string
+     */
+    protected function getHiddenFieldName()
+    {
+        return $this->decorator->getElement()->getFullyQualifiedName() . '[id]';
+    }
+    
+    /**
+     * Returns the expected name if the rendered text field.
+     *
+     * @return string
+     */
+    protected function getTextFieldName()
+    {
+        return $this->decorator->getElement()->getFullyQualifiedName() . '[input]';
+    }
+    
+    /**
+     * Extracts the IDs of named elements from the provided markup.
+     *
+     * @param string $markup
+     * @return array(string=>string) List with names as key and IDs as value.
+     */
+    protected function getIdsByElementName($markup)
+    {
+        $pattern = '/<.*name="(?P<name>.*?)".*id="(?P<id>.*?)".*>/';
+        $matches = array();
+        preg_match_all($pattern, $markup, $matches, PREG_SET_ORDER);
+        $idsByName = array();
+        foreach ($matches as $match) {
+            /* @var $match array(string=>string) */
+            $idsByName[$match['name']] = $match['id'];
+        }
+        return $idsByName;
+    }
+    
+    /**
+     * Uses the decorator to render the element.
+     *
+     * @param string $content The input content.
+     * @return string The rendered markup.
+     */
+    protected function render($content = 'hello world')
+    {
+        $markup = $this->decorator->render($content);
+        $this->assertInternalType('string', $markup);
+        return $markup;
     }
     
 }
