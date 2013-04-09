@@ -52,7 +52,6 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         // after ID correction.
         $element         = $this->getElement();
         $previousIdValue = $element->getAttrib('id');
-        $previousId      = $element->getId();
         $element->setAttrib('id', '__ID__');
         
         // Use the original decorator to create the markup.
