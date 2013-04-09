@@ -51,6 +51,9 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
         // Using a text field avoids a dependency to the session.
         $element = new Zend_Form_Element_Text('my_captcha');
         $element->setAttrib('id', 'my-id');
+        // Simulate a HtmlTag ID that is based on the element name (as configured
+        // in the loadDefaultDecorators() mthod of the captcha element).
+        $element->getDecorator('HtmlTag')->setOption('id', $element->getName() . '-element');
         $element->setView(new Zend_View());
         $this->decorator = new Mol_Form_Decorator_Captcha_Word();
         $this->decorator->setElement($element);
@@ -199,6 +202,31 @@ class Mol_Form_Decorator_Captcha_WordTest extends PHPUnit_Framework_TestCase
     {
         $this->render();
         $this->assertEquals('my-id', $this->decorator->getElement()->getId());
+    }
+    
+    /**
+     * The ID of the rendered HTML tag is based on the captcha name per default.
+     *
+     * This value should be fixed and the real ID should be used.
+     */
+    public function testDecoratorFixesIdOfHtmlTagDecorator()
+    {
+        $this->render();
+        
+        $expectedId = $this->decorator->getElement()->getId() . '-element';
+        $this->assertEquals($expectedId, $this->decorator->getElement()->getDecorator('HtmlTag')->getOption('id'));
+    }
+    
+    /**
+     * Ensures that the ID of the HTML tag decorator is not changed if it has
+     * been customized (manually).
+     */
+    public function testDecoratorDoesNotChangeCustomizedHtmlTagDecoratorId()
+    {
+        $this->decorator->getElement()->getDecorator('HtmlTag')->setOption('id', 'custom-id');
+        $this->render();
+        
+        $this->assertEquals('custom-id', $this->decorator->getElement()->getDecorator('HtmlTag')->getOption('id'));
     }
     
     /**
