@@ -27,6 +27,20 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
 {
     
     /**
+     * Suffix for the ID that is assigned to the hidden field.
+     *
+     * @var string
+     */
+    const HIDDEN_FIELD_ID_SUFFIX = '-id';
+    
+    /**
+     * Suffix for the ID that is assigned to the text field.
+     *
+     * @var string
+     */
+    const TEXT_FIELD_ID_SUFFIX = '-input';
+    
+    /**
      * Renders the captcha and ensures that IDs are assigned correctly.
      *
      * @param string $content
@@ -50,7 +64,7 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         
         // Insert correct ID values. It is assumed that the hidden field is rendered first.
         $parts  = explode('__ID__', $markup, 3);
-        $markup = $parts[0] . $previousId . '-id' . $parts[1] . $previousId . '-input' . $parts[2];
+        $markup = $parts[0] . $previousId . self::HIDDEN_FIELD_ID_SUFFIX . $parts[1] . $previousId . self::TEXT_FIELD_ID_SUFFIX . $parts[2];
         // Insert the original content.
         $markup = str_replace('__CONTENT__', $content, $markup);
         
@@ -65,7 +79,7 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         $element        = $this->getElement();
         $labelDecorator = $element->getDecorator('Label');
         if ($labelDecorator !== false) {
-            $labelDecorator->setOption('id', $element->getId() . '-input');
+            $labelDecorator->setOption('id', $element->getId() . self::TEXT_FIELD_ID_SUFFIX);
         }
     }
     
