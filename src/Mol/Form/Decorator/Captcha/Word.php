@@ -15,6 +15,20 @@
 /**
  * A captcha decorator that fixes problems regarding ID rendering.
  *
+ * # Usage #
+ *
+ * To use this decorator the prefix path of the captcha element
+ * must be configured properly:
+ *
+ *     $captcha->addPrefixPath('Mol_Form_Decorator_Captcha', '/path/to/decorator/directory', 'decorator');
+ *
+ * Alternatively a decorator instance can be assigned directly, although this
+ * might mess up the rather complex ordering of the captcha decorators and is
+ * therefore not recommended:
+ *
+ *     $decorator = new Mol_Form_Decorator_Captcha_Word();
+ *     $captcha->addDecorator($decorator);
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
