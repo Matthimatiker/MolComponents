@@ -69,6 +69,14 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
     const TEXT_FIELD_ID_SUFFIX = '-input';
     
     /**
+     * Suffix for the ID that is assigned to the HtmlTag that is rendered
+     * around the captcha input fields.
+     *
+     * @var string
+     */
+    const HTML_TAG_ID_SUFFIX = '-element';
+    
+    /**
      * Renders the captcha and ensures that IDs are assigned correctly.
      *
      * @param string $content
@@ -89,6 +97,7 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
         $element->setAttrib('id', $previousIdValue);
         
         $this->assignIdToLabelDecorator();
+        $this->fixIdOfHtmlTagDecorator();
         
         $markup = $this->fixIds($markup);
         
@@ -129,10 +138,26 @@ class Mol_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Captcha_Word
      */
     protected function assignIdToLabelDecorator()
     {
-        $element        = $this->getElement();
-        $labelDecorator = $element->getDecorator('Label');
-        if ($labelDecorator !== false) {
-            $labelDecorator->setOption('id', $element->getId() . self::TEXT_FIELD_ID_SUFFIX);
+        $element   = $this->getElement();
+        $decorator = $element->getDecorator('Label');
+        if ($decorator !== false) {
+            $decorator->setOption('id', $element->getId() . self::TEXT_FIELD_ID_SUFFIX);
+        }
+    }
+    
+    /**
+     * Fixes the ID of the HtmlTag decorator.
+     *
+     * Per default the assigned ID depends on the element name,
+     * but the element ID should be used instead.
+     */
+    protected function fixIdOfHtmlTagDecorator()
+    {
+        $element   = $this->getElement();
+        $decorator = $element->getDecorator('HtmlTag');
+        $invalidId = $element->getName() . self::HTML_TAG_ID_SUFFIX;
+        if ($decorator !== false && $decorator->getOption('id') === $invalidId) {
+            $decorator->setOption('id', $element->getId() . self::HTML_TAG_ID_SUFFIX);
         }
     }
     
