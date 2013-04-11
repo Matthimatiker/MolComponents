@@ -33,4 +33,44 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
 {
     
+    public function testCacheImplementsBackendInterface()
+    {
+        
+    }
+    
+    public function testCacheExtendsBackendClass()
+    {
+        
+    }
+    
+    public function testTestReturnsFalseIfItemDoesNotExist()
+    {
+        
+    }
+    
+    public function testTestReturnsTimestampIfItemExists()
+    {
+        
+    }
+    
+    public function testLoadReturnsFalseIfItemDoesNotExist()
+    {
+        
+    }
+    
+    public function testLoadReturnsStoredItem()
+    {
+        
+    }
+    
+    public function testRemoveDeletesItem()
+    {
+        
+    }
+    
+    public function testDifferentCacheInstancesDoNotShareData()
+    {
+        
+    }
+    
 }
