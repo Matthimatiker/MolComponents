@@ -33,41 +33,68 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
 {
     
+    /**
+     * Checks if the cache implements the cache backend interface.
+     */
     public function testCacheImplementsBackendInterface()
     {
         
     }
     
+    /**
+     * Checks if the cache extends the cache backend base class.
+     *
+     * That class must be used as parent, otherwise the cache does not
+     * work with Zend_Cache_Core.
+     */
     public function testCacheExtendsBackendClass()
     {
         
     }
     
+    /**
+     * Ensures that test() returns false if the cache item does not exist.
+     */
     public function testTestReturnsFalseIfItemDoesNotExist()
     {
         
     }
     
+    /**
+     * Ensures that test() returns a timestamp if the checked item exists.
+     */
     public function testTestReturnsTimestampIfItemExists()
     {
         
     }
     
+    /**
+     * Ensures that load() returns false if the requested item doe snot exist.
+     */
     public function testLoadReturnsFalseIfItemDoesNotExist()
     {
         
     }
     
+    /**
+     * Checks if load() returns the cached item.
+     */
     public function testLoadReturnsStoredItem()
     {
         
     }
     
+    /**
+     * Checks if remove() deletes a previously added item.
+     */
     public function testRemoveDeletesItem()
     {
         
     }
     
+    /**
+     * Ensures that different cache instances do not share their data.
+     */
     public function testDifferentCacheInstancesDoNotShareData()
     {
         
