@@ -63,7 +63,7 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCacheImplementsBackendInterface()
     {
-        
+        $this->assertInstanceOf('Zend_Cache_Backend_Interface', $this->cache);
     }
     
     /**
@@ -74,7 +74,7 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCacheExtendsBackendClass()
     {
-        
+        $this->assertInstanceOf('Zend_Cache_Backend', $this->cache);
     }
     
     /**
@@ -82,7 +82,7 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
      */
     public function testTestReturnsFalseIfItemDoesNotExist()
     {
-        
+        $this->assertFalse($this->cache->test('key'));
     }
     
     /**
@@ -90,15 +90,16 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
      */
     public function testTestReturnsTimestampIfItemExists()
     {
-        
+        $this->cache->save('value', 'key');
+        $this->assertInternalType('integer', $this->cache->test('key'));
     }
     
     /**
-     * Ensures that load() returns false if the requested item doe snot exist.
+     * Ensures that load() returns false if the requested item does not exist.
      */
     public function testLoadReturnsFalseIfItemDoesNotExist()
     {
-        
+        $this->assertFalse($this->cache->load('key'));
     }
     
     /**
@@ -106,7 +107,16 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
      */
     public function testLoadReturnsStoredItem()
     {
-        
+        $this->cache->save('value', 'key');
+        $this->assertEquals('value', $this->cache->load('key'));
+    }
+    
+    /**
+     * Ensures that save() returns true if the cache item was stored.
+     */
+    public function testSaveReturnsTrueIfItemWasStored()
+    {
+        $this->assertTrue($this->cache->save('value', 'key'));
     }
     
     /**
@@ -114,7 +124,19 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
      */
     public function testRemoveDeletesItem()
     {
-        
+        $this->cache->save('value', 'key');
+        $this->cache->remove('key');
+        $this->assertFalse($this->cache->test('key'));
+    }
+    
+    /**
+     * Ensures that removed() returns true if the cache item was successfully
+     * deleted.
+     */
+    public function testRemoveReturnsTrueIfEntryWasDeleted()
+    {
+        $this->cache->save('value', 'key');
+        $this->assertTrue($this->cache->remove('key'));
     }
     
     /**
@@ -122,7 +144,9 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
      */
     public function testDifferentCacheInstancesDoNotShareData()
     {
-        
+        $anotherCache = new Mol_Cache_Backend_Memory();
+        $anotherCache->save('value', 'key');
+        $this->assertFalse($this->cache->test('key'));
     }
     
 }
