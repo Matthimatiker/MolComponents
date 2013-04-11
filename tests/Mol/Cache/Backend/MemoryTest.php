@@ -34,6 +34,31 @@ class Mol_Cache_Backend_MemoryTest extends PHPUnit_Framework_TestCase
 {
     
     /**
+     * System under test.
+     *
+     * @var Mol_Cache_Backend_Memory
+     */
+    protected $cache = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->cache = new Mol_Cache_Backend_Memory();
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->cache = null;
+        parent::tearDown();
+    }
+    
+    /**
      * Checks if the cache implements the cache backend interface.
      */
     public function testCacheImplementsBackendInterface()
