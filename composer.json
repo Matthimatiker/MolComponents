@@ -20,7 +20,7 @@
     	"doctrine/cache": ">=1.0.0"
     },
     "suggest": {
-    	"doctrine/cache": "Allows the usage of Doctrine2 caches."
+    	"doctrine/cache": "Allows the usage of Doctrine2 caches and the memory cache backend (Mol_Cache_Backend_Memory)."
     },
     "autoload": {
         "psr-0": { 
