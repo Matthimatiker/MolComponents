@@ -154,7 +154,7 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
                    ->with($this->isType('string'))
                    ->will($this->returnValue(true));
         
-        $this->adapter->save('hello', 'world');
+        $this->adapter->save('hello', array(1, 2, 3));
     }
     
     /**
