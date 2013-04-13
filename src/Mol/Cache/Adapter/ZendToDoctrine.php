@@ -67,7 +67,7 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
         if ($item === false) {
             return false;
         }
-        return $item;
+        return unserialize($item);
     }
 
     /**
@@ -96,7 +96,7 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
             // interprets null as infinite.
             $lifeTime = null;
         }
-        return $this->cache->save($data, $id, array(), $lifeTime);
+        return $this->cache->save(serialize($data), $id, array(), $lifeTime);
     }
 
     /**
