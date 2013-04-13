@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Cache_Adapter_ZendToDoctrine
+ * Mol_Cache_Adapter_ZendToDoctrineTest
  *
  * @category PHP
  * @package Mol_Cache
@@ -19,7 +19,7 @@
 require_once(dirname(__FILE__) . '/bootstrap.php');
 
 /**
- * Mol_Cache_Adapter_ZendToDoctrine
+ * Tests the ZendToDoctrine cache adapter.
  *
  * @category PHP
  * @package Mol_Cache
@@ -32,5 +32,55 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  */
 class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
 {
+    
+    public function testImplementsCacheInterface()
+    {
+        
+    }
+    
+    public function testContainsReturnsTrueIfItemExists()
+    {
+        
+    }
+    
+    public function testContainsReturnsFalseIfItemDoesNotExist()
+    {
+        
+    }
+    
+    public function testFetchReturnsFalseIfItemDoesNotExist()
+    {
+        
+    }
+    
+    public function testFetchReturnsCachedItem()
+    {
+        
+    }
+    
+    public function testSaveStoresItem()
+    {
+        
+    }
+    
+    public function testSavePassesLifetimeToInnerCache()
+    {
+        
+    }
+    
+    public function testSaveTranslatesInfiniteLifetimeCorrectly()
+    {
+        
+    }
+    
+    public function testDeleteRemovesItem()
+    {
+        
+    }
+    
+    public function testGetStatsReturnsNull()
+    {
+        
+    }
     
 }
