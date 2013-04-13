@@ -15,7 +15,7 @@
 /**
  * Helper class that simplifies reading from strings via stream functions.
  *
- * The helper may be used to pass string to function that usually support
+ * The helper may be used to pass strings to functions that usually support
  * files only.
  *
  * Example:
