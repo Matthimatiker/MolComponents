@@ -80,7 +80,8 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsReturnsTrueIfItemExists()
     {
-        
+        $this->adapter->save('hello', 'world');
+        $this->assertTrue($this->adapter->contains('hello'));
     }
     
     /**
@@ -89,7 +90,7 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testContainsReturnsFalseIfItemDoesNotExist()
     {
-        
+        $this->assertFalse($this->adapter->contains('hello'));
     }
     
     /**
@@ -98,7 +99,7 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testFetchReturnsFalseIfItemDoesNotExist()
     {
-        
+        $this->assertFalse($this->adapter->fetch('hello'));
     }
     
     /**
@@ -106,15 +107,8 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testFetchReturnsCachedItem()
     {
-        
-    }
-    
-    /**
-     * Checks if save() stores the given cache item.
-     */
-    public function testSaveStoresItem()
-    {
-        
+        $this->adapter->save('hello', 'world');
+        $this->assertEquals('world', $this->adapter->fetch('hello'));
     }
     
     /**
@@ -122,7 +116,14 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testSavePassesLifetimeToInnerCache()
     {
+        $innerCache    = $this->getMock('Zend_Cache_Backend_Interface');
+        $this->adapter = new Mol_Cache_Adapter_ZendToDoctrine($innerCache);
+        $innerCache->expects($this->once())
+                   ->method('save')
+                   ->with($this->anything(), $this->anything(), $this->anything(), 42)
+                   ->will($this->returnValue(true));
         
+        $this->adapter->save('hello', 'world', 42);
     }
     
     /**
@@ -130,7 +131,14 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testSaveTranslatesInfiniteLifetimeCorrectly()
     {
+        $innerCache    = $this->getMock('Zend_Cache_Backend_Interface');
+        $this->adapter = new Mol_Cache_Adapter_ZendToDoctrine($innerCache);
+        $innerCache->expects($this->once())
+                   ->method('save')
+                   ->with($this->anything(), $this->anything(), $this->anything(), $this->isNull())
+                   ->will($this->returnValue(true));
         
+        $this->adapter->save('hello', 'world', 0);
     }
     
     /**
@@ -139,7 +147,14 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testSaveConvertsNonStringValuesToStringBeforePassingThemToInnerCache()
     {
+        $innerCache    = $this->getMock('Zend_Cache_Backend_Interface');
+        $this->adapter = new Mol_Cache_Adapter_ZendToDoctrine($innerCache);
+        $innerCache->expects($this->once())
+                   ->method('save')
+                   ->with($this->isType('string'))
+                   ->will($this->returnValue(true));
         
+        $this->adapter->save('hello', 'world');
     }
     
     /**
@@ -147,7 +162,8 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testFetchReturnsCachedNonStringItemCorrectly()
     {
-        
+        $this->adapter->save('test', array(1, 2, 3));
+        $this->assertEquals(array(1, 2, 3), $this->adapter->fetch('test'));
     }
     
     /**
@@ -155,7 +171,9 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
      */
     public function testDeleteRemovesItem()
     {
-        
+        $this->adapter->save('hello', 'world');
+        $this->adapter->delete('hello');
+        $this->assertFalse($this->adapter->contains('hello'));
     }
     
     /**
