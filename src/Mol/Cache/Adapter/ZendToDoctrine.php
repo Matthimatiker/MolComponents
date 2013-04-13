@@ -17,6 +17,18 @@ use Doctrine\Common\Cache\Cache;
 /**
  * Adapter that allows the usage of Zend caches with Doctrine 2.
  *
+ * This is for example useful if a cache that is created via cache manager
+ * shall be used by Doctrine 2.
+ *
+ * # Usage #
+ *
+ * To use the adapter a Zend cache backend must be passed to the constructor:
+ *
+ *     $cache   = new Mol_Cache_Backend_Memory();
+ *     $adapter = new Mol_Cache_Adapter_ZendToDoctrine($cache);
+ *
+ * Now the adapter can be used in a Doctrine 2 cache context.
+ *
  * @category PHP
  * @package Mol_Cache
  * @author Matthias Molitor <matthias@matthimatiker.de>
