@@ -29,13 +29,20 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
 {
     
     /**
+     * The inner cache.
+     *
+     * @var Zend_Cache_Backend_Interface
+     */
+    protected $cache = null;
+    
+    /**
      * Creates an adapter for the given Zend cache.
      *
      * @param Zend_Cache_Backend_Interface $cache
      */
     public function __construct(Zend_Cache_Backend_Interface $cache)
     {
-        
+        $this->cache = $cache;
     }
     
     /**
@@ -45,7 +52,7 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
      */
     public function getInnerCache()
     {
-        
+        return $this->cache;
     }
     
     /**
@@ -56,7 +63,11 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
      */
     function fetch($id)
     {
-        
+        $item = $this->cache->load($id);
+        if ($item === false) {
+            return false;
+        }
+        return $item;
     }
 
     /**
@@ -67,7 +78,7 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
      */
     function contains($id)
     {
-        
+        return $this->cache->test($id) !== false;
     }
 
     /**
@@ -80,7 +91,12 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
      */
     function save($id, $data, $lifeTime = 0)
     {
-        
+        if ($lifeTime === 0) {
+            // Lifetime 0 means infinite in Doctrine 2 whereas Zend
+            // interprets null as infinite.
+            $lifeTime = null;
+        }
+        return $this->cache->save($data, $id, array(), $lifeTime);
     }
 
     /**
@@ -91,7 +107,7 @@ class Mol_Cache_Adapter_ZendToDoctrine implements Cache
      */
     function delete($id)
     {
-        
+        return $this->cache->remove($id);
     }
 
     /**
