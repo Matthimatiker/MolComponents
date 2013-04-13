@@ -49,7 +49,7 @@ use Doctrine\Common\Cache\ArrayCache;
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 11.04.2013
  */
-class Mol_Cache_Backend_Memory extends Mol_Cache_Adapter_Doctrine2ToZend
+class Mol_Cache_Backend_Memory extends Mol_Cache_Adapter_DoctrineToZend
 {
     
     /**

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Cache_Adapter_Doctrine2ToZend
+ * Mol_Cache_Adapter_DoctrineToZend
  *
  * @category PHP
  * @package Mol_Cache
@@ -26,7 +26,7 @@ use Doctrine\Common\Cache\Cache;
  *
  *     use Doctrine\Common\Cache\ArrayCache;
  *
- *     $adapter = new Mol_Cache_Adapter_Doctrine2ToZend(new ArrayCache());
+ *     $adapter = new Mol_Cache_Adapter_DoctrineToZend(new ArrayCache());
  *
  * The adapter can be used wherever a Zend cache backend (``Zend_Cache_Backend_Interface``)
  * is required.
@@ -45,7 +45,7 @@ use Doctrine\Common\Cache\Cache;
  *             'class' => 'Doctrine\Common\Cache\ArrayCache'
  *         );
  *     );
- *     $adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
+ *     $adapter = new Mol_Cache_Adapter_DoctrineToZend($options);
  *
  * The options must contain a "cache" section that contains the fully qualified class
  * name of the inner cache.
@@ -61,14 +61,14 @@ use Doctrine\Common\Cache\Cache;
  *             )
  *         );
  *     );
- *     $adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
+ *     $adapter = new Mol_Cache_Adapter_DoctrineToZend($options);
  *
  * The options feature also allows this adapter to be configured via cache manager resource:
  *
  *     resources.cachemanager.doctrineAdapter.frontend.name                 = "Core"
  *     resources.cachemanager.doctrineAdapter.frontend.customFrontendNaming = false
  *     resources.cachemanager.doctrineAdapter.frontend.options.lifetime     = 7200
- *     resources.cachemanager.doctrineAdapter.backend.name                  = "Mol_Cache_Adapter_Doctrine2ToZend"
+ *     resources.cachemanager.doctrineAdapter.backend.name                  = "Mol_Cache_Adapter_DoctrineToZend"
  *     resources.cachemanager.doctrineAdapter.backend.customBackendNaming   = true
  *     resources.cachemanager.doctrineAdapter.backend.options.cache.class   = "Doctrine\Common\Cache\ArrayCache"
  *     resources.cachemanager.doctrineAdapter.frontendBackendAutoload       = true
@@ -81,7 +81,7 @@ use Doctrine\Common\Cache\Cache;
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.04.2013
  */
-class Mol_Cache_Adapter_Doctrine2ToZend extends Zend_Cache_Backend implements Zend_Cache_Backend_Interface
+class Mol_Cache_Adapter_DoctrineToZend extends Zend_Cache_Backend implements Zend_Cache_Backend_Interface
 {
     
     /**

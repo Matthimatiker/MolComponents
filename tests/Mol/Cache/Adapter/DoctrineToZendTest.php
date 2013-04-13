@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Mol_Cache_Adapter_Doctrine2ToZendTest
+ * Mol_Cache_Adapter_DoctrineToZendTest
  *
  * @category PHP
  * @package Mol_Cache
@@ -33,13 +33,13 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 01.04.2013
  */
-class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
+class Mol_Cache_Adapter_DoctrineToZendTest extends PHPUnit_Framework_TestCase
 {
     
     /**
      * System under test.
      *
-     * @var Mol_Cache_Adapter_Doctrine2ToZend
+     * @var Mol_Cache_Adapter_DoctrineToZend
      */
     protected $adapter = null;
     
@@ -227,7 +227,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
     public function testConstructorThrowsExceptionIfInvalidArgumentIsPassed()
     {
         $this->setExpectedException('InvalidArgumentException');
-        new Mol_Cache_Adapter_Doctrine2ToZend(new stdClass());
+        new Mol_Cache_Adapter_DoctrineToZend(new stdClass());
     }
     
     /**
@@ -243,7 +243,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
         );
         
         $this->setExpectedException('InvalidArgumentException');
-        new Mol_Cache_Adapter_Doctrine2ToZend($options);
+        new Mol_Cache_Adapter_DoctrineToZend($options);
     }
     
     /**
@@ -253,7 +253,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
     public function testConstructorThrowsExceptionIfCacheSectionInOptionsIsMissing()
     {
         $this->setExpectedException('InvalidArgumentException');
-        new Mol_Cache_Adapter_Doctrine2ToZend(array());
+        new Mol_Cache_Adapter_DoctrineToZend(array());
     }
     
     /**
@@ -268,7 +268,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
         );
         
         $this->setExpectedException('InvalidArgumentException');
-        new Mol_Cache_Adapter_Doctrine2ToZend($options);
+        new Mol_Cache_Adapter_DoctrineToZend($options);
     }
     
     /**
@@ -281,7 +281,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
                 'class' => 'Doctrine\Common\Cache\ArrayCache'
             )
         );
-        $this->adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
+        $this->adapter = new Mol_Cache_Adapter_DoctrineToZend($options);
         $this->assertInstanceOf('Doctrine\Common\Cache\ArrayCache', $this->adapter->getInnerCache());
     }
     
@@ -300,7 +300,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
                 )
             )
         );
-        $this->adapter = new Mol_Cache_Adapter_Doctrine2ToZend($options);
+        $this->adapter = new Mol_Cache_Adapter_DoctrineToZend($options);
         /* @var $innerCache Doctrine\Common\Cache\FilesystemCache */
         $innerCache = $this->adapter->getInnerCache();
         $this->assertInstanceOf('Doctrine\Common\Cache\FilesystemCache', $innerCache);
@@ -323,7 +323,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
                 )
             ),
             'backend' => array(
-                'name'                => 'Mol_Cache_Adapter_Doctrine2ToZend',
+                'name'                => 'Mol_Cache_Adapter_DoctrineToZend',
                 'customBackendNaming' => true,
                 'options' => array(
                     'cache' => array(
@@ -338,9 +338,9 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
         
         $cache = $cacheManager->getCache('doctrineAdapter');
         $this->assertInstanceOf('Zend_Cache_Core', $cache);
-        /* @var $backend Mol_Cache_Adapter_Doctrine2ToZend */
+        /* @var $backend Mol_Cache_Adapter_DoctrineToZend */
         $backend = $cache->getBackend();
-        $this->assertInstanceOf('Mol_Cache_Adapter_Doctrine2ToZend', $backend);
+        $this->assertInstanceOf('Mol_Cache_Adapter_DoctrineToZend', $backend);
         /* @var $innerCache \Doctrine\Common\Cache\ArrayCache */
         $innerCache = $backend->getInnerCache();
         $this->assertInstanceOf('Doctrine\Common\Cache\ArrayCache', $innerCache);
@@ -354,7 +354,7 @@ class Mol_Cache_Adapter_Doctrine2ToZendTest extends PHPUnit_Framework_TestCase
      */
     protected function createAdapter(Cache $innerCache)
     {
-        $adapter = new Mol_Cache_Adapter_Doctrine2ToZend($innerCache);
+        $adapter = new Mol_Cache_Adapter_DoctrineToZend($innerCache);
         $adapter->setDirectives(array('lifetime' => 42));
         return $adapter;
     }
