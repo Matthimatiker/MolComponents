@@ -83,4 +83,9 @@ class Mol_Cache_Adapter_ZendToDoctrineTest extends PHPUnit_Framework_TestCase
         
     }
     
+    public function testGetInnerCacheReturnsCacheThatWasPassedToTheConstructor()
+    {
+        
+    }
+    
 }
