@@ -58,6 +58,18 @@
  *     resources.form.plugins.captcha.options.generateId = On
  *     ; [...]
  *
+ * The rendering of captchas with explicit ID is flawed, therefore a fixed
+ * version of the captcha decorator should be used:
+ *
+ *     ; [...]
+ *     resources.form.plugins.captcha.options.element.prefixPath.captcha.type   = "decorator"
+ *     resources.form.plugins.captcha.options.element.prefixPath.captcha.prefix = "Mol_Form_Decorator_Captcha"
+ *     resources.form.plugins.captcha.options.element.prefixPath.captcha.path   = "/path/to/Mol/Form/decorator/captcha"
+ *     ; [...]
+ *
+ * The ``Mol_Form_Decorator_Captcha_Word`` decorator ensures that the captcha ID is not
+ * assigned to multiple rendered elements.
+ *
  * @category PHP
  * @package Mol_Form
  * @author Matthias Molitor <matthias@matthimatiker.de>
