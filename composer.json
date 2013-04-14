@@ -1,6 +1,6 @@
 {
     "name": "matthimatiker/molcomponents",
-    "description": "Library that contains utility classes and extends the functionality of Zend Framework 1.",
+    "description": "Library with use-at-will architecture that extends the functionality of Zend Framework 1. Main features: Improved bootstrapping with lazy loading of resources, declaration of request parameters as argument in controller actions, advanced form creation and validation, mail templates, lightweight controller testing.",
     "keywords": ["PHP", "Library", "Zend Framework", "ZF", "Bootstrap", "Form", "Mail", "Mol", "Components"],
     "homepage": "https://github.com/Matthimatiker/MolComponents",
     "type": "library",
