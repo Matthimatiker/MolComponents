@@ -40,9 +40,9 @@ class Mol_View_Helper_Value_UrlTest extends PHPUnit_Framework_TestCase
     protected $url = null;
 
     /**
-     * The mock object that simulates the view.
+     * The view that is used by the helper object.
      *
-     * @var Mol_Test_View_Mock
+     * @var Zend_View
      */
     protected $view = null;
 
