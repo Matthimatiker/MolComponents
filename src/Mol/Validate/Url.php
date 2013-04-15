@@ -237,7 +237,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      */
     protected function getHostname()
     {
-        if (!$this->isUrl($this->value)) {
+        if (!$this->isUrl($this->_value)) {
             return null;
         }
         return Zend_Uri_Http::fromString($this->value)->getHost();
