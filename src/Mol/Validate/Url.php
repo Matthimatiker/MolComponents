@@ -70,7 +70,7 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 11.03.2013
  * @property string|null $hostname Hostname of the last validated URL.
- * @property string $allowedHostnames Comma-separated list of accepted hostnames.
+ * @property string $listOfAllowedHostnames Comma-separated list of accepted hostnames.
  */
 class Mol_Validate_Url extends Zend_Validate_Abstract
 {
@@ -125,7 +125,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      * @var array(string=>string)
      */
     protected $_messageVariables = array(
-        'allowedHostnames' => 'allowedHostnames',
+        'allowedHostnames' => 'listOfAllowedHostnames',
         'hostname'         => 'hostname'
     );
     
@@ -208,7 +208,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      */
     public function __get($property)
     {
-        if ($property === 'allowedHostnames') {
+        if ($property === 'listOfAllowedHostnames') {
             return $this->getAllowedHostnamesAsString();
         }
         if ($property === 'hostname') {
