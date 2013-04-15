@@ -90,7 +90,7 @@ class Mol_Util_ObjectBuilder
     /**
      * Creates a new object builder.
      *
-     * If a type contraint is provided, then the builder will only create
+     * If a type constraint is provided, then the builder will only create
      * objects from classes of that type.
      * If a requested instance does not meet the type requirements, then
      * an exception will be thrown.
