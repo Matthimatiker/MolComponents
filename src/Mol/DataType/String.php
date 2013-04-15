@@ -430,7 +430,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      * Expects an associative array that represents a mapping of strings
      * as argument.
      * The keys are replaced by the assigned values.
-     * In this example occurences of "first" are replaced by "last" and
+     * In this example occurrences of "first" are replaced by "last" and
      * "hello" is replaced by "world".
      *
      * @param string|Mol_DataType_String|array(integer|string=>string|Mol_DataType_String) $searchOrMapping

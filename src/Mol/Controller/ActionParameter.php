@@ -63,7 +63,7 @@
  *
  *     $controller->registerValidator(new MyDateValidator(), 'Datetime');
  *
- * Thats enough to gain basic support for that type. If a action parameter
+ * That is enough to gain basic support for that type. If a action parameter
  * of the type "Datetime" is documented the controller will use the registered
  * validator to perform an argument check.
  * If the parameter is valid it will be passed to the action method. However
@@ -416,7 +416,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      *
      * @param Zend_Filter_Interface $filter
      * @param string|array(string) $typeOrTypeList
-     * @return Mol_Controller_ActionParameter Bietet ein Fluent Interface.
+     * @return Mol_Controller_ActionParameter Provides a fluent interface.
      */
     public function registerFilter(Zend_Filter_Interface $filter, $typeOrTypeList)
     {
