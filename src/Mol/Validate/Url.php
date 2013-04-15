@@ -70,7 +70,7 @@
  * @link https://github.com/Matthimatiker/MolComponents
  * @since 11.03.2013
  * @property string|null $hostname Hostname of the last validated URL.
- * @property string allowedHostnames Comma-separated list of accepted hostnames.
+ * @property string $allowedHostnames Comma-separated list of accepted hostnames.
  */
 class Mol_Validate_Url extends Zend_Validate_Abstract
 {
@@ -166,7 +166,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
      *     );
      *     $validator->setAllowedHostnames($validHostnames).
      *
-     * Per default every hostnam is accepted.
+     * Per default every hostname is accepted.
      *
      * @param array(string) $hostnames
      * @return Mol_Validate_Url Provides a fluent interface.
