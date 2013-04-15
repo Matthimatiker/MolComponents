@@ -304,5 +304,29 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
         $this->validator->isValid('http://www.google.com/ig?q=test');
         $this->assertEquals('www.google.com', $this->validator->hostname);
     }
-    
+
+    /**
+     * Ensures that the magic $listOfAllowedHostnames attribute contains an empty string
+     * if no hostname constraints were set.
+     */
+    public function testListOfAllowedHostnamesIsNullIfNoHostnameWhitelistWasProvided()
+    {
+        $list = $this->validator->listOfAllowedHostnames;
+        $this->assertInternalType('string', $list);
+        $this->assertEmpty($list);
+    }
+
+    /**
+     * Checks if the magic $listOfAllowedHostnames attribute contains the whitelisted
+     * hostnames.
+     */
+    public function testListOfAllowedHostnamesAttributeContainsAllowedHostnames()
+    {
+        $this->validator->setAllowedHostnames(array('github.com', 'google.de'));
+        $list = $this->validator->listOfAllowedHostnames;
+        $this->assertInternalType('string', $list);
+        $this->assertContains('github.com', $list);
+        $this->assertContains('google.de', $list);
+    }
+
 }
