@@ -102,7 +102,7 @@ class Mol_Validate_Url extends Zend_Validate_Abstract
     /**
      * A list of expected hostnames.
      *
-     * The listed hostnams may contain wildcards ("*").
+     * The listed hostnames may contain wildcards ("*").
      *
      * @var array(string)
      */
