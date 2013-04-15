@@ -295,7 +295,7 @@ abstract class Mol_Controller_ActionParameter extends Zend_Controller_Action
      * Returns the documented type for the given parameter.
      *
      * @param ReflectionParameter $param
-     * @return string The documented paramter type.
+     * @return string The documented parameter type.
      * @throws Mol_Controller_Exception_ParameterTagMissing If the parameter was not documented correctly.
      */
     private function getTypeFor(ReflectionParameter $param)
