@@ -201,9 +201,11 @@ class Mol_Util_MemoryStreamWrapper
     /**
      * Returns information about a stream.
      *
+     * Returns false if no information is available.
+     *
      * @param string $path
      * @param integer $flags
-     * @return array(mixed=>mixed)|false
+     * @return array(mixed=>mixed)|boolean
      */
     public function url_stat($path, $flags)
     {

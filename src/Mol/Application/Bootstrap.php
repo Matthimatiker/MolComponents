@@ -72,7 +72,7 @@ class Mol_Application_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      *
      * @param string $resource
      * @param array|object|null $options The resource options.
-     * @return string|false The name of the resource or false if it was not found.
+     * @return string|boolean The name of the resource or false if it was not found.
      */
     protected function _loadPluginResource($resource, $options)
     {
