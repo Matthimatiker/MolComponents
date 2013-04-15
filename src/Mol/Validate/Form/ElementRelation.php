@@ -218,7 +218,7 @@ class Mol_Validate_Form_ElementRelation extends Zend_Validate_Abstract
      * Simulates properties that are used in message templates.
      *
      * @param string $property
-     * @returnb mixed
+     * @return mixed
      */
     public function __get($property)
     {
