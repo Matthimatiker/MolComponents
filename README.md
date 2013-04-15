@@ -145,7 +145,7 @@ After creation it is possible to modify and send mails as usual:
 ### Advanced form creation ###
 
 Many forms share the same functionality. For example CSRF tokens are
-often required for security reasons. Although necessarry, these 
+often required for security reasons. Although necessary, these
 additional elements make testing difficult as they often depend
 on global state and therefore need a special treatment in unit tests.
 
