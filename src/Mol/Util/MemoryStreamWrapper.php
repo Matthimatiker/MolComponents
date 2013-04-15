@@ -78,11 +78,11 @@ class Mol_Util_MemoryStreamWrapper
      * The bucket will be initially filled with the provided content.
      *
      * @param string $id
-     * @param string $initalContent
+     * @param string $initialContent
      */
-    public static function registerBucket($id, $initalContent)
+    public static function registerBucket($id, $initialContent)
     {
-        self::$buckets[$id] = $initalContent;
+        self::$buckets[$id] = $initialContent;
     }
 
     /**
@@ -157,7 +157,7 @@ class Mol_Util_MemoryStreamWrapper
         return self::getBucketSize($this->bucketId);
     }
 
-    // @codingStandardsIgnoreStart Unused parameters exist for interface compability.
+    // @codingStandardsIgnoreStart Unused parameters exist for interface compatibility.
     /**
      * Opens a stream.
      *
