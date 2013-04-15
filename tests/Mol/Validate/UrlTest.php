@@ -253,21 +253,6 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Checks if the allowedHostnames attribute contains a string with the
-     * whitelisted hostnames.
-     *
-     * This attribute can be referenced in failure messages.
-     */
-    public function testAllowedHostnamesAttributeProvidesListOfHostnamesAsString()
-    {
-        $this->validator->setAllowedHostnames(array('github.com', 'google.de'));
-        $list = $this->validator->allowedHostnames;
-        $this->assertInternalType('string', $list);
-        $this->assertContains('github.com', $list);
-        $this->assertContains('google.de', $list);
-    }
-    
-    /**
      * Checks if the default value attribute is still working.
      */
     public function testValueAttributeReturnsTheCheckedValue()
@@ -319,6 +304,8 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
     /**
      * Checks if the magic $listOfAllowedHostnames attribute contains the whitelisted
      * hostnames.
+     *
+     * This attribute can be referenced in failure messages via %allowedHostnames%.
      */
     public function testListOfAllowedHostnamesAttributeContainsAllowedHostnames()
     {
