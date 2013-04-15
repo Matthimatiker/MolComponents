@@ -864,6 +864,7 @@ class Mol_DataType_String implements IteratorAggregate, ArrayAccess, Countable
      *
      * @param string $trimFunction The name of the trim function.
      * @param string|null $characters The characters that will be trimmed.
+     * @return string
      */
     protected function applyTrim($trimFunction, $characters)
     {

@@ -168,6 +168,7 @@ class Mol_Util_MemoryStreamWrapper
      * @param string $mode
      * @param integer $options
      * @param string $openedPath
+     * @return boolean
      * @throws RuntimeException If the requested bucket does not exist.
      */
     public function stream_open($path, $mode, $options, $openedPath)

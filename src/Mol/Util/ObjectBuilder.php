@@ -111,6 +111,7 @@ class Mol_Util_ObjectBuilder
      *
      * @param string $class That class that should be instantiated.
      * @param array(mixed) $constructorArguments Constructor arguments for creation.
+     * @return object
      * @throws InvalidArgumentException If the provided class does not meet the type requirements.
      */
     public function create($class, array $constructorArguments = array())
