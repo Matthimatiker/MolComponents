@@ -80,7 +80,7 @@ class Mol_Test_Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
     {
         $name = strtolower($name);
         $this->_markRun($name);
-        $container = $this->getContainer()->{$name} = $result;
+        $this->getContainer()->{$name} = $result;
         return $this;
     }
     
