@@ -58,9 +58,9 @@
  * The following placeholders are supported  in the failure messages
  * of this validator:
  *
- * * %value%             - The checked value.
- * * %hostname%          - The hostname of the checked URL
- * * %acceptedHostnames% - Comma-separated list of allowed hostnames.
+ * * %value%            - The checked value.
+ * * %hostname%         - The hostname of the checked URL
+ * * %allowedHostnames% - Comma-separated list of allowed hostnames.
  *
  * @category PHP
  * @package Mol_Validate
