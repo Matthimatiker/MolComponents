@@ -93,7 +93,7 @@ class Mol_Test_Controller_Action_Helper_Redirector extends Zend_Controller_Actio
      */
     public function setGotoRoute(array $urlOptions = array(), $name = null, $reset = false, $encode = true)
     {
-        // Extract speacial parameters if available.
+        // Extract special parameters if available.
         $module     = (isset($urlOptions['module'])) ? $urlOptions['module'] : null;
         $controller = (isset($urlOptions['controller'])) ? $urlOptions['controller'] : null;
         $action     = (isset($urlOptions['action'])) ? $urlOptions['action'] : null;

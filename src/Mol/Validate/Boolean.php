@@ -42,7 +42,7 @@ class Mol_Validate_Boolean extends Zend_Validate_InArray
                 // Integers as string
                 '0',
                 '1',
-                // Boolans as string
+                // Boolean values as string
                 'true',
                 'false',
                 // Yes / No

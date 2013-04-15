@@ -24,11 +24,11 @@
  * Each string is represented by an object that encapsulates the
  * raw string value and the charset.
  *
- * The content of a string object is not changable, if a modification
+ * The content of a string object is not changeable, if a modification
  * is performed then a new string object will be created and returned.
  *
  * If necessary methods take the charset into account. Therefore it
- * is possible to compare string with different charsets and so on.
+ * is possible to compare strings with different charsets.
  *
  * # Usage #
  *

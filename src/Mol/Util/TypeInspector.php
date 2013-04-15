@@ -110,7 +110,7 @@ class Mol_Util_TypeInspector
      *
      * It is also possible to check multiple constraints at once:
      *
-     *     // Checks if ArrayObject is of type Travaersable *and* Countable
+     *     // Checks if ArrayObject is of type Traversable *and* Countable
      *     $result = $inspector->is('ArrayObject', array('Traversable', 'Countable'));
      *
      * @param string $name The name of the type.
@@ -147,7 +147,7 @@ class Mol_Util_TypeInspector
      * Checks if $name is a class.
      *
      * @param string $name The class name.
-     * @return boolean True if $name is a class, false othwerwise.
+     * @return boolean True if $name is a class, false otherwise.
      * @throws InvalidArgumentException If $name is not a string.
      */
     public function isClass($name)
@@ -160,7 +160,7 @@ class Mol_Util_TypeInspector
      * Checks if $name is an interface.
      *
      * @param string $name The interface name.
-     * @return boolean True if $name is an interface, false othwerwise.
+     * @return boolean True if $name is an interface, false otherwise.
      * @throws InvalidArgumentException If $name is not a string.
      */
     public function isInterface($name)

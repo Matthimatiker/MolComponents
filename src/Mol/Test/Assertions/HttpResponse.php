@@ -103,7 +103,7 @@ class Mol_Test_Assertions_HttpResponse
     }
 
     /**
-     * Asserts that the reponse body contains the expected text.
+     * Asserts that the response body contains the expected text.
      *
      * @param string $needle The text.
      */
@@ -114,7 +114,7 @@ class Mol_Test_Assertions_HttpResponse
     }
 
     /**
-     * Asserts that the reponse body does not contain the provided text.
+     * Asserts that the response body does not contain the provided text.
      *
      * @param string $needle The text.
      */

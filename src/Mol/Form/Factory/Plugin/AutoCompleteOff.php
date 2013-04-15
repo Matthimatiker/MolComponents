@@ -19,7 +19,7 @@
  *
  * ## Configuration ##
  *
- * Activate Autocomplete plugin:
+ * Activate AutoComplete plugin:
  *
  *     resources.form.plugins.autoComplete = "Mol_Form_Factory_Plugin_AutoCompleteOff"
  *

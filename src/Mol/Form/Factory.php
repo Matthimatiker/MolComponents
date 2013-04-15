@@ -268,7 +268,7 @@ class Mol_Form_Factory
             $path[] = $aliasOrClass;
             $aliasOrClass = $this->aliases[$aliasOrClass];
             if (in_array($aliasOrClass, $path)) {
-                // Alias already visted, circle detected.
+                // Alias already visited, circle detected.
                 $path[]  = $aliasOrClass;
                 $message = 'Cannot resolve alias, circle detected: ' . implode(' -> ', $path);
                 throw new RuntimeException($message);

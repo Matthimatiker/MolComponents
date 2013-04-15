@@ -97,7 +97,7 @@
  *     $this->setPost(array('search' => 'hello'));
  *
  * Multiple calls to setGet() or setPost() will not clear parameters
- * that were provided previously, instead the new paramters will
+ * that were provided previously, instead the new parameters will
  * be added:
  *
  *     $this->setGet(array('page' => '1'));
@@ -672,7 +672,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
      * Example:
      *
      *     // Returns "myTestAction".
-     *     $method = $this->actioNameToMethod('my-test');
+     *     $method = $this->actionNameToMethod('my-test');
      *
      * @param string $name
      * @return string
@@ -687,7 +687,7 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     /**
      * Loads the controller class.
      *
-     * @throws RuntimeException If the controller file does not exist or if the file does notr contain the class.
+     * @throws RuntimeException If the controller file does not exist or if the file does not contain the class.
      */
     private function loadController()
     {
@@ -707,9 +707,9 @@ abstract class Mol_Test_WebControllerTestCase extends PHPUnit_Framework_TestCase
     }
     
     /**
-     * Returns the classname of the tested controller.
+     * Returns the class name of the tested controller.
      *
-     * The classname equals the classname of the testcase without
+     * The class name equals the class name of the test case without
      * the Test suffix.
      * For example the name of the class that is tested by "ErrorControllerTest"
      * is "ErrorController".

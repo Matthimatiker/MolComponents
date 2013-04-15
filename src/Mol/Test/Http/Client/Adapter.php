@@ -41,7 +41,7 @@
  * The character "*" may be used as wildcard when registering responses
  * for urls. Therefore it is possible to register a single response
  * for multiple urls.
- * In the following exampple a response is registered for all html pages
+ * In the following example a response is registered for all html pages
  * at matthimatiker.de:
  *
  *     $adapter->addResponse($myResponse, 'http://www.matthimatiker.de/*.html');

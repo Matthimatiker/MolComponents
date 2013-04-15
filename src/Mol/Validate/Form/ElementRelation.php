@@ -56,7 +56,7 @@
  * The relation validators that are used internally must implement
  * the Zend_Validate_Interface interface.
  *
- * The isValid() method should accept a second (for compability reasons
+ * The isValid() method should accept a second (for compatibility reasons
  * optional) value:
  *
  *     public function isValid($value, $other = null)
