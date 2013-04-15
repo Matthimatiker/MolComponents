@@ -68,7 +68,7 @@ class Mol_Validate_UrlTest extends PHPUnit_Framework_TestCase
     
     /**
      * Checks if the validator rejects a string that does not
-     * contrain an URL.
+     * contain an URL.
      */
     public function testValidatorRejectsNonUrlString()
     {
