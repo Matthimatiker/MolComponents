@@ -30,7 +30,7 @@ class Mol_Util_Stringifier
 {
     
     /**
-     * Stringifies the given value.
+     * Converts the given value into a string.
      *
      * @param array(mixed)|object|string|integer|double|boolean|null|resource $value
      * @return string
