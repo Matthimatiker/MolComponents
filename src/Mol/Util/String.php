@@ -180,7 +180,7 @@ class Mol_Util_String
      * Expects an associative array that represents a mapping of strings
      * as argument.
      * The keys are replaced by the assigned values.
-     * In this example occurences of "first" are replaced by "last" and
+     * In this example occurrences of "first" are replaced by "last" and
      * "hello" is replaced by "world".
      *
      * @param string $subject
