@@ -28,7 +28,7 @@
  * is performed then a new string object will be created and returned.
  *
  * If necessary methods take the charset into account. Therefore it
- * is possible to compare strings with different charsets.
+ * is for example possible to compare strings with different charsets.
  *
  * # Usage #
  *
